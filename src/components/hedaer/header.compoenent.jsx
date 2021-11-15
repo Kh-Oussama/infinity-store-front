@@ -1,6 +1,7 @@
 import React from 'react';
 import IcomoonReact from "icomoon-react";
 import iconSet from "../../selection.json";
+import ShopCard from "../shop-card/shop-card.component";
 
 const Header = () => {
     return (
@@ -23,6 +24,8 @@ const Header = () => {
                         </form>
                     </div>
                 </div>
+
+                <ShopCard/>
             </header>
             </>
     )
