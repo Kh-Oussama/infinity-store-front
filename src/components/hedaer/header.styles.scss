@@ -1,0 +1,109 @@
+.header {
+  height: calc(100vh - 8.7rem);
+  display: flex;
+  //align-items: center;
+  justify-content: center;
+
+  & .content {
+    text-align: center;
+
+    & .title {
+      font-size: 5rem;
+      color: rgb(31,41,55);
+      margin: 10rem 0 2rem 0;
+    }
+
+    & .subtitle {
+      font-size: 1.8rem;
+      color: var(--color-grey-dark-1);
+      font-weight: normal;
+      margin-bottom: 2rem;
+    }
+
+    & .search-form {
+      grid-column: 5/-1;
+      //@media only screen and (max-width: $bp-medium-2) {
+      //  grid-row: 2/3;
+      //  grid-column: 1/-1;
+      //}
+
+      .form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__input {
+          font-family: inherit;
+          font-size: 1.8rem;
+          flex: 0 0 80%;
+          color: inherit;
+          background-color: white;
+          padding: .7rem 2rem;
+          transition: all .2s;
+          height: 5rem;
+          border: 1px  solid var(--color-grey-2);
+          border-radius: 1rem 0 0 1rem;
+          box-shadow: var(--shadow-light);
+
+
+          &:focus {
+            outline: none;
+            background-color: var(--color-grey-light-3);
+          }
+
+          &::-webkit-input-placeholder {
+            font-weight: 100;
+            color: var(--color-grey-light-4);
+          }
+        }
+
+        &__button {
+          background-color: var(--color-primary);
+          height: 5rem;
+          flex: 1;
+          color: white;
+          font-size: 1.6rem;
+          letter-spacing: .2rem;
+          transition: all .3s;
+          cursor: pointer;
+          position: relative;
+          display: inline-block;
+          overflow: hidden;
+          z-index: 1;
+          border: none;
+          border-radius: 0 1rem 1rem 0;
+
+          & svg {
+            margin-right: 1rem;
+            fill: white;
+          }
+
+          &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 3%;
+            height: 100%;
+            background-color: var(--color-primary);
+            left: 0;
+            border-radius: 0 50% 50% 0;
+            transition: .8s;
+            z-index: -1;
+          }
+
+          &:hover:before {
+            width: 180%;
+          }
+
+          &:focus {
+            outline: none;
+          }
+
+        }
+
+      }
+    }
+  }
+
+
+}
