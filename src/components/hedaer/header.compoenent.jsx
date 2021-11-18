@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import IcomoonReact from "icomoon-react";
 import iconSet from "../../selection.json";
 import ShopCard from "../shop-card/shop-card.component";
 
+
 const Header = () => {
+    const [width,setWidth] = useState(0)
+
+
     return (
         <>
-            <header className={"header"}>
+            <header className={"header"} >
                 <div className="content">
                     <h1 className="title">
                         Groceries Delivered in 90 Minute

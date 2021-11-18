@@ -4,14 +4,22 @@
 
 
     --color-primary: #009f7f;
+    --color-primary-dark: rgb(0,143,114);
+    --title-text-color : rgb(31,41,55);
+    --title-text-color-dark : rgb(31,41,55);
+
 
     --color-grey-1: #fafafa;
     --color-grey-2: #f3f4f6;
+    --color-grey-3: rgb(229,231,235);
+    --popup-overlay-color :  31,41,55;
+
     --color-grey-dark-1: #333;
     --color-grey-dark-2: #777;
     --color-grey-dark-3: #999;
 
     --shadow-light: 0 2rem 5rem rgba(0,0,0,.09);
+    --shadow-light-2: 0 2rem 5rem rgba(0,0,0,.2);
 
     //--gradient-color: linear-gradient(to right bottom ,var(--color-primary-dark), var(--color-primary));
 

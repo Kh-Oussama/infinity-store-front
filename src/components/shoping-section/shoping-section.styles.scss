@@ -1,11 +1,10 @@
 .shop-container {
   height: 100vh;
-  //background: #009f7f;
   display: flex;
-  justify-content: space-between;
-
+//justify-content: space-around;
+//  background: yellow;
   & .side-menu {
-    flex: 0 0 25%;
+    flex: 0 0 22%;
     background: white;
 
     .pro-sidebar {
@@ -46,8 +45,11 @@
   }
 
   & .products-grid {
-    flex: 0 0 73%;
-    background: white;
-    margin-top: 3rem;
+    flex: 0 0 calc(78% - 6rem) ;
+    margin: 3rem;
+
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 1rem;
   }
 }
