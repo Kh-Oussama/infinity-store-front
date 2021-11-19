@@ -23,6 +23,39 @@
 
     //--gradient-color: linear-gradient(to right bottom ,var(--color-primary-dark), var(--color-primary));
 
+    ////
+    --color-accent: 0,159,127;
+    --color-accent-hover: 1,147,118;
+    --color-accent-300: 153,217,204;
+    --color-accent-400: 77,188,165;
+    --color-accent-500: 0,159,127;
+    --color-accent-600: 0,143,114;
+    --color-accent-700: 0,119,95;
+    --color-light: 255,255,255;
+    --color-dark: 0,0,0;
+    --color-muted-black: 17,17,17;
+    --text-base: 107,114,128;
+    --text-base-dark: 75,85,99;
+    --text-muted: 156,163,175;
+    --text-muted-light: 209,213,219;
+    --text-sub-heading: 55,65,81;
+    --text-heading: 31,41,55;
+    --text-bolder: 31,41,55;
+    --color-border-50: 249,250,251;
+    --color-border-100: 243,244,246;
+    --color-border-200: 229,231,235;
+    --color-border-base: 209,213,219;
+    --color-border-400: 156,163,175;
+    --color-gray-50: 249,250,251;
+    --color-gray-100: 243,244,246;
+    --color-gray-200: 229,231,235;
+    --color-gray-300: 209,213,219;
+    --color-gray-400: 156,163,175;
+    --color-gray-500: 107,114,128;
+    --color-gray-600: 75,85,99;
+    --color-gray-700: 55,65,81;
+    --color-gray-800: 31,41,55;
+    --color-gray-900: 31,41,55;
 }
 
 $bp-largest: 75em;     // 1200px
@@ -59,3 +92,4 @@ body {
     line-height: 1.6;
     color: var(--color-black) ;
 }
+

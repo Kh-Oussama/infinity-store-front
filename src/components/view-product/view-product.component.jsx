@@ -43,9 +43,15 @@ const ViewProduct = () => {
                                 clickable: true,
                             }}
                             onSlideChange={(swiper) => {
+
                                if (swiper.activeIndex === 4) {
                                    setSelectedItem(0);
-                               }else setSelectedItem(swiper.activeIndex-1)
+                               }else {
+                                   if (swiper.activeIndex === 0) {
+                                       setSelectedItem(2);
+                                   } else  setSelectedItem(swiper.activeIndex-1)
+                               }
+
                             }}
                             // onSwiper={(swiper) => console.log(swiper)}
 
@@ -98,44 +104,45 @@ const ViewProduct = () => {
                     </div>
                     <div className="detail">
                         <h1 className="detail-title">
-                            EVERMORE LONDON
+                            Apples
                         </h1>
-                        <p className="detail-p">
-                            Grove Earth & Aged Pine Scented Candle - 300g
+                        <p className="detail-subtitle">
+                            1lb
                         </p>
-                        <div className="detail-product-number">Product Number : 15885</div>
-                        <div className="detail-stars">
-                            <i className="fas fa-star"/>
-                            <i className="fas fa-star"/>
-                            <i className="fas fa-star"/>
-                            <i className="fas fa-star"/>
-                            <i className="far fa-star"/>
+                        <div className="detail-description">
+                            <p>
+                                An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found.
+                            </p>
+                            {/*<span>Read more</span>*/}
+                            <span>less</span>
                         </div>
-                        <div className="detail-description-header">
-                        <span className={active === "FirstCard" ? "active" : null}
-                              onClick={() => setActive("FirstCard")}>Description</span>
-                            <span className={active === "SecondCard" ? "active" : null}
-                                  onClick={() => setActive("SecondCard")}>Basic Info</span>
-                            <span className={active === "ThirdCard" ? "active" : null}
-                                  onClick={() => setActive("ThirdCard")}>Caliber</span>
-                        </div>
-
-                        <p>1111111Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet asperiores blanditiis
-                            consequuntur doloribus error excepturi exercitationem iusto labore laborum, laudantium maxime
-                            nisi omnis quibusdam quos ratione sapiente unde venia?</p>
-
-
-
-                        <div className="detail-priceBlock">
-                            <div className="price">22$</div>
-                            <div className="qnt">10+ in stock</div>
-                        </div>
-                        <div className="detail-actions">
-                            <button className="add">Add to Carte</button>
-                            <div className="heart">
-                                <i className="far fa-heart"/>
+                        <div className="detail-price">
+                            <div className="newPrice">
+                                $1.60
+                            </div>
+                            <div className="oldPrice">
+                                $2.00
                             </div>
                         </div>
+
+                        <div className="detail-action">
+                            <div className="addButton">
+                                Add to Shopping cart
+                            </div>
+                            <div className="qnt">
+                                <span>18</span> pieces available
+                            </div>
+                        </div>
+                        <div className="divider"/>
+                        <div className="detail-categories">
+                            <div className="category">
+                                Categories
+                            </div>
+                            <div className="category-item">fruits & Vegetable</div>
+                            <div className="category-item">fruit</div>
+                        </div>
+                        {/*<div className="divider"/>*/}
+
                     </div>
 
                 </div>
