@@ -51,9 +51,10 @@
       width: 85%;
       margin-top: 3rem;
       background: white;
-      height: 100vh;
+      min-height: 100vh;
       border-radius: 1rem;
       z-index: 999;
+      height: fit-content;
 
 
     }

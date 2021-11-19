@@ -5,13 +5,13 @@ import 'swiper/swiper-bundle.css';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
+import {Link} from "react-router-dom";
 
 
 SwiperCore.use([Navigation, Pagination, Thumbs]);
 
 const ViewProduct = () => {
     const [isPhone, setIsPhone] = useState(window.innerWidth > 600);
-    const [active, setActive] = useState("SecondCard");
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [selectedItem, setSelectedItem] = useState(0);
 
@@ -139,13 +139,36 @@ const ViewProduct = () => {
                                 Categories
                             </div>
                             <div className="category-item">fruits & Vegetable</div>
+                            <div className="category-item">fruits & Vegetable</div>
+                            <div className="category-item">fruit</div>
+                            <div className="category-item">fruit</div>
+                            <div className="category-item">fruit</div>
                             <div className="category-item">fruit</div>
                         </div>
-                        {/*<div className="divider"/>*/}
+                        <div className="detail-categories sellers">
+                            <div className="category">
+                                Sellers
+                            </div>
+                            <div className="seller">
+                                <Link to={''}>
+                                    Grocery Shop
+                                </Link>
+                            </div>
+                        </div>
+
+
 
                     </div>
-
                 </div>
+           </div>
+            <div className="divider"/>
+            <div className="moreDetails">
+                    <div className="title">
+                        Details
+                    </div>
+                    <p>
+                        An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found.
+                    </p>
             </div>
         </>
     )
