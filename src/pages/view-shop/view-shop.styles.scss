@@ -1,0 +1,117 @@
+.view-shop-page {
+  background: var(--color-grey-2);
+
+  &__container {
+    height: 100rem;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+
+
+    & .left-block {
+      flex: 0 0 28%;
+      background: white;
+      border-radius: .7rem;
+      padding: 3rem;
+      position: relative;
+      .test {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      & .shop-description {
+          display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+
+        img {
+          border-radius: .7rem;
+          height: 18rem;
+          margin-bottom: 4rem;
+        }
+
+        & .name {
+          font-size: 1.8rem;
+          color: var(--title-text-color);
+          font-weight: 700;
+          margin-bottom: 1rem;
+        }
+
+        & .description {
+          font-size: 1.4rem;
+          color: var(--color-grey-dark-2);
+          font-weight: 500;
+          text-align: center;
+          padding: 0 2rem;
+          margin-bottom: .5rem;
+        }
+
+        & span {
+          color: var(--color-primary);
+          font-size: 1.3rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+        }
+
+        & .insta {
+          svg {
+            color: var(--color-grey-dark-2);
+            height: 1.5rem;
+          }
+        }
+
+      }
+
+      & .shop-details {
+        padding: 3rem 0;
+
+        &__item {
+          margin-bottom: 2.5rem;
+          h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--title-text-color);
+            margin-bottom: .2rem;
+          }
+
+          p {
+            font-size: 1.4rem;
+            color: var(--color-grey-dark-2);
+          }
+        }
+
+
+      }
+    }
+
+    & .right-block {
+      flex: 0 0 70%;
+      border-radius: .7rem;
+
+      & .imgCover {
+        height: 33.5rem;
+        background: red;
+        border-radius: .7rem;
+
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: .7rem;
+        }
+      }
+      & .products-grid {
+        flex: 0 0 calc(78% - 6rem) ;
+        margin: 3rem 0;
+
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-gap: 1rem;
+      }
+    }
+  }
+}

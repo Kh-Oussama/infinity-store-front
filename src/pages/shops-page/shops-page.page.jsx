@@ -9,8 +9,6 @@ const ShopsPage = () => {
                 <NavigationBar/>
                 <ShopsCollection/>
             </div>
-
-
         </>
     )
 }
