@@ -5,6 +5,7 @@ import ProductPopup from "./components/product-popup/product-popup-component";
 import ViewProduct from "./components/view-product/view-product.component";
 import ShopsPage from "./pages/shops-page/shops-page.page";
 import ViewShopPage from "./pages/view-shop/view-shop.page";
+import ContactPage from "./pages/contact-page/contact-page.page";
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
             <Route exact path="/" component={Homepage}/>
             <Route exact path="/shops" component={ShopsPage}/>
             <Route exact path="/shops/shop" component={ViewShopPage}/>
+            <Route exact path="/contact" component={ContactPage}/>
             <Route exact path="/test" component={ViewProduct}/>
             {/*<Redirect to="/"/>*/}
         </Switch>
