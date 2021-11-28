@@ -11,7 +11,7 @@ const ContactPage = () => {
                 <div className="view-shop-page__container view-shop-page__container--contact ">
                     <div className="left-block left-block--contact">
                         <div className="shop-description">
-                            <img src="/images/prosucts/contavt-image.png" alt="shop"/>
+                            <img src="/images/products/contavt-image.png" alt="shop"/>
                             <div className="name">Furniture Shop</div>
                             <div className="description">
                                 The furniture shop is the best shop around the city. This is being run...

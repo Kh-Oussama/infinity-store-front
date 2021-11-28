@@ -1,11 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import DropdownButton from "../utils/dropdown-button/dropdown-button.component";
+import AuthPopup from "../sign-popup/product-popup-component";
+import {NavLink} from "./navLink.component";
 
 
 const NavigationBar = () => {
+    const [modal, setModal] = useState(false);
+    const [component, setComponent] = useState('sign-in');
+
+    const toggleModal = (component) => {
+        setComponent(component);
+        setModal(!modal);
+        if (!modal)  document.body.style.overflow = 'hidden';
+        else  document.body.style.overflow = 'unset';
+    };
+
     return (
         <>
+            <AuthPopup showModal={modal} toggleModal={toggleModal} component={component} />
             <div className={"navigation-bar"}>
                 <div className="nav-left">
                     <Link to={'/'}>
@@ -13,30 +26,14 @@ const NavigationBar = () => {
                     </Link>
                     <DropdownButton/>
                 </div>
-                <div className="nav-center"></div>
+                <div className="nav-center"/>
                 <div className="nav-right">
-                    <div className="nav-link">
-                        <Link to={"/"}>
-                           Shops
-                        </Link>
-                    </div>
-                    <div className="nav-link">
-                        <Link to={"/"}>
-                           Offers
-                        </Link>
-                    </div>
-                    <div className="nav-link">
-                        <Link to={"/"}>
-                            FAQ
-                        </Link>
-                    </div>
-                    <div className="nav-link">
-                        <Link to={"/"}>
-                            Contact
-                        </Link>
-                    </div>
-                    <div className="nav-link join-btn">
-                        <Link to={"/"}>
+                    <NavLink path={"/shops"} text={"Shops"}/>
+                    <NavLink path={"/"} text={"Offers"}/>
+                    <NavLink path={"/help"} text={"FAQ"}/>
+                    <NavLink path={"/contact"} text={"Contact"}/>
+                    <div className="nav-link join-btn" onClick={() => toggleModal("sign-in")}>
+                        <Link to={"#"}>
                           join
                         </Link>
                     </div>

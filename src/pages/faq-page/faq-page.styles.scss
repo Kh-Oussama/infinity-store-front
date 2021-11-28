@@ -1,0 +1,91 @@
+.faq-container {
+  height: 30rem;
+  margin: 7rem 0;
+  text-align: center;
+  background-color: var(--color-grey-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+
+  h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: var(--title-text-color);
+    margin-bottom: 2rem;
+  }
+
+  .qst-Block {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100rem;
+    .qst-item {
+      background: white;
+      text-align: left;
+      margin: 2rem 0;
+      border: 1px  solid rgba(209,213,219,.6);
+      border-radius: .7rem;
+
+      details summary::-webkit-details-marker {
+        display:none;
+      }
+      details {
+      padding: .5rem 2rem;
+        transition: all .2s;
+        transition: height 5s ease;
+        summary {
+          font-size: 1.6rem;
+          color: rgba(var(--text-heading),1);
+          list-style: none;
+          font-weight: 600;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+
+          span:nth-child(2) {
+            font-size: 3rem;
+          }
+        }
+        p {
+          padding: 2rem 0;
+          font-size: 1.6rem;
+          color: rgba(var(--text-base-dark),1);
+          font-weight: 500;
+        }
+      }
+    }
+
+  }
+}
+details {
+  transition: all 5s ease;
+}
+details[open] summary ~ * {
+  animation-name: fadeInDown;
+  animation-duration: 0.5s;
+}
+
+@keyframes sweep {
+  0%    {opacity: 0; transform: translateX(-10px)}
+  100%  {opacity: 1; transform: translateX(0)}
+}
+//.details[open] {
+//  animation-name: fadeInDown;
+//  animation-duration: 0.5s;
+//}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-1.25em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

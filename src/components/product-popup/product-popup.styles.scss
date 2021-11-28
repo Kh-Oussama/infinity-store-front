@@ -39,6 +39,7 @@
   overflow-y: scroll;
   display: flex;
   justify-content: center;
+
   .second-overlay {
     background: transparent;
     width: 100%;
@@ -58,6 +59,11 @@
 
 
     }
+  .text-content-auth {
+    width: 35%;
+    min-height: 10rem ;
+    height: fit-content;
+  }
 }
 
 .close-modal {

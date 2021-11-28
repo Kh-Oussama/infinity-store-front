@@ -20,7 +20,7 @@ const Header = () => {
                     </h3>
                     <div className="search-form">
                         <form action="#" className="form">
-                            <input type="text" className="form__input" placeholder=""/>
+                            <input type="text" className="form__input" placeholder="Search your products from here"/>
                             <button className="form__button">
                                <IcomoonReact iconSet={iconSet} size={25} icon="magnifying-glass"/>
                                 Search
