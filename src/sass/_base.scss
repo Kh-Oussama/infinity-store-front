@@ -58,8 +58,8 @@
     --color-gray-900: 31,41,55;
 }
 
-$bp-largest: 75em;     // 1200px
-$bp-large: 68.75em;    // 1100px
+$bp-largest: 80em;     // 1200px
+$bp-large: 64.06em;    // 1025px
 $bp-medium: 56.25em;   // 900px
 $bp-medium-2: 45.625em;   //    730px
 $bp-small-1: 43.75em;     // 700px
@@ -82,7 +82,7 @@ html {
     font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
 
     @media only screen and (max-width: $bp-large) {
-        font-size: 40%;
+        //font-size: 50%;
     }
 }
 

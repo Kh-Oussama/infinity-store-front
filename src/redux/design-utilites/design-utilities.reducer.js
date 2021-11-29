@@ -10,8 +10,14 @@ const designUtilitiesReducer = (state = INITIAL_STATE, action) => {
       case DesignActionTypes.TOGGLE_AUTH_COMPONENT:
           return {
               ...state,
-              auth_component_hidden: !state.auth_component_hidden,
-              auth_component: action.payload,
+              auth_component_hidden : !state.auth_component_hidden,
+              current_auth_component : action.payload,
+          };
+
+      case DesignActionTypes.SWITCH_AUTH_COMPONENT:
+          return {
+              ...state,
+              current_auth_component : action.payload,
           };
       default:
           return state;

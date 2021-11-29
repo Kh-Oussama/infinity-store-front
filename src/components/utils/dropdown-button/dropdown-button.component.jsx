@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
-import IcomoonReact, {iconList} from "icomoon-react";
+import IcomoonReact from "icomoon-react";
+
+//icons
 import iconSet from "../../../selection.json";
+
+//components
 import GroceryIcon from "../../icons/grocery";
 import BakeryIcon from "../../icons/Bakery";
 import MakeupIcon from "../../icons/makeup";
@@ -9,9 +13,10 @@ import Handbag from "../../icons/handbag";
 import DressIcon from "../../icons/dress";
 
 
-
+//  this is for the select dropdown button
 const DropdownButton = () => {
-    const [isOpen,setIsOpen] = useState(false);
+    //show the dropdown state
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <>
@@ -21,38 +26,39 @@ const DropdownButton = () => {
                     <span>Grocery</span>
                     {
                         isOpen ? <IcomoonReact iconSet={iconSet} size={25} icon="chevron-small-up"/>
-                                : <IcomoonReact iconSet={iconSet} size={25} icon="chevron-small-down"/>
+                            : <IcomoonReact iconSet={iconSet} size={25} icon="chevron-small-down"/>
                     }
 
                 </div>
                 <input type="checkbox" className="dd-input" id="test"/>
 
-                    <ul className="dd-menu">
-                        <li>
-                            <GroceryIcon/>
-                            <span>Grocery</span>
-                        </li>
-                        <li>
-                            <BakeryIcon/>
-                            <span>Bakery</span>
-                        </li>
-                        <li>
-                            <MakeupIcon/>
-                            <span>Makeup</span>
-                        </li>
-                        <li>
-                            <FurnitureIcon/>
-                            <span>Furniture</span>
-                        </li>
-                        <li>
-                            <Handbag/>
-                            <span>Bags</span>
-                        </li>
-                        <li>
-                            <DressIcon/>
-                            <span>Clothing</span>
-                        </li>
-                    </ul>
+                {/* list for all groups */}
+                <ul className="dd-menu">
+                    <li>
+                        <GroceryIcon/>
+                        <span>Grocery</span>
+                    </li>
+                    <li>
+                        <BakeryIcon/>
+                        <span>Bakery</span>
+                    </li>
+                    <li>
+                        <MakeupIcon/>
+                        <span>Makeup</span>
+                    </li>
+                    <li>
+                        <FurnitureIcon/>
+                        <span>Furniture</span>
+                    </li>
+                    <li>
+                        <Handbag/>
+                        <span>Bags</span>
+                    </li>
+                    <li>
+                        <DressIcon/>
+                        <span>Clothing</span>
+                    </li>
+                </ul>
             </label>
         </>
     )

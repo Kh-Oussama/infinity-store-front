@@ -1,7 +1,7 @@
 import React from 'react';
 
-
-const SignIn = () => {
+//this is component for the sign-in form
+const SignIn = ({ switchComponent }) => {
 
     return (
         <>
@@ -15,17 +15,17 @@ const SignIn = () => {
                 <div className="form">
                     <div className="input-block">
                         <label htmlFor="">Email</label>
-                        <input type={"text"} />
+                        <input type={"text"}/>
                     </div>
                     <div className="input-block">
                         <label htmlFor="">password</label>
-                        <input type={"text"} />
+                        <input type={"text"}/>
                     </div>
                     <button className={"submit-btn"}>Login</button>
                 </div>
                 <div className="divider"/>
                 <div className="sign-in-footer">
-                    Don't have any account? <span>Register</span>
+                    Don't have any account? <span onClick={() => switchComponent("sign-up")}>Register</span>
                 </div>
             </div>
         </>

@@ -1,7 +1,7 @@
 import React from 'react';
 
-
-const SignUp = () => {
+//this is component for the sign-up form
+const SignUp = ({ switchComponent }) => {
 
     return (
         <>
@@ -30,7 +30,7 @@ const SignUp = () => {
                 </div>
                 <div className="divider"/>
                 <div className="sign-in-footer">
-                    Already have an account? <span>Login</span>
+                    Already have an account? <span onClick={() => switchComponent("sign-in")} >Login</span>
                 </div>
             </div>
         </>
