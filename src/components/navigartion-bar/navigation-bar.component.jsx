@@ -5,7 +5,7 @@ import {createStructuredSelector} from "reselect";
 
 //components
 import DropdownButton from "../utils/dropdown-button/dropdown-button.component";
-import AuthPopup from "../sign-popup/product-popup-component";
+import AuthPopup from "../auth-popup/product-popup-component";
 import {NavLink} from "./navLink.component";
 
 //redux utils
@@ -19,11 +19,11 @@ import {
 const NavigationBar = ({toggleAuthComponent, currentComponent, authComponentHidden, switchAuthComponent}) => {
 
 
-    //this for the scrollbar
-    useEffect(() => {
-        if (authComponentHidden) document.body.style.overflow = 'hidden';
-        else document.body.style.overflow = 'unset';
-    }, [authComponentHidden])
+    // //this for the scrollbar
+    // useEffect(() => {
+    //     if (authComponentHidden) document.body.style.overflow = 'hidden';
+    //     else document.body.style.overflow = 'unset';
+    // }, [authComponentHidden])
 
     return (
         <>

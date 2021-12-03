@@ -18,10 +18,13 @@
     box-shadow: 0 .1rem .3rem rgba(0,0,0,.09);
     height: 6.5rem;
     background-color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
   }
 
   @media only screen and (max-width: $bp-medium-2) {
-    height: 5rem;
+    height: 6rem;
   }
 
 

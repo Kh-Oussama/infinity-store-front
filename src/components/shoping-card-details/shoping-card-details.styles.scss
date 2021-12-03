@@ -1,0 +1,133 @@
+.shopping-card-details {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & .topBlock {
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.7rem;
+
+    & .leftBlock {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      flex: 0 0 50%;
+
+      svg {
+        height: 2.2rem;
+        color: var(--color-primary);
+        margin-right: .8rem;
+      }
+      span {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--color-primary);
+        margin-bottom: -.4rem;
+      }
+      & .count-number{
+        font-family: sans-serif;
+        margin-right: .5rem;
+      }
+    }
+
+    & .rightBlock {
+      background: rgba(var(--color-gray-100),1);
+      padding: .7rem;
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background: var(--color-primary);
+        svg {
+          color: white;
+
+        }
+      }
+
+      svg {
+        height: 1.2rem;
+        color: var(--color-grey-dark-2);
+      }
+    }
+  }
+
+  & .contentBlock {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      height: 17rem;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      text-transform: capitalize;
+      color: var(--title-text-color-dark);
+      font-weight: 600;
+      font-size: 1.6rem;
+    }
+
+    & .items {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  & .bottomBlock {
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .checkoutButton {
+      height: 5.5rem;
+      width: 90%;
+      background: var(--color-primary);
+      border: none;
+      border-radius: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all .2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background: var(--color-primary-dark);
+      }
+
+      & .totalPrice {
+        background: white;
+        height: 4.7rem;
+        width: 20%;
+        border-radius: 5rem;
+        margin-right: .4rem;
+        font-family: sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+        font-weight: 600;
+        font-size: 1.5rem;
+      }
+
+      & .text {
+        font-size: 1.5rem;
+        color: white;
+        margin-left: 2rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+

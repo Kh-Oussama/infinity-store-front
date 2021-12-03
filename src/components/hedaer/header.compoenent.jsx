@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import IcomoonReact from "icomoon-react";
-import iconSet from "../../selection.json";
+import React from 'react';
+
+//components
 import ShopCard from "../shop-card/shop-card.component";
+import HeaderSearch from "./header-search.component";
 
-
+//this the header component for the homepage
 const Header = () => {
-    const [width,setWidth] = useState(0)
-
 
     return (
         <>
-            <header className={"header"} >
+            <header className="header">
                 <div className="content">
                     <h1 className="title">
                         Groceries Delivered in 90 Minute
@@ -18,20 +17,14 @@ const Header = () => {
                     <h3 className="subtitle">
                         Get your healthy foods & snacks delivered at your doorsteps all day everyday
                     </h3>
-                    <div className="search-form">
-                        <form action="#" className="form">
-                            <input type="text" className="form__input" placeholder="Search your products from here"/>
-                            <button className="form__button">
-                               <IcomoonReact iconSet={iconSet} size={25} icon="magnifying-glass"/>
-                                Search
-                            </button>
-                        </form>
-                    </div>
+                    {/* search component*/}
+                    <HeaderSearch/>
                 </div>
 
+                {/*the left shopping card*/}
                 <ShopCard/>
             </header>
-            </>
+        </>
     )
 }
 

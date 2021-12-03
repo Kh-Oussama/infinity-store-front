@@ -6,8 +6,8 @@ const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo}) => {
 
     const toggleModal = () => {
         setModal(!modal);
-       if (!modal)  document.body.style.overflow = 'hidden';
-       else  document.body.style.overflow = 'unset';
+       // if (!modal)  document.body.style.overflow = 'hidden';
+       // else  document.body.style.overflow = 'unset';
     };
 
     return (

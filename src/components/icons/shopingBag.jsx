@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ShopingBagIcon = () => {
+const ShoppingBagIcon = () => {
     return (
         <svg
             width={20}
@@ -32,4 +32,4 @@ const ShopingBagIcon = () => {
     )
 }
 
-export  default ShopingBagIcon;
+export  default ShoppingBagIcon;
