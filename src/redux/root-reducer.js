@@ -3,7 +3,7 @@ import { persistReducer } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
 
 import designUtilitiesReducer from "./design-utilites/design-utilities.reducer";
-
+import productsReducer from "./product/products.reducer";
 
 
 
@@ -15,7 +15,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     design_utilities: designUtilitiesReducer,
-
+    product: productsReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

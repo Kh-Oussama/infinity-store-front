@@ -1,5 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import ProductsItem from "../products-item/products-item.compoenent";
+import {createStructuredSelector} from "reselect";
+import {fetchProductsStart} from "./../../redux/product/products.actions";
+import {
+    selectFetchProductsLoading, selectProducts, selectFetchProductsError
+} from "./../../redux/product/products.selectors";
 
 const ProductsGrid = () => {
     return (
@@ -55,4 +62,14 @@ const ProductsGrid = () => {
     )
 }
 
-export default ProductsGrid;
+const mapStateToProps = createStructuredSelector({
+    loading: selectFetchProductsLoading,
+    errors: selectFetchProductsLoading,
+    products: selectProducts,
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchProducts: () => dispatch(fetchProductsStart()),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductsGrid));
