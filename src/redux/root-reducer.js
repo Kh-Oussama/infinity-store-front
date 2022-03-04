@@ -6,7 +6,7 @@ import designUtilitiesReducer from "./design-utilites/design-utilities.reducer";
 import productsReducer from "./product/products.reducer";
 import groupsReducer from "./group/groups.reducer";
 import categoriesReducer from "./categories/categories.reducer";
-
+import subCategoriesReducer from "./sub-categories/subCategories.reducer";
 
 
 const persistConfig = {
@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
     product: productsReducer,
     group: groupsReducer,
     category: categoriesReducer,
+    subCategory: subCategoriesReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
