@@ -1,4 +1,4 @@
-
+@import "./../../components/user-profile/user-profile.style.scss";
 
 .user-dashboard{
     width: 100%;
@@ -119,10 +119,6 @@
 
         & > .main{
             flex: auto;
-            min-height: 600px;
-            background-color: var(--color-white);
-            border-radius: 6px;
-            box-shadow: 1px 3px 6px rgba(0,0,0,.1);
         }
     }
 }

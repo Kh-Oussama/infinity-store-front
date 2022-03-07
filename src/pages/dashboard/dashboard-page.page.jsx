@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "../../components/navigartion-bar/navigation-bar.component";
+import UserProfile from "../../components/user-profile/user-profile.page";
 
 const Dashoard = () => {
 
@@ -62,7 +63,7 @@ const Dashoard = () => {
                     </div>
 
                     <div className="main">
-
+                        <UserProfile />
                     </div>
                 </div>
             </div>
