@@ -31,3 +31,52 @@
         min-height: 120px;
     }
 }
+
+.checkbox{
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+
+    &:nth-child(even){
+        margin: 0 0 0 16px;
+    }
+
+    & span{
+        &:first-child{
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin: 0 8px 0 0;
+            border-radius: 50%;
+            position: relative;
+            border: 1px var(--color-grey-dark-3) solid;
+        }
+
+        &:last-child{
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-grey-dark-3);
+        }
+    }
+
+    &.active{
+        & span{
+            &:first-child{
+                border: 1px var(--color-primary) solid;
+
+                &::after{
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 10px; height: 10px;
+                    border-radius: 50%;
+                    background-color: var(--color-primary);
+
+                }
+            }
+        }
+    }
+}
