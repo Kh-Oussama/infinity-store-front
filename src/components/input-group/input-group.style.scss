@@ -80,3 +80,48 @@
         }
     }
 }
+
+.password-group{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 16px;
+
+    & label{
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-grey-dark-2);
+        padding: 0 0 4px;
+    }
+
+    & .input-ct{
+        width: 100%;
+        position: relative;
+
+        & span{
+            position: absolute;
+            top: 50%;
+            left: calc(100% - 24px);
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--color-grey-dark-3);
+        }
+
+        & input{
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px var(--color-grey-3) solid;
+            background-color: none;
+            outline: none;
+            transition: border-color .4s;
+            font-size: 14px;
+            color: var(--color-grey-dark-1);
+    
+            &:focus{
+                border-color: var(--color-primary);
+            }
+        }
+    }
+}
