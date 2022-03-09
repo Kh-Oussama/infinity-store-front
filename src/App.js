@@ -6,6 +6,8 @@ import ViewShopPage from "./pages/view-shop/view-shop.page";
 import ContactPage from "./pages/contact-page/contact-page.page";
 import FaqPage from "./pages/faq-page/faq-page.page";
 import Dashoard from './pages/dashboard/dashboard-page.page';
+import UserProfile from './components/user-profile/user-profile.page';
+import UserOrder from './components/user-order/user-order.page';
 
 
 const App = () => {
@@ -18,6 +20,7 @@ const App = () => {
                 <Route exact path="/contact" component={ContactPage}/>
                 <Route exact path="/help" component={FaqPage}/>
                 <Route exact path="/dashboard" component={Dashoard} />
+                
                 {/*<Redirect to="/"/>*/}
             </Switch>
         </>
