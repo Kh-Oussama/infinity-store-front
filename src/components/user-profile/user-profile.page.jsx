@@ -6,12 +6,12 @@ import algeria from "./../../images/algeria.png";
 
 const UserProfile = () => {
     const [selectedCheckBox, setSelectedCheckBox] = useState(0);
-    const [crendentls, setCredentls] = useState({
+    const [credentials, setCredentials] = useState({
         name: '',
         bio: '',
     });
 
-    const { name, bio } = crendentls;
+    const { name, bio } = credentials;
 
     //Function to show image input
     const showInput = () => {
@@ -21,8 +21,8 @@ const UserProfile = () => {
     //Function to handle change of profile
     const handleChange = e => {
         const event = e.target;
-        setCredentls({
-            ...crendentls,
+        setCredentials({
+            ...credentials,
             [event.name]: event.value,
         });
     }
