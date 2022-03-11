@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, useRouteMatch, Route, Link, BrowserRouter } from "react-router-dom";
+import { Switch, useRouteMatch, Route, Link, withRouter } from "react-router-dom";
 import NavigationBar from "../../components/navigartion-bar/navigation-bar.component";
 import UpdatePassword from "../../components/update-password/update-password.page";
 import UserOrder from "../../components/user-order/user-order.page";
@@ -7,8 +7,7 @@ import UserProfile from "../../components/user-profile/user-profile.page";
 
 const Dashoard = () => {
     let { url, path } = useRouteMatch();
-    console.log(url);
-    console.log(path);
+
     //Function to toogle active link
     const toogleActiveLink = e => {
         let activeLink = document.querySelector('.user-dashboard > .dashboard-ct > .sidebar > .links-ct > ul li a.active');
@@ -21,7 +20,6 @@ const Dashoard = () => {
             <NavigationBar />
             <div className="user-dashboard">
                 <div className="dashboard-ct">
-                <BrowserRouter basename={`${path}`}>
                     <div className="sidebar">
                         <div className="wallet-ct">
                             <h3 >Wallet Points</h3>
@@ -43,13 +41,13 @@ const Dashoard = () => {
                         <div className="links-ct">
                             <ul>
                                 <li>
-                                    <Link className="active" to={`/`} onClick={toogleActiveLink}>Profile</Link>
+                                    <Link className="active" to={`${path}/`} onClick={toogleActiveLink}>Profile</Link>
                                 </li>
                                 <li>
-                                    <Link to={`/update-password`} onClick={toogleActiveLink}>Change Password</Link>
+                                    <Link to={`${path}/update-password`} onClick={toogleActiveLink}>Change Password</Link>
                                 </li>
                                 <li>
-                                    <Link to={`/orders`} onClick={toogleActiveLink}>My Orders</Link>
+                                    <Link to={`${path}/orders`} onClick={toogleActiveLink}>My Orders</Link>
                                 </li>
                                 <li>
                                     <Link to="/help" onClick={toogleActiveLink}>Need Help</Link>
@@ -64,13 +62,13 @@ const Dashoard = () => {
                     </div>
 
                     <div className="main">
-                            <Switch>
-                                <Route exact path={`/`} component={UserProfile} />
-                                <Route path={`/update-password`} component={UpdatePassword} />
-                                <Route path={`/orders`} component={UserOrder} />
-                            </Switch>
+                        <Switch>
+                            <Route exact path={`${path}/`} component={UserProfile} />
+                            <Route exact path={`${path}/update-password`} component={UpdatePassword} />
+                            <Route exact path={`${path}/orders`} component={UserOrder} />
+                        </Switch>
                     </div>
-                    </BrowserRouter>
+
                 </div>
             </div>
         </>
