@@ -84,3 +84,97 @@ export const selectResendEmailVerificationStatus  = createSelector(
     [selectAuth],
     auth => auth.resendEmailVerificationStatus,
 );
+
+//enable two factors auth
+export const selectEnableTwoFactorAuthLoading = createSelector(
+    [selectAuth],
+    auth => auth.enableTwoFactorAuthLoading,
+);
+export const selectEnableTwoFactorAuthError = createSelector(
+    [selectAuth],
+    auth => auth.enableTwoFactorAuthError,
+);
+export const selectEnableTwoFactorAuthStatus  = createSelector(
+    [selectAuth],
+    auth => auth.enableTwoFactorAuthStatus,
+);
+
+//disable two factors auth
+export const selectDisableTwoFactorAuthLoading = createSelector(
+    [selectAuth],
+    auth => auth.disableTwoFactorAuthLoading,
+);
+export const selectDisableTwoFactorAuthError = createSelector(
+    [selectAuth],
+    auth => auth.disableTwoFactorAuthError,
+);
+
+export const selectDisableTwoFactorAuthStatus= createSelector(
+    [selectAuth],
+    auth => auth.disableTwoFactorAuthError,
+);
+
+
+//Qr codes
+export const selectTwoFactorQrCode= createSelector(
+    [selectAuth],
+    auth => auth.qrCode
+);
+
+
+
+//recovery codes
+export const selectRedirectToConfirmPassword= createSelector(
+    [selectAuth],
+    auth => auth.redirectToConfirmPassword
+);
+
+//enable two factors auth
+export const selectConfirmPasswordLoading = createSelector(
+    [selectAuth],
+    auth => auth.confirmPasswordLoading,
+);
+export const selectConfirmPasswordError = createSelector(
+    [selectAuth],
+    auth => auth.confirmPasswordError,
+);
+export const selectConfirmPasswordStatus  = createSelector(
+    [selectAuth],
+    auth => auth.confirmPasswordStatus,
+);
+
+
+//get Recovery Codes
+export const selectRecoveryCodesLoading = createSelector(
+    [selectAuth],
+    auth => auth.getRecoveryCodesLoading,
+);
+export const selectRecoveryCodesError = createSelector(
+    [selectAuth],
+    auth => auth.getRecoveryCodesError,
+);
+export const selectRecoveryCodes = createSelector(
+    [selectAuth],
+    auth => auth.recoveryCodes,
+);
+
+
+//two factor challenge
+export const selectTwoFactorsChallengeLoading = createSelector(
+    [selectAuth],
+    auth => auth.twoFactorChallengeLoading,
+);
+export const selectTwoFactorsChallengeError = createSelector(
+    [selectAuth],
+    auth => auth.twoFactorChallengeError,
+);
+export const selectTwoFactorsChallengeStatus = createSelector(
+    [selectAuth],
+    auth => auth.twoFactorChallengeStatus,
+);
+
+
+export const selectRedirectToFactorChallenge= createSelector(
+    [selectAuth],
+    auth => auth.redirectToTwoFactorChallenge
+);

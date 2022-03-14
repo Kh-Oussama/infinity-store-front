@@ -2,6 +2,20 @@ import AuthActionTypes from "./auth.types";
 import {all, call, put, takeLatest} from 'redux-saga/effects';
 import Axios from "axios";
 import {
+    confirmPasswordFailure,
+    confirmPasswordSuccess,
+    deleteAccountFailure,
+    deleteAccountSuccess,
+    disableTwoFactorAuthenticationFailure,
+    disableTwoFactorAuthenticationSuccess,
+    enableTwoFactorAuthenticationFailure,
+    enableTwoFactorAuthenticationSuccess,
+    getRecoveryCodesFailure,
+    getRecoveryCodesSuccess,
+    getTwoFactorQrCodeFailure,
+    getTwoFactorQrCodeSuccess,
+    redirectToConfirmPassword,
+    redirectToTwoFactorChallenge,
     resendEmailVerificationFailure,
     resendEmailVerificationSuccess,
     resetPasswordFailure,
@@ -14,13 +28,15 @@ import {
     signOutSuccess,
     signUpFailure,
     signUpSuccess,
+    twoFactorChallengeFailure,
+    twoFactorChallengeSuccess,
 } from "./auth.actions";
 
 //Sign-up
 export function* SignUp({payload: {name, email, password, password_confirmation}}) {
     const data = {name, email, password, password_confirmation};
     try {
-        yield Axios.post("", data);
+        yield Axios.post("http://localhost:8000/register", data);
         yield isUserAuthenticated();
         yield put(signUpSuccess());
     } catch (error) {
@@ -32,8 +48,11 @@ export function* SignUp({payload: {name, email, password, password_confirmation}
 export function* signIn({payload: {email, password}}) {
     const data = {email, password};
     try {
-        const response = yield Axios.post("", data);
-        //yield isUserAuthenticated();    
+        const response = yield Axios.post("http://localhost:8000/login", data);
+        if (response.data.two_factor === true) {
+            yield put(redirectToTwoFactorChallenge());
+        } else
+            yield isUserAuthenticated();
     } catch (error) {
         yield put(signInFailure(error.response.data));
     }
@@ -42,7 +61,7 @@ export function* signIn({payload: {email, password}}) {
 //get the user authenticated
 export function* isUserAuthenticated() {
     try {
-        const response = yield Axios.get("");
+        const response = yield Axios.get("http://localhost:8000/api/user");
         const user = response.data;
         yield put(signInSuccess({id: user.id, ...user}));
     } catch (error) {
@@ -53,7 +72,7 @@ export function* isUserAuthenticated() {
 //sign out
 export function* SignOut() {
     try {
-        yield Axios.post("");
+        yield Axios.post("http://localhost:8000/logout");
         yield (put(signOutSuccess()));
     } catch (error) {
         yield put(signOutFailure(error.response.data))
@@ -64,7 +83,7 @@ export function* SignOut() {
 export function* sendForgetPasswordEmail({payload: {email}}) {
     const data = {email};
     try {
-        yield Axios.post("", data);
+        yield Axios.post("http://localhost:8000/forgot-password", data);
         yield put(sendForgetPasswordEmailSuccess());
     } catch (error) {
         yield put(sendForgetPasswordEmailFailure(error.response.data));
@@ -75,7 +94,7 @@ export function* sendForgetPasswordEmail({payload: {email}}) {
 export function* resetPassword({payload: {email, password, password_confirmation, token}}) {
     const data = {email, password, password_confirmation, token};
     try {
-        yield Axios.post("", data);
+        yield Axios.post("http://localhost:8000/reset-password", data);
         yield put(resetPasswordSuccess());
     } catch (error) {
         yield put(resetPasswordFailure(error.response.data));
@@ -85,10 +104,104 @@ export function* resetPassword({payload: {email, password, password_confirmation
 //resend email verification
 export function* resendEmailVerification() {
     try {
-        yield Axios.post("");
+        yield Axios.post("http://localhost:8000/email/verification-notification");
         yield (put(resendEmailVerificationSuccess()));
     } catch (error) {
         yield put(resendEmailVerificationFailure(error.response.data))
+    }
+}
+
+//enable two factors auth
+export function* enableTwoFactorAuthentication() {
+    try {
+        yield Axios.post("http://localhost:8000/user/two-factor-authentication");
+        yield getQrCode();
+        yield getRecoveryCodes();
+        yield (put(enableTwoFactorAuthenticationSuccess()));
+    } catch (error) {
+        if (error.response.status === 423) yield put(redirectToConfirmPassword());
+        else yield put(enableTwoFactorAuthenticationFailure(error.response.data));
+    }
+}
+
+//get QR codes
+export function* getQrCode() {
+    try {
+        const response = yield Axios.get("http://localhost:8000/user/two-factor-qr-code");
+        const qrCode = response.data.svg;
+        yield (put(getTwoFactorQrCodeSuccess(qrCode)));
+        yield isUserAuthenticated();
+    } catch (error) {
+        yield put(getTwoFactorQrCodeFailure(error.response.data))
+    }
+}
+
+//get RecoveryCodes
+export function* getRecoveryCodes() {
+    try {
+        const response = yield Axios.get("http://localhost:8000/user/two-factor-recovery-codes");
+        const recoveryCodes = response.data;
+        yield (put(getRecoveryCodesSuccess(recoveryCodes)));
+    } catch (error) {
+        if (error.response.status === 423) yield put(redirectToConfirmPassword());
+        else yield put(getRecoveryCodesFailure(error.response.data));
+    }
+}
+
+//disable two factors auth
+export function* disableTwoFactorAuthentication() {
+    try {
+        yield Axios.delete("http://localhost:8000/user/two-factor-authentication");
+        yield isUserAuthenticated();
+        yield (put(disableTwoFactorAuthenticationSuccess()));
+    } catch (error) {
+        if (error.response.status === 423) yield put(redirectToConfirmPassword());
+        else yield put(disableTwoFactorAuthenticationFailure(error.response.data));
+    }
+}
+
+//confirm password
+export function* confirmPassword({payload: {password}}) {
+    const data = {password};
+    try {
+        yield Axios.post("http://localhost:8000/user/confirm-password", data);
+        yield (put(confirmPasswordSuccess()));
+    } catch (error) {
+        yield put(confirmPasswordFailure(error.response.data));
+    }
+}
+
+//two factor challenge
+export function* twoFactorChallenge({payload: {code}}) {
+    const data = {code};
+    try {
+        yield Axios.post("http://localhost:8000/two-factor-challenge", data);
+        yield isUserAuthenticated();
+        yield (put(twoFactorChallengeSuccess()));
+    } catch (error) {
+        yield put(twoFactorChallengeFailure(error.response.data));
+    }
+}
+
+
+export function* deleteAccount() {
+    try {
+        yield Axios.delete("http://localhost:8000/api/delete");
+        yield (put(deleteAccountSuccess()));
+        yield SignOut();
+    } catch (error) {
+        if (error.response.status === 423) yield put(redirectToConfirmPassword());
+        else yield put(deleteAccountFailure(error.response.data));
+    }
+}
+
+export function* updateProfileInformation({payload: {name, email, password, password_confirmation}}) {
+    const data = {name, email, password, password_confirmation};
+    try {
+        const resp = yield Axios.put("http://localhost:8000/user/profile-information", data);
+        yield isUserAuthenticated();
+    } catch (error) {
+        yield put(signUpFailure(error.response.data));
     }
 }
 
@@ -128,6 +241,40 @@ export function* onResendEmailVerification() {
     yield takeLatest(AuthActionTypes.RESEND_EMAIL_VERIFICATION_START, resendEmailVerification)
 }
 
+//enable two factors auth
+export function* onEnableTwoFactorAuthentication() {
+    yield takeLatest(AuthActionTypes.ENABLE_TWO_FACTOR_AUTHENTICATION_START, enableTwoFactorAuthentication)
+}
+
+//confirm password
+export function* onConfirmPassword() {
+    yield takeLatest(AuthActionTypes.CONFIRM_PASSWORD_START, confirmPassword)
+}
+
+//two factors auth
+export function* onDisableTwoFactorAuthentication() {
+    yield takeLatest(AuthActionTypes.DISABLE_TWO_FACTOR_AUTHENTICATION_START, disableTwoFactorAuthentication)
+}
+
+//get recovery codes
+export function* onGetRecoveryCodes() {
+    yield takeLatest(AuthActionTypes.GET_RECOVERY_CODE_START, getRecoveryCodes)
+}
+
+//two factor challenge
+export function* onTwoFactorChallenge() {
+    yield takeLatest(AuthActionTypes.TWO_FACTOR_CHALLENGE_START, twoFactorChallenge)
+}
+
+
+export function* onUpdateProfileInformation() {
+    yield takeLatest(AuthActionTypes.UPDATE_PROFILE_INFORMATION_START, updateProfileInformation)
+}
+
+export function* onDeleteAccount() {
+    yield takeLatest(AuthActionTypes.DELETE_ACCOUNT_START, deleteAccount)
+}
+
 
 export function* authSagas() {
     yield all([
@@ -145,6 +292,19 @@ export function* authSagas() {
         call(onResetPassword),
         //resend email verification
         call(onResendEmailVerification),
+        //enable two factors auth
+        call(onEnableTwoFactorAuthentication),
+        //confirm password
+        call(onConfirmPassword),
+        //disable two factors auth
+        call(onDisableTwoFactorAuthentication),
+        //disable two factors auth
+        call(onGetRecoveryCodes),
+        //two factor challenge
+        call(onTwoFactorChallenge),
+
+        // call(onUpdateProfileInformation),
+        // call(onDeleteAccount),
 
     ]);
 }
