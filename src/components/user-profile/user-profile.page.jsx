@@ -6,12 +6,13 @@ import algeria from "./../../images/algeria.png";
 
 const UserProfile = () => {
     const [selectedCheckBox, setSelectedCheckBox] = useState(0);
-    const [crendentls, setCredentls] = useState({
+    const [credentials, setCredentials] = useState({
         name: '',
         bio: '',
+        phoneNumber: '0600000000'
     });
 
-    const { name, bio } = crendentls;
+    const { name, bio, phoneNumber } = credentials;
 
     //Function to show image input
     const showInput = () => {
@@ -21,8 +22,8 @@ const UserProfile = () => {
     //Function to handle change of profile
     const handleChange = e => {
         const event = e.target;
-        setCredentls({
-            ...crendentls,
+        setCredentials({
+            ...credentials,
             [event.name]: event.value,
         });
     }
@@ -107,7 +108,7 @@ const UserProfile = () => {
                         <div>
                             <img src={algeria} alt="" />
                         </div>
-                        <input type="text" value="+213 600 000 000" disabled />
+                        <input type="text" value={phoneNumber} disabled />
                     </div>
                 </div>
 
@@ -120,7 +121,7 @@ const UserProfile = () => {
                                 <div>
                                     <img src={algeria} alt="" />
                                 </div>
-                                <input type="text" value="+213 600 000 000" />
+                                <input type="text" value={phoneNumber} name="phoneNumber" onChange={handleChange} />
                             </div>
                             <input type="submit" value="update contact" />
                         </form>
