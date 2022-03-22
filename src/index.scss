@@ -13,3 +13,9 @@
 @import "../src/components/input-group/input-group.style.scss";
 @import "../src/components/update-password/update-password.style.scss";
 @import "../src/components/user-order/user-order.style.scss";
+@import "../src/components/EyeLoader/EyeLoader.scss";
+
+.eye-loader-ct{
+    width: 100%;
+    height: 100vh;
+}

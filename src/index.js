@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 // import '@fortawesome/fontawesome-free/js/all';
-import {PersistGate} from "redux-persist/integration/react";
-import {persistor, store} from "./redux/store";
-import {Provider} from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./redux/store";
+import { Provider } from "react-redux";
+
+//Import Loader
+import EyeLoader from './components/EyeLoader/EyeLoader';
+
 // import 'react-toastify/dist/ReactToastify.css';
 // import axios from "axios";
 
@@ -16,13 +20,15 @@ import {Provider} from "react-redux";
 
 ReactDOM.render(
     // <React.StrictMode>
-        <Provider store={store}>
+    <Provider store={store}>
+        <Suspense fallback={<EyeLoader />}>
             <BrowserRouter>
                 <PersistGate persistor={persistor}>
-                    <App/>
+                    <App />
                 </PersistGate>
             </BrowserRouter>
-        </Provider>,
+        </Suspense>
+    </Provider>,
     // </React.StrictMode>,
     document.getElementById('root')
 );

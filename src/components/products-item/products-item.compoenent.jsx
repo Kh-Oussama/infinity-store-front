@@ -1,8 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ProductPopup from "../product-popup/product-popup-component";
+
+//Import loader of product item
+import ProductItemLoader from "./../product-item-loader/product-item-loader.component";
 
 const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo}) => {
     const [modal, setModal] = useState(false);
+
+    //pour tester
+    const [loading, setLoading] = useState(true);
 
     const toggleModal = () => {
         setModal(!modal);
@@ -10,7 +16,20 @@ const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo}) => {
        // else  document.body.style.overflow = 'unset';
     };
 
+    //wait 6 seconds
+    useEffect(() => {
+        let timer = null;
+        timer = setTimeout(() => {
+            setLoading(false)
+        }, 6000);
+
+        return () => {
+            clearTimeout(timer);
+        }
+    }, [])
+
     return (
+        loading?<ProductItemLoader />:
         <>
             <ProductPopup showModal={modal} toggleModal={toggleModal}/>
             <div className="products-item" onClick={toggleModal}>
