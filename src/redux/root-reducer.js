@@ -7,6 +7,7 @@ import productsReducer from "./product/products.reducer";
 import groupsReducer from "./group/groups.reducer";
 import categoriesReducer from "./categories/categories.reducer";
 import subCategoriesReducer from "./sub-categories/subCategories.reducer";
+import authReducer from "./auth/auth.reducer";
 
 
 const persistConfig = {
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     group: groupsReducer,
     category: categoriesReducer,
     subCategory: subCategoriesReducer,
+    auth: authReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
