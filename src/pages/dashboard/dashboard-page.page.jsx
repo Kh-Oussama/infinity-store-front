@@ -65,9 +65,9 @@ const Dashoard = () => {
 
                     <div className="main">
                             <Switch>
-                                <Route exact path={`${path}/`} component={UserProfile} />
-                                <Route path={`${path}/update-password`} component={UpdatePassword} />
-                                <Route path={`${path}/orders`} component={UserOrder} />
+                                <Route exact path={`/dashboard/`} component={UserProfile} />
+                                <Route path={`/dashboard/update-password`} component={UpdatePassword} />
+                                <Route path={`/dashboard/orders`} component={UserOrder} />
                             </Switch>
                     </div>
                 </div>
