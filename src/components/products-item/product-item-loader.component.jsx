@@ -8,8 +8,8 @@ const ProductItemLoader = () => {
             width={236}
             height={656}
             viewBox="0 0 236 656"
-            backgroundColor="#ecebeb"
-            foregroundColor="#bdbdbd"
+            backgroundColor="#f2f2f2"
+            foregroundColor="#e1e1e1"
         >
             <rect x="180" y="20" rx="3" ry="3" width="50" height="25" />
             <rect x="18" y="60" rx="3" ry="3" width="234" height="200" />

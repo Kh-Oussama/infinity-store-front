@@ -11,12 +11,14 @@ import { Provider } from "react-redux";
 
 //Import Loader
 import EyeLoader from './components/EyeLoader/EyeLoader';
+import Axios from "axios";
 
 // import 'react-toastify/dist/ReactToastify.css';
 // import axios from "axios";
 
-// axios.defaults.withCredentials = true;
-// axios.get("https://backend.comptoir-d-orient.fr/sanctum/csrf-cookie");
+//get the csrf token from backend
+Axios.defaults.withCredentials = true;
+Axios.get( "http://localhost:8000/sanctum/csrf-cookie");
 
 ReactDOM.render(
     // <React.StrictMode>

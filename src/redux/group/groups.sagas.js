@@ -11,7 +11,7 @@ import {
 //FETCH Groups
 export function* fetchGroupsAsync() {
     try {
-        const response = yield Axios.get("");
+        const response = yield Axios.get("http://localhost:8000/api/get-all-groups");
         const groups = response.data.groups;
         yield put(fetchGroupsSuccess(groups));
     } catch (error) {

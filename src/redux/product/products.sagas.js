@@ -1,16 +1,13 @@
+import {all, call, put, takeLatest} from "redux-saga/effects";
+import Axios from "axios";
 import ProductsActionTypes from "./products.types";
-import { Axios } from "axios";
-import {takeLatest, put, all, call} from 'redux-saga/effects';
-import { 
-    fetchProductsSuccess, fetchProductsFailure, 
-    getProductSuccess,  getProductFailure,
-} from "./products.actions";
+import {fetchProductsFailure, fetchProductsSuccess} from "./products.actions";
 
 
-//Get all products
+//FETCH Products
 export function* fetchProductsAsync() {
     try {
-        const response = yield Axios.get("");
+        const response = yield Axios.get("http://localhost:8000/api/get-all-products");
         const products = response.data.products;
         yield put(fetchProductsSuccess(products));
     } catch (error) {
@@ -18,30 +15,33 @@ export function* fetchProductsAsync() {
     }
 }
 
-//Get product
-export function* getProductAsync({payload: {name}}) {
-    try {
-        const response = yield Axios.get(`http://localhost:8000/api/auth/products/${name}`);
-        const product = response.data.product;
-        yield put(getProductSuccess(product));
-    } catch (error) {
-        yield put(getProductFailure(error.message));
-    }
-}
+
+// //Get group
+// export function* getGroupAsync({payload: {name}}) {
+//     try {
+//         const response = yield Axios.get(``);
+//         const group = response.data.group;
+//         yield put(getGroupSuccess(group));
+//     } catch (error) {
+//         yield put(getGroupFailure(error.message));
+//     }
+// }
 
 
 export function* onFetchProducts() {
     yield takeLatest(ProductsActionTypes.FETCH_ALL_PRODUCTS_START, fetchProductsAsync)
 }
 
-export function* onGetProductStart() {
-    yield takeLatest(ProductsActionTypes.GET_PRODUCT_START, getProductAsync)
-}
+
+// export function* onGetGroupStart() {
+//     yield takeLatest(ProductsActionTypes.GET_GROUP_START, getGroupAsync)
+// }
 
 
 export function* productsSagas() {
     yield all([
         call(onFetchProducts),
-        call(onGetProductStart),
+        // call(onGetGroupStart),
     ]);
 }
+

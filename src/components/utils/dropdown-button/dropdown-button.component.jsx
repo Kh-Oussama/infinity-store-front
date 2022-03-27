@@ -6,15 +6,14 @@ import iconSet from "../../../selection.json";
 
 //components
 import GroceryIcon from "../../icons/grocery";
-import BakeryIcon from "../../icons/Bakery";
-import MakeupIcon from "../../icons/makeup";
-import FurnitureIcon from "../../icons/furniture";
-import Handbag from "../../icons/handbag";
-import DressIcon from "../../icons/dress";
+import {createStructuredSelector} from "reselect";
+import {selectGroups} from "../../../redux/group/groups.selectors";
+import {connect} from "react-redux";
 
 
 //  this is for the select dropdown button
-const DropdownButton = () => {
+const DropdownButton = ({ groups }) => {
+
     //show the dropdown state
     const [isOpen, setIsOpen] = useState(false);
 
@@ -34,34 +33,31 @@ const DropdownButton = () => {
 
                 {/* list for all groups */}
                 <ul className="dd-menu">
-                    <li>
-                        <GroceryIcon/>
-                        <span>Grocery</span>
-                    </li>
-                    <li>
-                        <BakeryIcon/>
-                        <span>Bakery</span>
-                    </li>
-                    <li>
-                        <MakeupIcon/>
-                        <span>Makeup</span>
-                    </li>
-                    <li>
-                        <FurnitureIcon/>
-                        <span>Furniture</span>
-                    </li>
-                    <li>
-                        <Handbag/>
-                        <span>Bags</span>
-                    </li>
-                    <li>
-                        <DressIcon/>
-                        <span>Clothing</span>
-                    </li>
+                    {
+                        groups.map(group => {
+                            return (
+                                <li>
+                                    <GroceryIcon/>
+                                    <span>{group.name}</span>
+                                </li>
+                            )
+                        })
+                    }
                 </ul>
             </label>
         </>
     )
 }
 
-export default DropdownButton;
+
+const mapStateToProps = createStructuredSelector({
+
+    //get all groups with categories and Sub-categories
+    groups: selectGroups,
+
+
+});
+
+// const mapDispatchToProps = dispatch => ({});
+
+export default connect(mapStateToProps, null)(DropdownButton);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProductsItem from "../products-item/products-item.compoenent";
@@ -8,7 +8,12 @@ import {
     selectFetchProductsLoading, selectProducts, selectFetchProductsError
 } from "./../../redux/product/products.selectors";
 
-const ProductsGrid = () => {
+const ProductsGrid = ({fetchProducts, loading, errors, products}) => {
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
+
     return (
         <>
             <div className="products-grid">

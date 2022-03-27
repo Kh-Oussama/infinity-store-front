@@ -3,12 +3,12 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import LeftSideMenu from "../left-side-menu/left-side-menu.compoenent";
 import ProductsGrid from "../products-grid/products-grid.compoenent";
 
-const ShoppingSection = () => {
+const ShoppingSection = ({ group }) => {
     return (
         <>
             <div className="shop-container">
-                <LeftSideMenu/>
-                <ProductsGrid/>
+                <LeftSideMenu group={group} />
+                <ProductsGrid />
             </div>
         </>
     )
