@@ -8,6 +8,13 @@ import DropdownButton from "./../utils/dropdown-button/dropdown-button.component
 
 SwiperCore.use([Autoplay, Navigation]);
 const BannerSwiper = () => {
+
+    //Function to display side menu
+    const displaySideMenu = _ => {
+        const sideMenu = document.querySelector('.shop-container .side-menu');
+        sideMenu.classList.add('active');
+    }
+
     return (
         <>
             <div className="BannerSwiper">
@@ -64,7 +71,7 @@ const BannerSwiper = () => {
                 </div>
 
                 <div className='actions'>
-                    <button className='filter-btn'>
+                    <button className='filter-btn' onClick={displaySideMenu}>
                         <span className='fa-solid fa-sliders'></span>
                         <span>Filter</span>
                     </button>
