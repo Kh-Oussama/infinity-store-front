@@ -6,12 +6,12 @@ import ShoppingSection from "../../components/shoping-section/shoping-section.co
 
 const Homepage = () => {
     return (
-        <>
+        <div className='home-page'>
             <NavigationBar/>
             <Header/>
             <BannerSwiper/>
             <ShoppingSection/>
-        </>
+        </div>
     )
 }
 
