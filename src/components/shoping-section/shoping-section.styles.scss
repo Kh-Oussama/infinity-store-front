@@ -4,6 +4,12 @@
 
   //justify-content: space-around;
   //  background: yellow;
+
+  @media only screen and (max-width: $bp-large){
+    height: auto;
+    min-height: 100vh;
+  }
+
   & .side-menu {
     flex: 0 0 22%;
     background: white;
@@ -99,5 +105,12 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
+
+    @media only screen and (max-width: $bp-large){
+     
+      flex: 1;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-gap: 4rem;
+    }
   }
 }

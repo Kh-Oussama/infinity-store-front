@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Thumbs} from 'swiper';
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination, Thumbs } from 'swiper';
 import 'swiper/swiper-bundle.css';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 SwiperCore.use([Navigation, Pagination, Thumbs]);
@@ -19,7 +19,7 @@ const ViewProduct = () => {
     for (let i = 0; i < 3; i += 1) {
         thumbs.push(
 
-                 `/images/products/Apples.jpg`,
+            `/images/products/Apples.jpg`,
 
         );
     }
@@ -44,33 +44,33 @@ const ViewProduct = () => {
                             }}
                             onSlideChange={(swiper) => {
 
-                               if (swiper.activeIndex === 4) {
-                                   setSelectedItem(0);
-                               }else {
-                                   if (swiper.activeIndex === 0) {
-                                       setSelectedItem(2);
-                                   } else  setSelectedItem(swiper.activeIndex-1)
-                               }
+                                if (swiper.activeIndex === 4) {
+                                    setSelectedItem(0);
+                                } else {
+                                    if (swiper.activeIndex === 0) {
+                                        setSelectedItem(2);
+                                    } else setSelectedItem(swiper.activeIndex - 1)
+                                }
 
                             }}
-                            // onSwiper={(swiper) => console.log(swiper)}
+                        // onSwiper={(swiper) => console.log(swiper)}
 
                         >
 
                             <SwiperSlide >
                                 <div className="item">
-                                    <img src={"/images/products/Apples.jpg"} alt="" className="img"/>
+                                    <img src={"/images/products/Apples.jpg"} alt="" className="img" />
                                 </div>
                             </SwiperSlide>
 
                             <SwiperSlide>
                                 <div className="item">
-                                    <img src={"/images/products/Apples.jpg"} alt="" className="img"/>
+                                    <img src={"/images/products/Apples.jpg"} alt="" className="img" />
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className="item">
-                                    <img src={"/images/products/Apples.jpg"} alt="" className="img"/>
+                                    <img src={"/images/products/Apples.jpg"} alt="" className="img" />
                                 </div>
                             </SwiperSlide>
 
@@ -88,12 +88,12 @@ const ViewProduct = () => {
                                         <SwiperSlide
                                             key={i}
                                             onClick={() => setSelectedItem(i)}
-                                            >
+                                        >
                                             <div className={`thumb-item ${selectedItem === i ? 'selected-item' : ""}`} >
-                                                <img src={item} alt="" className="img"/>
+                                                <img src={item} alt="" className="img" />
                                             </div>
                                         </SwiperSlide>
-                                   ))
+                                    ))
                                 }
 
 
@@ -133,7 +133,7 @@ const ViewProduct = () => {
                                 <span>18</span> pieces available
                             </div>
                         </div>
-                        <div className="divider"/>
+                        <div className="divider" />
                         <div className="detail-categories">
                             <div className="category">
                                 Categories
@@ -160,15 +160,15 @@ const ViewProduct = () => {
 
                     </div>
                 </div>
-           </div>
-            <div className="divider"/>
+            </div>
+            <div className="divider" />
             <div className="moreDetails">
-                    <div className="title">
-                        Details
-                    </div>
-                    <p>
-                        An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found.
-                    </p>
+                <div className="title">
+                    Details
+                </div>
+                <p>
+                    An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found.
+                </p>
             </div>
         </>
     )
