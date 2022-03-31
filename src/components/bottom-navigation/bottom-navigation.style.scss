@@ -1,0 +1,30 @@
+
+
+.bottom-navigation{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-white);
+    z-index: 20;
+    padding: 1.8rem 1.5rem;
+    box-shadow: 0 -3px 20px rgba(0,0,0, .08);
+
+    @media only screen and (max-width: $bp-large) {
+        display: flex;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+        padding: 1.8rem 1rem;
+    }
+
+    & span{
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--color-grey-dark-1);
+
+    }
+}

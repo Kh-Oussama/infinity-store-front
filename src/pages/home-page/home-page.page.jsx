@@ -3,6 +3,7 @@ import NavigationBar from "../../components/navigartion-bar/navigation-bar.compo
 import Header from "../../components/hedaer/header.compoenent";
 import BannerSwiper from "../../components/baner-swiper/baner-swiper.component";
 import ShoppingSection from "../../components/shoping-section/shoping-section.component";
+import BottomNavigation from '../../components/bottom-navigation/bottom-navigation.component';
 
 const Homepage = () => {
     return (
@@ -11,6 +12,7 @@ const Homepage = () => {
             <Header/>
             <BannerSwiper/>
             <ShoppingSection/>
+            <BottomNavigation />
         </div>
     )
 }
