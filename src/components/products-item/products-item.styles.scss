@@ -12,7 +12,7 @@
   transition-timing-function: cubic-bezier(.4,0,.2,1);
   transition-duration: .3s;
 
-  @media only screen and (max-width: $bp-large){
+  @media only screen and (max-width: 1330px){
     height: auto;
     min-height: 41rem;
   }
