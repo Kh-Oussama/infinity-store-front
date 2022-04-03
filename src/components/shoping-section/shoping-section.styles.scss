@@ -1,14 +1,10 @@
 .shop-container {
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   display: flex;
 
   //justify-content: space-around;
   //  background: yellow;
-
-  @media only screen and (max-width: $bp-large){
-    height: auto;
-    min-height: 100vh;
-  }
 
   & .side-menu {
     flex: 0 0 22%;

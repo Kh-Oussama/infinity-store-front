@@ -1,5 +1,6 @@
 .products-item {
-  height: 41rem;
+  height: auto;
+  min-height: 41rem;
   width: 100%;
   background: white;
   border: 2px  solid var(--color-grey-2);
@@ -13,8 +14,8 @@
   transition-duration: .3s;
 
   @media only screen and (max-width: 1330px){
-    height: auto;
-    min-height: 41rem;
+    /* height: auto;
+    min-height: 41rem; */
   }
 
   &:hover {
