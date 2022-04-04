@@ -46,13 +46,20 @@
   }
     .text-content {
       width: 85%;
-      margin-top: 3rem;
+      margin: 3rem 0;
       background: white;
       min-height: 100vh;
       border-radius: 1rem;
       z-index: 999;
       height: fit-content;
 
+      @media screen and (max-width: $bp-large-1) {
+        width: 95%;
+      }
+
+      @media screen and (max-width: $bp-medium) {
+        margin: 5rem 0;
+      }
 
     }
   .text-content-auth {

@@ -5,6 +5,11 @@
     grid-template-columns: repeat(2, 1fr);
     padding: 0 5rem;
     padding-top: 5rem;
+
+    @media only screen and (max-width: $bp-medium-2){
+      padding: 5rem 2.5rem;
+    }
+
     //
     //@media only screen and (max-width: $bp-large) {
     //  grid-template-rows: 7rem 50rem 7rem;
@@ -99,6 +104,10 @@
           width: 100%;
           margin-bottom: 2rem;
 
+          @media only screen and (max-width: 992px) {
+            flex-direction: column;
+          }
+
           .addButton {
             background: var(--color-primary);
             flex: 0 0 55%;
@@ -110,6 +119,13 @@
             border-radius: .5rem;
             font-size: 1.6rem;
             text-transform: capitalize;
+
+            @media only screen and (max-width: 992px){
+              flex: 0 !important;
+              width: 100%;
+              padding: 1.4rem 0;
+              margin: 0 0 1rem;
+            }
           }
 
           .qnt {
@@ -130,6 +146,7 @@
             }
           }
         }
+
         .sellers {
           margin-top: 5rem;
 
@@ -141,9 +158,10 @@
             }
           }
         }
+
         &-categories {
           margin-top: 1.5rem;
-          height: 5rem;
+          min-height: 5rem;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
@@ -191,11 +209,18 @@
           }
         }
         .item {
-          height: 33rem;
-          padding: 3rem 0;
+          height: 40rem;
+          //padding: 3rem 0;
           text-align: center;
+
+          @media only screen and (max-width: $bp-smallest) {
+              height: 30rem;
+          }
+
           .img {
-            height: 40rem;
+            margin: auto 0;
+            max-width: 100%;
+            max-height: 100%;
           }
         }
 
@@ -227,7 +252,7 @@
   }
 
   .moreDetails {
-    height: 20rem;
+    min-height: 20rem;
     padding: 5rem;
 
     .title {

@@ -65,12 +65,12 @@ const ViewProduct = () => {
 
                             <SwiperSlide>
                                 <div className="item">
-                                    <img src={"/images/products/Apples.jpg"} alt="" className="img" />
+                                    <img src={"/images/products/BabySpinach.jpg"} alt="" className="img" />
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className="item">
-                                    <img src={"/images/products/Apples.jpg"} alt="" className="img" />
+                                    <img src={"/images/products/blueberries.jpg"} alt="" className="img" />
                                 </div>
                             </SwiperSlide>
 
@@ -81,6 +81,19 @@ const ViewProduct = () => {
                                 spaceBetween={8}
                                 slidesPerView={3}
                                 onSwiper={setThumbsSwiper}
+                                breakpoints= {{
+                                    768:{
+                                        slidesPerView: 3,
+                                        //slidesPerGroup: 3,
+                                    },
+                                    580: {
+                                        slidesPerView: 2,
+                                        //slidesPerGroup: 2,
+                                    },
+                                    0:{
+                                        slidesPerView: 1,
+                                    }
+                                }}
                             >
 
                                 {
