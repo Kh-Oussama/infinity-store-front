@@ -4,7 +4,7 @@ import ProductPopup from "../product-popup/product-popup-component";
 //Import loader of product item
 import ProductItemLoader from "./product-item-loader.component";
 
-const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo}) => {
+const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo,product}) => {
     const [modal, setModal] = useState(false);
 
     //pour tester
@@ -27,11 +27,9 @@ const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo}) => {
     }, [])
 
     return (
-        loading
-            ? <ProductItemLoader/>
-            :
+
             <>
-                <ProductPopup showModal={modal} toggleModal={toggleModal}/>
+                <ProductPopup showModal={modal} product={product} toggleModal={toggleModal}/>
                 <div className="products-item" onClick={toggleModal}>
                     {
                         promo
@@ -40,12 +38,12 @@ const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo}) => {
                     }
 
                     <div className="imgBlock">
-                        <img src={`/images/products/${imgUrl}`} alt=""/>
+                        <img src={`http://localhost:8000/${imgUrl}`} alt=""/>
                     </div>
                     <div className="detailsBlock">
                         <div className="priceBlock">
-                            <div className="newPrice">{newPrice}</div>
-                            <div className="oldPrice">{oldPrice ? oldPrice : null}</div>
+                            <div className="newPrice">{newPrice} Da</div>
+                            <div className="oldPrice">{oldPrice ? oldPrice : null} Da</div>
 
                         </div>
                         <div className="productName">

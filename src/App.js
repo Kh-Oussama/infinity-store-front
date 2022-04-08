@@ -26,13 +26,14 @@ const App = ({history, fetchGroups, loading, errors, groups}) => {
     return (
         <>
             <Switch>
-                <Route exact path="/:group" component={Homepage}/>
+
                 <Route exact path="/shops" component={ShopsPage}/>
                 <Route exact path="/shops/shop" component={ViewShopPage}/>
                 <Route exact path="/contact" component={ContactPage}/>
                 <Route exact path="/help" component={FaqPage}/>
                 <Route exact path="/dashboard" component={Dashoard}/>
-                <Redirect to="/"/>
+                <Route path="/:group?" component={Homepage}/>
+                <Redirect to="/:group?s"/>
             </Switch>
         </>
     );

@@ -2,17 +2,50 @@ import ProductsActionTypes from "./products.types";
 
 
 //fetch all products
-export const fetchProductsStart = () => ({
+export const fetchProductsStart = group => ({
     type : ProductsActionTypes.FETCH_ALL_PRODUCTS_START,
+    payload: group
 });
 
-export const fetchProductsSuccess = product => ({
+export const fetchProductsSuccess = products => ({
     type : ProductsActionTypes.FETCH_ALL_PRODUCTS_SUCCESS,
-    payload : product,
+    payload : products,
 });
 
 export const fetchProductsFailure = errorMessage => ({
     type : ProductsActionTypes.FETCH_ALL_PRODUCTS_FAILURE,
+    payload : errorMessage,
+});
+
+//fetch product By category
+export const fetchProductsByCategoryStart = category => ({
+    type : ProductsActionTypes.FETCH_PRODUCTS_BY_CATEGORY_START,
+    payload: category
+});
+
+export const fetchProductsByCategorySuccess = products => ({
+    type : ProductsActionTypes.FETCH_PRODUCTS_BY_CATEGORY_SUCCESS,
+    payload : products,
+});
+
+export const fetchProductsByCategoryFailure = errorMessage => ({
+    type : ProductsActionTypes.FETCH_PRODUCTS_BY_CATEGORY_FAILURE,
+    payload : errorMessage,
+});
+
+//fetch product By sub-category
+export const fetchProductsBySubCategoryStart = subCategory => ({
+    type : ProductsActionTypes.FETCH_PRODUCTS_BY_SUB_CATEGORY_START,
+    payload: subCategory
+});
+
+export const fetchProductsBySubCategorySuccess = products => ({
+    type : ProductsActionTypes.FETCH_PRODUCTS_BY_SUB_CATEGORY_SUCCESS,
+    payload : products,
+});
+
+export const fetchProductsBySubCategoryFailure = errorMessage => ({
+    type : ProductsActionTypes.FETCH_PRODUCTS_BY_SUB_CATEGORY_FAILURE,
     payload : errorMessage,
 });
 

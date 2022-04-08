@@ -39,30 +39,76 @@ const productsReducer = (state = INITIAL_STATE, action) => {
                 products: [],
             }
 
-        //get product
-        case ProductsActionTypes.GET_PRODUCT_START:
+            //fetch product by category
+        case ProductsActionTypes.FETCH_PRODUCTS_BY_CATEGORY_START:
             return {
                 ...state,
-                getProductLoading: true,
-                getProductError: null,
-                product: null,
-
                 fetchAllProductsLoading: true,
+                fetchAllProductsError: null,
+                products: [],
             }
-        case ProductsActionTypes.GET_PRODUCT_SUCCESS:
+        case ProductsActionTypes.FETCH_PRODUCTS_BY_CATEGORY_SUCCESS:
             return {
                 ...state,
-                getProductLoading: false,
-                getProductError: null,
-                product: action.payload[0],
+                fetchAllProductsLoading: false,
+                fetchAllProductsError: null,
+                products: action.payload,
             }
-        case ProductsActionTypes.GET_PRODUCT_FAILURE:
+        case ProductsActionTypes.FETCH_PRODUCTS_BY_CATEGORY_FAILURE:
             return {
                 ...state,
-                getProductLoading: false,
-                getProductError: action.payload,
-                product: null,
+                fetchAllProductsLoading: false,
+                fetchAllProductsError: action.payload,
+                products: [],
             }
+
+        //fetch product by sub-category
+        case ProductsActionTypes.FETCH_PRODUCTS_BY_SUB_CATEGORY_START:
+            return {
+                ...state,
+                fetchAllProductsLoading: true,
+                fetchAllProductsError: null,
+                products: [],
+            }
+        case ProductsActionTypes.FETCH_PRODUCTS_BY_SUB_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                fetchAllProductsLoading: false,
+                fetchAllProductsError: null,
+                products: action.payload,
+            }
+        case ProductsActionTypes.FETCH_PRODUCTS_BY_SUB_CATEGORY_FAILURE:
+            return {
+                ...state,
+                fetchAllProductsLoading: false,
+                fetchAllProductsError: action.payload,
+                products: [],
+            }
+
+        // //get product
+        // case ProductsActionTypes.GET_PRODUCT_START:
+        //     return {
+        //         ...state,
+        //         getProductLoading: true,
+        //         getProductError: null,
+        //         product: null,
+        //
+        //         fetchAllProductsLoading: true,
+        //     }
+        // case ProductsActionTypes.GET_PRODUCT_SUCCESS:
+        //     return {
+        //         ...state,
+        //         getProductLoading: false,
+        //         getProductError: null,
+        //         product: action.payload[0],
+        //     }
+        // case ProductsActionTypes.GET_PRODUCT_FAILURE:
+        //     return {
+        //         ...state,
+        //         getProductLoading: false,
+        //         getProductError: action.payload,
+        //         product: null,
+        //     }
 
         default:
             return state;

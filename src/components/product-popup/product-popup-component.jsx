@@ -3,7 +3,7 @@ import {animated, useSpring} from 'react-spring';
 import ViewProduct from "../view-product/view-product.component";
 
 
-const ProductPopup = ({toggleModal, showModal}) => {
+const ProductPopup = ({toggleModal, showModal, product}) => {
 
     const animation = useSpring({
         config: {
@@ -21,7 +21,7 @@ const ProductPopup = ({toggleModal, showModal}) => {
                         <div className="modal-content">
                             <div className="second-overlay" onClick={toggleModal}/>
                             <div className="text-content">
-                                <ViewProduct/>
+                                <ViewProduct product={product} />
                             </div>
                         </div>
                     </animated.div>

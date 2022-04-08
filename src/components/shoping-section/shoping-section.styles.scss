@@ -16,10 +16,12 @@
       background: transparent !important;
     }
 
-    .pro-item-content {
-      color: var(--color-grey-dark-2);
-      font-size: 1.4rem !important;
+    .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+      color: red ;
+    }
 
+    .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:focus {
+      color: var(--color-primary) !important;
     }
 
     .pro-sidebar .pro-menu.shaped .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
@@ -53,3 +55,5 @@
     grid-gap: 1rem;
   }
 }
+
+

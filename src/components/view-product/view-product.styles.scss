@@ -75,7 +75,7 @@
           justify-content: space-between;
           height: 5rem;
           width: 20%;
-          margin-bottom: 3rem;
+          margin-bottom: 1rem;
 
 
           .newPrice {
@@ -92,12 +92,37 @@
           }
         }
 
+        &-sizes-block {
+          width: 100%;
+          margin: 2rem 0;
+          height: 10rem;
+          &-attribute {
+            font-size: 1.6rem;
+            color: var(--color-grey-dark-2);
+            font-weight: 600;
+          }
+
+          &-items {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            & .item {
+              width: 6rem ;
+              margin-right: .6rem;
+              padding: 1rem  1.5rem;
+              font-size: 1.6rem;
+              text-align: center;
+              border: 2px  solid var(--color-grey-2);
+            }
+          }
+        }
+
         &-action {
           display: flex;
           align-items: center;
           justify-content: space-between;
           width: 100%;
-          margin-bottom: 2rem;
+          margin: 2rem 0;
 
           .addButton {
             background: var(--color-primary);
@@ -131,7 +156,7 @@
           }
         }
         .sellers {
-          margin-top: 5rem;
+          margin: 0;
 
           & .seller {
             font-size: 1.5rem;
@@ -155,19 +180,13 @@
 
           }
 
-          .category-item {
-            margin: .5rem .7rem;
-            padding: .6rem 1.5rem;
-            border: 2px  solid var(--color-grey-2);
-            font-size: 1.3rem;
-            font-weight: 500;
-            border-radius: .5rem;
-          }
+
         }
       }
 
       .imageBlock {
         flex: 1;
+        margin-bottom: 2rem;
 
         @media only screen and (min-width: $bp-medium) {
           width: 1rem;
@@ -227,7 +246,7 @@
   }
 
   .moreDetails {
-    height: 20rem;
+    height: fit-content;
     padding: 5rem;
 
     .title {
@@ -240,4 +259,28 @@
       font-size: 1.5rem;
       color: var(--color-grey-dark-2);
     }
+  }
+
+  //reused
+  .category-item {
+    margin: .5rem .7rem;
+    padding: .6rem 1.5rem;
+    border: 2px  solid var(--color-grey-2);
+    font-size: 1.3rem;
+    font-weight: 500;
+    border-radius: .5rem;
+  }
+
+  //customize sema,tic ui
+  .ui.table {
+    font-size: 1.6rem !important;
+  }
+
+  .ui.table thead tr:first-child>th:first-child {
+    width: 20rem !important;
+  }
+
+  .ui.table td>.ui.ribbon.label {
+    font-size: 1.5rem !important;
+    //width: 100% !important;
   }

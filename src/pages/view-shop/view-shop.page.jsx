@@ -3,7 +3,7 @@ import NavigationBar from "../../components/navigartion-bar/navigation-bar.compo
 import iconSet from "../../selection.json";
 import IcomoonReact from "icomoon-react";
 import InstagramIcon from "../../components/icons/instagram";
-import ProductsGrid from "../../components/products-grid/products-grid.compoenent";
+import ProductsGrid from "../../components/products-grid/products-grid-group.compoenent";
 
 const ViewShopPage = () => {
     return (
