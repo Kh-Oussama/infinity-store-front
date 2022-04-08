@@ -63,10 +63,26 @@
 
     }
   .text-content-auth {
-    width: 35%;
+    //width: 35%;
+    margin: auto 0;
+    width: 40rem;
     min-height: 10rem ;
     height: fit-content;
+
+    @media only screen and (max-width:$bp-medium-2) {
+      width: 100%;
+      margin: auto 15%;
+    }
+
+    @media only screen and (max-width:$bp-small) {
+      margin: auto 7%;
+    }
+
+    @media only screen and (max-width:$bp-smallest) {
+      margin: auto 4%;
+    }
   }
+
   .text-content-shopping-card {
     height: 100vh;
     margin: 0;
