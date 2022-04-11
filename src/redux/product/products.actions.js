@@ -50,6 +50,24 @@ export const fetchProductsBySubCategoryFailure = errorMessage => ({
 });
 
 
+//Fetch products by store
+export const fetchProductsByStoreStart = store => ({
+    type : ProductsActionTypes.FETCH_PRODUCTS_BY_STORE_START,
+    payload: store
+});
+
+export const fetchProductsByStoreSuccess = products => ({
+    type : ProductsActionTypes.FETCH_PRODUCTS_BY_STORE_SUCCESS,
+    payload : products,
+});
+
+export const fetchProductsByStoreFailure = errorMessage => ({
+    type : ProductsActionTypes.FETCH_PRODUCTS_BY_STORE_FAILURE,
+    payload : errorMessage,
+});
+
+
+
 //fetch product
 export const getProductStart = product =>  ({
     type : ProductsActionTypes.GET_PRODUCT_START,

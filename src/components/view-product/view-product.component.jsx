@@ -148,8 +148,8 @@ const ViewProduct = ({product}) => {
                             <div className="category">
                                 Categories
                             </div>
-                            <div className="category-item">{product?.category.name}</div>
-                            <div className="category-item">{product?.subcategory.name}</div>
+                            <div className="category-item">{product?.category?.name}</div>
+                            <div className="category-item">{product?.subcategory?.name}</div>
 
                         </div>
                         <div className="detail-categories sellers">
@@ -157,8 +157,8 @@ const ViewProduct = ({product}) => {
                                 Sellers
                             </div>
                             <div className="seller">
-                                <Link to={''}>
-                                    Grocery Shop
+                                <Link to={`/shops/${product.store.name}`}>
+                                    {product.store.name}
                                 </Link>
                             </div>
                         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {animated, useSpring} from 'react-spring';
 import ViewProduct from "../view-product/view-product.component";
+import CloseIcon from "../icons/close-icon.component";
 
 
 const ProductPopup = ({toggleModal, showModal, product}) => {
@@ -21,6 +22,9 @@ const ProductPopup = ({toggleModal, showModal, product}) => {
                         <div className="modal-content">
                             <div className="second-overlay" onClick={toggleModal}/>
                             <div className="text-content">
+                                <div className="rightBlock vb-close" onClick={() => toggleModal()}>
+                                    <CloseIcon/>
+                                </div>
                                 <ViewProduct product={product} />
                             </div>
                         </div>

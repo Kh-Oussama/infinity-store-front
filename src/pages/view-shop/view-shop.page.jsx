@@ -1,61 +1,86 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import NavigationBar from "../../components/navigartion-bar/navigation-bar.component";
-import iconSet from "../../selection.json";
-import IcomoonReact from "icomoon-react";
-import InstagramIcon from "../../components/icons/instagram";
-import ProductsGrid from "../../components/products-grid/products-grid-group.compoenent";
+import {createStructuredSelector} from "reselect";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {selectGetStoreError, selectGetStoreLoading, selectStoreVar} from "../../redux/stores/stores.selectors";
+import {getStoreStart} from "../../redux/stores/stores.actions";
+import Spinner from "../../components/spinner/spinner.components";
+import ProductsGridByStore from "../../components/products-grid/product-grid-by-store.components";
 
-const ViewShopPage = () => {
+const ViewShopPage = ({currentStore, getLoading, getErrors, getStore, match}) => {
+
+    useEffect(() => {
+        getStore({name: match.params.shop});
+    }, [getStore]);
+
     return (
         <>
             <div className="view-shop-page">
                 <NavigationBar/>
-                <div className="view-shop-page__container">
-                <div className="left-block">
-                    <div className="shop-description">
-                        <img src="/images/shops/Furniture-thumbnail.jpg" alt="shop"/>
-                        <div className="name">Furniture Shop</div>
-                        <div className="description">
-                            The furniture shop is the best shop around the city. This is being run...
-                        </div>
-                        <span>Read more</span>
-                        <div className="insta">
-                            <InstagramIcon/>
-                        </div>
+                {
+                    getLoading
+                        ? <Spinner/>
+                        : <div className="view-shop-page__container">
+                            <div className="left-block">
+                                <div className="shop-description">
+                                    <img src="/images/shops/Furniture-thumbnail.jpg" alt="shop"/>
+                                    <div className="name">{currentStore.name}</div>
+                                    <div className="description">
+                                        {currentStore.description}
+                                    </div>
+                                    <span>Read more</span>
 
-                    </div>
-                    <div className="divider"/>
-                    <div className="shop-details">
-                        <div className="shop-details__item">
-                            <h1>Address</h1>
-                            <p>588 Finwood Road, New Jersey, East Dover, 08753, USA</p>
-                        </div>
-                        <div className="shop-details__item">
-                            <h1>Phone</h1>
-                            <p>21342121221</p>
-                        </div>
-                        <div className="shop-details__item">
-                            <h1>Website</h1>
-                            <div>
-                                <span>https://redq.io/</span>
-                                <span>Visit the site</span>
+                                    {/*<div className="insta">*/}
+                                    {/*    <InstagramIcon/>*/}
+                                    {/*</div>*/}
+
+                                </div>
+                                <div className="divider"/>
+                                <div className="shop-details">
+                                    <div className="shop-details__item">
+                                        <h1>Address</h1>
+                                        <p>{currentStore.address}</p>
+                                    </div>
+                                    {/*<div className="shop-details__item">*/}
+                                    {/*    <h1>Phone</h1>*/}
+                                    {/*    <p>21342121221</p>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="shop-details__item">*/}
+                                    {/*    <h1>Website</h1>*/}
+                                    {/*    <div>*/}
+                                    {/*        <span>https://redq.io/</span>*/}
+                                    {/*        <span>Visit the site</span>*/}
+                                    {/*    </div>*/}
+
+                                    {/*</div>*/}
+
+                                </div>
                             </div>
+                            <div className="right-block">
+                                <div className="imgCover">
+                                    <img src="/images/products/image-cover.jpg" alt=""/>
+                                </div>
+                                <ProductsGridByStore/>
 
+                            </div>
                         </div>
+                }
 
-                    </div>
-                </div>
-                <div className="right-block">
-                    <div className="imgCover">
-                        <img src="/images/products/image-cover.jpg" alt=""/>
-                    </div>
-                    <ProductsGrid/>
-
-                </div>
-                </div>
             </div>
         </>
     )
 }
 
-export default ViewShopPage;
+const mapStateToProps = createStructuredSelector({
+    currentStore: selectStoreVar,
+    getLoading: selectGetStoreLoading,
+    getErrors: selectGetStoreError,
+
+});
+const mapDispatchToProps = dispatch => ({
+    getStore: Store => dispatch(getStoreStart(Store)),
+});
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ViewShopPage));

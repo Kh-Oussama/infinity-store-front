@@ -28,7 +28,7 @@ const App = ({history, fetchGroups, loading, errors, groups}) => {
             <Switch>
 
                 <Route exact path="/shops" component={ShopsPage}/>
-                <Route exact path="/shops/shop" component={ViewShopPage}/>
+                <Route exact path="/shops/:shop" component={ViewShopPage}/>
                 <Route exact path="/contact" component={ContactPage}/>
                 <Route exact path="/help" component={FaqPage}/>
                 <Route exact path="/dashboard" component={Dashoard}/>

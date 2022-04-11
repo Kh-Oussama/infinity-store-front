@@ -131,3 +131,44 @@
   }
 }
 
+//re
+.rightBlock {
+  background: rgba(var(--color-gray-100),1);
+  padding: .7rem;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+
+
+
+
+  &:hover {
+    background: var(--color-primary);
+    svg {
+      color: white;
+
+    }
+  }
+
+  svg {
+    height: 1.2rem;
+    color: var(--color-grey-dark-2);
+  }
+}
+
+.vb-close {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+
+  &:hover {
+    background: #fe7096;
+
+  }
+}
