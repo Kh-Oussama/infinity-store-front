@@ -110,8 +110,10 @@
     background-color: var(--color-grey-1);
     display: none;
 
-    &.active{
-      display: block;
+    @media only screen and (max-width: $bp-large) {
+      &.active{
+        display: block;
+      }
     }
 
     & form{
