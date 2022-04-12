@@ -16,9 +16,11 @@ import {
 } from "../../redux/design-utilites/design-utilities.selectors";
 import NavigationBarLoader from "./navigation-bar-loader.component";
 import {selectGroups} from "../../redux/group/groups.selectors";
+import {selectCurrentUser} from "../../redux/auth/auth.selectors";
+import UserIcon from "../icons/user-icon";
 
 //this is component for the navigation bar
-const NavigationBar = ({toggleAuthComponent, loading,currentComponent, authComponentHidden, switchAuthComponent}) => {
+const NavigationBar = ({toggleAuthComponent, loading,currentComponent, authComponentHidden, switchAuthComponent, currentUser}) => {
 
     return (
 
@@ -63,8 +65,11 @@ const NavigationBar = ({toggleAuthComponent, loading,currentComponent, authCompo
                                         <Link to={"#"}>
                                             join
                                         </Link>
-                                    </div>
 
+                                    </div>
+                                    <div className="nav-user-dropdown">
+                                        <UserIcon/>
+                                    </div>
                                 </div>
                             </>
                     }
@@ -83,6 +88,8 @@ const mapStateToProps = createStructuredSelector({
     authComponentHidden: selectAuthComponentHidden,
     //get all groups with categories and Sub-categories
     groups: selectGroups,
+    //get current user
+    currentUser: selectCurrentUser,
 
 
 

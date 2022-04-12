@@ -7,34 +7,55 @@ import ShopsPage from "./pages/shops-page/shops-page.page";
 import ViewShopPage from "./pages/view-shop/view-shop.page";
 import ContactPage from "./pages/contact-page/contact-page.page";
 import FaqPage from "./pages/faq-page/faq-page.page";
-import Dashoard from '../src/pages/dashboard/dashboard-page.page';
 import {fetchGroupsStart} from "./redux/group/groups.actions";
 import {selectFetchGroupsLoading, selectGroups} from "./redux/group/groups.selectors";
 import EyeLoader from "./components/EyeLoader/EyeLoader";
+import Dashboard from "./pages/dashboard/dashboard-page.page";
+import {selectCheckUserSessionLoading, selectCurrentUser, selectSignOutLoading} from "./redux/auth/auth.selectors";
+import {checkUserSession} from "./redux/auth/auth.actions";
 
 const Homepage = lazy(() => import("./pages/home-page/home-page.page"));
 
 
-const App = ({history, fetchGroups, loading, errors, groups}) => {
+const App = ({history, fetchGroups, loading, errors, groups, currentUser, checkLoading, checkUserSession,  logOutLoading}) => {
 
     useEffect(() => {
         fetchGroups();
     }, [fetchGroups]);
 
+    useEffect(() => {
+        checkUserSession()
+    }, [checkUserSession]);
 
-    if (loading) return <EyeLoader/>;
+
+    if (loading || checkLoading || logOutLoading) return <EyeLoader/>;
     return (
         <>
-            <Switch>
+            {
+                currentUser
+                ? (
+                        <Switch>
+                            <Route exact path="/shops" component={ShopsPage}/>
+                            <Route exact path="/shops/:shop" component={ViewShopPage}/>
+                            <Route exact path="/contact" component={ContactPage}/>
+                            <Route exact path="/help" component={FaqPage}/>
+                            <Route path="/dashboard" component={Dashboard}/>
+                            <Route path="/:group?" component={Homepage}/>
+                            <Redirect to="/:group?s"/>
+                        </Switch>
+                    )
+                : (
+                        <Switch>
+                            <Route exact path="/shops" component={ShopsPage}/>
+                            <Route exact path="/shops/:shop" component={ViewShopPage}/>
+                            <Route exact path="/contact" component={ContactPage}/>
+                            <Route exact path="/help" component={FaqPage}/>
+                            <Route path="/:group?" component={Homepage}/>
+                            <Redirect to="/:group?s"/>
+                        </Switch>
+                    )
+            }
 
-                <Route exact path="/shops" component={ShopsPage}/>
-                <Route exact path="/shops/:shop" component={ViewShopPage}/>
-                <Route exact path="/contact" component={ContactPage}/>
-                <Route exact path="/help" component={FaqPage}/>
-                <Route exact path="/dashboard" component={Dashoard}/>
-                <Route path="/:group?" component={Homepage}/>
-                <Redirect to="/:group?s"/>
-            </Switch>
         </>
     );
 }
@@ -44,9 +65,13 @@ const mapStateToProps = createStructuredSelector({
     errors: selectFetchGroupsLoading,
     groups: selectGroups,
 
+    currentUser: selectCurrentUser,
+    checkLoading: selectCheckUserSessionLoading,
+    logOutLoading: selectSignOutLoading,
 });
 const mapDispatchToProps = dispatch => ({
     fetchGroups: () => dispatch(fetchGroupsStart()),
+    checkUserSession: () => dispatch(checkUserSession()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

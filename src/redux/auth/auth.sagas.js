@@ -54,6 +54,7 @@ export function* signIn({payload: {email, password}}) {
         } else
             yield isUserAuthenticated();
     } catch (error) {
+        if (error?.response?.status === 422)
         yield put(signInFailure(error.response.data));
     }
 }
@@ -61,11 +62,12 @@ export function* signIn({payload: {email, password}}) {
 //get the user authenticated
 export function* isUserAuthenticated() {
     try {
-        const response = yield Axios.get("http://localhost:8000/api/user");
+        const response = yield Axios.get("http://localhost:8000/api/client");
         const user = response.data;
         yield put(signInSuccess({id: user.id, ...user}));
     } catch (error) {
-        yield put(signInFailure(error.response.data.message));
+        if (error.response.status === 401) yield put(signOutSuccess());
+        else  yield put(signInFailure(error.response.data.message));
     }
 }
 

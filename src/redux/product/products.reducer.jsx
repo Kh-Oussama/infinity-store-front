@@ -39,7 +39,7 @@ const productsReducer = (state = INITIAL_STATE, action) => {
                 products: [],
             }
 
-            //fetch product by category
+         //fetch product by category
         case ProductsActionTypes.FETCH_PRODUCTS_BY_CATEGORY_START:
             return {
                 ...state,
@@ -55,6 +55,29 @@ const productsReducer = (state = INITIAL_STATE, action) => {
                 products: action.payload,
             }
         case ProductsActionTypes.FETCH_PRODUCTS_BY_CATEGORY_FAILURE:
+            return {
+                ...state,
+                fetchAllProductsLoading: false,
+                fetchAllProductsError: action.payload,
+                products: [],
+            }
+
+        //fetch product by store
+        case ProductsActionTypes.FETCH_PRODUCTS_BY_STORE_START:
+            return {
+                ...state,
+                fetchAllProductsLoading: true,
+                fetchAllProductsError: null,
+                products: [],
+            }
+        case ProductsActionTypes.FETCH_PRODUCTS_BY_STORE_SUCCESS:
+            return {
+                ...state,
+                fetchAllProductsLoading: false,
+                fetchAllProductsError: null,
+                products: action.payload,
+            }
+        case ProductsActionTypes.FETCH_PRODUCTS_BY_STORE_FAILURE:
             return {
                 ...state,
                 fetchAllProductsLoading: false,

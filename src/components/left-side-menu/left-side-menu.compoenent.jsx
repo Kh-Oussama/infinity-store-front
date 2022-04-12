@@ -25,11 +25,11 @@ const LeftSideMenu = ({loading, match, group, history}) => {
                                     group?.categories.map(category => {
                                         if (category.subcategories.length > 0)
                                             return (
-                                                <SubMenu title={category.name} icon={<GroceryIcon/>}  onClick={() => history.push(`/${match.params.group}/categories/${category.slug}`)}>
+                                                <SubMenu key={category.id} title={category.name} icon={<GroceryIcon/>}  onClick={() => history.push(`/${match.params.group}/categories/${category.slug}`)}>
                                                     {
                                                         category?.subcategories.map(subCategory => {
                                                             return (
-                                                                    <MenuItem  onClick={e => handleClick(e,subCategory)}>
+                                                                    <MenuItem key={subCategory.id} onClick={e => handleClick(e,subCategory)}>
                                                                         {/*<Link to={"/aa"} />*/}
                                                                         {subCategory.name}
                                                                     </MenuItem>
@@ -40,7 +40,7 @@ const LeftSideMenu = ({loading, match, group, history}) => {
                                             )
                                         else
                                             return (
-                                                <MenuItem icon={<GroceryIcon/>} onClick={() => history.push(`/${match.params.group}/categories/${category.slug}`)} >{category.name}</MenuItem>
+                                                <MenuItem key={category.id} icon={<GroceryIcon/>} onClick={() => history.push(`/${match.params.group}/categories/${category.slug}`)} >{category.name}</MenuItem>
                                             )
                                     })
                                 }

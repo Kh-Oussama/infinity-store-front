@@ -44,7 +44,7 @@ const DropdownButton = ({ groups, history, match }) => {
                     {
                         groups.map(group => {
                             return (
-                                <li onClick={() => {
+                                <li  key={group.id} onClick={() => {
                                     history.push(`/${group.name}`);
                                     setIsOpen(!isOpen);
                                     setSelectedGroup(group.name);

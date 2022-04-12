@@ -4,8 +4,11 @@ import NavigationBar from "../../components/navigartion-bar/navigation-bar.compo
 import UpdatePassword from "../../components/update-password/update-password.page";
 import UserOrder from "../../components/user-order/user-order.page";
 import UserProfile from "../../components/user-profile/user-profile.page";
+import ProductsGridForGroup from "../../components/products-grid/products-grid-group.compoenent";
+import ProductsGridForCategories from "../../components/products-grid/products-grid-for-category.compoenent";
+import ProductsGridForSubCategories from "../../components/products-grid/products-grid-sub-categories.compoenent";
 
-const Dashoard = () => {
+const Dashboard = () => {
     let { url, path } = useRouteMatch();
 
     //Function to toogle active link
@@ -63,16 +66,12 @@ const Dashoard = () => {
 
                     <div className="main">
 
-                            <Switch>
-                                <Route exact path={`/dashboard/`} component={UserProfile} />
-                                <Route path={`/dashboard/update-password`} component={UpdatePassword} />
-                                <Route path={`/dashboard/orders`} component={UserOrder} />
-                            </Switch>
-
                         <Switch>
-                            <Route exact path={`${path}/`} component={UserProfile} />
-                            <Route exact path={`${path}/update-password`} component={UpdatePassword} />
-                            <Route exact path={`${path}/orders`} component={UserOrder} />
+                            {/*shopping routing*/}
+                            <Route exact path="/dashboard" component={UserProfile}/>
+                            <Route exact path="/dashboard/update-password" component={UpdatePassword}/>
+                            <Route exact path="/dashboard/orders" component={UserOrder}/>
+                            {/*<Redirect to="/dashboard"/>*/}
                         </Switch>
 
                     </div>
@@ -84,4 +83,4 @@ const Dashoard = () => {
     );
 }
 
-export default Dashoard;
+export default Dashboard;
