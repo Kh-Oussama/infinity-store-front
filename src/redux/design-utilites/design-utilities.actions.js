@@ -11,5 +11,10 @@ export const switchAuthComponent = current_component => ({
 });
 
 
+export const toggleShopCard = current_state => ({
+   type: DesignActionTypes.TOGGLE_SHOP_CARD,
+   payload: current_state,
+})
+
 
 

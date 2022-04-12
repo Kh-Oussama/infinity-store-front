@@ -12,4 +12,9 @@ export const selectCurrentAuthComponent = createSelector(
     design_utilities => design_utilities.current_auth_component,
 );
 
+export const selectShopCard = createSelector(
+    [selectDesignUtilities],
+    design_utilities => design_utilities.shop_card_displayed,
+)
+
 

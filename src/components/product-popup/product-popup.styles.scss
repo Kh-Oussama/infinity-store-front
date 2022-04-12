@@ -1,6 +1,7 @@
 
 .modal {
   z-index: 999;
+  display: block;
 }
 .pro-sidebar {
   z-index: 8 !important;
@@ -13,7 +14,7 @@
   right: 0;
   bottom: 0;
   position: fixed;
-
+  display: block;
 }
 
 
@@ -89,6 +90,13 @@
     width: 32%;
     border-radius: 0;
 
+    @media only screen and (max-width:$bp-large){
+      width: 40rem;
+    }
+
+    @media only screen and (max-width:$bp-smallest){
+      width: 100%;
+    }
   }
 }
 .modal-content-shopping-card {
