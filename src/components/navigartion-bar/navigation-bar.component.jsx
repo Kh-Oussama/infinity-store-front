@@ -14,6 +14,7 @@ import {
     selectAuthComponentHidden,
     selectCurrentAuthComponent
 } from "../../redux/design-utilites/design-utilities.selectors";
+import NavSearchBar from './navigation-bar-search.component';
 
 //this is component for the navigation bar
 const NavigationBar = ({toggleAuthComponent, currentComponent, authComponentHidden, switchAuthComponent}) => {
@@ -61,6 +62,8 @@ const NavigationBar = ({toggleAuthComponent, currentComponent, authComponentHidd
                     </div>
 
                 </div>
+
+                <NavSearchBar />
             </div>
         </>
     )

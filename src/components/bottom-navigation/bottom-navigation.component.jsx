@@ -5,11 +5,14 @@ import {selectShopCard} from "../../redux/design-utilites/design-utilities.selec
 import {toggleAuthComponent, toggleShopCard} from "../../redux/design-utilites/design-utilities.actions";
 
 const BottomNavigation = ({shopCardDisplayed, toggleAuthComponent, toggleShopCard}) => {
+    const toggleNavSearch = () => {
+        document.querySelector('.navigation-bar .nav-search').classList.toggle('active');
+    }
 
     return (
         <div className="bottom-navigation">
             <span className="fas fa-home"></span>
-            <span className="fas fa-search"></span>
+            <span onClick={toggleNavSearch} className="fas fa-search"></span>
             <span onClick={() => toggleShopCard(!shopCardDisplayed)} className="fas fa-archive"></span>
             <span onClick={() => toggleAuthComponent("sign-in")} className="fas fa-user"></span>
         </div>
