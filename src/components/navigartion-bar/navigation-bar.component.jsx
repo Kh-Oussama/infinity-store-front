@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {createStructuredSelector} from "reselect";
+import React, { useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 //components
 import DropdownButton from "../utils/dropdown-button/dropdown-button.component";
 import AuthPopup from "../auth-popup/product-popup-component";
-import {NavLink} from "./navLink.component";
+import { NavLink } from "./navLink.component";
 
 //redux utils
-import {switchAuthComponent, toggleAuthComponent} from "../../redux/design-utilites/design-utilities.actions";
+import { switchAuthComponent, toggleAuthComponent } from "../../redux/design-utilites/design-utilities.actions";
 import {
     selectAuthComponentHidden,
     selectCurrentAuthComponent
@@ -17,7 +17,7 @@ import {
 import NavSearchBar from './navigation-bar-search.component';
 
 //this is component for the navigation bar
-const NavigationBar = ({toggleAuthComponent, currentComponent, authComponentHidden, switchAuthComponent}) => {
+const NavigationBar = ({ toggleAuthComponent, currentComponent, authComponentHidden, switchAuthComponent }) => {
 
 
     // //this for the scrollbar
@@ -25,6 +25,12 @@ const NavigationBar = ({toggleAuthComponent, currentComponent, authComponentHidd
     //     if (authComponentHidden) document.body.style.overflow = 'hidden';
     //     else document.body.style.overflow = 'unset';
     // }, [authComponentHidden])
+
+    //Function to hide menu
+    const hideRightMenu = _ => {
+        let sideMenu = document.querySelector('.navigation-bar .nav-right');
+        sideMenu.classList.remove('active');
+    }
 
     return (
         <>
@@ -40,19 +46,25 @@ const NavigationBar = ({toggleAuthComponent, currentComponent, authComponentHidd
                 <div className="nav-left">
 
                     <Link to={'/'}>
-                        <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo"/>
+                        <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo" />
                     </Link>
 
                     {/* this is for the select dropdown button*/}
-                    <DropdownButton/>
+                    <DropdownButton />
                 </div>
-                <div className="nav-center"/>
+                <div className="nav-center" />
                 <div className="nav-right">
+                    {/* Displaying only in responsive */}
+                    <div className="brand-side-menu">
+                        <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo" />
+                        <span className="fa-solid fa-xmark" onClick={hideRightMenu}></span>
+                    </div>
+
                     {/*the right nav links*/}
-                    <NavLink path={"/shops"} text={"Shops"}/>
-                    <NavLink path={"/"} text={"Offers"}/>
-                    <NavLink path={"/help"} text={"FAQ"}/>
-                    <NavLink path={"/contact"} text={"Contact"}/>
+                    <NavLink path={"/shops"} text={"Shops"} />
+                    <NavLink path={"/"} text={"Offers"} />
+                    <NavLink path={"/help"} text={"FAQ"} />
+                    <NavLink path={"/contact"} text={"Contact"} />
 
                     {/*join button*/}
                     <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
