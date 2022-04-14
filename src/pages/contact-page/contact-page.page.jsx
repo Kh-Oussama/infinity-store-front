@@ -2,8 +2,12 @@ import React from 'react';
 import NavigationBar from "../../components/navigartion-bar/navigation-bar.component";
 import InstagramIcon from "../../components/icons/instagram";
 import ProductsGrid from "../../components/products-grid/products-grid-group.compoenent";
+import axios from "axios";
+import {withRouter} from "react-router-dom";
 
 const ContactPage = () => {
+
+
     return (
         <>
             <div className="view-shop-page">

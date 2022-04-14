@@ -1,4 +1,5 @@
 import DesignActionTypes from "./design-utilities.types";
+import AuthActionTypes from "../auth/auth.types";
 
 const INITIAL_STATE = {
     current_auth_component : 'sign-in',
@@ -18,6 +19,12 @@ const designUtilitiesReducer = (state = INITIAL_STATE, action) => {
           return {
               ...state,
               current_auth_component : action.payload,
+          };
+
+      case AuthActionTypes.SIGN_IN_SUCCESS:
+          return {
+              ...state,
+              auth_component_hidden : false,
           };
       default:
           return state;

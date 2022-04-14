@@ -41,7 +41,7 @@ const App = ({history, fetchGroups, loading, errors, groups, currentUser, checkL
                             <Route exact path="/help" component={FaqPage}/>
                             <Route path="/dashboard" component={Dashboard}/>
                             <Route path="/:group?" component={Homepage}/>
-                            <Redirect to="/:group?s"/>
+                            <Redirect to="/:group?"/>
                         </Switch>
                     )
                 : (

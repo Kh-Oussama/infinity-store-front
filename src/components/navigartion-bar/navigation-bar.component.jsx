@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {createStructuredSelector} from "reselect";
@@ -17,65 +17,84 @@ import {
 import NavigationBarLoader from "./navigation-bar-loader.component";
 import {selectGroups} from "../../redux/group/groups.selectors";
 import {selectCurrentUser} from "../../redux/auth/auth.selectors";
-import UserIcon from "../icons/user-icon";
+import ProfileDropdown from "./profile-dropdown.component";
 
 //this is component for the navigation bar
-const NavigationBar = ({toggleAuthComponent, loading,currentComponent, authComponentHidden, switchAuthComponent, currentUser}) => {
+const NavigationBar = ({
+                           toggleAuthComponent,
+                           loading,
+                           currentComponent,
+                           authComponentHidden,
+                           switchAuthComponent,
+                           currentUser
+                       }) => {
+
+    const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+
 
     return (
 
-            <>
-                {/* rendering the auth-popup with sign-up or sign-in component */}
-                <AuthPopup
-                    showModal={authComponentHidden}
-                    toggleModal={toggleAuthComponent}
-                    currentComponent={currentComponent}
-                    switchComponent={switchAuthComponent}
-                />
+        <>
+            {/* rendering the auth-popup with sign-up or sign-in component */}
+            <AuthPopup
+                showModal={authComponentHidden}
+                toggleModal={toggleAuthComponent}
+                currentComponent={currentComponent}
+                switchComponent={switchAuthComponent}
+            />
 
-                <div className={"navigation-bar"}>
-                    {
-                        loading
+            <div className={"navigation-bar"}>
+                {
+                    loading
                         ? <NavigationBarLoader/>
                         : <>
-                                <div className="nav-left">
+                            <div className="nav-left">
 
-                                    <Link to={'/'}>
-                                        <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo"/>
+                                <Link to={'/'}>
+                                    <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo"/>
+                                </Link>
+
+                                {/* this is for the select dropdown button*/}
+                                <DropdownButton/>
+                            </div>
+                            <div className="nav-center"/>
+                            <div className="nav-right">
+                                {/*the right nav links*/}
+                                <NavLink path={"/shops"} text={"Shops"}/>
+                                <NavLink path={"/"} text={"Offers"}/>
+                                <NavLink path={"/help"} text={"FAQ"}/>
+                                <NavLink path={"/contact"} text={"Contact"}/>
+
+                                {/*join button*/}
+                                <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
+                                    <Link to={"#"}>
+                                        Become a seller
                                     </Link>
-
-                                    {/* this is for the select dropdown button*/}
-                                    <DropdownButton/>
                                 </div>
-                                <div className="nav-center"/>
-                                <div className="nav-right">
-                                    {/*the right nav links*/}
-                                    <NavLink path={"/shops"} text={"Shops"}/>
-                                    <NavLink path={"/"} text={"Offers"}/>
-                                    <NavLink path={"/help"} text={"FAQ"}/>
-                                    <NavLink path={"/contact"} text={"Contact"}/>
+                                {
+                                    currentUser
+                                        ? <div className={"nav-user-dropdown"}
+                                               onClick={() => setShowProfileDropdown(!showProfileDropdown)}>
+                                            <img src="/user.png" alt="user"/>
+                                            <ProfileDropdown showProfileDropdown={showProfileDropdown}/>
 
-                                    {/*join button*/}
-                                    <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
-                                        <Link to={"#"}>
-                                            Become a seller
-                                        </Link>
-                                    </div>
-                                    <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
-                                        <Link to={"#"}>
-                                            join
-                                        </Link>
+                                        </div>
+                                        : <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
+                                            <Link to={"#"}>
+                                                join
+                                            </Link>
 
-                                    </div>
-                                    <div className="nav-user-dropdown">
-                                        <UserIcon/>
-                                    </div>
-                                </div>
-                            </>
-                    }
+                                        </div>
 
-                </div>
-            </>
+                                }
+
+
+                            </div>
+                        </>
+                }
+
+            </div>
+        </>
     )
 }
 
@@ -90,7 +109,6 @@ const mapStateToProps = createStructuredSelector({
     groups: selectGroups,
     //get current user
     currentUser: selectCurrentUser,
-
 
 
 });
