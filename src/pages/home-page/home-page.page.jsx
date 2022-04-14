@@ -7,6 +7,7 @@ import {selectGroups} from "../../redux/group/groups.selectors";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import ShoppingSection from "../../components/shoping-section/shoping-section.component";
+import BottomNavigation from '../../components/bottom-navigation/bottom-navigation.component';
 
 const Homepage = ({groups, match, history}) => {
     const [group, setGroup] = useState(null);
@@ -21,12 +22,13 @@ const Homepage = ({groups, match, history}) => {
 
 
     return (
-        <>
+        <div className="home-page">
             <NavigationBar/>
             <Header group={group}/>
             <BannerSwiper/>
             <ShoppingSection group={group} />
-        </>
+            <BottomNavigation />
+        </div>
     )
 }
 

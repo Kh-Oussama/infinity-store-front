@@ -1,11 +1,13 @@
-
 .modal {
   z-index: 999;
 }
+
 .pro-sidebar {
   z-index: 8 !important;
 }
-.modal, .overlay {
+
+.modal,
+.overlay {
   width: 100vw;
   height: 100%;
   top: 0;
@@ -19,9 +21,10 @@
 
 
 .overlay {
-  background: rgba(var(--popup-overlay-color),.5);
+  background: rgba(var(--popup-overlay-color), .5);
 
 }
+
 .modal-content {
   position: absolute;
   top: 0;
@@ -45,38 +48,72 @@
     z-index: 1;
 
   }
-    .text-content {
-      width: 85%;
-      margin-top: 3rem;
-      background: white;
-      min-height: 100%;
-      border-radius: 1rem;
-      z-index: 999;
-      height: fit-content;
 
-      position: relative;
+  .text-content {
+    width: 85%;
+    margin-top: 3rem;
+    background: white;
+    min-height: 100%;
+    border-radius: 1rem;
+    z-index: 999;
+    height: fit-content;
 
+    position: relative;
 
+    @media screen and (max-width: $bp-large-1) {
+      width: 95%;
     }
+
+    @media screen and (max-width: $bp-medium) {
+      margin: 5rem 0;
+    }
+
+  }
+
   .text-content-auth {
-    width: 35%;
+    margin: auto 0;
+    width: 40rem;
     min-height: 10rem ;
     height: fit-content;
+
+    @media only screen and (max-width:$bp-medium-2) {
+      width: 100%;
+      margin: auto 15%;
+    }
+
+    @media only screen and (max-width:$bp-small) {
+      margin: auto 7%;
+    }
+
+    @media only screen and (max-width:$bp-small) {
+      margin: auto 4%;
+    }
   }
+
   .text-content-shopping-card {
     height: 100%;
     margin: 0;
     width: 32%;
     border-radius: 0;
 
+    @media only screen and (max-width:$bp-large) {
+      width: 40rem;
+    }
+
+    @media only screen and (max-width:$bp-smallest) {
+      width: 100%;
+    }
   }
 }
+
 .modal-content-shopping-card {
   justify-content: flex-end;
+
   &::-webkit-scrollbar {
     display: none;
   }
 }
+
 .close-modal {
   position: absolute;
   top: 10px;

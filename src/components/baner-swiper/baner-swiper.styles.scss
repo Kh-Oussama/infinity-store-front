@@ -4,8 +4,27 @@
   padding: 3rem 0;
   border: 2px  solid var(--color-grey-2);
 
+  @media only screen and (max-width: $bp-large) {
+    margin: 6rem 0 0;
+    padding: 0;
+    height: auto;
+  }
+
   & .content {
     padding: 0 3rem;
+
+    @media only screen and (max-width: $bp-large) {
+      padding: 3rem;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      padding: 2.4rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      padding: 1.5rem;
+    }
+
     & .swiper-button-prev,
     & .swiper-button-next {
       color: var(--color-grey-dark-2) !important;
@@ -32,6 +51,42 @@
     & img {
       height: 100%;
       width: 100%;
+    }
+  }
+
+  & .actions {
+    width: 100%;
+    border-top: 1px var(--color-grey-3) solid;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: none;
+
+    @media only screen and (max-width: $bp-large) {
+      display: flex;
+    }
+
+
+    & .filter-btn {
+      background: none;
+      outline: none;
+      border: 1px var(--color-grey-3) solid;
+      padding: .8rem 1rem;
+      border-radius: 4px;
+      background-color: #fafafa;
+
+      & span {
+        font-size: 1.6rem;
+
+        &:nth-child(odd) {
+          margin: 0 3px 0 0;
+        }
+
+        &:nth-child(even) {
+          margin: 0 0 0 3px;
+        }
+      }
     }
   }
 }

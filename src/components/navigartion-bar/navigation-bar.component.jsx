@@ -1,81 +1,96 @@
-import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {createStructuredSelector} from "reselect";
+import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 //components
 import DropdownButton from "../utils/dropdown-button/dropdown-button.component";
 import AuthPopup from "../auth-popup/product-popup-component";
-import {NavLink} from "./navLink.component";
+import { NavLink } from "./navLink.component";
+import NavSearchBar from "./navigation-bar-search.component";
 
 //redux utils
-import {switchAuthComponent, toggleAuthComponent} from "../../redux/design-utilites/design-utilities.actions";
+import { switchAuthComponent, toggleAuthComponent } from "../../redux/design-utilites/design-utilities.actions";
 import {
     selectAuthComponentHidden,
     selectCurrentAuthComponent
 } from "../../redux/design-utilites/design-utilities.selectors";
 import NavigationBarLoader from "./navigation-bar-loader.component";
-import {selectGroups} from "../../redux/group/groups.selectors";
-import {selectCurrentUser} from "../../redux/auth/auth.selectors";
+import { selectGroups } from "../../redux/group/groups.selectors";
+import { selectCurrentUser } from "../../redux/auth/auth.selectors";
 import UserIcon from "../icons/user-icon";
 
 //this is component for the navigation bar
-const NavigationBar = ({toggleAuthComponent, loading,currentComponent, authComponentHidden, switchAuthComponent, currentUser}) => {
+const NavigationBar = ({ toggleAuthComponent, loading, currentComponent, authComponentHidden, switchAuthComponent, currentUser }) => {
+
+    //Function to hide menu
+    const hideRightMenu = _ => {
+        let sideMenu = document.querySelector('.navigation-bar .nav-right');
+        sideMenu.classList.remove('active');
+    }
 
     return (
 
-            <>
-                {/* rendering the auth-popup with sign-up or sign-in component */}
-                <AuthPopup
-                    showModal={authComponentHidden}
-                    toggleModal={toggleAuthComponent}
-                    currentComponent={currentComponent}
-                    switchComponent={switchAuthComponent}
-                />
+        <>
+            {/* rendering the auth-popup with sign-up or sign-in component */}
+            <AuthPopup
+                showModal={authComponentHidden}
+                toggleModal={toggleAuthComponent}
+                currentComponent={currentComponent}
+                switchComponent={switchAuthComponent}
+            />
 
-                <div className={"navigation-bar"}>
-                    {
-                        loading
-                        ? <NavigationBarLoader/>
+            <div className={"navigation-bar"}>
+                {
+                    loading
+                        ? <NavigationBarLoader />
                         : <>
-                                <div className="nav-left">
+                            <div className="nav-left">
 
-                                    <Link to={'/'}>
-                                        <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo"/>
+                                <Link to={'/'}>
+                                    <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo" />
+                                </Link>
+
+                                {/* this is for the select dropdown button*/}
+                                <DropdownButton />
+                            </div>
+                            <div className="nav-center" />
+                            <div className="nav-right">
+                                {/* Displaying only in responsive */}
+                                <div className="brand-side-menu">
+                                    <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo" />
+                                    <span className="fa-solid fa-xmark" onClick={hideRightMenu}></span>
+                                </div>
+
+                                {/*the right nav links*/}
+                                <NavLink path={"/shops"} text={"Shops"} />
+                                <NavLink path={"/"} text={"Offers"} />
+                                <NavLink path={"/help"} text={"FAQ"} />
+                                <NavLink path={"/contact"} text={"Contact"} />
+
+                                {/*join button*/}
+                                <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
+                                    <Link to={"#"}>
+                                        Become a seller
+                                    </Link>
+                                </div>
+                                <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
+                                    <Link to={"#"}>
+                                        join
                                     </Link>
 
-                                    {/* this is for the select dropdown button*/}
-                                    <DropdownButton/>
                                 </div>
-                                <div className="nav-center"/>
-                                <div className="nav-right">
-                                    {/*the right nav links*/}
-                                    <NavLink path={"/shops"} text={"Shops"}/>
-                                    <NavLink path={"/"} text={"Offers"}/>
-                                    <NavLink path={"/help"} text={"FAQ"}/>
-                                    <NavLink path={"/contact"} text={"Contact"}/>
-
-                                    {/*join button*/}
-                                    <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
-                                        <Link to={"#"}>
-                                            Become a seller
-                                        </Link>
-                                    </div>
-                                    <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
-                                        <Link to={"#"}>
-                                            join
-                                        </Link>
-
-                                    </div>
-                                    <div className="nav-user-dropdown">
-                                        <UserIcon/>
-                                    </div>
+                                <div className="nav-user-dropdown">
+                                    <UserIcon />
                                 </div>
-                            </>
-                    }
+                            </div>
 
-                </div>
-            </>
+                            {/* Search bar in responsive */}
+                            <NavSearchBar />
+                        </>
+                }
+            </div>
+        </>
     )
 }
 

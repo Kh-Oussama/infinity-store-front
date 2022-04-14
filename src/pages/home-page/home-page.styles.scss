@@ -6,3 +6,11 @@
 @import "src/components/products-item/products-item.styles";
 @import "../../components/product-popup/product-popup.styles";
 @import "../../components/view-product/view-product.styles";
+
+//import style of bottom navigation
+@import "../../components/bottom-navigation/bottom-navigation.style.scss";
+
+.home-page{
+    width: 100%;
+    overflow: hidden;
+}

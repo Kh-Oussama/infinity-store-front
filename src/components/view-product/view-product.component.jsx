@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import SwiperCore, {Navigation, Pagination, Thumbs} from 'swiper';
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination, Thumbs } from 'swiper';
 import 'swiper/swiper-bundle.css';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import 'semantic-ui-css/components/table.min.css';
 import 'semantic-ui-css/components/label.min.css';
 import DetailsTable from "./details-table.component";
 
 SwiperCore.use([Navigation, Pagination, Thumbs]);
 
-const ViewProduct = ({product}) => {
+const ViewProduct = ({ product }) => {
     const [isPhone, setIsPhone] = useState(window.innerWidth > 600);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [selectedItem, setSelectedItem] = useState(0);
@@ -34,7 +34,7 @@ const ViewProduct = ({product}) => {
 
                         <Swiper
 
-                            thumbs={{swiper: thumbsSwiper}}
+                            thumbs={{ swiper: thumbsSwiper }}
                             spaceBetween={50}
                             slidesPerView={1}
                             navigation={isPhone}
@@ -53,17 +53,17 @@ const ViewProduct = ({product}) => {
                                 }
 
                             }}
-                            // onSwiper={(swiper) => console.log(swiper)}
+                        // onSwiper={(swiper) => console.log(swiper)}
 
                         >
                             {
                                 product.images.map(img => (
-                                        <SwiperSlide>
-                                            <div className="item">
-                                                <img src={`http://localhost:8000/${img.path}`} alt="" className="img"/>
-                                            </div>
-                                        </SwiperSlide>
-                                    )
+                                    <SwiperSlide>
+                                        <div className="item">
+                                            <img src={`http://localhost:8000/${img.path}`} alt="" className="img" />
+                                        </div>
+                                    </SwiperSlide>
+                                )
                                 )
                             }
 
@@ -75,6 +75,19 @@ const ViewProduct = ({product}) => {
                                 spaceBetween={8}
                                 slidesPerView={3}
                                 onSwiper={setThumbsSwiper}
+                                breakpoints={{
+                                    768: {
+                                        slidesPerView: 3,
+                                        //slidesPerGroup: 3,
+                                    },
+                                    580: {
+                                        slidesPerView: 2,
+                                        //slidesPerGroup: 2,
+                                    },
+                                    0: {
+                                        slidesPerView: 1,
+                                    }
+                                }}
                             >
 
                                 {
@@ -84,7 +97,7 @@ const ViewProduct = ({product}) => {
                                             onClick={() => setSelectedItem(i)}
                                         >
                                             <div className={`thumb-item ${selectedItem === i ? 'selected-item' : ""}`}>
-                                                <img src={`http://localhost:8000/${item.path}`} alt="" className="img"/>
+                                                <img src={`http://localhost:8000/${item.path}`} alt="" className="img" />
                                             </div>
                                         </SwiperSlide>
                                     ))
@@ -119,7 +132,7 @@ const ViewProduct = ({product}) => {
                                 {`${product.old_price}Da`}
                             </div>
                         </div>
-                        <div className="divider"/>
+                        <div className="divider" />
                         {
                             product.product_size &&
                             <div className="detail-sizes-block" >
@@ -143,7 +156,7 @@ const ViewProduct = ({product}) => {
                                 <span>{product.quantity}</span> pieces available
                             </div>
                         </div>
-                        <div className="divider"/>
+                        <div className="divider" />
                         <div className="detail-categories">
                             <div className="category">
                                 Categories
@@ -167,7 +180,7 @@ const ViewProduct = ({product}) => {
                     </div>
                 </div>
             </div>
-            <div className="divider"/>
+            <div className="divider" />
             <div className="moreDetails">
                 <div className="title">
                     Details
