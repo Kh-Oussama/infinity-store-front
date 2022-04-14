@@ -13,6 +13,7 @@ import EyeLoader from "./components/EyeLoader/EyeLoader";
 import Dashboard from "./pages/dashboard/dashboard-page.page";
 import {selectCheckUserSessionLoading, selectCurrentUser, selectSignOutLoading} from "./redux/auth/auth.selectors";
 import {checkUserSession} from "./redux/auth/auth.actions";
+import Checkout from './components/checkout/checkout.component';
 
 const Homepage = lazy(() => import("./pages/home-page/home-page.page"));
 
@@ -40,8 +41,9 @@ const App = ({history, fetchGroups, loading, errors, groups, currentUser, checkL
                             <Route exact path="/contact" component={ContactPage}/>
                             <Route exact path="/help" component={FaqPage}/>
                             <Route path="/dashboard" component={Dashboard}/>
+                            <Route path="/checkout" component={Checkout}/>
                             <Route path="/:group?" component={Homepage}/>
-                            <Redirect to="/:group?s"/>
+                           <Redirect to="/:group?s"/>
                         </Switch>
                     )
                 : (
@@ -50,8 +52,9 @@ const App = ({history, fetchGroups, loading, errors, groups, currentUser, checkL
                             <Route exact path="/shops/:shop" component={ViewShopPage}/>
                             <Route exact path="/contact" component={ContactPage}/>
                             <Route exact path="/help" component={FaqPage}/>
+                            <Route path="/checkout" component={Checkout}/>
                             <Route path="/:group?" component={Homepage}/>
-                            <Redirect to="/:group?s"/>
+                            <Redirect to="/:group?s"/> 
                         </Switch>
                     )
             }

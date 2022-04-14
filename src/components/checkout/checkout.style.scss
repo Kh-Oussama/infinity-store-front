@@ -1,0 +1,367 @@
+@import "./../utils/info-button/info-button.style.scss";
+@import "./../utils/address-card/address-card.style.scss";
+
+
+.checkout-page {
+    width: 100%;
+    overflow-x: hidden;
+
+    &>.container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 4rem 14rem;
+
+
+        &>div {
+            &:first-child {
+                flex: 67%;
+                margin: 0 1rem 0 0;
+            }
+
+            &:last-child {
+                flex: 33%;
+                margin: 0 0 0 1rem;
+            }
+        }
+
+        & .info-section {
+            padding: 0 1rem;
+
+            & .card {
+                width: 100%;
+                height: auto;
+                background-color: var(--color-white);
+                border-radius: 4px;
+                box-shadow: 0 .1rem 1.2rem rgba(0, 0, 0, .05);
+                padding: 3rem;
+                margin: 0 0 4rem;
+
+                & .title {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    & > span {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 28px;
+                        height: 28px;
+                        background-color: var(--color-primary);
+                        color: var(--color-white);
+                        font-size: 1.6rem;
+                        font-weight: 400;
+                        border-radius: 50%;
+                    }
+
+                    & h1 {
+                        color: var(--color-grey-dark-1);
+                        margin: 0 0 0 1.5rem;
+                        font-size: 2rem;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            & .phone-card {
+                & .info {
+                    width: 100%;
+                    margin: 2.5rem 0 0;
+
+                    & .number {
+                        width: 100%;
+                        display: grid;
+                        grid-template-columns: 6rem auto;
+                        border: 1px var(--color-grey-3) solid;
+                        border-radius: 3px;
+
+                        & div {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            & img {
+                                width: 36px;
+                                height: 34px;
+                            }
+                        }
+
+                        & input {
+                            background: none;
+                            border: none;
+                            padding: 12px 8px;
+                            font-size: 1.8rem;
+                            font-size: 500;
+                            color: var(--color-grey-dark-1);
+                            cursor: not-allowed !important;
+                        }
+                    }
+
+                    &>.popup {
+                        width: 100%;
+                        height: 100vh;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        background-color: rgba(0, 0, 0, .2);
+                        display: none;
+                        justify-content: center;
+                        align-items: center;
+
+                        &.active {
+                            display: flex;
+                        }
+
+                        & .content {
+                            background-color: var(--color-white);
+                            border-radius: 6px;
+                            padding: 3rem 2rem;
+                            width: 400px;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+
+                            & p {
+                                font-size: 12px;
+                                color: var(--color-grey-dark-1);
+                                font-weight: bolder;
+                                text-align: center;
+                            }
+
+                            & form {
+                                width: 100%;
+                                border: 1px var(--color-grey-3) solid;
+                                border-radius: 3px;
+                                margin: 16px 0 0;
+                                display: flex;
+
+                                &>div {
+                                    max-width: 230px;
+                                    display: grid;
+                                    grid-template-columns: 20% 80%;
+                                    border-radius: 3px 0 0 3px;
+
+                                    & div {
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+
+                                        & img {
+                                            width: 36px;
+                                            height: 34px;
+                                        }
+                                    }
+
+                                    & input {
+                                        background: none;
+                                        border: none;
+                                        padding: 12px 8px;
+                                        font-size: 15px;
+                                        font-size: 600;
+                                        color: var(--color-grey-dark-1);
+
+                                        &:active,
+                                        &:focus {
+                                            outline: none;
+                                        }
+                                    }
+                                }
+
+                                & input[type="submit"] {
+                                    background: none;
+                                    border: none;
+                                    outline: none;
+                                    background-color: var(--color-primary);
+                                    color: var(--color-white);
+                                    cursor: pointer;
+                                    flex: auto;
+                                    border-radius: 0 3px 3px 0;
+                                    font-size: 13px;
+                                    font-weight: bold;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+
+            }
+
+            & .address-card {
+                & .address-ct {
+                    width: 100%;
+                    margin: 2rem 0 0;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(200px, 200px));
+                    gap: 2rem;
+                }
+
+                & .popup {
+                    width: 100%;
+                    height: 100% !important;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    background-color: rgba(0, 0, 0, .2);
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 1000;
+
+                    &.active {
+                        display: flex;
+                    }
+
+                    & .content {
+                        background-color: var(--color-white);
+                        border-radius: 6px;
+                        padding: 3rem;
+                        width: 500px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        &>p {
+                            font-size: 16px;
+                            color: var(--color-grey-dark-1);
+                            font-weight: 600;
+                            text-align: center;
+                            padding: 0 0 12px;
+                        }
+
+                        & form {
+                            width: 100%;
+
+                            & .checkbox-ct {
+                                width: 100%;
+                                margin: 0 0 16px;
+
+                                & p {
+                                    font-size: 12px;
+                                    font-weight: 600;
+                                    color: var(--color-grey-dark-2);
+                                    padding: 0 0 4px;
+                                }
+
+                                &>div {
+                                    width: 100%;
+                                    display: flex;
+                                    justify-content: flex-start;
+                                    align-items: center;
+                                }
+                            }
+
+                            & .row {
+                                width: 100%;
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                                gap: 0 2rem;
+                            }
+
+                            & input[type="submit"] {
+                                background-color: none;
+                                border: none;
+                                outline: none;
+                                display: inline-block;
+                                width: 100%;
+                                padding: 16px 0;
+                                background-color: var(--color-primary);
+                                color: var(--color-white);
+                                font-size: 16px;
+                                font-weight: 500;
+                                border-radius: 6px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        & .order-section{
+            padding: 3rem 0;
+
+            & > h2{
+                font-size: 1.6rem;
+                font-weight: bold;
+                color: var(--color-grey-dark-1);
+                text-align: center;
+            }
+
+            & .order-list{
+                width: 100%;
+                margin: 1rem 0;
+                padding: 1rem 0;
+                border-bottom: 1px var(--color-grey-3) solid;
+
+                & .order-item{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    & .product-name{
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: baseline;
+
+
+                        & span{
+                            color: var(--color-grey-dark-2);
+                            font-size: 1.4rem;
+
+                            &:first-child{
+                                font-weight: bold;
+                                font-size: 1.8rem;
+                                color: var(--color-grey-dark-1);
+                            }
+                        }
+
+                        & i{
+                            font-size: 1.5rem;
+                            margin: 0 .8rem;
+                            color: var(--color-grey-dark-2);
+                        }
+                    }
+
+                    & p{
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+
+            & .total{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+
+                & p{
+                    color: var(--color-grey-dark-2);
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                }
+            }
+
+            & button{
+                width: 100%;
+                padding: 1.5rem 1rem;
+                background-color: var(--color-primary);
+                color: var(--color-white);
+                font-size: 1.8rem;
+                font-weight: 500;
+                margin: 2rem 0 0;
+                outline: none;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+        }
+
+    }
+}

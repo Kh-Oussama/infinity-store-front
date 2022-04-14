@@ -1,0 +1,58 @@
+.address-item {
+    border-radius: 6px;
+    padding: 1.5rem;
+    background-color: var(--color-grey-2);
+    position: relative;
+    transition: .2s;
+    cursor: pointer;
+
+    &:hover{
+        & .actions{
+            display: flex;
+        }
+    }
+
+    & h3 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-grey-dark-1);
+        padding: 0 0 10px;
+    }
+
+    & p {
+        font-size: 14px;
+        color: var(--color-grey-dark-2);
+    }
+
+    & .actions{
+        width: 100%;
+        display: none;
+        justify-content: flex-end;
+        position: absolute;
+        top: 1rem;
+        left: 0;
+        padding: 0 .4rem;
+
+        & span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--color-white);
+            font-size: 10px;
+            cursor: pointer;
+            margin: 0 .6rem 0 0 ;
+
+            &.fa-pen{
+                background-color: var(--color-primary);
+            }
+
+            &.fa-xmark{
+                background-color: #FD5D5D;
+            }
+        }
+    }
+}
