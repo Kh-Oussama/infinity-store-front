@@ -104,3 +104,18 @@
     }
   }
 }
+
+
+//forget password
+.forget-password-page {;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  height: 100vh;
+  .forget-password {
+    max-width: 80%;
+    height: fit-content;
+    //background: white;
+  }
+}
+

@@ -3,14 +3,14 @@ import {Redirect,withRouter} from 'react-router-dom';
 import {createStructuredSelector} from "reselect";
 import {connect} from 'react-redux';
 
-import Spinner from "../spinner/spinner.components";
+import Spinner from "../../spinner/spinner.components";
 import {
     selectRedirectToFactorChallenge,
     selectSignInError,
     selectSignInLoading,
     selectTwoFactorsChallengeError, selectTwoFactorsChallengeLoading
-} from "../../redux/auth/auth.selectors";
-import {cancelTwoFactorChallenge, signInStart, twoFactorChallengeStart} from "../../redux/auth/auth.actions";
+} from "../../../redux/auth/auth.selectors";
+import {cancelTwoFactorChallenge, signInStart, twoFactorChallengeStart} from "../../../redux/auth/auth.actions";
 
 
 //this is component for the sign-in form

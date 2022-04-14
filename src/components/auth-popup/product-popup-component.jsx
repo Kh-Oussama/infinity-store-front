@@ -2,8 +2,8 @@ import React from 'react';
 import {animated, useSpring} from 'react-spring';
 
 //component
-import SignIn from "../sign-in/sign-in.components";
-import SignUp from "../sign-up/sign-up.component";
+import SignIn from "../Auth/sign-in/sign-in.components";
+import SignUp from "../Auth/sign-up/sign-up.component";
 import {createStructuredSelector} from "reselect";
 import {selectFetchGroupsLoading, selectGroups} from "../../redux/group/groups.selectors";
 import {selectCheckUserSessionLoading, selectCurrentUser, selectSignOutLoading} from "../../redux/auth/auth.selectors";
@@ -11,7 +11,7 @@ import {fetchGroupsStart} from "../../redux/group/groups.actions";
 import {checkUserSession} from "../../redux/auth/auth.actions";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import TwoFactorChallenge from "../two-factore-challenge/two-factore-challenge.components";
+import TwoFactorChallenge from "../Auth/two-factore-challenge/two-factore-challenge.components";
 
 // rendering the auth-popup with sign-up or sign-in component
 const AuthPopup = ({toggleModal, showModal, currentComponent, switchComponent}) => {

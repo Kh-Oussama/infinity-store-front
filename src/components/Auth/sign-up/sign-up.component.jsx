@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import Spinner from "../spinner/spinner.components";
+import Spinner from "../../spinner/spinner.components";
 import {createStructuredSelector} from "reselect";
 import {
     selectRedirectToFactorChallenge,
     selectSignInError,
     selectSignInLoading, selectSignUpError, selectSignUpLoading,
     selectTwoFactorsChallengeError
-} from "../../redux/auth/auth.selectors";
-import {cancelTwoFactorChallenge, signInStart, signUpStart} from "../../redux/auth/auth.actions";
+} from "../../../redux/auth/auth.selectors";
+import {cancelTwoFactorChallenge, signInStart, signUpStart} from "../../../redux/auth/auth.actions";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
