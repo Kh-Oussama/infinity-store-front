@@ -170,8 +170,8 @@ const ViewProduct = ({ product }) => {
                                 Sellers
                             </div>
                             <div className="seller">
-                                <Link to={`/shops/${product.store.name}`}>
-                                    {product.store.name}
+                                <Link to={`/shops/${product?.store?.name}`}>
+                                    {product?.store?.name}
                                 </Link>
                             </div>
                         </div>
