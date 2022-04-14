@@ -4,6 +4,14 @@ import {animated, useSpring} from 'react-spring';
 //component
 import SignIn from "../sign-in/sign-in.components";
 import SignUp from "../sign-up/sign-up.component";
+import {createStructuredSelector} from "reselect";
+import {selectFetchGroupsLoading, selectGroups} from "../../redux/group/groups.selectors";
+import {selectCheckUserSessionLoading, selectCurrentUser, selectSignOutLoading} from "../../redux/auth/auth.selectors";
+import {fetchGroupsStart} from "../../redux/group/groups.actions";
+import {checkUserSession} from "../../redux/auth/auth.actions";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import TwoFactorChallenge from "../two-factore-challenge/two-factore-challenge.components";
 
 // rendering the auth-popup with sign-up or sign-in component
 const AuthPopup = ({toggleModal, showModal, currentComponent, switchComponent}) => {
@@ -30,7 +38,9 @@ const AuthPopup = ({toggleModal, showModal, currentComponent, switchComponent}) 
                                 {
                                     currentComponent === 'sign-in'
                                         ? <SignIn switchComponent={switchComponent}/>
-                                        : <SignUp switchComponent={switchComponent}/>
+                                        : currentComponent === 'sign-up'
+                                            ? <SignUp switchComponent={switchComponent}/>
+                                            : <TwoFactorChallenge switchComponent={switchComponent}/>
                                 }
                             </div>
                         </div>
@@ -42,4 +52,11 @@ const AuthPopup = ({toggleModal, showModal, currentComponent, switchComponent}) 
     )
 }
 
-export default AuthPopup;
+const mapStateToProps = createStructuredSelector({
+
+});
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AuthPopup));

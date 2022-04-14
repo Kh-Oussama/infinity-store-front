@@ -16,6 +16,11 @@ import {cancelTwoFactorChallenge, signInStart} from "../../redux/auth/auth.actio
 //this is component for the sign-in form
 const SignIn = ({ switchComponent,signInStart, errors,loading, signInErrors, redirectToTwoFactorChallenge, cancelTwoFactorChallenge }) => {
 
+    useEffect(() => {
+        if (redirectToTwoFactorChallenge)
+        switchComponent("two-factors-challenge")
+    },[switchComponent,redirectToTwoFactorChallenge]);
+
     const [userCredentials, setCredentials] = useState({email: '', password: ''});
     const {email, password} = userCredentials;
 
@@ -54,7 +59,7 @@ const SignIn = ({ switchComponent,signInStart, errors,loading, signInErrors, red
         signInStart(email, password);
     };
 
-    if (redirectToTwoFactorChallenge) return <Redirect to={"/two-factor-challenge"}/>;
+
     if (loading) return <div className={"spinner-container"}><Spinner/></div>;
     return (
         <>

@@ -141,6 +141,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
                 signOutLoading: false,
                 currentUser: null,
                 signOutError: null,
+                checkUserSessionLoading: false,
             };
         case AuthActionTypes.SIGN_OUT_FAILURE :
             return {

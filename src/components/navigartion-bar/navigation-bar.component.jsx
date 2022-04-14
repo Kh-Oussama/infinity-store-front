@@ -1,122 +1,194 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+// <<<<<<< home-page-responsive
+// import React, { useEffect, useState } from 'react';
+// import { Link } from "react-router-dom";
+// import { connect } from "react-redux";
+// import { createStructuredSelector } from "reselect";
+// =======
+// import React, {useState} from 'react';
+// import {Link} from "react-router-dom";
+// import {connect} from "react-redux";
+// import {createStructuredSelector} from "reselect";
+// >>>>>>> main
 
-//components
-import DropdownButton from "../utils/dropdown-button/dropdown-button.component";
-import AuthPopup from "../auth-popup/product-popup-component";
-import { NavLink } from "./navLink.component";
-import NavSearchBar from "./navigation-bar-search.component";
+// //components
+// import DropdownButton from "../utils/dropdown-button/dropdown-button.component";
+// import AuthPopup from "../auth-popup/product-popup-component";
+// import { NavLink } from "./navLink.component";
+// import NavSearchBar from "./navigation-bar-search.component";
 
-//redux utils
-import { switchAuthComponent, toggleAuthComponent } from "../../redux/design-utilites/design-utilities.actions";
-import {
-    selectAuthComponentHidden,
-    selectCurrentAuthComponent
-} from "../../redux/design-utilites/design-utilities.selectors";
-import NavigationBarLoader from "./navigation-bar-loader.component";
-import { selectGroups } from "../../redux/group/groups.selectors";
-import { selectCurrentUser } from "../../redux/auth/auth.selectors";
-import UserIcon from "../icons/user-icon";
+// //redux utils
+// import { switchAuthComponent, toggleAuthComponent } from "../../redux/design-utilites/design-utilities.actions";
+// import {
+//     selectAuthComponentHidden,
+//     selectCurrentAuthComponent
+// } from "../../redux/design-utilites/design-utilities.selectors";
+// import NavigationBarLoader from "./navigation-bar-loader.component";
+// <<<<<<< home-page-responsive
+// import { selectGroups } from "../../redux/group/groups.selectors";
+// import { selectCurrentUser } from "../../redux/auth/auth.selectors";
+// import UserIcon from "../icons/user-icon";
 
-//this is component for the navigation bar
-const NavigationBar = ({ toggleAuthComponent, loading, currentComponent, authComponentHidden, switchAuthComponent, currentUser }) => {
+// //this is component for the navigation bar
+// const NavigationBar = ({ toggleAuthComponent, loading, currentComponent, authComponentHidden, switchAuthComponent, currentUser }) => {
 
-    //Function to hide menu
-    const hideRightMenu = _ => {
-        let sideMenu = document.querySelector('.navigation-bar .nav-right');
-        sideMenu.classList.remove('active');
-    }
+//     //Function to hide menu
+//     const hideRightMenu = _ => {
+//         let sideMenu = document.querySelector('.navigation-bar .nav-right');
+//         sideMenu.classList.remove('active');
+//     }
+// =======
+// import {selectGroups} from "../../redux/group/groups.selectors";
+// import {selectCurrentUser} from "../../redux/auth/auth.selectors";
+// import ProfileDropdown from "./profile-dropdown.component";
 
-    return (
+// //this is component for the navigation bar
+// const NavigationBar = ({
+//                            toggleAuthComponent,
+//                            loading,
+//                            currentComponent,
+//                            authComponentHidden,
+//                            switchAuthComponent,
+//                            currentUser
+//                        }) => {
 
-        <>
-            {/* rendering the auth-popup with sign-up or sign-in component */}
-            <AuthPopup
-                showModal={authComponentHidden}
-                toggleModal={toggleAuthComponent}
-                currentComponent={currentComponent}
-                switchComponent={switchAuthComponent}
-            />
+//     const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
-            <div className={"navigation-bar"}>
-                {
-                    loading
-                        ? <NavigationBarLoader />
-                        : <>
-                            <div className="nav-left">
+// >>>>>>> main
 
-                                <Link to={'/'}>
-                                    <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo" />
-                                </Link>
+//     return (
 
-                                {/* this is for the select dropdown button*/}
-                                <DropdownButton />
-                            </div>
-                            <div className="nav-center" />
-                            <div className="nav-right">
-                                {/* Displaying only in responsive */}
-                                <div className="brand-side-menu">
-                                    <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo" />
-                                    <span className="fa-solid fa-xmark" onClick={hideRightMenu}></span>
-                                </div>
+//         <>
+//             {/* rendering the auth-popup with sign-up or sign-in component */}
+//             <AuthPopup
+//                 showModal={authComponentHidden}
+//                 toggleModal={toggleAuthComponent}
+//                 currentComponent={currentComponent}
+//                 switchComponent={switchAuthComponent}
+//             />
 
-                                {/*the right nav links*/}
-                                <NavLink path={"/shops"} text={"Shops"} />
-                                <NavLink path={"/"} text={"Offers"} />
-                                <NavLink path={"/help"} text={"FAQ"} />
-                                <NavLink path={"/contact"} text={"Contact"} />
+//             <div className={"navigation-bar"}>
+//                 {
+//                     loading
+// <<<<<<< home-page-responsive
+//                         ? <NavigationBarLoader />
+// =======
+//                         ? <NavigationBarLoader/>
+// >>>>>>> main
+//                         : <>
+//                             <div className="nav-left">
 
-                                {/*join button*/}
-                                <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
-                                    <Link to={"#"}>
-                                        Become a seller
-                                    </Link>
-                                </div>
-                                <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
-                                    <Link to={"#"}>
-                                        join
-                                    </Link>
+//                                 <Link to={'/'}>
+// <<<<<<< home-page-responsive
+//                                     <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo" />
+//                                 </Link>
 
-                                </div>
-                                <div className="nav-user-dropdown">
-                                    <UserIcon />
-                                </div>
-                            </div>
+//                                 {/* this is for the select dropdown button*/}
+//                                 <DropdownButton />
+//                             </div>
+//                             <div className="nav-center" />
+//                             <div className="nav-right">
+//                                 {/* Displaying only in responsive */}
+//                                 <div className="brand-side-menu">
+//                                     <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo" />
+//                                     <span className="fa-solid fa-xmark" onClick={hideRightMenu}></span>
+//                                 </div>
 
-                            {/* Search bar in responsive */}
-                            <NavSearchBar />
-                        </>
-                }
-            </div>
-        </>
-    )
-}
+//                                 {/*the right nav links*/}
+//                                 <NavLink path={"/shops"} text={"Shops"} />
+//                                 <NavLink path={"/"} text={"Offers"} />
+//                                 <NavLink path={"/help"} text={"FAQ"} />
+//                                 <NavLink path={"/contact"} text={"Contact"} />
+// =======
+//                                     <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo"/>
+//                                 </Link>
+
+//                                 {/* this is for the select dropdown button*/}
+//                                 <DropdownButton/>
+//                             </div>
+//                             <div className="nav-center"/>
+//                             <div className="nav-right">
+//                                 {/*the right nav links*/}
+//                                 <NavLink path={"/shops"} text={"Shops"}/>
+//                                 <NavLink path={"/"} text={"Offers"}/>
+//                                 <NavLink path={"/help"} text={"FAQ"}/>
+//                                 <NavLink path={"/contact"} text={"Contact"}/>
+// >>>>>>> main
+
+//                                 {/*join button*/}
+//                                 <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
+//                                     <Link to={"#"}>
+//                                         Become a seller
+// <<<<<<< home-page-responsive
+//                                     </Link>
+//                                 </div>
+//                                 <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
+//                                     <Link to={"#"}>
+//                                         join
+//                                     </Link>
+
+//                                 </div>
+//                                 <div className="nav-user-dropdown">
+//                                     <UserIcon />
+//                                 </div>
+//                             </div>
+
+//                             {/* Search bar in responsive */}
+//                             <NavSearchBar />
+//                         </>
+//                 }
+// =======
+//                                     </Link>
+//                                 </div>
+//                                 {
+//                                     currentUser
+//                                         ? <div className={"nav-user-dropdown"}
+//                                                onClick={() => setShowProfileDropdown(!showProfileDropdown)}>
+//                                             <img src="/user.png" alt="user"/>
+//                                             <ProfileDropdown showProfileDropdown={showProfileDropdown}/>
+
+//                                         </div>
+//                                         : <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
+//                                             <Link to={"#"}>
+//                                                 join
+//                                             </Link>
+
+//                                         </div>
+
+//                                 }
 
 
-const mapStateToProps = createStructuredSelector({
+//                             </div>
+//                         </>
+//                 }
 
-    //get the selected component from the redux
-    currentComponent: selectCurrentAuthComponent,
-    //get the auth popup view state
-    authComponentHidden: selectAuthComponentHidden,
-    //get all groups with categories and Sub-categories
-    groups: selectGroups,
-    //get current user
-    currentUser: selectCurrentUser,
-
+// >>>>>>> main
+//             </div>
+//         </>
+//     )
+// }
 
 
-});
+// const mapStateToProps = createStructuredSelector({
 
-const mapDispatchToProps = dispatch => ({
+//     //get the selected component from the redux
+//     currentComponent: selectCurrentAuthComponent,
+//     //get the auth popup view state
+//     authComponentHidden: selectAuthComponentHidden,
+//     //get all groups with categories and Sub-categories
+//     groups: selectGroups,
+//     //get current user
+//     currentUser: selectCurrentUser,
 
-    //change the auth popup view state
-    toggleAuthComponent: current_component => dispatch(toggleAuthComponent(current_component)),
-    //switch between sign-in and sign-up component
-    switchAuthComponent: current_component => dispatch(switchAuthComponent(current_component)),
 
-});
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
+// const mapDispatchToProps = dispatch => ({
+
+//     //change the auth popup view state
+//     toggleAuthComponent: current_component => dispatch(toggleAuthComponent(current_component)),
+//     //switch between sign-in and sign-up component
+//     switchAuthComponent: current_component => dispatch(switchAuthComponent(current_component)),
+
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

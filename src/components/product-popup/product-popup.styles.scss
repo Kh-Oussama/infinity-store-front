@@ -71,9 +71,14 @@
   }
 
   .text-content-auth {
-    margin: auto 0;
-    width: 40rem;
-    min-height: 10rem ;
+// <<<<<<< home-page-responsive
+//     margin: auto 0;
+//     width: 40rem;
+//     min-height: 10rem ;
+// =======
+//     width: 35%;
+//     min-height: 50rem ;
+// >>>>>>> main
     height: fit-content;
 
     @media only screen and (max-width:$bp-medium-2) {
