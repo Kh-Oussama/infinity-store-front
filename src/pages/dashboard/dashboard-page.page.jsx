@@ -20,11 +20,11 @@ const Dashboard = ({ currentUser }) => {
 
     //Function to toogle active link
     const toogleActiveLink = e => {
-        //if (currentUser.email_verified_at) {
+        if (currentUser.email_verified_at) {
             let activeLink = document.querySelector('.user-dashboard > .dashboard-ct > .sidebar > .links-ct > ul li a.active');
             activeLink.classList.remove('active');
             e.target.classList.add('active');
-        //}
+        }
 
     }
 
@@ -53,7 +53,7 @@ const Dashboard = ({ currentUser }) => {
                         </div>
                         <div className="links-ct">
                             <ul>
-{/*                                 {
+                                {
                                     !currentUser.email_verified_at && <li>
                                         <Link className="active" to={`${path}/verify-email`} onClick={toogleActiveLink}>Verify
                                             Email</Link>
@@ -61,7 +61,7 @@ const Dashboard = ({ currentUser }) => {
                                 } 
                                 <li>
                                     <Link className={currentUser.email_verified_at ? 'active' : null} to={`${path}/`} onClick={toogleActiveLink}>Profile</Link>
-                                </li>*/}
+                                </li>
                                 <li>
                                     <Link to={`${path}/update-password`} className="active" onClick={toogleActiveLink} >Change
                                         Password</Link>
@@ -88,7 +88,7 @@ const Dashboard = ({ currentUser }) => {
                     </div>
 
                     <div className="main">
-                        {/*                         {
+                        {
                             !currentUser.email_verified_at
                             ?  <Switch>
                                     <Route exact path="/dashboard/verify-email" component={EmailVerification}/>
@@ -98,21 +98,12 @@ const Dashboard = ({ currentUser }) => {
                                     <Route exact path="/dashboard" component={UserProfile}/>
                                     <Route exact path="/dashboard/update-password" component={UpdatePassword}/>
                                     <Route exact path="/dashboard/orders" component={UserOrder}/>
+                                    <Route exact path="/dashboard/checkout" component={Checkout} />
                                     <Route exact path="/dashboard/two-factors-auth" component={TwoFactorAuthSettings}/>
                                     <Route exact path="/dashboard/confirm-password/:componentPath" component={ConfirmPasswordComponent}/>
                                     <Redirect to="/dashboard"/>
                                 </Switch>
-                        } */}
-
-                        <Switch>
-                            <Route exact path="/dashboard" component={UserProfile} />
-                            <Route exact path="/dashboard/update-password" component={UpdatePassword} />
-                            <Route exact path="/dashboard/orders" component={UserOrder} />
-                            <Route exact path="/dashboard/checkout" component={Checkout} />
-                            <Route exact path="/dashboard/two-factors-auth" component={TwoFactorAuthSettings} />
-                            <Route exact path="/dashboard/confirm-password/:componentPath" component={ConfirmPasswordComponent} />
-                            <Redirect to="/dashboard" />
-                        </Switch>
+                        } 
                     </div>
 
                 </div>
