@@ -1,0 +1,23 @@
+
+
+.qty-btn{
+    width: 90px;
+    height: 38px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    user-select: none;
+
+    & span{
+        display: inline-block;
+        font-size: 2rem;
+        flex: 2;
+        color: var(--title-text-color-dark);
+
+        &:nth-child(odd){
+            flex: 1;
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+    }
+}
