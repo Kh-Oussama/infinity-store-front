@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {createStructuredSelector} from "reselect";
 import {connect} from 'react-redux';
 
@@ -109,7 +109,8 @@ const SignIn = ({
                                 <span className={"input-validation-errors"}>
                                <i className="fa-solid fa-triangle-exclamation"/>
                                 {emailError}
-                                </span>}
+                                </span>
+                            }
                         </div>
                         <div className="input-block">
                             <label htmlFor="">password</label>
@@ -119,6 +120,9 @@ const SignIn = ({
                                 value={password}
                                 onChange={handleChange}
                             />
+                            <Link to={"/forget-password"} className="auth-link ">
+                                Forgot password?
+                            </Link>
                             {
                                 passwordError
                                 &&

@@ -63,7 +63,7 @@ const Dashboard = ({ currentUser }) => {
                                     <Link className={currentUser.email_verified_at ? 'active' : null} to={`${path}/`} onClick={toogleActiveLink}>Profile</Link>
                                 </li>
                                 <li>
-                                    <Link to={`${path}/update-password`} className="active" onClick={toogleActiveLink} >Change
+                                    <Link to={`${path}/update-password`}  onClick={toogleActiveLink} >Change
                                         Password</Link>
                                 </li>
                                 <li>

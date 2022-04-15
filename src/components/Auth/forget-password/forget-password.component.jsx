@@ -10,7 +10,7 @@ import {
     selectSendForgetPasswordEmailStatus
 } from "../../../redux/auth/auth.selectors";
 import {sendForgetPasswordEmailStart} from "../../../redux/auth/auth.actions";
-import ForgetPasswordPage from "../../../pages/Auth/forget-password/forget-password.page";
+import {Message} from "semantic-ui-react";
 
 
 //this is component for the sign-in form
@@ -41,7 +41,7 @@ const ForgetPassword = ({sendForgetPasswordEmail, loading, errors, status}) => {
     };
 
 
-    if (loading) return <div className={"spinner-container"}><Spinner/></div>;
+    if (loading) return <div className={"spinner-container"}><Spinner custom/></div>;
     return (
         <>
             <div className="sign-in forget-password">
@@ -51,10 +51,12 @@ const ForgetPassword = ({sendForgetPasswordEmail, loading, errors, status}) => {
 
                 {
                     status
-                    ?
-                        <div className="title">
-                    Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.
-                    </div>
+                        ?
+                        <Message positive attached='bottom' className={"description description-info forget-password-message"}>
+                            <i className="fa-solid fa-check-double"/> Check your inbox for the next steps. If you
+                            don't receive an email, and it's not in your spam folder this could mean you signed up
+                            with a different address.
+                        </Message>
                         : <>
                             <div className="title">
                                 Enter your email address below and we'll send <br/> you a link to reset your password.
@@ -72,11 +74,15 @@ const ForgetPassword = ({sendForgetPasswordEmail, loading, errors, status}) => {
                                             onChange={handleChange}
                                         />
                                         {
-                                            emailError &&
-                                            <span className={"input-validation-errors"}>
-                                <i className="mdi mdi-alert-outline mr-2 "/>
+                                            emailError
+                                            &&
+                                            <span
+                                                className={"input-validation-errors"}
+                                            >
+
+                                            <i className="fa-solid fa-triangle-exclamation"/>
                                                 {emailError}
-                                </span>
+                                             </span>
                                         }
                                     </div>
                                     <button className={"submit-btn"}>Reset Password</button>

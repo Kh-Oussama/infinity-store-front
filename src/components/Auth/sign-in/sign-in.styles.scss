@@ -39,6 +39,19 @@
       flex: 0 0 48%;
       margin-bottom: 1.5rem;
 
+      & .auth-link {
+          font-size: 1.4rem;
+          align-self: flex-end;
+        color: rgba(var(--color-gray-600),1);
+          text-decoration: none;
+        padding-top: .5rem;
+        font-weight: 600;
+
+          &:hover {
+            color: initial;
+          }
+      }
+
 
 
       label {
@@ -127,16 +140,14 @@
   align-self: center;
   justify-content: center;
   height: 100vh;
-  .forget-password {
-    max-width: 80%;
-    height: fit-content;
-    //background: white;
-  }
+
+}
+
+.forget-password {
+  margin-top: 6rem;
 }
 
 //validation errors
-
-
 .input-validation-errors {
   padding-top: .5rem;
   color: #fe7096;

@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {Redirect, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {createStructuredSelector} from "reselect";
 import {connect} from 'react-redux';
 
 import Spinner from "../../spinner/spinner.components";
 import {
-    selectRedirectToFactorChallenge, selectResetPasswordError, selectResetPasswordLoading, selectResetPasswordStatus,
-    selectSignInError,
-    selectSignInLoading,
-    selectTwoFactorsChallengeError
+    selectResetPasswordError,
+    selectResetPasswordLoading,
+    selectResetPasswordStatus
 } from "../../../redux/auth/auth.selectors";
-import {cancelTwoFactorChallenge, resetPasswordStart, signInStart} from "../../../redux/auth/auth.actions";
+import {resetPasswordStart} from "../../../redux/auth/auth.actions";
+import {Message} from "semantic-ui-react";
 
 
 //this is component for the sign-in form
-const ResetPassword = ({resetPassword, loading, errors, status, match}) => {
+const ResetPassword = ({resetPassword, loading, errors, status, match, history}) => {
     // local state
     const [userCredentials, setCredentials] = useState({
         token: match.params.token,
@@ -52,57 +52,78 @@ const ResetPassword = ({resetPassword, loading, errors, status, match}) => {
     }, [errors])
 
 
-    if (loading) return <div className={"spinner-container"}><Spinner/></div>;
+    if (loading) return <div className={"spinner-container"}><Spinner custom /></div>;
     return (
         <>
             <div className="sign-in">
                 <div className="logo">
                     <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo"/>
                 </div>
-                <div className="title">
-                    Login with your email & password
-                </div>
-                <div className="form">
-                    <form onSubmit={handleSubmit}>
-                        <div className="input-block">
-                            <label htmlFor="">password</label>
-                            <input
-                                type="password"
-                                id="exampleInputPassword1"
-                                name={"password"}
-                                value={password}
-                                onChange={handleChange}
-                            />
-                            {
-                                passwordError &&
-                                <span className={"input-validation-errors"}>
+
+                {
+                    status
+                        ? <> <Message positive attached='bottom'
+                                      className={"description description-info forget-password-message"}>
+                            <i className="fa-solid fa-check-double"/> Check your inbox for the next steps. If you
+                            don't receive an email, and it's not in your spam folder this could mean you signed up
+                            with a different address.
+                        </Message>
+                            <div className="sign-in-footer">
+                                Go back to login page ? <span onClick={() => history.push('/auth')}>Login</span>
+                            </div>
+                        </>
+                        :
+                        <>
+                            <div className="title">
+                                Reset Password
+                            </div>
+                            <div className="form">
+                                <form onSubmit={handleSubmit}>
+                                    <div className="input-block">
+                                        <label htmlFor="">Password</label>
+                                        <input
+                                            type="password"
+                                            id="exampleInputPassword1"
+                                            name={"password"}
+                                            value={password}
+                                            onChange={handleChange}
+                                        />
+                                        {
+                                            passwordError &&
+                                            <span className={"input-validation-errors"}>
                                                     <i className="mdi mdi-alert-outline mr-2 "/>
-                                    {passwordError}
+                                                {passwordError}
                                                      </span>
-                            }
-                        </div>
-                        <div className="input-block">
-                            <label htmlFor="">password</label>
-                            <input
-                                type="password"
-                                id="exampleInputPassword1"
-                                name={"password_confirmation"}
-                                value={password_confirmation}
-                                onChange={handleChange}
-                            />
-                            {
-                                passwordConfirmationError &&
-                                <span className={"input-validation-errors"}>
+                                        }
+                                    </div>
+                                    <div className="input-block">
+                                        <label htmlFor="">Confirm Password</label>
+                                        <input
+                                            type="password"
+                                            id="exampleInputPassword1"
+                                            name={"password_confirmation"}
+                                            value={password_confirmation}
+                                            onChange={handleChange}
+                                        />
+                                        {
+                                            passwordConfirmationError &&
+                                            <span className={"input-validation-errors"}>
                                                     <i className="mdi mdi-alert-outline mr-2 "/>
-                                    {passwordConfirmationError}
+                                                {passwordConfirmationError}
                                                      </span>
-                            }
-                        </div>
-                        <button className={"submit-btn"}>Save Password</button>
-                    </form>
-                </div>
+                                        }
+                                    </div>
+                                    <button className={"submit-btn"}>Save Password</button>
+                                </form>
+                            </div>
+                        </>
+
+                }
                 <div className="divider"/>
+
             </div>
+
+
         </>
     )
 }
