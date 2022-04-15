@@ -9,6 +9,10 @@ import {
 } from "../../../redux/auth/auth.selectors";
 import {confirmPasswordStart} from "../../../redux/auth/auth.actions";
 import Spinner from "../../spinner/spinner.components";
+import './confirm-password.styles.scss';
+import {Input} from "semantic-ui-react";
+import 'semantic-ui-css/components/input.min.css';
+import 'semantic-ui-css/components/icon.min.css';
 
 const ConfirmPasswordComponent = ({confirmPassword, loading, status, errors, match}) => {
     const [userCredentials, setCredentials] = useState({password: ''});
@@ -35,31 +39,41 @@ const ConfirmPasswordComponent = ({confirmPassword, loading, status, errors, mat
         confirmPassword(password);
     };
     if (status) return <Redirect to={`/dashboard/${match.params.componentPath}`}/>;
-    if (loading) return <Spinner/>;
+
     return (
-        <div className="update-password email-verification-block">
-            <div className="form-ct email-verification-block">
-                <h1 className={"title"}>Confirm Password</h1>
-                <form onSubmit={handleSubmit}>
-                    <div className="input-block">
-                        <label htmlFor="">password</label>
-                        <input
-                            type="password"
-                            name={"password"}
-                            value={password}
-                            onChange={handleChange}
-                        />
-                        {
-                            passwordError
-                            &&
-                            <span className={"input-validation-errors"}>
-                            <i className="mdi mdi-alert-outline mr-2 "/>
-                            {passwordError}
-                     </span>}
+        <div className="dashboard-content-card">
+            {
+                loading
+                ? <Spinner />
+                    : <div className="content">
+                        <h1 className="title" >Confirm Password</h1>
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <Input
+                                    icon='lock'
+                                    iconPosition='left'
+                                    placeholder='Password...'
+                                    type="password"
+                                    name={"password"}
+                                    value={password}
+                                    onChange={handleChange}
+                                />
+
+                                {
+                                    passwordError
+                                    &&
+                                    <span className={"input-validation-errors"}>
+                               <i className="fa-solid fa-triangle-exclamation"/>
+                                        {passwordError}
+
+                                </span>
+                                }
+                            </div>
+                            <button className={"submit-btn"}>Confirm</button>
+                        </form>
                     </div>
-                    <button className={"submit-btn"}>Confirm</button>
-                </form>
-            </div>
+            }
+
         </div>
 
     )

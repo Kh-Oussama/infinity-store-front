@@ -6,11 +6,19 @@
 .lds-grid {
   width: 80px;
   height: 80px;
+  background: white;
   position: absolute;
+
+  //align-self: center;
+  //justify-self: center;
+}
+
+.custom {
   top: 30%;
   left: 50%;
   transform: translateX(-50%);
 }
+
 .lds-grid div {
   position: absolute;
   width: 16px;

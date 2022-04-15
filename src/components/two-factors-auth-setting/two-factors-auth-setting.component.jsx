@@ -40,7 +40,7 @@ const TwoFactorAuthSettings = ({
     }, [getRecoveryCodes]);
 
     if (redirectToConfirmPassword) return <Redirect to={`/dashboard/confirm-password/two-factors-auth`}/>;
-    if (loading || loadingDisableTwoFactorAuth || loadingRecoveryCodes) return <Spinner/>;
+    if (loading || loadingDisableTwoFactorAuth || loadingRecoveryCodes) return   <div className="dashboard-content-card"><Spinner /></div>;
     return (
 
                     !currentUser.two_factor_enabled

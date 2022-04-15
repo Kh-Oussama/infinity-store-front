@@ -14,7 +14,7 @@ import {cancelTwoFactorChallenge, signInStart, twoFactorChallengeStart} from "..
 
 
 //this is component for the sign-in form
-const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, errors }) => {
+const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, errors, cancelTwoFactorChallenge }) => {
     const [userCredentials, setCredentials] = useState({code: ''});
     const {code} = userCredentials;
 
@@ -39,7 +39,11 @@ const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, error
         twoFactorChallenge(code);
     };
 
-    if (codeError) return <Redirect to={"/login"}/>;
+    useEffect(() => {
+        if (codeError)
+            switchComponent("sign-in")
+    }, [switchComponent, codeError]);
+
     if (loading) return <div className={"spinner-container"}><Spinner/></div>;
     return (
         <>
@@ -66,7 +70,10 @@ const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, error
                 </div>
                 <div className="divider"/>
                 <div className="sign-in-footer">
-                      <span onClick={() => switchComponent("sign-in")}>login</span>
+                      <span onClick={() => {
+                          cancelTwoFactorChallenge();
+                          switchComponent("sign-in")
+                      }}>login</span>
                     <span style={{color:'black'}}>Or</span>
                     <span onClick={() => switchComponent("sign-up")}>Register</span>
                 </div>
@@ -82,7 +89,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     twoFactorChallenge: (code) => dispatch(twoFactorChallengeStart({code})),
-
+    cancelTwoFactorChallenge: () => dispatch(cancelTwoFactorChallenge()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TwoFactorChallenge));

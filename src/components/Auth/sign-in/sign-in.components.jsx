@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Redirect,withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {createStructuredSelector} from "reselect";
 import {connect} from 'react-redux';
 
@@ -14,12 +14,20 @@ import {cancelTwoFactorChallenge, signInStart} from "../../../redux/auth/auth.ac
 
 
 //this is component for the sign-in form
-const SignIn = ({ switchComponent,signInStart, errors,loading, signInErrors, redirectToTwoFactorChallenge, cancelTwoFactorChallenge }) => {
+const SignIn = ({
+                    switchComponent,
+                    signInStart,
+                    errors,
+                    loading,
+                    signInErrors,
+                    redirectToTwoFactorChallenge,
+                    cancelTwoFactorChallenge
+                }) => {
 
     useEffect(() => {
         if (redirectToTwoFactorChallenge)
-        switchComponent("two-factors-challenge")
-    },[switchComponent,redirectToTwoFactorChallenge]);
+            switchComponent("two-factors-challenge")
+    }, [redirectToTwoFactorChallenge]);
 
     const [userCredentials, setCredentials] = useState({email: '', password: ''});
     const {email, password} = userCredentials;
@@ -48,7 +56,7 @@ const SignIn = ({ switchComponent,signInStart, errors,loading, signInErrors, red
         if (errors) {
             if (errors.code) setCodeError(errors.code); else setCodeError(null);
         }
-    }, [signInErrors,errors]);
+    }, [signInErrors, errors]);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -60,7 +68,7 @@ const SignIn = ({ switchComponent,signInStart, errors,loading, signInErrors, red
     };
 
 
-    if (loading) return <div className={"spinner-container"}><Spinner/></div>;
+    if (loading) return <div className={"spinner-container"}><Spinner custom={true} /></div>;
     return (
         <>
             <div className="sign-in">
@@ -70,35 +78,58 @@ const SignIn = ({ switchComponent,signInStart, errors,loading, signInErrors, red
                 <div className="title">
                     Login with your email & password
                 </div>
+                {
+                    badCredentialsError
+                    &&
+                    <span className={"input-validation-errors bad-cred"}>
+                        <i className="fa-solid fa-triangle-exclamation"/>
+                    {badCredentialsError}
+                    </span>
+                }
+                {
+                    codeError
+                    &&
+                    <span className={"input-validation-errors bad-cred"}>
+                        <i className="fa-solid fa-triangle-exclamation"/>
+                    {codeError}
+                                                     </span>}
                 <div className="form">
                     <form onSubmit={handleSubmit}>
-                    <div className="input-block">
-                        <label htmlFor="">Email</label>
-                        <input
-                            type="email"
-                            name={"email"}
-                            value={email}
-                            onChange={handleChange}
-                        />
-                        {emailError && <span className={"input-validation-errors"}>
-                                                    <i className="mdi mdi-alert-outline mr-2 "/>
-                            {emailError}
-                                                     </span>}
-                    </div>
-                    <div className="input-block">
-                        <label htmlFor="">password</label>
-                        <input
-                            type="password"
-                            name={"password"}
-                            value={password}
-                            onChange={handleChange}
-                        />
-                        {passwordError && <span className={"input-validation-errors"}>
-                                                    <i className="mdi mdi-alert-outline mr-2 "/>
-                            {passwordError}
-                                                     </span>}
-                    </div>
-                    <button className={"submit-btn"}>Login</button>
+                        <div className="input-block">
+                            <label htmlFor="">Email</label>
+                            <input
+                                type="email"
+                                name={"email"}
+                                value={email}
+                                onChange={handleChange}
+                            />
+                            {
+                                emailError
+                                &&
+                                <span className={"input-validation-errors"}>
+                               <i className="fa-solid fa-triangle-exclamation"/>
+                                {emailError}
+                                </span>}
+                        </div>
+                        <div className="input-block">
+                            <label htmlFor="">password</label>
+                            <input
+                                type="password"
+                                name={"password"}
+                                value={password}
+                                onChange={handleChange}
+                            />
+                            {
+                                passwordError
+                                &&
+                                <span className={"input-validation-errors"}>
+                               <i className="fa-solid fa-triangle-exclamation"/>
+                                {passwordError}
+
+                                </span>
+                            }
+                        </div>
+                        <button className={"submit-btn"}>Login</button>
                     </form>
                 </div>
                 <div className="divider"/>

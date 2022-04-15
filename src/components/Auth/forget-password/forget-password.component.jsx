@@ -48,32 +48,43 @@ const ForgetPassword = ({sendForgetPasswordEmail, loading, errors, status}) => {
                 <div className="logo">
                     <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo"/>
                 </div>
-                <div className="title">
-                    Enter your email address below and we'll send <br/> you a link to reset your password.
-                </div>
-                <div className="form">
-                    <form onSubmit={handleSubmit}>
-                        <div className="input-block">
-                            <label htmlFor="">Email</label>
-                            <input
-                                type="email"
-                                size="lg"
-                                className="h-auto input-custom"
-                                name={"email"}
-                                value={email}
-                                onChange={handleChange}
-                            />
-                            {
-                                emailError &&
-                                <span className={"input-validation-errors"}>
+
+                {
+                    status
+                    ?
+                        <div className="title">
+                    Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.
+                    </div>
+                        : <>
+                            <div className="title">
+                                Enter your email address below and we'll send <br/> you a link to reset your password.
+                            </div>
+                            <div className="form">
+                                <form onSubmit={handleSubmit}>
+                                    <div className="input-block">
+                                        <label htmlFor="">Email</label>
+                                        <input
+                                            type="email"
+                                            size="lg"
+                                            className="h-auto input-custom"
+                                            name={"email"}
+                                            value={email}
+                                            onChange={handleChange}
+                                        />
+                                        {
+                                            emailError &&
+                                            <span className={"input-validation-errors"}>
                                 <i className="mdi mdi-alert-outline mr-2 "/>
-                                    {emailError}
+                                                {emailError}
                                 </span>
-                            }
-                        </div>
-                        <button className={"submit-btn"}>Reset Password</button>
-                    </form>
-                </div>
+                                        }
+                                    </div>
+                                    <button className={"submit-btn"}>Reset Password</button>
+                                </form>
+                            </div>
+                        </>
+                }
+
                 <div className="divider"/>
 
             </div>

@@ -1,18 +1,18 @@
 import React from 'react';
 import './spinner.styles.scss';
 
-const Spinner = () => (
+const Spinner = ({custom}) => (
 <>
-    <div className="lds-grid">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+    <div className={`lds-grid ${custom ? 'custom' : null}`}>
+        <div/>
+        <div/>
+        <div/>
+        <div/>
+        <div/>
+        <div/>
+        <div/>
+        <div/>
+        <div/>
     </div>
     </>
 )

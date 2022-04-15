@@ -25,7 +25,7 @@ const ProductsGridByStore = ({fetchProducts, loading, errors, products, match}) 
             <div className="products-grid">
                 {
                     loading
-                        ? <Spinner/>
+                        ? <Spinner custom />
                         :
                         products?.map(product => {
                             return  <ProductsItem key={product.id} imgUrl={product.images[0].path} name={product.name} newPrice={product.price} oldPrice={product.old_price} promo={'20%'} product={product}/>

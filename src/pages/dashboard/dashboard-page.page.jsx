@@ -94,7 +94,7 @@ const Dashboard = ({ currentUser}) => {
                                     <Route exact path="/dashboard/orders" component={UserOrder}/>
                                     <Route exact path="/dashboard/two-factors-auth" component={TwoFactorAuthSettings}/>
                                     <Route exact path="/dashboard/confirm-password/:componentPath" component={ConfirmPasswordComponent}/>
-                                    {/*<Redirect to="/dashboard"/>*/}
+                                    <Redirect to="/dashboard"/>
                                 </Switch>
                         }
 

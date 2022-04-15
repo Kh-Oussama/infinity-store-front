@@ -39,6 +39,8 @@
       flex: 0 0 48%;
       margin-bottom: 1.5rem;
 
+
+
       label {
         font-size: 1.4rem;
         color: rgba(var(--color-gray-600),1);
@@ -132,3 +134,19 @@
   }
 }
 
+//validation errors
+
+
+.input-validation-errors {
+  padding-top: .5rem;
+  color: #fe7096;
+  font-size: 1.3rem;
+
+    svg {
+    margin-right: .5rem;
+  }
+}
+.bad-cred {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}

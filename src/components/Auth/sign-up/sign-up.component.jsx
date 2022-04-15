@@ -49,7 +49,7 @@ const SignUp = ({switchComponent, signUpStart, loading, signUpErrors}) => {
         }
     }, [signUpErrors])
 
-    if (loading) return <div className={"spinner-container"}><Spinner/></div>;
+    if (loading) return <div className={"spinner-container"}><Spinner custom={true} /></div>;
     return (
         <>
             <div className="sign-in">
