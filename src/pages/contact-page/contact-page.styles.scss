@@ -1,93 +1,140 @@
-.form-container {
-  background: white;
+.view-shop-page {
+  width: 100%;
+  overflow-x: hidden;
 
-  .form {
-    padding: 4rem 3rem;
+  & .view-shop-page__container--contact {
+    height: auto;
+    margin: 3rem 0 0;
 
-    h1 {
-      font-size: 2.7rem;
-      color: var(--title-text-color);
-      font-weight: 600;
-      margin-bottom: 3rem;
+    @media only screen and (max-width: $bp-large) {
+      margin: 7rem 0 0;
     }
 
-    .two-inputs {
-      display: flex;
-      //background: #009f7f;
-      justify-content: space-between;
-      align-items: center;
-
+    @media only screen and (max-width: $bp-medium-1) {
+      flex-direction: column-reverse;
     }
 
-    .input-block {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      flex: 0 0 48%;
-      margin-bottom: 1.5rem;
+    @media only screen and (max-width: $bp-smallest) {
+      
+      padding: 3rem 2rem;
+    }
 
-      label {
-        font-size: 1.4rem;
-        color: rgba(var(--color-gray-600),1);
-        font-weight: 600;
-        margin-bottom: 1rem;
+    & .left-block--contact {
+      flex: none !important;
+      width: 35rem !important;
+
+      @media only screen and (max-width: $bp-medium-1) {
+        width: auto !important;
+        flex: auto !important;
+      }
+    }
+
+    & .right-block--contact {
+      flex: auto !important;
+      margin: 0 0 0 2rem;
+
+      @media only screen and (max-width: $bp-medium-1) {
+        margin: 0 0 3rem;
       }
 
-      input {
-        width: 100%;
-        height: 4.5rem;
-        border-radius: .7rem;
-        border: 1px  solid rgba(209,213,219,1);
-        transition: all .2s;
-        padding: 0 1.2rem;
-        font-size: 2rem;
-        &:focus {
-          outline: none!important;
-          border: 1px solid var(--color-primary);
+    }
+
+    & .form-container {
+      background: white;
+
+      .form {
+        padding: 4rem 3rem;
+
+        h1 {
+          font-size: 2.7rem;
+          color: var(--title-text-color);
+          font-weight: 600;
+          margin-bottom: 3rem;
+
+          @media only screen and (max-width: $bp-medium-1){
+            font-size: 1.7rem;
+          }
         }
-      }
 
-      textarea {
-        width: 100%;
-        border-radius: .7rem;
-        border: 1px  solid rgba(209,213,219,1);
-        transition: all .2s;
-        padding: 0 1.2rem;
-        font-size: 2rem;
+        .two-inputs {
+          display: flex;
+          //background: #009f7f;
+          justify-content: space-between;
+          align-items: center;
 
-        &:focus {
-          outline: none!important;
-          border: 1px solid var(--color-primary);
+          @media only screen and (max-width: $bp-small) {
+            flex-direction: column;
+          }
+
         }
-      }
-    }
 
-    .submit-btn {
-      height: 5rem;
-      width: 10rem;
-      background: var(--color-primary);
-      font-size: 1.7rem;
-      color: white;
-      border: none;
-      border-radius: .7rem;
-      font-weight: 500;
+        .input-block {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          flex: 0 0 48%;
+          margin-bottom: 1.5rem;
 
-      &:hover {
-        background: var(--color-primary-dark);
-        cursor: pointer;
+          @media only screen and (max-width: $bp-small) {
+            flex: none !important;
+            width: 100%;
+          }
+
+          label {
+            font-size: 1.4rem;
+            color: rgba(var(--color-gray-600), 1);
+            font-weight: 600;
+            margin-bottom: 1rem;
+          }
+
+          input {
+            width: 100%;
+            height: 4.5rem;
+            border-radius: .7rem;
+            border: 1px solid rgba(209, 213, 219, 1);
+            transition: all .2s;
+            padding: 0 1.2rem;
+            font-size: 2rem;
+
+            &:focus {
+              outline: none !important;
+              border: 1px solid var(--color-primary);
+            }
+          }
+
+          textarea {
+            width: 100%;
+            border-radius: .7rem;
+            border: 1px solid rgba(209, 213, 219, 1);
+            transition: all .2s;
+            padding: 0 1.2rem;
+            font-size: 2rem;
+
+            &:focus {
+              outline: none !important;
+              border: 1px solid var(--color-primary);
+            }
+          }
+        }
+
+        .submit-btn {
+          height: 5rem;
+          width: 10rem;
+          background: var(--color-primary);
+          font-size: 1.7rem;
+          color: white;
+          border: none;
+          border-radius: .7rem;
+          font-weight: 500;
+
+          &:hover {
+            background: var(--color-primary-dark);
+            cursor: pointer;
+          }
+        }
       }
     }
   }
-}
 
-.view-shop-page__container--contact {
-  margin: 3rem;
-}
-
-.left-block--contact {
-  flex: 0 0 32% !important;
-}
-.right-block--contact {
-  flex: 0 0 65% !important;
 }

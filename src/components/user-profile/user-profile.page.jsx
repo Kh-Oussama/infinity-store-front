@@ -5,24 +5,42 @@ import TextAreaGroup from "../input-group/text-area-group.component";
 import algeria from "./../../images/algeria.png";
 
 const UserProfile = () => {
+    //To select "Billing or shipping" in popup
     const [selectedCheckBox, setSelectedCheckBox] = useState(0);
+
+    //Credentials of user
     const [credentials, setCredentials] = useState({
         name: '',
         bio: '',
         phoneNumber: '0600000000'
     });
-
     const { name, bio, phoneNumber } = credentials;
+
+    // Address informations
+    const [addressInfo, setAddressInfo] = useState({
+        title: '', country: '', city: '', state: '', zip: '', streetAddress: '',
+    });
+    const {title, country, city, state, zip, streetAddress} = addressInfo;
+
 
     //Function to show image input
     const showInput = () => {
         document.querySelector(".upload-img input").click();
     }
 
-    //Function to handle change of profile
-    const handleChange = e => {
+    //Function to handle crendentials change of profile
+    const handleCrendentialsChange = e => {
         const event = e.target;
         setCredentials({
+            ...credentials,
+            [event.name]: event.value,
+        });
+    }
+
+    //Function to handle address info change
+    const handleAddressInformationChange = e => {
+        const event = e.target;
+        setAddressInfo({
             ...credentials,
             [event.name]: event.value,
         });
@@ -82,14 +100,14 @@ const UserProfile = () => {
                                 accept="image/*"
                                 name="image"
                             />
-                            <i className="fa-solid fa-cloud-arrow-up"></i>
+                            <span><i className="fa-solid fa-cloud-arrow-up"></i></span>
                             <p><span>Upload an image</span> or drag and drop PNG, JPG</p>
                         </div>
                     </div>
 
-                    <InputGroup label="Name" name="name" type="text" value={name} onChange={handleChange} />
+                    <InputGroup label="Name" name="name" type="text" value={name} onChange={handleCrendentialsChange} />
 
-                    <TextAreaGroup label="Bio" name="bio" value={bio} onChange={handleChange} />
+                    <TextAreaGroup label="Bio" name="bio" value={bio} onChange={handleCrendentialsChange} />
 
                     <div className="submit-ct">
                         <input type="submit" value="Save" />
@@ -121,7 +139,7 @@ const UserProfile = () => {
                                 <div>
                                     <img src={algeria} alt="" />
                                 </div>
-                                <input type="text" value={phoneNumber} name="phoneNumber" onChange={handleChange} />
+                                <input type="text" value={phoneNumber} name="phoneNumber" onChange={handleCrendentialsChange} />
                             </div>
                             <input type="submit" value="update contact" />
                         </form>
@@ -159,19 +177,19 @@ const UserProfile = () => {
                                 </div>
                             </div>
 
-                            <InputGroup label="Title" type="text" name="title" onChange={() => { }} />
+                            <InputGroup label="Title" type="text" name="title" value={title} onChange={handleAddressInformationChange} />
 
                             <div className="row">
-                                <InputGroup label="Country" type="text" name="country" onChange={() => { }} />
-                                <InputGroup label="City" type="text" name="city" onChange={() => { }} />
+                                <InputGroup label="Country" type="text" name="country" value={country} onChange={handleAddressInformationChange} />
+                                <InputGroup label="City" type="text" name="city" value={city} onChange={handleAddressInformationChange} />
                             </div>
 
                             <div className="row">
-                                <InputGroup label="State" type="text" name="state" onChange={() => { }} />
-                                <InputGroup label="Zip" type="text" name="zip" onChange={() => { }} />
+                                <InputGroup label="State" type="text" name="state" value={state} onChange={handleAddressInformationChange} />
+                                <InputGroup label="Zip" type="text" name="zip" value={zip} onChange={handleAddressInformationChange} />
                             </div>
 
-                            <TextAreaGroup label="Street Address" name="address" onChange={() => { }} />
+                            <TextAreaGroup label="Street Address" name="address" value={streetAddress} onChange={handleAddressInformationChange} />
 
                             <input type="submit" value="Update address" />
                         </form>

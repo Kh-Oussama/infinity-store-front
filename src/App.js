@@ -65,6 +65,7 @@ const App = ({
                             <Route exact path="/help" component={FaqPage}/>
                             <Route exact path="/forget-password" component={ForgetPasswordPage}/>
                             <Route exact path="/reset-password/:email/:token" component={ResetPasswordPage}/>
+                            <Route path="/dashboard" component={Dashboard}/>
                             <Route path="/:group?" component={Homepage}/>
                             <Redirect to="/:group?s"/>
                         </Switch>

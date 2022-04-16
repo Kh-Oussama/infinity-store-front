@@ -9,7 +9,6 @@ const ContactPage = () => {
 
 
     return (
-        <>
             <div className="view-shop-page">
                 <NavigationBar/>
                 <div className="view-shop-page__container view-shop-page__container--contact ">
@@ -73,7 +72,6 @@ const ContactPage = () => {
                     </div>
                 </div>
             </div>
-        </>
     )
 }
 
