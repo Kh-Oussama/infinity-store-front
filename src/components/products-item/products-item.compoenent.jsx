@@ -2,9 +2,12 @@ import React, {useEffect, useState} from 'react';
 import ProductPopup from "../product-popup/product-popup-component";
 
 //Import loader of product item
-import ProductItemLoader from "./product-item-loader.component";
+import {createStructuredSelector} from "reselect";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {addItem} from "../../redux/cart/cart.actions";
 
-const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo,product}) => {
+const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo, product,addItem,item}) => {
     const [modal, setModal] = useState(false);
 
     //pour tester
@@ -28,37 +31,43 @@ const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo,product}) => {
 
     return (
 
-            <>
-                <ProductPopup showModal={modal} product={product} toggleModal={toggleModal}/>
-                <div className="products-item" onClick={toggleModal}>
-                    {
-                        promo
-                            ? <div className="percent"> {promo}</div>
-                            : null
-                    }
+        <>
+            <ProductPopup showModal={modal} product={product} toggleModal={toggleModal}/>
+            <div className="products-item" >
+                {
+                    promo
+                        ? <div className="percent"> {promo}</div>
+                        : null
+                }
 
-                    <div className="imgBlock">
-                        <img src={`http://localhost:8000/${imgUrl}`} alt=""/>
+                <div className="imgBlock" onClick={toggleModal}>
+                    <img src={`http://localhost:8000/${imgUrl}`} alt=""/>
+                </div>
+                <div className="detailsBlock" >
+                    <div className="priceBlock" onClick={toggleModal}>
+                        <div className="newPrice">{newPrice} Da</div>
+                        <div className="oldPrice">{oldPrice ? oldPrice : null} Da</div>
+
                     </div>
-                    <div className="detailsBlock">
-                        <div className="priceBlock">
-                            <div className="newPrice">{newPrice} Da</div>
-                            <div className="oldPrice">{oldPrice ? oldPrice : null} Da</div>
-
-                        </div>
-                        <div className="productName">
-                            {name}
-                        </div>
-                        <div className="action">
-                            <button>
-                                <span className={"text"}>Add</span>
-                                <span className={"add"}>+</span>
-                            </button>
-                        </div>
+                    <div className="productName" onClick={toggleModal}>
+                        {name}
+                    </div>
+                    <div className="action">
+                        <button onClick={ () => addItem(item) } >
+                            <span className={"text"}>Add</span>
+                            <span className={"add"}>+</span>
+                        </button>
                     </div>
                 </div>
-            </>
+            </div>
+        </>
     )
 }
 
-export default ProductsItem;
+const mapStateToProps = createStructuredSelector({});
+const mapDispatchToProps = dispatch => ({
+    addItem: item => dispatch(addItem(item))
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductsItem));
+

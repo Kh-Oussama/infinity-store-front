@@ -8,10 +8,11 @@ import {createStructuredSelector} from "reselect";
 import {selectShopCard} from "./../../redux/design-utilites/design-utilities.selectors";
 import {toggleShopCard} from "./../../redux/design-utilites/design-utilities.actions";
 import { connect } from 'react-redux';
+import {selectCartItems, selectCartTotal} from "../../redux/cart/cart.selectors";
 
 
 //the left shopping card component
-const ShopCard = ({loading, shopCardDisplayed, toggleShopCard}) => {
+const ShopCard = ({loading, shopCardDisplayed, toggleShopCard,cartItems, history, total}) => {
 
     const toggleModal = () => {
         toggleShopCard(!shopCardDisplayed);
@@ -23,33 +24,16 @@ const ShopCard = ({loading, shopCardDisplayed, toggleShopCard}) => {
         <>
             <ShoppingCardPopup toggleModal={toggleModal} showModal={shopCardDisplayed}/>
             <div className="shop-card" style={{backgroundColor: loading ?'transparent' : null}} onClick={() => toggleModal()}>
-
-                {
-                    loading
-                    ?  <ContentLoader
-                            speed={3}
-                            width={"120%"}
-                            height={"120%"}
-                            viewBox="0 0 100% 656"
-                            backgroundColor="#f2f2f2"
-                            foregroundColor="#e1e1e1"
-                        >
-                            <rect x="0" y="0%" rx="3" ry="3" width="120%" height="120%"/>
-                        </ContentLoader>
-                        : <>
                             <div className="items-count">
                                 {/*this is for the icon*/}
                                 <ShoppingBagIcon/>
 
-                                <div className="count-number">0</div>
+                                <div className="count-number">{cartItems.length}</div>
                                 <div className={"items"}>Item</div>
                             </div>
                             <div className="total">
-                                0.00$
+                                {total} DA
                             </div>
-                        </>
-                }
-
             </div>
         </>
     )
@@ -58,6 +42,8 @@ const ShopCard = ({loading, shopCardDisplayed, toggleShopCard}) => {
 
 const mapStateToProps = createStructuredSelector({
     shopCardDisplayed: selectShopCard,
+    cartItems: selectCartItems,
+    total : selectCartTotal,
 });
 
 

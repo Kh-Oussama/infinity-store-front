@@ -84,12 +84,13 @@
       right: 3rem;
       cursor: pointer;
 
-      svg {
-        font-size: 2rem;
+      i {
+        font-size: 1.8rem;
         color: rgba(var(--color-gray-800),.9);
+        height: 5rem;
       }
 
-      &:hover svg {
+      &:hover i {
         color: black;
       }
     }
