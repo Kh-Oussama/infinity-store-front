@@ -24,7 +24,7 @@ const ViewShopPage = ({currentStore, getLoading, getErrors, getStore, match}) =>
                         : <div className="view-shop-page__container">
                             <div className="left-block">
                                 <div className="shop-description">
-                                    <img src="/images/shops/Furniture-thumbnail.jpg" alt="shop"/>
+                                    <img src={`http://localhost:8000/${currentStore.logo_path}`} alt=""/>
                                     <div className="name">{currentStore.name}</div>
                                     <div className="description">
                                         {currentStore.description}
@@ -59,7 +59,7 @@ const ViewShopPage = ({currentStore, getLoading, getErrors, getStore, match}) =>
                             </div>
                             <div className="right-block">
                                 <div className="imgCover">
-                                    <img src="/images/products/image-cover.jpg" alt=""/>
+                                    <img src={`http://localhost:8000/${currentStore.cover_path}`} alt=""/>
                                 </div>
                                 <ProductsGridByStore/>
 
