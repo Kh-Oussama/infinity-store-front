@@ -62,12 +62,12 @@ const ViewShopPage = ({ currentStore, getLoading, getErrors, getStore, match }) 
                                 {/* Shop name in responsive */}
                                 <div className='shop-name-rs'>
                                     <div className='img-ct'>
-                                        <img src="/images/shops/Backpack-thumbnail.jpg" alt="" />
+                                        <img src="/images/shops/Furniture-thumbnail.jpg" alt="" />
                                     </div>
 
                                     <div className='detail-ct'>
-                                        <h1>Shop Name</h1>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                        <h1>{currentStore.name}</h1>
+                                        <p>{currentStore.description}</p>
                                     </div>
                                 </div>
                                 <div className="imgCover">
