@@ -97,6 +97,31 @@
         }
       }
 
+      & .detail-sizes-block {
+        margin-bottom: 4rem;
+
+        & .detail-sizes-block-items {
+          display: flex;
+
+          & .item {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            text-transform: uppercase;
+
+
+          }
+
+          & .active {
+            border: 1px solid var(--color-primary);
+
+          }
+
+        }
+        & .detail-sizes-block-attribute {
+          font-size: 1.5rem;
+        }
+      }
+
       &-action {
         display: flex;
         align-items: center;
@@ -119,6 +144,7 @@
           border-radius: .5rem;
           font-size: 1.6rem;
           text-transform: capitalize;
+          cursor: pointer;
 
           @media only screen and (max-width: 992px){
             flex: 0 !important;
@@ -275,6 +301,7 @@
     font-size: 1.3rem;
     font-weight: 500;
     border-radius: .5rem;
+    text-transform: uppercase;
   }
 
   //customize sema,tic ui
@@ -290,3 +317,41 @@
     font-size: 1.5rem !important;
     //width: 100% !important;
   }
+
+.green {
+  background: #1bcfb4 !important;
+  border-color: #1bcfb4 !important;
+  color: white !important;
+}
+
+.red {
+  color: white !important;
+  background: #fe7c96 !important;
+  border-color: #fe7c96 !important;
+}
+
+.black {
+  color: #fff !important;
+  background: #3e4b5b !important;
+  border-color: #3e4b5b !important;
+}
+
+.white{
+  color: black !important;
+}
+.color {
+  height: 4rem;
+  width: 5rem;
+}
+
+.color-cart {
+  height: 3rem;
+  width: 4rem;
+}
+
+.errors-block {
+  padding: 1rem 0;
+  i {
+    margin-right: .7rem;
+  }
+}

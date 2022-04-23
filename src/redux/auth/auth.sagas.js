@@ -176,6 +176,8 @@ export function* confirmPassword({payload: {password}}) {
 //two factor challenge
 export function* twoFactorChallenge({payload: {code}}) {
     const data = {code};
+    // const recovery_code = code;
+    // const data = {recovery_code};
     try {
         yield Axios.post("http://localhost:8000/two-factor-challenge", data);
         yield isUserAuthenticated();

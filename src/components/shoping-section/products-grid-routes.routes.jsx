@@ -15,7 +15,7 @@ const ShoppingRoutes = () => {
             <Route exact path="/:group/categories/:slug" component={ProductsGridForCategories}/>
             <Route exact path="/:group/sub-categories/:slug" component={ProductsGridForSubCategories}/>
 
-            {/*<Redirect to="/:group"/>*/}
+            <Redirect to="/:group?"/>
         </Switch>
     )
 }

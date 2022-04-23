@@ -1,18 +1,27 @@
 import React from 'react';
-import NavigationBar from "../../../components/navigartion-bar/navigation-bar.component";
 import ResetPassword from "../../../components/Auth/reset-password/reset-password.component";
+import {withRouter} from "react-router-dom";
 
-const ResetPasswordPage = () => {
+const ResetPasswordPage = ({history}) => {
 
-    return (<>
-        <NavigationBar/>
-        <div className="forget-password-page">
-            <ResetPassword/>
-        </div>
+    return (
+        <>
+            <div className="modal">
+                <div className="overlay"/>
+                <div className="modal-content">
+                    <div className="second-overlay"/>
+                    <div className="text-content text-content-auth">
+                        <div className={"home-icon"} onClick={() => history.push("/")}>
+                            <i className="fa-solid fa-house-chimney"/>
+                        </div>
+                        <ResetPassword/>
+                    </div>
+                </div>
+            </div>
+
     </>)
 
 }
 
-
-export default ResetPasswordPage;
+export default withRouter(ResetPasswordPage);
 

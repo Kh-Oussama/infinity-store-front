@@ -8,15 +8,22 @@ import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import ShoppingSection from "../../components/shoping-section/shoping-section.component";
 import BottomNavigation from '../../components/bottom-navigation/bottom-navigation.component';
+import {selectCurrentUser} from "../../redux/auth/auth.selectors";
+import {selectRedirectToCheckout} from "../../redux/design-utilites/design-utilities.selectors";
 
-const Homepage = ({groups, match, history}) => {
+const Homepage = ({groups, match, history, currentUser, redirectToCheckout}) => {
     const [group, setGroup] = useState(null);
 
     useEffect(() => {
-       setGroup(groups.find(group =>
+        if(currentUser && redirectToCheckout)
+        history.push('/dashboard/checkout')
+    }, [currentUser]);
+
+    useEffect(() => {
+        setGroup(groups.find(group =>
             group.name === match.params.group
         ));
-       if (!groups.some(group => group.name === match.params.group)) history.push(`/${groups[0].name}`);
+        if (!groups.some(group => group.name === match.params.group)) history.push(`/${groups[0].name}`);
 
     }, [groups,match.params.group]);
 
@@ -34,7 +41,8 @@ const Homepage = ({groups, match, history}) => {
 
 const mapStateToProps = createStructuredSelector({
     groups: selectGroups,
-
+    currentUser: selectCurrentUser,
+    redirectToCheckout: selectRedirectToCheckout
 });
 const mapDispatchToProps = dispatch => ({});
 

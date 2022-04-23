@@ -44,7 +44,7 @@ const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, error
             switchComponent("sign-in")
     }, [switchComponent, codeError]);
 
-    if (loading) return <div className={"spinner-container"}><Spinner/></div>;
+    if (loading) return <div className={"spinner-container"}><Spinner custom /></div>;
     return (
         <>
             <div className="sign-in">

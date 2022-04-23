@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect, Route, Switch, useRouteMatch, withRouter } from "react-router-dom";
+import {Link, Redirect, Route, Switch, useLocation, useRouteMatch, withRouter} from "react-router-dom";
 import NavigationBar from "../../components/navigartion-bar/navigation-bar.component";
 import UpdatePassword from "../../components/update-password/update-password.page";
 import UserOrder from "../../components/user-order/user-order.page";
@@ -16,17 +16,7 @@ import Checkout from "../../components/checkout/checkout.component";
 
 
 const Dashboard = ({ currentUser }) => {
-    let { url, path } = useRouteMatch();
-
-    //Function to toogle active link
-    const toogleActiveLink = e => {
-        if (currentUser.email_verified_at) {
-            let activeLink = document.querySelector('.user-dashboard > .dashboard-ct > .sidebar > .links-ct > ul li a.active');
-            activeLink.classList.remove('active');
-            e.target.classList.add('active');
-        }
-
-    }
+    const location = useLocation();
 
     return (
         <>
@@ -55,28 +45,28 @@ const Dashboard = ({ currentUser }) => {
                             <ul>
                                 {
                                     !currentUser.email_verified_at && <li>
-                                        <Link className="active" to={`${path}/verify-email`} onClick={toogleActiveLink}>Verify
+                                        <Link className="active" to={`/dashboard/verify-email`} >Verify
                                             Email</Link>
                                     </li>
                                 }
                                 <li>
-                                    <Link className={currentUser.email_verified_at ? 'active' : null} to={`${path}/`} onClick={toogleActiveLink}>Profile</Link>
+                                    <Link  className={location.pathname === "/dashboard" ? 'active' : null}  to={`/dashboard`} >Profile</Link>
                                 </li>
                                 <li>
-                                    <Link to={`${path}/update-password`} className="active" onClick={toogleActiveLink} >Change
+                                    <Link to={`/dashboard/update-password`}  className={location.pathname === "/dashboard/update-password" ? 'active' : null} >Change
                                         Password</Link>
                                 </li>
                                 <li>
-                                    <Link to={`${path}/orders`} onClick={toogleActiveLink} >My Orders</Link>
+                                    <Link to={`/dashboard/orders`} className={location.pathname === "/dashboard/orders" ? 'active' : null}  >My Orders</Link>
                                 </li>
                                 <li>
-                                    <Link to={`${path}/checkout`} onClick={toogleActiveLink} >Checkout</Link>
+                                    <Link to={`/dashboard/checkout`} className={location.pathname === "/dashboard/checkout" ? 'active' : null} >Checkout</Link>
                                 </li>
                                 <li>
-                                    <Link to="/help" onClick={toogleActiveLink} >Need Help</Link>
+                                    <Link to="/help"  className={location.pathname === "/dashboard/help" ? 'active' : null} >Need Help</Link>
                                 </li>
                                 <li>
-                                    <Link to="/dashboard/two-factors-auth" onClick={toogleActiveLink} >Two Factors Authentication</Link>
+                                    <Link to="/dashboard/two-factors-auth"  >Two Factors Authentication</Link>
                                 </li>
                             </ul>
                             <ul>
@@ -90,18 +80,18 @@ const Dashboard = ({ currentUser }) => {
                     <div className="main">
                         {
                             !currentUser.email_verified_at
-                                ? <Switch>
-                                    <Route exact path="/dashboard/verify-email" component={EmailVerification} />
-                                    <Redirect to="/dashboard/verify-email" />
+                                ?  <Switch>
+                                    <Route exact path="/dashboard/verify-email" component={EmailVerification}/>
+                                    <Redirect to="/dashboard/verify-email"/>
                                 </Switch>
-                                : <Switch>
-                                    <Route exact path="/dashboard" component={UserProfile} />
-                                    <Route exact path="/dashboard/update-password" component={UpdatePassword} />
-                                    <Route exact path="/dashboard/orders" component={UserOrder} />
+                                :  <Switch>
+                                    <Route exact path="/dashboard" component={UserProfile}/>
+                                    <Route exact path="/dashboard/update-password" component={UpdatePassword}/>
+                                    <Route exact path="/dashboard/orders" component={UserOrder}/>
                                     <Route exact path="/dashboard/checkout" component={Checkout} />
-                                    <Route exact path="/dashboard/two-factors-auth" component={TwoFactorAuthSettings} />
-                                    <Route exact path="/dashboard/confirm-password/:componentPath" component={ConfirmPasswordComponent} />
-                                    <Redirect to="/dashboard" />
+                                    <Route exact path="/dashboard/two-factors-auth" component={TwoFactorAuthSettings}/>
+                                    <Route exact path="/dashboard/confirm-password/:componentPath" component={ConfirmPasswordComponent}/>
+                                    <Redirect to="/dashboard"/>
                                 </Switch>
                         }
                     </div>

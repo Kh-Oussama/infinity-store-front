@@ -17,5 +17,10 @@ export const selectShopCard = createSelector(
     design_utilities => design_utilities.shop_card_displayed,
 )
 
+export const selectRedirectToCheckout = createSelector(
+    [selectDesignUtilities],
+    design_utilities => design_utilities.redirectToCheckout,
+)
+
 
 

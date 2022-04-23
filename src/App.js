@@ -14,8 +14,8 @@ import Dashboard from "./pages/dashboard/dashboard-page.page";
 import {selectCheckUserSessionLoading, selectCurrentUser, selectSignOutLoading} from "./redux/auth/auth.selectors";
 import {checkUserSession} from "./redux/auth/auth.actions";
 import ForgetPasswordPage from "./pages/Auth/forget-password/forget-password.page";
-import ResetPassword from "./components/Auth/reset-password/reset-password.component";
 import ResetPasswordPage from "./pages/Auth/reset-password/reset-password.page";
+import AuthPage from "./pages/Auth/auth-page/auth-page.component";
 
 const Homepage = lazy(() => import("./pages/home-page/home-page.page"));
 
@@ -29,7 +29,8 @@ const App = ({
                  currentUser,
                  checkLoading,
                  checkUserSession,
-                 logOutLoading
+                 logOutLoading,
+
              }) => {
 
     useEffect(() => {
@@ -39,6 +40,8 @@ const App = ({
     useEffect(() => {
         checkUserSession()
     }, [checkUserSession]);
+
+
 
 
     if (loading || checkLoading || logOutLoading) return <EyeLoader/>;
@@ -64,9 +67,10 @@ const App = ({
                             <Route exact path="/contact" component={ContactPage}/>
                             <Route exact path="/help" component={FaqPage}/>
                             <Route exact path="/forget-password" component={ForgetPasswordPage}/>
+                            <Route exact path="/auth" component={AuthPage}/>
                             <Route exact path="/reset-password/:email/:token" component={ResetPasswordPage}/>
                             <Route path="/:group?" component={Homepage}/>
-                            <Redirect to="/:group?s"/>
+                            <Redirect to="/:group?"/>
                         </Switch>
                     )
             }
@@ -90,5 +94,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
-
 

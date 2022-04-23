@@ -9,12 +9,13 @@ import categoriesReducer from "./categories/categories.reducer";
 import subCategoriesReducer from "./sub-categories/subCategories.reducer";
 import authReducer from "./auth/auth.reducer";
 import storesReducer from "./stores/stores.reducer";
+import cartReducer from "./cart/cart.reducer";
 
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: [''],
+    whitelist: ['cart'],
 };
 
 const rootReducer = combineReducers({
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
     subCategory: subCategoriesReducer,
     auth: authReducer,
     store: storesReducer,
+    cart : cartReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
