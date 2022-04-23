@@ -33,3 +33,16 @@
         }
     }
 }
+
+.ui.celled.table tr td:first-child, .ui.celled.table tr th:first-child {
+    text-align: center;
+}
+
+.p-details {
+    display: flex;
+
+    .color-cart {
+        height: 3.5rem;
+
+    }
+}

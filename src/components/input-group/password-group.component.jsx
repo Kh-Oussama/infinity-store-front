@@ -8,7 +8,7 @@ const PasswordGroup = ({label, name, value, onChange}) => {
             <label>{label}</label>
             <div className="input-ct">
                 <span onClick={() => setDisplayPassword(!displayPassword)}>
-                    <i className={!displayPassword?"fa-solid fa-eye":"fa-solid fa-eye-slash"}></i>
+                    <i className={displayPassword?"fa-solid fa-eye":"fa-solid fa-eye-slash"}></i>
                 </span>
                 <input type={`${!displayPassword?'password':"text"}`} name={name} value={value} onChange={onChange} />
             </div>

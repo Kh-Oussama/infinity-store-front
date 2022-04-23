@@ -6,7 +6,7 @@ const DetailsTable = ({ data }) => (
         {
             data.length > 0 && <Table celled>
                 <Table.Header>
-                    <Table.Row>
+                    <Table.Row className={"details-th"}>
                         <Table.HeaderCell>Header</Table.HeaderCell>
                         <Table.HeaderCell>Header</Table.HeaderCell>
                     </Table.Row>
