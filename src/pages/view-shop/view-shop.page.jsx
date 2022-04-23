@@ -1,30 +1,33 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import NavigationBar from "../../components/navigartion-bar/navigation-bar.component";
-import {createStructuredSelector} from "reselect";
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {selectGetStoreError, selectGetStoreLoading, selectStoreVar} from "../../redux/stores/stores.selectors";
-import {getStoreStart} from "../../redux/stores/stores.actions";
+import { createStructuredSelector } from "reselect";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { selectGetStoreError, selectGetStoreLoading, selectStoreVar } from "../../redux/stores/stores.selectors";
+import { getStoreStart } from "../../redux/stores/stores.actions";
 import Spinner from "../../components/spinner/spinner.components";
 import ProductsGridByStore from "../../components/products-grid/product-grid-by-store.components";
+import BottomNavigationBar from "./../../components/bottom-navigation/bottom-navigation.component";
 
-const ViewShopPage = ({currentStore, getLoading, getErrors, getStore, match}) => {
+const ViewShopPage = ({ currentStore, getLoading, getErrors, getStore, match }) => {
 
     useEffect(() => {
-        getStore({name: match.params.shop});
+        getStore({ name: match.params.shop });
     }, [getStore]);
 
     return (
         <>
             <div className="view-shop-page">
-                <NavigationBar/>
+                <NavigationBar />
                 {
                     getLoading
-                        ? <Spinner/>
+                        ? <div className='spinner-ct'><Spinner /></div>
                         : <div className="view-shop-page__container">
-                            <div className="left-block">
+                            <div className="left-block view-shop-left-block">
                                 <div className="shop-description">
+
                                     <img src={`http://localhost:8000/${currentStore.logo_path}`} alt=""/>
+
                                     <div className="name">{currentStore.name}</div>
                                     <div className="description">
                                         {currentStore.description}
@@ -36,7 +39,7 @@ const ViewShopPage = ({currentStore, getLoading, getErrors, getStore, match}) =>
                                     {/*</div>*/}
 
                                 </div>
-                                <div className="divider"/>
+                                <div className="divider" />
                                 <div className="shop-details">
                                     <div className="shop-details__item">
                                         <h1>Address</h1>
@@ -58,15 +61,26 @@ const ViewShopPage = ({currentStore, getLoading, getErrors, getStore, match}) =>
                                 </div>
                             </div>
                             <div className="right-block">
+                                {/* Shop name in responsive */}
+                                <div className='shop-name-rs'>
+                                    <div className='img-ct'>
+                                        <img src="/images/shops/Furniture-thumbnail.jpg" alt="" />
+                                    </div>
+
+                                    <div className='detail-ct'>
+                                        <h1>{currentStore.name}</h1>
+                                        <p>{currentStore.description}</p>
+                                    </div>
+                                </div>
                                 <div className="imgCover">
                                     <img src={`http://localhost:8000/${currentStore.cover_path}`} alt=""/>
                                 </div>
-                                <ProductsGridByStore/>
+                                <ProductsGridByStore />
 
                             </div>
                         </div>
                 }
-
+                <BottomNavigationBar />
             </div>
         </>
     )

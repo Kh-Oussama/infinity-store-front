@@ -15,7 +15,7 @@ const ShopsCollection = ({loading, errors, stores, fetchStores, history}) => {
     }, [fetchStores]);
 
 
-    if (loading) return <Spinner/>;
+    if (loading) return <div className='spinner-ct'><Spinner/></div>;
     return (
         <>
             <div className="shops-container">

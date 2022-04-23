@@ -4,12 +4,13 @@ import InstagramIcon from "../../components/icons/instagram";
 import ProductsGrid from "../../components/products-grid/products-grid-group.compoenent";
 import axios from "axios";
 import {withRouter} from "react-router-dom";
+import BottomNavigationBar from "./../../components/bottom-navigation/bottom-navigation.component";
+
 
 const ContactPage = () => {
 
 
     return (
-        <>
             <div className="view-shop-page">
                 <NavigationBar/>
                 <div className="view-shop-page__container view-shop-page__container--contact ">
@@ -72,8 +73,8 @@ const ContactPage = () => {
                         </div>
                     </div>
                 </div>
+                <BottomNavigationBar /> 
             </div>
-        </>
     )
 }
 

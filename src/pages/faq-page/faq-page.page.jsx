@@ -1,9 +1,10 @@
 import React from 'react';
 import NavigationBar from "../../components/navigartion-bar/navigation-bar.component";
+import BottomNavigationBar from "./../../components/bottom-navigation/bottom-navigation.component";
 
 const FaqPage = () => {
     return (
-        <>
+        <div className='faq-page'>
             <NavigationBar/>
             <div className="faq-container">
 
@@ -38,7 +39,8 @@ const FaqPage = () => {
                     </div>
                 </div>
             </div>
-        </>
+            <BottomNavigationBar />
+        </div>
     )
 }
 
