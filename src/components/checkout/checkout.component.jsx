@@ -7,59 +7,9 @@ import {selectCartItems, selectCartTotal} from "../../redux/cart/cart.selectors"
 import {selectCurrentUser} from "../../redux/auth/auth.selectors";
 import {redirectToCheckout, toggleAuthComponent} from "../../redux/design-utilites/design-utilities.actions";
 import {connect} from "react-redux";
+import {addItem, clearItemFromCart, removeItem} from "../../redux/cart/cart.actions";
 
-const Checkout = ({redirectToCheckoutPage}) => {
-    //Test list
-    const productList = [
-        {
-            image: "/images/products/Apples.jpg",
-            description: "Apple",
-            quatntity: 10,
-            price: 15,
-        },
-        {
-            image: "/images/products/BabySpinach.jpg",
-            description: "Baby Spinach",
-            quatntity: 1,
-            price: 66,
-        },
-        {
-            image: "/images/products/blueberries.jpg",
-            description: "blueberries",
-            quatntity: 50,
-            price: 18,
-        },
-        {
-            image: "/images/products/BrusselsSprouts.jpg",
-            description: "Brussels Sprouts",
-            quatntity: 12,
-            price: 10,
-        }
-    ];
-
-    const[list , setList] = useState(productList);
-
-    //Function to remove item from cart
-    const removeItem = product => {
-        let newList = list.filter(p => p !== product);
-        setList(newList);
-    }
-
-    //Function to upate quatity
-    const updateQuantity = (product, value) => {
-        let newList = list.map(p => {
-            if(p === product){
-                return {
-                    ...p,
-                    quatntity: (p.quatntity + value >= 0)?p.quatntity + value:0,
-                }
-            }
-
-            return p;
-        });
-
-        setList(newList);
-    }
+const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem,  clearItem, addItem}) => {
 
     useEffect(() => {
         redirectToCheckoutPage(false);
@@ -83,23 +33,24 @@ const Checkout = ({redirectToCheckoutPage}) => {
                             <td>Remove</td>
                         </tr>
 
-                        {list.map((p, index) => {
+                        {
+                            cartItems.map((item, index) => {
                             return (
                                 <tr key={index} className="cart-item">
                                     <td>
-                                        <img src={p.image} alt={p.description} />
+                                        <img src={`http://localhost:8000/${item.images[0].path}`} alt={item.description} />
                                     </td>
                                     <td>
-                                        <p>{p.description}</p>
+                                        <p>{item.name}</p>
                                     </td>
                                     <td>
-                                        <QuantityButton quantity={p.quatntity} add={() => updateQuantity(p, 1)} minus={() => updateQuantity(p, -1)} />
+                                        <QuantityButton quantity={item.quantity} add={() => addItem(item)} minus={() => removeItem(item)} />
                                     </td>
                                     <td>
-                                        <p>{p.price}$</p>
+                                        <p>{item.price} DA</p>
                                     </td>
                                     <td>
-                                        <RemoveButton remove={() => removeItem(p)}/>
+                                        <RemoveButton remove={() => clearItem(item)}/>
                                     </td>
                                 </tr>
                             );
@@ -110,13 +61,19 @@ const Checkout = ({redirectToCheckoutPage}) => {
 
                 <div className="total-ct">
                     <p>Total price</p>
-                    <p>59.99$</p>
+                    <p>{total} DA</p>
                 </div>
 
                 <div className="actions">
-                    <Link className="action" to="/">Continue shopping</Link>
+                    <Link className="action" to="/">
+                        <i className="fa-solid fa-cart-plus"/>
+                        Continue shopping
+                    </Link>
 
-                    <span className="action">Confirm order</span>
+                    <span className="action">
+                        <i className="fa-solid fa-clipboard-check"/>
+                        Confirm order
+                    </span>
                 </div>
             </div>
         </div>
@@ -133,5 +90,9 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     redirectToCheckoutPage: current_state => dispatch(redirectToCheckout(current_state)),
+
+    removeItem: item => dispatch(removeItem(item)),
+    clearItem: item => dispatch(clearItemFromCart(item)),
+    addItem: item => dispatch(addItem(item)),
 })
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Checkout));

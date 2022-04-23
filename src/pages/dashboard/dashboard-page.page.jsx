@@ -15,7 +15,7 @@ import ConfirmPasswordComponent
 import Checkout from "../../components/checkout/checkout.component";
 
 
-const Dashboard = ({ currentUser, match }) => {
+const Dashboard = ({ currentUser }) => {
     const location = useLocation();
 
     return (

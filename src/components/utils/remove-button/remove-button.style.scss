@@ -1,15 +1,24 @@
 
 
 .remove-btn{
-    width: 90px;
-    padding: .1rem 0;
+    width: 14rem;
+    padding: .2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-primary);
+    background-color: #fe7c96;
     color: var(--color-white);
     border-radius: 3px;
     cursor: pointer;
+    transition: all .1s ease-in-out ;
+
+    &:hover {
+        background-color: #fe5678;
+        border-color: #fe496d;
+    }
+    &:active {
+        box-shadow: 0 0 0 0.25rem rgba(221, 111, 134,.5);
+    }
 
     & span{
         font-size: 1.4rem;
