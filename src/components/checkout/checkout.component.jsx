@@ -1,9 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import QuantityButton from "../utils/quantity-button/quantity-button.component";
 import RemoveButton from "../utils/remove-button/remove-button.component";
-import { Link } from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
+import {createStructuredSelector} from "reselect";
+import {selectCartItems, selectCartTotal} from "../../redux/cart/cart.selectors";
+import {selectCurrentUser} from "../../redux/auth/auth.selectors";
+import {redirectToCheckout, toggleAuthComponent} from "../../redux/design-utilites/design-utilities.actions";
+import {connect} from "react-redux";
 
-const Checkout = () => {
+const Checkout = ({redirectToCheckoutPage}) => {
     //Test list
     const productList = [
         {
@@ -55,6 +60,10 @@ const Checkout = () => {
 
         setList(newList);
     }
+
+    useEffect(() => {
+        redirectToCheckoutPage(false);
+    })
 
     return (
         <div className="checkout">
@@ -114,4 +123,15 @@ const Checkout = () => {
     );
 }
 
-export default Checkout;
+
+const mapStateToProps = createStructuredSelector({
+    cartItems: selectCartItems,
+    total : selectCartTotal,
+    currentUser: selectCurrentUser,
+});
+
+
+const mapDispatchToProps = dispatch => ({
+    redirectToCheckoutPage: current_state => dispatch(redirectToCheckout(current_state)),
+})
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Checkout));

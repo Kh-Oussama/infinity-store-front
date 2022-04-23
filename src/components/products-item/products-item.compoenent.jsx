@@ -33,29 +33,29 @@ const ProductsItem = ({imgUrl, name, newPrice, oldPrice, promo, product,addItem,
 
         <>
             <ProductPopup showModal={modal} product={product} toggleModal={toggleModal}/>
-            <div className="products-item" >
+            <div className="products-item" onClick={toggleModal}>
                 {
                     promo
                         ? <div className="percent"> {promo}</div>
                         : null
                 }
 
-                <div className="imgBlock" onClick={toggleModal}>
+                <div className="imgBlock" >
                     <img src={`http://localhost:8000/${imgUrl}`} alt=""/>
                 </div>
                 <div className="detailsBlock" >
-                    <div className="priceBlock" onClick={toggleModal}>
+                    <div className="priceBlock">
                         <div className="newPrice">{newPrice} Da</div>
                         <div className="oldPrice">{oldPrice ? oldPrice : null} Da</div>
 
                     </div>
-                    <div className="productName" onClick={toggleModal}>
+                    <div className="productName">
                         {name}
                     </div>
                     <div className="action">
-                        <button onClick={ () => addItem(item) } >
-                            <span className={"text"}>Add</span>
-                            <span className={"add"}>+</span>
+                        <button >
+                                <span className={"text"}>view</span>
+                            <span className={"add"}></span>
                         </button>
                     </div>
                 </div>

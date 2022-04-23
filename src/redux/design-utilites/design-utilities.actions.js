@@ -15,6 +15,11 @@ export const toggleShopCard = current_state => ({
    payload: current_state,
 });
 
+export const redirectToCheckout = current_state => ({
+   type: DesignActionTypes.REDIRECT_TO_CHECKOUT,
+   payload: current_state,
+});
+
 
 
 

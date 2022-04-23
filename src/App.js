@@ -29,7 +29,8 @@ const App = ({
                  currentUser,
                  checkLoading,
                  checkUserSession,
-                 logOutLoading
+                 logOutLoading,
+
              }) => {
 
     useEffect(() => {
@@ -39,6 +40,8 @@ const App = ({
     useEffect(() => {
         checkUserSession()
     }, [checkUserSession]);
+
+
 
 
     if (loading || checkLoading || logOutLoading) return <EyeLoader/>;
@@ -67,7 +70,7 @@ const App = ({
                             <Route exact path="/auth" component={AuthPage}/>
                             <Route exact path="/reset-password/:email/:token" component={ResetPasswordPage}/>
                             <Route path="/:group?" component={Homepage}/>
-                            <Redirect to="/:group?s"/>
+                            <Redirect to="/:group?"/>
                         </Switch>
                     )
             }
@@ -91,5 +94,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
-
 

@@ -5,7 +5,7 @@ import {createStructuredSelector} from "reselect";
 
 //components
 import DropdownButton from "../utils/dropdown-button/dropdown-button.component";
-import AuthPopup from "../auth-popup/product-popup-component";
+import AuthPopup from "../auth-popup/auth-popup-component";
 import {NavLink} from "./navLink.component";
 
 //redux utils

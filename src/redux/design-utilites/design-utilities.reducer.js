@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     current_auth_component: 'sign-in',
     auth_component_hidden: false,
     shop_card_displayed: false,
+    redirectToCheckout: false,
 };
 
 const designUtilitiesReducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +27,12 @@ const designUtilitiesReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 shop_card_displayed: action.payload,
+            }
+
+            case DesignActionTypes.REDIRECT_TO_CHECKOUT:
+            return {
+                ...state,
+                redirectToCheckout: action.payload,
             }
 
 

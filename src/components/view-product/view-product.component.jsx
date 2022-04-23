@@ -19,6 +19,8 @@ const ViewProduct = ({ product,  addItem }) => {
     const [isPhone, setIsPhone] = useState(window.innerWidth > 600);
     const [selectedSize, setSelectedSize] = useState(0);
     const [selectedColor, setSelectedColor] = useState(0);
+    const [selectedSizeError, setSelectedSizeError] = useState(false);
+    const [selectedColorError, setSelectedColorError] = useState(false);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [selectedItem, setSelectedItem] = useState(0);
 
@@ -29,6 +31,24 @@ const ViewProduct = ({ product,  addItem }) => {
         );
     }
 
+    const addItemToShoppingCard = item => {
+
+        if (product.colors.length > 0  && !selectedColor) {
+            return setSelectedColorError(true);
+        }
+        if (product.product_size  && !selectedSize) {
+            return setSelectedSizeError(true);
+        }
+
+        if (selectedColor && selectedSize)
+         return addItem({...item, color: selectedColor, size: selectedSize});
+
+         if (selectedColor)  return addItem({...item, color: selectedColor});
+        if (selectedSize)  return addItem({...item, size: selectedSize});
+
+            addItem(item);
+
+    }
     return (
         <>
             <div className="view-product">
@@ -144,7 +164,10 @@ const ViewProduct = ({ product,  addItem }) => {
                                 <div className="detail-sizes-block-items" >
                                     {
                                         product.colors.map(item => (
-                                            <div className={`category-item item color  ${item.name}`} onClick={() => setSelectedColor(item)}>
+                                            <div className={`category-item item color  ${item.name}`} onClick={() => {
+                                               setSelectedColorError(false);
+                                                setSelectedColor(item);
+                                            }}>
                                                 {
                                                    selectedColor.id === item.id &&
                                                     <i className="fa-solid fa-check-double"/>
@@ -153,6 +176,18 @@ const ViewProduct = ({ product,  addItem }) => {
                                         ))
                                     }
                                 </div>
+                                {
+                                    selectedColorError
+                                    &&
+                                <div className="errors-block">
+
+                                        <span className={"input-validation-errors"}>
+                                     <i className="fa-solid fa-triangle-exclamation"/>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                     </span>
+
+                                </div>
+                                }
                             </div>
                         }
 
@@ -163,23 +198,41 @@ const ViewProduct = ({ product,  addItem }) => {
                                 <div className="detail-sizes-block-items" >
                                     {
                                         product.product_size.details.map(item => (
-                                            <div className={`category-item item  ${selectedSize.id === item.id ? 'active' : null }`} onClick={() => setSelectedSize(item)}>{item.name}</div>
+                                            <div className={`category-item item  ${selectedSize.id === item.id ? 'active' : null }`} onClick={() => {
+                                                setSelectedSizeError(false);
+                                                setSelectedSize(item)
+                                            }}>{item.name}</div>
                                         ))
                                     }
                                 </div>
+                                {
+                                    selectedSizeError
+                                    &&
+                                <div className="errors-block">
+
+                                        <span className={"input-validation-errors"}>
+                               <i className="fa-solid fa-triangle-exclamation"/>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                </span>
+
+                                </div>
+                                }
                             </div>
                         }
 
 
                         {/*<div className="divider"/>*/}
                         <div className="detail-action">
-                            <div className="addButton" onClick={() =>  addItem(product)}>
+
+                            <div className="addButton" onClick={() =>  addItemToShoppingCard(product)}>
                                 Add to Shopping cart
                             </div>
                             <div className="qnt">
                                 <span>{product.quantity}</span> pieces available
                             </div>
                         </div>
+
+
                         <div className="divider" />
                         <div className="detail-categories">
                             <div className="category">

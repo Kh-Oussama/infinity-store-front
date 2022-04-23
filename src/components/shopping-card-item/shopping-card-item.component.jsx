@@ -19,7 +19,7 @@ const ShoppingCardItem = ({removeItem, item, clearItem, addItem}) => {
                     </div>
                 </div>
                 <div className="centerBlock">
-                    <img src="/images/products/Apples.jpg" alt=""/>
+                    <img src={`http://localhost:8000/${item.images[0].path}`} alt=""/>
                     <div className="details">
                         <div className="name">
                             {item.name}
@@ -29,9 +29,20 @@ const ShoppingCardItem = ({removeItem, item, clearItem, addItem}) => {
                         </div>
 
                         <div className="qnt">
-                            <span>{item.quantity}</span>
+                            <div className="detail-sizes-block" >
+                                <div className="detail-sizes-block-items" >
+                                    <div className={`category-item item`}>
+                                        {item.size?.name}
+                                    </div>
+                                </div>
+                            </div>
                             <div className={"iconContainer"}><CloseIcon/></div>
-                            <span>1lb</span>
+                            <div className="detail-sizes-block" >
+                                <div className="detail-sizes-block-items" >
+                                    <div className={`category-item item color-cart  ${item.color?.name}`} />
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

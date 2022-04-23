@@ -106,6 +106,7 @@
           & .item {
             padding: 1rem 2rem;
             cursor: pointer;
+            text-transform: uppercase;
 
 
           }
@@ -143,6 +144,7 @@
           border-radius: .5rem;
           font-size: 1.6rem;
           text-transform: capitalize;
+          cursor: pointer;
 
           @media only screen and (max-width: 992px){
             flex: 0 !important;
@@ -299,6 +301,7 @@
     font-size: 1.3rem;
     font-weight: 500;
     border-radius: .5rem;
+    text-transform: uppercase;
   }
 
   //customize sema,tic ui
@@ -339,4 +342,16 @@
 .color {
   height: 4rem;
   width: 5rem;
+}
+
+.color-cart {
+  height: 3rem;
+  width: 4rem;
+}
+
+.errors-block {
+  padding: 1rem 0;
+  i {
+    margin-right: .7rem;
+  }
 }
