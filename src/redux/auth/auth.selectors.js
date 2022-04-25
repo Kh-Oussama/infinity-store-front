@@ -178,3 +178,23 @@ export const selectRedirectToFactorChallenge= createSelector(
     [selectAuth],
     auth => auth.redirectToTwoFactorChallenge
 );
+
+export const selectProfileInformationErrors = createSelector(
+    [selectAuth],
+    auth => auth.updateProfileInformationError
+);
+
+
+//update password
+export const selectUpdatePasswordError = createSelector(
+    [selectAuth],
+    auth => auth.updatePasswordErrors
+);
+export const selectUpdatePasswordLoading = createSelector(
+    [selectAuth],
+    auth => auth.updatePasswordLoading,
+);
+export const selectUpdatePasswordStatus = createSelector(
+    [selectAuth],
+    auth => auth.updatePasswordStatus,
+);

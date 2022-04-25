@@ -117,7 +117,7 @@ const UserProfile = ({updateUser, currentUser}) => {
     //Function to submit credentials information
     const handleCredentialsSubmit = event => {
         event.preventDefault();
-        console.log(title+' '+country+' '+city+' '+state+' '+zip+' '+streetAddress);
+        // console.log(title+' '+country+' '+city+' '+state+' '+zip+' '+streetAddress);
         //
         // setFirstNameError(null);
         // setLastNameError(null);
@@ -132,7 +132,7 @@ const UserProfile = ({updateUser, currentUser}) => {
         formData.append('photo', image_path);
         formData.append('_method', 'PATCH');
 
-        // updateUser({id: currentUser.id, formData});
+        updateUser({id: currentUser.id, formData});
 
     }
 
