@@ -159,25 +159,6 @@ export const cancelTwoFactorChallenge = () => ({
 });
 
 
-/////////////////////////
-
-export const updateProfileInformationStart = cred => ({
-    type: AuthActionTypes.UPDATE_PROFILE_INFORMATION_START, payload: cred,
-});
-
-export const updateProfileInformationSuccess = () => ({
-    type: AuthActionTypes.UPDATE_PROFILE_INFORMATION_SUCCESS,
-});
-
-export const updateProfileInformationFailure = error => ({
-    type: AuthActionTypes.UPDATE_PROFILE_INFORMATION_FAILURE, payload: error,
-});
-/////////////////////////
-
-
-/////////////////////////
-
-/////////////////////
 
 /////////////////////////
 export const deleteAccountStart = cred => ({
@@ -204,3 +185,32 @@ export const twoFactorChallengeSuccess = () => ({
 export const twoFactorChallengeFailure = error => ({
     type: AuthActionTypes.TWO_FACTOR_CHALLENGE_FAILURE, payload: error,
 });
+
+
+/////////////////////////
+
+export const updateProfileInformationStart = cred => ({
+    type: AuthActionTypes.UPDATE_PROFILE_INFORMATION_START, payload: cred,
+});
+
+export const updateProfileInformationSuccess = () => ({
+    type: AuthActionTypes.UPDATE_PROFILE_INFORMATION_SUCCESS,
+});
+
+export const updateProfileInformationFailure = error => ({
+    type: AuthActionTypes.UPDATE_PROFILE_INFORMATION_FAILURE, payload: error,
+});
+/////////////////////////
+
+export const updateUserPasswordStart = cred => ({
+    type: AuthActionTypes.UPDATE_USER_PASSWORD_START, payload: cred,
+});
+
+export const updateUserPasswordSuccess = () => ({
+    type: AuthActionTypes.UPDATE_USER_PASSWORD_SUCCESS,
+});
+
+export const updateUserPasswordFailure = errors => ({
+    type: AuthActionTypes.UPDATE_USER_PASSWORD_FAILURE, payload: errors,
+});
+

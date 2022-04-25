@@ -2,6 +2,7 @@ import AuthActionTypes from "./auth.types";
 import {all, call, put, takeLatest} from 'redux-saga/effects';
 import Axios from "axios";
 import {
+    checkUserSession,
     confirmPasswordFailure,
     confirmPasswordSuccess,
     deleteAccountFailure,
@@ -30,6 +31,9 @@ import {
     signUpSuccess,
     twoFactorChallengeFailure,
     twoFactorChallengeSuccess,
+    updateProfileInformationFailure,
+    updateProfileInformationSuccess, updateUserPasswordFailure,
+    updateUserPasswordSuccess,
 } from "./auth.actions";
 
 //Sign-up
@@ -199,13 +203,30 @@ export function* deleteAccount() {
     }
 }
 
-export function* updateProfileInformation({payload: {name, email, password, password_confirmation}}) {
-    const data = {name, email, password, password_confirmation};
+export function* updateProfileInformation({payload: {id,formData}}) {
+
+// Display the key/value pairs
+    for (var pair of formData.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]);
+    }
+    // try {
+    //     yield Axios.post(`http://localhost:8000/api/auth/user-profile-information/${id}`, formData,
+    //         { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+    //     );
+    //     yield put(updateProfileInformationSuccess());
+    //     yield put(checkUserSession());
+    // } catch (error) {
+    //     yield put(updateProfileInformationFailure(error.response.data));
+    // }
+}
+
+export function* updateUserPassword({payload: {current_password, password, password_confirmation}}) {
+    const data = {current_password, password, password_confirmation};
     try {
-        const resp = yield Axios.put("http://localhost:8000/user/profile-information", data);
-        yield isUserAuthenticated();
+        yield Axios.put("http://localhost:8000/user/password", data);
+        yield put(updateUserPasswordSuccess());
     } catch (error) {
-        yield put(signUpFailure(error.response.data));
+        yield put(updateUserPasswordFailure(error.response.data));
     }
 }
 
@@ -275,6 +296,11 @@ export function* onUpdateProfileInformation() {
     yield takeLatest(AuthActionTypes.UPDATE_PROFILE_INFORMATION_START, updateProfileInformation)
 }
 
+export function* onUpdateUserPassword() {
+    yield takeLatest(AuthActionTypes.UPDATE_USER_PASSWORD_START, updateUserPassword)
+}
+
+
 export function* onDeleteAccount() {
     yield takeLatest(AuthActionTypes.DELETE_ACCOUNT_START, deleteAccount)
 }
@@ -307,6 +333,9 @@ export function* authSagas() {
         //two factor challenge
         call(onTwoFactorChallenge),
 
+        call(onUpdateProfileInformation),
+
+        call(onUpdateUserPassword),
         // call(onUpdateProfileInformation),
         // call(onDeleteAccount),
 

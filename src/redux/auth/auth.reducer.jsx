@@ -66,6 +66,14 @@ const INITIAL_STATE = {
     twoFactorChallengeLoading: false,
     twoFactorChallengeError: null,
     twoFactorChallengeStatus: false,
+
+    //update profile information
+    updateProfileInformationError: null,
+
+    //update password
+    updatePasswordLoading: false,
+    updatePasswordErrors: null,
+    updatePasswordStatus: false,
 };
 const authReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {

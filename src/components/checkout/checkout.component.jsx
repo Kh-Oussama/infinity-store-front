@@ -8,6 +8,7 @@ import {selectCurrentUser} from "../../redux/auth/auth.selectors";
 import {redirectToCheckout, toggleAuthComponent} from "../../redux/design-utilites/design-utilities.actions";
 import {connect} from "react-redux";
 import {addItem, clearItemFromCart, removeItem} from "../../redux/cart/cart.actions";
+import CheckoutTable from "./checkout-table.component";
 
 const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem,  clearItem, addItem}) => {
 
@@ -23,46 +24,7 @@ const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem,  clearI
                     <p>Currently you have 2 item(s) in your cart.</p>
                 </div>
 
-                <div className="product-table">
-                    <table>
-                        <tr className="th">
-                            <td>Product</td>
-                            <td>Description</td>
-                            <td>Quantity</td>
-                            <td>Price</td>
-                            <td>Remove</td>
-                        </tr>
-
-                        {
-                            cartItems.map((item, index) => {
-                            return (
-                                <tr key={index} className="cart-item">
-                                    <td>
-                                        <img src={`http://localhost:8000/${item.images[0].path}`} alt={item.description} />
-                                    </td>
-                                    <td>
-                                        <p>{item.name}</p>
-                                    </td>
-                                    <td>
-                                        <QuantityButton quantity={item.quantity} add={() => addItem(item)} minus={() => removeItem(item)} />
-                                    </td>
-                                    <td>
-                                        <p>{item.price} DA</p>
-                                    </td>
-                                    <td>
-                                        <RemoveButton remove={() => clearItem(item)}/>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-
-                    </table>
-                </div>
-
-                <div className="total-ct">
-                    <p>Total price</p>
-                    <p>{total} DA</p>
-                </div>
+                <CheckoutTable data={cartItems} addItem={addItem} removeItem={removeItem} clearItem={clearItem} total={total}/>
 
                 <div className="actions">
                     <Link className="action" to="/">

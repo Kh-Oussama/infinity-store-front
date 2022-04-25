@@ -10,26 +10,21 @@
     color: var(--color-white);
     border-radius: 3px;
     cursor: pointer;
-    transition: all .1s ease-in-out ;
 
-    &:hover {
-        background-color: #fe5678;
-        border-color: #fe496d;
-    }
-    &:active {
-        box-shadow: 0 0 0 0.25rem rgba(221, 111, 134,.5);
-    }
+    font-weight: 500;
 
-    & span{
-        font-size: 1.4rem;
-        font-weight: 500;
 
-        &:nth-child(odd){
-            margin: 0 4px 0 0;
-        }
+}
 
-        &:nth-child(even){
-            margin: 0 0 0 4px;
-        }
+.ui.celled.table tr td:first-child, .ui.celled.table tr th:first-child {
+    text-align: center;
+}
+
+.p-details {
+    display: flex;
+
+    .color-cart {
+        height: 3.5rem;
+
     }
 }
