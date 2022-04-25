@@ -8,6 +8,7 @@ import BottomNavigationBar from "./../../components/bottom-navigation/bottom-nav
 import ViewProduct from "./../view-product/view-product.component";
 import ProductsItem from "./../products-item/products-item.compoenent";
 import { useHistory } from "react-router-dom";
+import Spinner from "../spinner/spinner.components";
 
 const ViewProductPage = ({ products }) => {
     let { slug } = useParams();
