@@ -54,9 +54,11 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems }) => {
     }
 
     useEffect(() => {
-        console.log('Cart is changes');
+        console.log(product);
+        console.log(cartItems.find(item => item.id === product.id));
         setCurrenItem(cartItems.find(item => item.id === product.id));
     }, [cartItems]);
+    
     return (
         <>
             <div className="view-product">
