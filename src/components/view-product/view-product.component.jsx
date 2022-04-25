@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Thumbs } from 'swiper';
 import 'swiper/swiper-bundle.css';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
-import {Link, withRouter} from "react-router-dom";
+import { Link, withRouter, useHistory } from "react-router-dom";
 import 'semantic-ui-css/components/table.min.css';
 import 'semantic-ui-css/components/label.min.css';
 import DetailsTable from "./details-table.component";
-import {createStructuredSelector} from "reselect";
-import {addItem} from "../../redux/cart/cart.actions";
-import {connect} from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { addItem, removeItem } from "../../redux/cart/cart.actions";
+import { connect } from "react-redux";
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 
 SwiperCore.use([Navigation, Pagination, Thumbs]);
 
-const ViewProduct = ({ product,  addItem }) => {
+const ViewProduct = ({ product, addItem, removeItem, cartItems }) => {
+    let history = useHistory();
     const [isPhone, setIsPhone] = useState(window.innerWidth > 600);
     const [selectedSize, setSelectedSize] = useState(0);
     const [selectedColor, setSelectedColor] = useState(0);
@@ -23,6 +25,7 @@ const ViewProduct = ({ product,  addItem }) => {
     const [selectedColorError, setSelectedColorError] = useState(false);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [selectedItem, setSelectedItem] = useState(0);
+    const [currentItem, setCurrenItem] = useState(null);
 
     const thumbs = [];
     for (let i = 0; i < 3; i += 1) {
@@ -33,22 +36,27 @@ const ViewProduct = ({ product,  addItem }) => {
 
     const addItemToShoppingCard = item => {
 
-        if (product.colors.length > 0  && !selectedColor) {
+        if (product.colors.length > 0 && !selectedColor) {
             return setSelectedColorError(true);
         }
-        if (product.product_size  && !selectedSize) {
+        if (product.product_size && !selectedSize) {
             return setSelectedSizeError(true);
         }
 
         if (selectedColor && selectedSize)
-         return addItem({...item, color: selectedColor, size: selectedSize});
+            return addItem({ ...item, color: selectedColor, size: selectedSize });
 
-         if (selectedColor)  return addItem({...item, color: selectedColor});
-        if (selectedSize)  return addItem({...item, size: selectedSize});
+        if (selectedColor) return addItem({ ...item, color: selectedColor });
+        if (selectedSize) return addItem({ ...item, size: selectedSize });
 
-            addItem(item);
+        addItem(item);
 
     }
+
+    useEffect(() => {
+        console.log('Cart is changes');
+        setCurrenItem(cartItems.find(item => item.id === product.id));
+    }, [cartItems]);
     return (
         <>
             <div className="view-product">
@@ -132,7 +140,7 @@ const ViewProduct = ({ product,  addItem }) => {
 
                     </div>
                     <div className="detail">
-                        <h1 className="detail-title">
+                        <h1 className="detail-title" onClick={() => history.push(`/products/${product.slug}`)}>
                             {product.name}
                         </h1>
                         <p className="detail-subtitle">
@@ -158,19 +166,19 @@ const ViewProduct = ({ product,  addItem }) => {
 
 
                         {
-                            product.colors.length > 0 &&
+                            product.colors?.length > 0 &&
                             <div className="detail-sizes-block" >
                                 <h4 className="detail-sizes-block-attribute" >Colors</h4>
                                 <div className="detail-sizes-block-items" >
                                     {
                                         product.colors.map(item => (
                                             <div className={`category-item item color  ${item.name}`} onClick={() => {
-                                               setSelectedColorError(false);
+                                                setSelectedColorError(false);
                                                 setSelectedColor(item);
                                             }}>
                                                 {
-                                                   selectedColor.id === item.id &&
-                                                    <i className="fa-solid fa-check-double"/>
+                                                    selectedColor.id === item.id &&
+                                                    <i className="fa-solid fa-check-double" />
                                                 }
                                             </div>
                                         ))
@@ -179,14 +187,14 @@ const ViewProduct = ({ product,  addItem }) => {
                                 {
                                     selectedColorError
                                     &&
-                                <div className="errors-block">
+                                    <div className="errors-block">
 
                                         <span className={"input-validation-errors"}>
-                                     <i className="fa-solid fa-triangle-exclamation"/>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                     </span>
+                                            <i className="fa-solid fa-triangle-exclamation" />
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        </span>
 
-                                </div>
+                                    </div>
                                 }
                             </div>
                         }
@@ -198,7 +206,7 @@ const ViewProduct = ({ product,  addItem }) => {
                                 <div className="detail-sizes-block-items" >
                                     {
                                         product.product_size.details.map(item => (
-                                            <div className={`category-item item  ${selectedSize.id === item.id ? 'active' : null }`} onClick={() => {
+                                            <div className={`category-item item  ${selectedSize.id === item.id ? 'active' : null}`} onClick={() => {
                                                 setSelectedSizeError(false);
                                                 setSelectedSize(item)
                                             }}>{item.name}</div>
@@ -208,14 +216,14 @@ const ViewProduct = ({ product,  addItem }) => {
                                 {
                                     selectedSizeError
                                     &&
-                                <div className="errors-block">
+                                    <div className="errors-block">
 
                                         <span className={"input-validation-errors"}>
-                               <i className="fa-solid fa-triangle-exclamation"/>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </span>
+                                            <i className="fa-solid fa-triangle-exclamation" />
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        </span>
 
-                                </div>
+                                    </div>
                                 }
                             </div>
                         }
@@ -223,10 +231,18 @@ const ViewProduct = ({ product,  addItem }) => {
 
                         {/*<div className="divider"/>*/}
                         <div className="detail-action">
+                            {/* Update quantity after click on add to cart button */}
+                            {currentItem ? 
+                            <div className='action update-qty'>
+                                <span onClick={() => removeItem(currentItem)} className='fa-solid fa-minus'></span>
+                                <span>{currentItem.quantity}</span>
+                                <span onClick={() => addItemToShoppingCard(product)} className='fa-solid fa-plus'></span>
+                            </div> :
 
-                            <div className="addButton" onClick={() =>  addItemToShoppingCard(product)}>
+                            <div className="action addButton" onClick={() => addItemToShoppingCard(product)}>
                                 Add to Shopping cart
-                            </div>
+                            </div>}
+
                             <div className="qnt">
                                 <span>{product.quantity}</span> pieces available
                             </div>
@@ -274,9 +290,12 @@ const ViewProduct = ({ product,  addItem }) => {
     )
 }
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+    cartItems: selectCartItems,
+});
 const mapDispatchToProps = dispatch => ({
-    addItem: item => dispatch(addItem(item))
+    addItem: item => dispatch(addItem(item)),
+    removeItem: item => dispatch(removeItem(item)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ViewProduct));
