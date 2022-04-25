@@ -3,18 +3,24 @@ import CheckBox from "../input-group/checkbox.component";
 import InputGroup from "../input-group/input-group.component";
 import TextAreaGroup from "../input-group/text-area-group.component";
 import algeria from "./../../images/algeria.png";
+import {createStructuredSelector} from "reselect";
+import {selectCurrentUser} from "../../redux/auth/auth.selectors";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {updateProfileInformationStart} from "../../redux/auth/auth.actions";
 
-const UserProfile = () => {
+const UserProfile = ({updateUser, currentUser}) => {
     //To select "Billing or shipping" in popup
     const [selectedCheckBox, setSelectedCheckBox] = useState(0);
 
     //Credentials of user
     const [credentials, setCredentials] = useState({
         name: '',
-        bio: '',
+        lastName: '',
+        email: '',
         phoneNumber: '0600000000'
     });
-    const { name, bio, phoneNumber } = credentials;
+    const { name, lastName, email, phoneNumber } = credentials;
 
     // Address informations
     const [addressInfo, setAddressInfo] = useState({
@@ -22,6 +28,8 @@ const UserProfile = () => {
     });
     const {title, country, city, state, zip, streetAddress} = addressInfo;
 
+    const [image_path, setImage_path] = useState("");
+    const [image, setImage] = useState("");
 
     //Function to show image input
     const showInput = () => {
@@ -89,6 +97,45 @@ const UserProfile = () => {
         }
     }, []);
 
+    //Function to select photo
+    const handlePhotoChange = async event => {
+        if (event.target.files && event.target.files[0]) {
+            let rd = new FileReader();
+            rd.onload = (e) => {
+                setImage(e.target.result);
+            };
+            rd.readAsDataURL(event.target.files[0]);
+        }
+        try {
+            const file = event.target.files[0];
+            setImage_path(file);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    //Function to submit credentials information
+    const handleCredentialsSubmit = event => {
+        event.preventDefault();
+        console.log(title+' '+country+' '+city+' '+state+' '+zip+' '+streetAddress);
+        //
+        // setFirstNameError(null);
+        // setLastNameError(null);
+        // setEmailError(null);
+        // setPhotoError(null);
+
+        const formData = new FormData();
+        formData.append('firstName', name);
+        formData.append('lastName', lastName);
+        formData.append('email', email);
+        formData.append('address',title+' '+country+' '+city+' '+state+' '+zip+' '+streetAddress );
+        formData.append('photo', image_path);
+        formData.append('_method', 'PATCH');
+
+        // updateUser({id: currentUser.id, formData});
+
+    }
+
     return (
         <div className="user-profile">
             <div className="profile-update">
@@ -99,105 +146,132 @@ const UserProfile = () => {
                                 type="file"
                                 accept="image/*"
                                 name="image"
+                                onChange={handlePhotoChange}
                             />
-                            <span><i className="fa-solid fa-cloud-arrow-up"></i></span>
+                            {
+                                image
+                                    ? <div className="profile-img">
+                                        <img src={image} alt="User Photo" />
+                                    </div>
+                                    : currentUser.photo_path
+                                        ?<div className="profile-img">
+                                        <img src={`http://localhost:8000/${currentUser.photo_path}`} alt="User Photo"/>
+                                        </div>
+                                            : null
+                            }
+                            <span><i className="fa-solid fa-cloud-arrow-up"/></span>
                             <p><span>Upload an image</span> or drag and drop PNG, JPG</p>
                         </div>
                     </div>
 
-                    <InputGroup label="Name" name="name" type="text" value={name} onChange={handleCrendentialsChange} />
+                    <InputGroup label="First name" name="name" type="text" value={name} onChange={handleCrendentialsChange} />
+                    <InputGroup label="Last name" name="lastName" type="text" value={lastName} onChange={handleCrendentialsChange} />
+                    <InputGroup label="Email" name="email" type="text" value={email} onChange={handleCrendentialsChange} />
 
-                    <TextAreaGroup label="Bio" name="bio" value={bio} onChange={handleCrendentialsChange} />
 
-                    <div className="submit-ct">
-                        <input type="submit" value="Save" />
-                    </div>
                 </form>
-            </div>
-
-            <div className="update-number">
-                <div className="content">
-                    <p>Contact Number</p>
-                    <button onClick={showUpdatePopup}><i className="fa-solid fa-plus"></i> Update</button>
-                </div>
-
-                <div className="info">
-                    <div className="number">
-                        <div>
-                            <img src={algeria} alt="" />
-                        </div>
-                        <input type="text" value={phoneNumber} disabled />
-                    </div>
-                </div>
-
-                <div className="popup">
+                <div className="update-number">
                     <div className="content">
-                        <p>Update Contact Number</p>
+                        <p>Contact Number</p>
+                        <button onClick={showUpdatePopup}>
+                            <i className="fa-solid fa-plus"/>
+                            Update
+                        </button>
+                    </div>
 
-                        <form>
+                    <div className="info">
+                        <div className="number">
                             <div>
-                                <div>
-                                    <img src={algeria} alt="" />
-                                </div>
-                                <input type="text" value={phoneNumber} name="phoneNumber" onChange={handleCrendentialsChange} />
+                                <img src={algeria} alt="" />
                             </div>
-                            <input type="submit" value="update contact" />
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div className="address">
-                <div className="content">
-                    <p>Addresses</p>
-                    <button onClick={showAddressPopup}><i className="fa-solid fa-plus"></i> Add</button>
-                </div>
-
-                <div className="address-ct">
-                    <div className="address-item">
-                        <h3>Billing</h3>
-                        <p>2231 Kidd Avenue, AK, Kipnuk, 99614, United States</p>
+                            <input type="text" value={phoneNumber} disabled />
+                        </div>
                     </div>
 
-                    <div className="address-item">
-                        <h3>Shipping</h3>
-                        <p>2231 Kidd Avenue, AK, Kipnuk, 99614, United States</p>
+                    <div className="popup">
+                        <div className="content">
+                            <p>Update Contact Number</p>
+
+                            <form>
+                                <div>
+                                    <div>
+                                        <img src={algeria} alt="" />
+                                    </div>
+                                    <input type="text" value={phoneNumber} name="phoneNumber" onChange={handleCrendentialsChange} />
+                                </div>
+                                <input type="submit" value="update contact" onClick={event => {
+                                    event.preventDefault();
+                                    closeUpdatePopup();
+                                }}/>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
-                <div className="popup">
+                <div className="address">
                     <div className="content">
-                        <p>Add new address</p>
-                        <form>
-                            <div className="checkbox-ct">
-                                <p>Type</p>
-                                <div>
-                                    <CheckBox label="Billing" isChecked={selectedCheckBox === 0} onClick={() => setSelectedCheckBox(0)} />
-                                    <CheckBox label="Shipping" isChecked={selectedCheckBox === 1} onClick={() => setSelectedCheckBox(1)}/>
-                                </div>
-                            </div>
-
-                            <InputGroup label="Title" type="text" name="title" value={title} onChange={handleAddressInformationChange} />
-
-                            <div className="row">
-                                <InputGroup label="Country" type="text" name="country" value={country} onChange={handleAddressInformationChange} />
-                                <InputGroup label="City" type="text" name="city" value={city} onChange={handleAddressInformationChange} />
-                            </div>
-
-                            <div className="row">
-                                <InputGroup label="State" type="text" name="state" value={state} onChange={handleAddressInformationChange} />
-                                <InputGroup label="Zip" type="text" name="zip" value={zip} onChange={handleAddressInformationChange} />
-                            </div>
-
-                            <TextAreaGroup label="Street Address" name="address" value={streetAddress} onChange={handleAddressInformationChange} />
-
-                            <input type="submit" value="Update address" />
-                        </form>
+                        <p>Addresses</p>
+                        <button onClick={showAddressPopup}><i className="fa-solid fa-plus"></i> Add</button>
                     </div>
+
+                    <div className="address-ct">
+                        <div className="address-item">
+                            <h3>Billing</h3>
+                            <p>2231 Kidd Avenue, AK, Kipnuk, 99614, United States</p>
+                        </div>
+                    </div>
+
+                    <div className="popup">
+                        <div className="content">
+                            <p>Add new address</p>
+                            <form>
+                                <div className="checkbox-ct">
+                                    <p>Type</p>
+                                    <div>
+                                        <CheckBox label="Billing" isChecked={selectedCheckBox === 0} onClick={() => setSelectedCheckBox(0)} />
+                                        <CheckBox label="Shipping" isChecked={selectedCheckBox === 1} onClick={() => setSelectedCheckBox(1)}/>
+                                    </div>
+                                </div>
+
+                                <InputGroup label="Title" type="text" name="title" value={title} onChange={handleAddressInformationChange} />
+
+                                <div className="row">
+                                    <InputGroup label="Country" type="text" name="country" value={country} onChange={handleAddressInformationChange} />
+                                    <InputGroup label="City" type="text" name="city" value={city} onChange={handleAddressInformationChange} />
+                                </div>
+
+                                <div className="row">
+                                    <InputGroup label="State" type="text" name="state" value={state} onChange={handleAddressInformationChange} />
+                                    <InputGroup label="Zip" type="text" name="zip" value={zip} onChange={handleAddressInformationChange} />
+                                </div>
+
+                                <TextAreaGroup label="Street Address" name="address" value={streetAddress} onChange={handleAddressInformationChange} />
+
+                                <input type="submit" value="Update address" onClick={event => {
+                                    event.preventDefault();
+                                }} />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="submit-ct">
+                    <input type="submit" value="Save" onClick={handleCredentialsSubmit}/>
                 </div>
             </div>
         </div>
     );
 }
 
-export default UserProfile;
+
+
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+});
+
+const mapDispatchToProps = dispatch => ({
+    updateUser: user => dispatch(updateProfileInformationStart(user)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserProfile));
+
