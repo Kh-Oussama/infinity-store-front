@@ -17,6 +17,7 @@ import ForgetPasswordPage from "./pages/Auth/forget-password/forget-password.pag
 import ResetPasswordPage from "./pages/Auth/reset-password/reset-password.page";
 import AuthPage from "./pages/Auth/auth-page/auth-page.component";
 
+const ViewProductPage = lazy(() => import("./components/view-product-page/view-product-page.component"));
 const Homepage = lazy(() => import("./pages/home-page/home-page.page"));
 
 
@@ -55,6 +56,7 @@ const App = ({
                             <Route exact path="/shops/:shop" component={ViewShopPage}/>
                             <Route exact path="/contact" component={ContactPage}/>
                             <Route exact path="/help" component={FaqPage}/>
+                            <Route path="/products/:slug" component={ViewProductPage} />
                             <Route path="/dashboard" component={Dashboard}/>
                             <Route path="/:group?" component={Homepage}/>
                             <Redirect to="/:group?"/>
@@ -66,6 +68,7 @@ const App = ({
                             <Route exact path="/shops/:shop" component={ViewShopPage}/>
                             <Route exact path="/contact" component={ContactPage}/>
                             <Route exact path="/help" component={FaqPage}/>
+                            <Route path="/products/:slug" component={ViewProductPage} />
                             <Route exact path="/forget-password" component={ForgetPasswordPage}/>
                             <Route exact path="/auth" component={AuthPage}/>
                             <Route exact path="/reset-password/:email/:token" component={ResetPasswordPage}/>
