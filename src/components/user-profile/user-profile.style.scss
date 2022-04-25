@@ -101,6 +101,12 @@
                 border-radius: 6px;
                 padding: 1.5rem;
                 background-color: var(--color-grey-2);
+                border: 1px transparent solid;
+                cursor: pointer;
+
+                &.active{
+                    border: 1px var(--color-primary) solid;
+                }
 
                 & h3 {
                     font-size: 14px;
@@ -149,27 +155,8 @@
                     padding: 0 0 12px;
                 }
 
-                & form{
+                & > div{
                     width: 100%;
-
-                    & .checkbox-ct{
-                        width: 100%;
-                        margin: 0 0 16px;
-
-                        & p{
-                            font-size: 12px;
-                            font-weight: 600;
-                            color: var(--color-grey-dark-2);
-                            padding: 0 0 4px;
-                        }
-
-                        & > div{
-                            width: 100%;
-                            display: flex;
-                            justify-content: flex-start;
-                            align-items: center;
-                        }
-                    }
 
                     & .row{
                         width: 100%;
@@ -178,7 +165,7 @@
                         gap: 0 2rem;
                     }
 
-                    & input[type="submit"]{
+                    & input[type="button"]{
                         border: none;
                         outline: none;
                         display: inline-block;
@@ -306,7 +293,7 @@
                 text-align: center;
             }
 
-            & form {
+            & > div {
                 width: 100%;
                 border: 1px var(--color-grey-3) solid;
                 border-radius: 3px;
@@ -344,7 +331,7 @@
                     }
                 }
 
-                & input[type="submit"] {
+                & input[type="button"] {
                     background: none;
                     border: none;
                     outline: none;

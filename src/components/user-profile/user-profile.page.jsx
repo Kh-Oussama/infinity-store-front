@@ -3,15 +3,13 @@ import CheckBox from "../input-group/checkbox.component";
 import InputGroup from "../input-group/input-group.component";
 import TextAreaGroup from "../input-group/text-area-group.component";
 import algeria from "./../../images/algeria.png";
-import {createStructuredSelector} from "reselect";
-import {selectCurrentUser} from "../../redux/auth/auth.selectors";
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {updateProfileInformationStart} from "../../redux/auth/auth.actions";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../../redux/auth/auth.selectors";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { updateProfileInformationStart } from "../../redux/auth/auth.actions";
 
-const UserProfile = ({updateUser, currentUser}) => {
-    //To select "Billing or shipping" in popup
-    const [selectedCheckBox, setSelectedCheckBox] = useState(0);
+const UserProfile = ({ updateUser, currentUser }) => {
 
     //Credentials of user
     const [credentials, setCredentials] = useState({
@@ -24,9 +22,13 @@ const UserProfile = ({updateUser, currentUser}) => {
 
     // Address informations
     const [addressInfo, setAddressInfo] = useState({
-        title: '', country: '', city: '', state: '', zip: '', streetAddress: '',
+        title: '', country: '', city: '', state: '', zip: '', streetAddress: ''
     });
-    const {title, country, city, state, zip, streetAddress} = addressInfo;
+    const { title, country, city, state, zip, streetAddress } = addressInfo;
+
+    const [addresses, setAddresses] = useState([]);
+    const [selectedAddress, setSelectedAddress] = useState(0);
+
 
     const [image_path, setImage_path] = useState("");
     const [image, setImage] = useState("");
@@ -47,9 +49,9 @@ const UserProfile = ({updateUser, currentUser}) => {
 
     //Function to handle address info change
     const handleAddressInformationChange = e => {
-        const event = e.target;
+        let event = e.target;
         setAddressInfo({
-            ...credentials,
+            ...addressInfo,
             [event.name]: event.value,
         });
     }
@@ -59,7 +61,7 @@ const UserProfile = ({updateUser, currentUser}) => {
         let popup = document.querySelector('.user-profile .popup');
         popup.addEventListener('click', e => {
 
-            if (!e.target.closest('.popup .content')) {
+            if (!e.target.closest('.popup .content') || e.target.closest(".popup .content input[type='button']")) {
                 popup.classList.remove('active');
             }
         });
@@ -69,8 +71,7 @@ const UserProfile = ({updateUser, currentUser}) => {
     const closeAddressPopup = _ => {
         let popup = document.querySelector('.address .popup');
         popup.addEventListener('click', e => {
-
-            if (!e.target.closest('.popup .content')) {
+            if (!e.target.closest('.popup .content') || e.target.closest(".popup .content input[type='button']")) {
                 popup.classList.remove('active');
             }
         });
@@ -117,7 +118,8 @@ const UserProfile = ({updateUser, currentUser}) => {
     //Function to submit credentials information
     const handleCredentialsSubmit = event => {
         event.preventDefault();
-        // console.log(title+' '+country+' '+city+' '+state+' '+zip+' '+streetAddress);
+
+        //console.log(title+' '+country+' '+city+' '+state+' '+zip+' '+streetAddress);
         //
         // setFirstNameError(null);
         // setLastNameError(null);
@@ -128,11 +130,12 @@ const UserProfile = ({updateUser, currentUser}) => {
         formData.append('firstName', name);
         formData.append('lastName', lastName);
         formData.append('email', email);
-        formData.append('address',title+' '+country+' '+city+' '+state+' '+zip+' '+streetAddress );
+        //formData.append('address', title + ' ' + country + ' ' + city + ' ' + state + ' ' + zip + ' ' + streetAddress);
+        formData.append('address', addresses[selectedAddress]);
         formData.append('photo', image_path);
         formData.append('_method', 'PATCH');
 
-        updateUser({id: currentUser.id, formData});
+        updateUser({ id: currentUser.id, formData });
 
     }
 
@@ -154,12 +157,12 @@ const UserProfile = ({updateUser, currentUser}) => {
                                         <img src={image} alt="User Photo" />
                                     </div>
                                     : currentUser.photo_path
-                                        ?<div className="profile-img">
-                                        <img src={`http://localhost:8000/${currentUser.photo_path}`} alt="User Photo"/>
+                                        ? <div className="profile-img">
+                                            <img src={`http://localhost:8000/${currentUser.photo_path}`} alt="User Photo" />
                                         </div>
-                                            : null
+                                        : null
                             }
-                            <span><i className="fa-solid fa-cloud-arrow-up"/></span>
+                            <span><i className="fa-solid fa-cloud-arrow-up" /></span>
                             <p><span>Upload an image</span> or drag and drop PNG, JPG</p>
                         </div>
                     </div>
@@ -174,7 +177,7 @@ const UserProfile = ({updateUser, currentUser}) => {
                     <div className="content">
                         <p>Contact Number</p>
                         <button onClick={showUpdatePopup}>
-                            <i className="fa-solid fa-plus"/>
+                            <i className="fa-solid fa-plus" />
                             Update
                         </button>
                     </div>
@@ -192,18 +195,15 @@ const UserProfile = ({updateUser, currentUser}) => {
                         <div className="content">
                             <p>Update Contact Number</p>
 
-                            <form>
+                            <div>
                                 <div>
                                     <div>
                                         <img src={algeria} alt="" />
                                     </div>
                                     <input type="text" value={phoneNumber} name="phoneNumber" onChange={handleCrendentialsChange} />
                                 </div>
-                                <input type="submit" value="update contact" onClick={event => {
-                                    event.preventDefault();
-                                    closeUpdatePopup();
-                                }}/>
-                            </form>
+                                <input type="button" value="update contact" onClick={closeUpdatePopup} />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -215,24 +215,21 @@ const UserProfile = ({updateUser, currentUser}) => {
                     </div>
 
                     <div className="address-ct">
-                        <div className="address-item">
-                            <h3>Billing</h3>
-                            <p>2231 Kidd Avenue, AK, Kipnuk, 99614, United States</p>
-                        </div>
+                        {addresses.map((address, index) => {
+                            return (
+                                <div className={`address-item ${selectedAddress === index?'active':''}`} onClick={() => setSelectedAddress(index)}>
+                                    <h3>Address</h3>
+                                    <p>{address}</p>
+                                </div>
+                            );
+                        })}
+
                     </div>
 
                     <div className="popup">
                         <div className="content">
                             <p>Add new address</p>
-                            <form>
-                                <div className="checkbox-ct">
-                                    <p>Type</p>
-                                    <div>
-                                        <CheckBox label="Billing" isChecked={selectedCheckBox === 0} onClick={() => setSelectedCheckBox(0)} />
-                                        <CheckBox label="Shipping" isChecked={selectedCheckBox === 1} onClick={() => setSelectedCheckBox(1)}/>
-                                    </div>
-                                </div>
-
+                            <div>
                                 <InputGroup label="Title" type="text" name="title" value={title} onChange={handleAddressInformationChange} />
 
                                 <div className="row">
@@ -245,18 +242,20 @@ const UserProfile = ({updateUser, currentUser}) => {
                                     <InputGroup label="Zip" type="text" name="zip" value={zip} onChange={handleAddressInformationChange} />
                                 </div>
 
-                                <TextAreaGroup label="Street Address" name="address" value={streetAddress} onChange={handleAddressInformationChange} />
+                                <TextAreaGroup label="Street Address" name="streetAddress" value={streetAddress} onChange={handleAddressInformationChange} />
 
-                                <input type="submit" value="Update address" onClick={event => {
-                                    event.preventDefault();
+                                <input type="button" value="Update address" onClick={_ => {
+                                    closeAddressPopup();
+                                    setAddresses([...addresses, `${title} ${country} ${city} ${state} ${zip} ${streetAddress}`]);
+                                    setAddressInfo({title: '', country: '', city: '', state: '', zip: '', streetAddress: ''})
                                 }} />
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="submit-ct">
-                    <input type="submit" value="Save" onClick={handleCredentialsSubmit}/>
+                    <input type="submit" value="Save" onClick={handleCredentialsSubmit} />
                 </div>
             </div>
         </div>
