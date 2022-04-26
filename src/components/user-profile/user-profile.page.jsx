@@ -4,12 +4,12 @@ import InputGroup from "../input-group/input-group.component";
 import TextAreaGroup from "../input-group/text-area-group.component";
 import algeria from "./../../images/algeria.png";
 import { createStructuredSelector } from "reselect";
-import { selectCurrentUser } from "../../redux/auth/auth.selectors";
+import {selectCurrentUser, selectProfileInformationErrors} from "../../redux/auth/auth.selectors";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateProfileInformationStart } from "../../redux/auth/auth.actions";
 
-const UserProfile = ({ updateUser, currentUser }) => {
+const UserProfile = ({ updateUser, currentUser, errors }) => {
 
     //Credentials of user
     const [credentials, setCredentials] = useState({
@@ -20,7 +20,7 @@ const UserProfile = ({ updateUser, currentUser }) => {
     });
     const { name, lastName, email, phoneNumber } = credentials;
 
-    // Address informations
+    // Address information
     const [addressInfo, setAddressInfo] = useState({
         title: '', country: '', city: '', state: '', zip: '', streetAddress: ''
     });
@@ -28,6 +28,13 @@ const UserProfile = ({ updateUser, currentUser }) => {
 
     const [addresses, setAddresses] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState(0);
+
+    const [firstNameError, setFirstNameError] = useState(null);
+    const [lastNameError, setLastNameError] = useState(null);
+    const [phoneError, setPhoneError] = useState(null);
+    const [addressError, setAddressError] = useState(null);
+    const [emailError, setEmailError] = useState(null);
+    const [photoError, setPhotoError] = useState(null);
 
 
     const [image_path, setImage_path] = useState("");
@@ -38,7 +45,7 @@ const UserProfile = ({ updateUser, currentUser }) => {
         document.querySelector(".upload-img input").click();
     }
 
-    //Function to handle crendentials change of profile
+    //Function to handle credentials change of profile
     const handleCrendentialsChange = e => {
         const event = e.target;
         setCredentials({
@@ -77,12 +84,12 @@ const UserProfile = ({ updateUser, currentUser }) => {
         });
     }
 
-    //Function to display updat number popup
+    //Function to display update number popup
     const showUpdatePopup = () => {
         document.querySelector('.user-profile .popup').classList.add('active');
     }
 
-    //Function to display updat number popup
+    //Function to display update number popup
     const showAddressPopup = () => {
         document.querySelector('.address .popup').classList.add('active');
         window.addEventListener('scroll', e => false);
@@ -97,6 +104,19 @@ const UserProfile = ({ updateUser, currentUser }) => {
             document.removeEventListener('click', closeAddressPopup);
         }
     }, []);
+
+    //detect if error change
+    useEffect(() => {
+        if (errors) {
+            if (errors.firstName) setFirstNameError(errors.firstName); else setFirstNameError(null);
+            if (errors.lastName) setLastNameError(errors.lastName); else setLastNameError(null);
+            if (errors.email) setEmailError(errors.email); else setEmailError(null);
+            if (errors.phone_number) setPhoneError(errors.phone_number); else setPhoneError(null);
+            if (errors.address) setAddressError(errors.address); else setAddressError(null);
+        }
+
+    }, [errors]);
+
 
     //Function to select photo
     const handlePhotoChange = async event => {
@@ -115,23 +135,35 @@ const UserProfile = ({ updateUser, currentUser }) => {
         }
     }
 
+    useEffect(() => {
+        if (currentUser) {
+            setCredentials({
+                ...credentials,
+                name: currentUser.name,
+                lastName: currentUser.lastName,
+                email: currentUser.email,
+                phoneNumber: currentUser.phone_number,
+            });
+            setAddresses([...addresses, currentUser.address])
+        }
+    }, [currentUser]);
+
     //Function to submit credentials information
     const handleCredentialsSubmit = event => {
         event.preventDefault();
-
-        //console.log(title+' '+country+' '+city+' '+state+' '+zip+' '+streetAddress);
-        //
-        // setFirstNameError(null);
-        // setLastNameError(null);
-        // setEmailError(null);
-        // setPhotoError(null);
+        setFirstNameError(null);
+        setLastNameError(null);
+        setEmailError(null);
+        setPhoneError(null);
+        setAddressError(null);
+        setPhotoError(null);
 
         const formData = new FormData();
         formData.append('firstName', name);
         formData.append('lastName', lastName);
         formData.append('email', email);
-        //formData.append('address', title + ' ' + country + ' ' + city + ' ' + state + ' ' + zip + ' ' + streetAddress);
         formData.append('address', addresses[selectedAddress]);
+        formData.append('phone_number', phoneNumber);
         formData.append('photo', image_path);
         formData.append('_method', 'PATCH');
 
@@ -168,9 +200,35 @@ const UserProfile = ({ updateUser, currentUser }) => {
                     </div>
 
                     <InputGroup label="First name" name="name" type="text" value={name} onChange={handleCrendentialsChange} />
-                    <InputGroup label="Last name" name="lastName" type="text" value={lastName} onChange={handleCrendentialsChange} />
-                    <InputGroup label="Email" name="email" type="text" value={email} onChange={handleCrendentialsChange} />
+                    {
+                        firstNameError
+                        &&
+                        <span className={"input-validation-errors"}>
+                               <i className="fa-solid fa-triangle-exclamation"/>
+                            {firstNameError}
 
+                                </span>
+                    }
+                    <InputGroup label="Last name" name="lastName" type="text" value={lastName} onChange={handleCrendentialsChange} />
+                    {
+                        lastNameError
+                        &&
+                        <span className={"input-validation-errors"}>
+                               <i className="fa-solid fa-triangle-exclamation"/>
+                            {lastNameError}
+
+                                </span>
+                    }
+                    <InputGroup label="Email" name="email" type="text" value={email} onChange={handleCrendentialsChange} />
+                    {
+                        emailError
+                        &&
+                        <span className={"input-validation-errors"}>
+                               <i className="fa-solid fa-triangle-exclamation"/>
+                            {emailError}
+
+                                </span>
+                    }
 
                 </form>
                 <div className="update-number">
@@ -188,7 +246,17 @@ const UserProfile = ({ updateUser, currentUser }) => {
                                 <img src={algeria} alt="" />
                             </div>
                             <input type="text" value={phoneNumber} disabled />
+
                         </div>
+                        {
+                            phoneError
+                            &&
+                            <span className={"input-validation-errors"}>
+                               <i className="fa-solid fa-triangle-exclamation"/>
+                                {phoneError}
+
+                                </span>
+                        }
                     </div>
 
                     <div className="popup">
@@ -209,9 +277,10 @@ const UserProfile = ({ updateUser, currentUser }) => {
                 </div>
 
                 <div className="address">
+
                     <div className="content">
                         <p>Addresses</p>
-                        <button onClick={showAddressPopup}><i className="fa-solid fa-plus"></i> Add</button>
+                        <button onClick={showAddressPopup}><i className="fa-solid fa-plus"/> Add</button>
                     </div>
 
                     <div className="address-ct">
@@ -223,7 +292,15 @@ const UserProfile = ({ updateUser, currentUser }) => {
                                 </div>
                             );
                         })}
+                        {
+                            addressError
+                            &&
+                            <span className={"input-validation-errors"}>
+                               <i className="fa-solid fa-triangle-exclamation"/>
+                                {addressError}
 
+                                </span>
+                        }
                     </div>
 
                     <div className="popup">
@@ -266,6 +343,7 @@ const UserProfile = ({ updateUser, currentUser }) => {
 
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
+    errors: selectProfileInformationErrors,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -205,19 +205,15 @@ export function* deleteAccount() {
 
 export function* updateProfileInformation({payload: {id,formData}}) {
 
-// Display the key/value pairs
-    for (var pair of formData.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]);
+    try {
+        yield Axios.post(`http://localhost:8000/api/auth/client-profile-information/${id}`, formData,
+            { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+        );
+        yield put(updateProfileInformationSuccess());
+        yield put(checkUserSession());
+    } catch (error) {
+        yield put(updateProfileInformationFailure(error.response.data));
     }
-    // try {
-    //     yield Axios.post(`http://localhost:8000/api/auth/user-profile-information/${id}`, formData,
-    //         { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-    //     );
-    //     yield put(updateProfileInformationSuccess());
-    //     yield put(checkUserSession());
-    // } catch (error) {
-    //     yield put(updateProfileInformationFailure(error.response.data));
-    // }
 }
 
 export function* updateUserPassword({payload: {current_password, password, password_confirmation}}) {

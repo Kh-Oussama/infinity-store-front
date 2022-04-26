@@ -11,7 +11,7 @@ const EnableTwoFactorComponent = ({enableTwoFactorAuthentication}) => {
                     you're the only person who can access your account, even if someone knows your password. </p>
                 <div className="button-block">
                     <button onClick={enableTwoFactorAuthentication}>
-                        Enable two Factor Authentication
+                        <i className="fa-solid fa-lock"/> Enable two Factor Authentication
                     </button>
                 </div>
                 <p className={"description"}>

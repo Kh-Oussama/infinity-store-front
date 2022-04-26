@@ -153,9 +153,13 @@
   color: #fe7096;
   font-size: 1.3rem;
 
-    svg {
+    i {
     margin-right: .5rem;
   }
+
+}
+.info-success {
+  color: var(--color-primary) ;
 }
 .bad-cred {
   font-size: 1.4rem;

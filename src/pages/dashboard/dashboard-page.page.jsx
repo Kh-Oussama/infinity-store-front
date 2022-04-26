@@ -18,6 +18,7 @@ import Checkout from "../../components/checkout/checkout.component";
 const Dashboard = ({ currentUser }) => {
     const location = useLocation();
 
+
     return (
         <>
             <NavigationBar />
@@ -66,7 +67,7 @@ const Dashboard = ({ currentUser }) => {
                                     <Link to="/help"  className={location.pathname === "/dashboard/help" ? 'active' : null} >Need Help</Link>
                                 </li>
                                 <li>
-                                    <Link to="/dashboard/two-factors-auth"  >Two Factors Authentication</Link>
+                                    <Link to="/dashboard/two-factors-auth"  className={location.pathname === "/dashboard/two-factors-auth" ? 'active' : null} >Two Factors Authentication</Link>
                                 </li>
                             </ul>
                             <ul>

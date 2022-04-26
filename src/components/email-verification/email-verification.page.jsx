@@ -28,7 +28,7 @@ const EmailVerification = ({resendEmailVerification, loading, status, errors}) =
                             </p>
                             <div className="button-block">
                                 <button onClick={resendEmailVerification}>
-                                    Resend Email Verification
+                                    <i className="fa-solid fa-repeat"/> Resend Email Verification
                                 </button>
                             </div>
                             {

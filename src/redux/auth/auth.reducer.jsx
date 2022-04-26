@@ -406,6 +406,48 @@ const authReducer = (state = INITIAL_STATE, action) => {
                 signInLoading: false,
             };
 
+        case AuthActionTypes.UPDATE_PROFILE_INFORMATION_START:
+            return {
+                ...state,
+                checkUserSessionLoading: true,
+
+            };
+        // case AuthActionTypes.UPDATE_PROFILE_INFORMATION_SUCCESS:
+        //     return {
+        //         ...state,
+        //         checkUserSessionLoading: true,
+        //     };
+        case AuthActionTypes.UPDATE_PROFILE_INFORMATION_FAILURE :
+            return {
+                ...state,
+                checkUserSessionLoading: false,
+                updateProfileInformationError: action.payload,
+            };
+
+        case AuthActionTypes.UPDATE_USER_PASSWORD_START:
+            return {
+                ...state,
+                //update sub admin
+                updatePasswordLoading: true,
+                updatePasswordError: null,
+                updatePasswordStatus: false,
+
+            };
+        case AuthActionTypes.UPDATE_USER_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                updatePasswordLoading: false,
+                updatePasswordError: null,
+                updatePasswordStatus: true,
+            };
+        case AuthActionTypes.UPDATE_USER_PASSWORD_FAILURE :
+            return {
+                ...state,
+                updatePasswordLoading: false,
+                updatePasswordErrors: action.payload.errors,
+                updatePasswordStatus: false,
+            };
+
         default :
             return state;
     }

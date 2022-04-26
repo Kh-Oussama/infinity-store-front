@@ -64,7 +64,7 @@ const DisableTwoFactorComponent = ({qrCode, recoveryCodes, disableTwoFactorAuthe
                     </Table>
                     <div className="button-block">
                         <button className={"dn-button"} onClick={disableTwoFactorAuthentication}>
-                            Disable two Factor Authentication
+                            <i className="fa-solid fa-lock-open"/> Disable two Factor Authentication
                         </button>
                     </div>
 
