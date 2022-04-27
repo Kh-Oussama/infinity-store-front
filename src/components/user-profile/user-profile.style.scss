@@ -260,6 +260,11 @@
                 cursor: not-allowed !important;
             }
         }
+
+        & .number-custom {
+            width: 100%;
+            grid-template-columns: 6% 94%;
+        }
     }
 
     &>.popup {

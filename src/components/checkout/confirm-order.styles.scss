@@ -1,0 +1,153 @@
+.cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & .title {
+    display: flex;
+    align-items: center;
+    .nbr {
+      height: 2.5rem;
+      width:2.5rem;
+      background: var(--color-primary);
+      border-radius: 100%;
+      color: white;
+      font-size: 1.8rem;
+      text-align: center;
+      line-height: 2rem;
+      margin-right: 1rem;
+    }
+
+    .text {
+      font-size: 2rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--title-text-color);
+    }
+  }
+
+  & .button {
+    display: flex;
+    align-items: center;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    & i {
+      margin-right: .3rem;
+    }
+  }
+}
+
+
+.cart-content {
+
+  display: flex;
+  flex-direction: column;
+  .address {
+    margin: 2rem;
+    padding: 1.5rem;
+    width: 35rem;
+    border: 1px solid var(--color-primary);
+    border-radius: .5rem;
+
+    p {
+      color: rgba(var(--text-sub-heading),var(--tw-text-opacity));
+      font-size: 1.2rem;
+    }
+  }
+
+  .deliver-agency {
+    margin: 2rem;
+    padding: 2rem 1rem;
+    width: 20rem;
+    height: 11rem;
+    border-radius: 1rem;
+    background-color: rgba(var(--color-gray-100),1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+
+    h3 {
+      text-transform: uppercase;
+      color: rgba(var(--text-heading),1);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+
+    }
+    img {
+      height: 4.5rem;
+
+
+    }
+  }
+  .active {
+    background-color: white;
+    border: 1px solid var(--color-primary);
+  }
+  .order-details {
+    align-self: center;
+    margin: 2rem;
+    min-height: 25rem;
+    width: 50rem;
+    padding: 1.5rem 3rem;
+    background-color: rgba(var(--color-gray-100),1);
+    border-radius: 1rem;
+
+    .order-info {
+      display: flex;
+      justify-content: space-between;
+      color: rgba(var(--text-base),1);
+      font-weight: 500;
+      font-size: 1.5rem;
+
+      & .attribute {
+        flex: 50%;
+
+        & span {
+          margin-right: 1rem;
+
+        }
+
+
+      }
+      &:last-child {
+        margin-bottom: 2rem;
+      }
+
+      & .total {
+        color: rgba(var(--text-heading),1);
+        font-weight: 700;
+      }
+      & .qnt {
+        color: rgba(var(--text-heading),1);
+      }
+    }
+
+    h3 {
+      color: rgba(var(--text-heading),var(--tw-text-opacity));
+      font-weight: 700;
+      text-transform: capitalize;
+      font-size: 1.8rem;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+  }
+
+
+}
+
+.shipping-section {
+  display: flex;
+  flex-direction: row;
+
+
+}
+
+.divider {
+  border: 1px solid rgba(var(--color-border-200),var(--tw-border-opacity));
+  margin: 2rem 0;
+}

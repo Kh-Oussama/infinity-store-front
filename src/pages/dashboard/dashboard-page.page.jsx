@@ -13,6 +13,7 @@ import ConfirmPasswordComponent
     from "../../components/two-factors-auth-setting/confirm-password/confirm-password.component";
 
 import Checkout from "../../components/checkout/checkout.component";
+import ConfirmOrder from "../../components/checkout/confirm-order.component";
 
 
 const Dashboard = ({ currentUser }) => {
@@ -61,13 +62,13 @@ const Dashboard = ({ currentUser }) => {
                                     <Link to={`/dashboard/orders`} className={location.pathname === "/dashboard/orders" ? 'active' : null}  >My Orders</Link>
                                 </li>
                                 <li>
-                                    <Link to={`/dashboard/checkout`} className={location.pathname === "/dashboard/checkout" ? 'active' : null} >Checkout</Link>
+                                    <Link to={`/dashboard/checkout`} className={location.pathname === "/dashboard/checkout"  || location.pathname === "/dashboard/place-order" ? 'active' : null} >Checkout</Link>
                                 </li>
                                 <li>
                                     <Link to="/help"  className={location.pathname === "/dashboard/help" ? 'active' : null} >Need Help</Link>
                                 </li>
                                 <li>
-                                    <Link to="/dashboard/two-factors-auth"  className={location.pathname === "/dashboard/two-factors-auth" ? 'active' : null} >Two Factors Authentication</Link>
+                                    <Link to="/dashboard/two-factors-auth"  className={location.pathname === "/dashboard/two-factors-auth"  ? 'active' : null} >Two Factors Authentication</Link>
                                 </li>
                             </ul>
                             <ul>
@@ -90,6 +91,7 @@ const Dashboard = ({ currentUser }) => {
                                     <Route exact path="/dashboard/update-password" component={UpdatePassword}/>
                                     <Route exact path="/dashboard/orders" component={UserOrder}/>
                                     <Route exact path="/dashboard/checkout" component={Checkout} />
+                                    <Route exact path="/dashboard/place-order" component={ConfirmOrder} />
                                     <Route exact path="/dashboard/two-factors-auth" component={TwoFactorAuthSettings}/>
                                     <Route exact path="/dashboard/confirm-password/:componentPath" component={ConfirmPasswordComponent}/>
                                     <Redirect to="/dashboard"/>

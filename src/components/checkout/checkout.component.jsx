@@ -1,42 +1,76 @@
 import React, {useEffect, useState} from "react";
-import QuantityButton from "../utils/quantity-button/quantity-button.component";
-import RemoveButton from "../utils/remove-button/remove-button.component";
 import {Link, withRouter} from "react-router-dom";
 import {createStructuredSelector} from "reselect";
 import {selectCartItems, selectCartTotal} from "../../redux/cart/cart.selectors";
 import {selectCurrentUser} from "../../redux/auth/auth.selectors";
-import {redirectToCheckout, toggleAuthComponent} from "../../redux/design-utilites/design-utilities.actions";
+import {redirectToCheckout} from "../../redux/design-utilites/design-utilities.actions";
 import {connect} from "react-redux";
 import {addItem, clearItemFromCart, removeItem} from "../../redux/cart/cart.actions";
 import CheckoutTable from "./checkout-table.component";
+import {Message} from "semantic-ui-react";
+import NoResult from "../icons/no-result";
 
-const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem,  clearItem, addItem}) => {
+const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem, clearItem, addItem, currentUser, history}) => {
+
+    const [confirmOrder, setConfirmOrder] = useState(false);
 
     useEffect(() => {
         redirectToCheckoutPage(false);
     })
+
+    const handleConfirmOrder = () => {
+        setConfirmOrder(true);
+        if (currentUser.address ) history.push("/dashboard/place-order");
+    };
 
     return (
         <div className="checkout">
             <div className="card checkout-cart">
                 <div className="title">
                     <h1>Checkout Cart</h1>
-                    <p>Currently you have 2 item(s) in your cart.</p>
+                    <p>Currently you have {cartItems.length} item(s) in your cart.</p>
                 </div>
 
-                <CheckoutTable data={cartItems} addItem={addItem} removeItem={removeItem} clearItem={clearItem} total={total}/>
+                {
+                    cartItems.length > 0
+                        ? <>
+                            <CheckoutTable data={cartItems} addItem={addItem} removeItem={removeItem} clearItem={clearItem}
+                                           total={total}/>
 
-                <div className="actions">
-                    <Link className="action" to="/">
-                        <i className="fa-solid fa-cart-plus"/>
-                        Continue shopping
-                    </Link>
+                            {
+                                !currentUser.address && confirmOrder &&
+                                <Message error attached='bottom' className={"description description-info"}>
+                                    <i className="fa-solid fa-check-double"/> Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Accusantium architecto assumenda atque autem consequuntur dolore dolorum
+                                    eum ex, hic iure laudantium nemo pariatur perspiciatis quia quod repellat rerum unde ut.
+                                </Message>
 
-                    <span className="action">
-                        <i className="fa-solid fa-clipboard-check"/>
-                        Confirm order
-                    </span>
-                </div>
+                            }
+                            <div className="actions">
+                                <Link className="action"  to="/">
+                                    <i className="fa-solid fa-cart-plus"/>
+                                    Continue shopping
+                                </Link>
+
+                                <div className={"confirm-buttons"}>
+                                    {
+                                        !currentUser.address && confirmOrder &&
+                                        <span className="action red" onClick={() => history.push("/dashboard")}>
+                                    <i className="fa-solid fa-map-location-dot"/>
+                                    Add your Address
+                                     </span>
+                                    }
+                                    <span className={`action ${ !currentUser.address && confirmOrder ? 'button-disabled' : null} `} onClick={() => handleConfirmOrder()}>
+                                    <i className="fa-solid fa-clipboard-check"/>
+                                     Place Order
+                                    </span>
+                                </div>
+
+                            </div>
+                        </>
+                        : <NoResult/>
+                }
+
             </div>
         </div>
     );
@@ -45,7 +79,7 @@ const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem,  clearI
 
 const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
-    total : selectCartTotal,
+    total: selectCartTotal,
     currentUser: selectCurrentUser,
 });
 
