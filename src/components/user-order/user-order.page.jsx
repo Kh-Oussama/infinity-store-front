@@ -76,7 +76,7 @@ const UserOrder = () => {
                 'Order Dispatched',
                 'Order Dispatched'
             ],
-            currentStatus: 3,
+            currentStatus: 7,
             orderItems: [],
         },
     ];
@@ -173,7 +173,9 @@ const UserOrder = () => {
                                     {orders[selectedIndex].statusList.map((s, index) => {
                                         return (
                                             <div className={`progress-item ${index <= orders[selectedIndex].currentStatus?'active':''}`}>
-                                                <span>{index + 1}</span>
+                                                {index > orders[selectedIndex].currentStatus?
+                                                <span>{index + 1}</span>:
+                                                <span><i className="fa-solid fa-check"></i></span>}
                                                 <p>{s}</p>
                                             </div>
                                         );
