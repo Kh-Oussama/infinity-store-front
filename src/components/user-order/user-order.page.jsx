@@ -22,12 +22,6 @@ const UserOrder = () => {
             amount: 150,
             total: 180,
         },
-        {
-            date: 'January, 22 2022',
-            delivery: 'Express Delivery',
-            amount: 150,
-            total: 180,
-        }
     ];
 
     return (
@@ -41,7 +35,7 @@ const UserOrder = () => {
                     <p>You didn't order anything yet</p>
                 </div> */}
 
-                <div className="orders-ct black-scroller y-scroll">
+                <div className={`orders-ct black-scroller ${orders.length > 2?'y-scroll':''}`}>
                     {orders.map((order, index) => {
                         return (
                             <div key={index} className={`order-item ${index === selectedIndex?'active':''}`} onClick={() => setSelectedIndex(index)}>
