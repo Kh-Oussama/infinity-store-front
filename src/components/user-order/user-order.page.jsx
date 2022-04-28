@@ -31,45 +31,87 @@ const UserOrder = () => {
                     <h3>My Orders</h3>
                 </div>
 
-                {/*<div className="orders-msg-ct">
-                    <p>You didn't order anything yet</p>
-                </div> */}
+                {orders.length === 0 ?
+                    <div className="orders-msg-ct">
+                        <p>You didn't order anything yet</p>
+                    </div> :
 
-                <div className={`orders-ct black-scroller ${orders.length > 2?'y-scroll':''}`}>
-                    {orders.map((order, index) => {
-                        return (
-                            <div key={index} className={`order-item ${index === selectedIndex?'active':''}`} onClick={() => setSelectedIndex(index)}>
-                                <div className="order-title-ct">
-                                    <p>Order<span>#66</span></p>
-                                    <span>Order Recievedsfqfqs</span>
+                    <div className={`orders-ct black-scroller ${orders.length > 2 ? 'y-scroll' : ''}`}>
+                        {orders.map((order, index) => {
+                            return (
+                                <div key={index} className={`order-item ${index === selectedIndex ? 'active' : ''}`} onClick={() => setSelectedIndex(index)}>
+                                    <div className="order-title-ct">
+                                        <p>Order<span>#66</span></p>
+                                        <span>Order Recievedsfqfqs</span>
+                                    </div>
+
+                                    <div className="order-content-ct">
+                                        <div>
+                                            <span>Order Date :</span>
+                                            <span>{order.date}</span>
+                                        </div>
+                                        <div>
+                                            <span>Delivery Time :</span>
+                                            <span>{order.delivery}</span>
+                                        </div>
+                                        <div>
+                                            <span>Amount :</span>
+                                            <span>${order.amount}</span>
+                                        </div>
+                                        <div>
+                                            <span>Total Price :</span>
+                                            <span>${order.total}</span>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div className="order-content-ct">
-                                    <div>
-                                        <span>Order Date :</span>
-                                        <span>{order.date}</span>
-                                    </div>
-                                    <div>
-                                        <span>Delivery Time :</span>
-                                        <span>{order.delivery}</span>
-                                    </div>
-                                    <div>
-                                        <span>Amount :</span>
-                                        <span>${order.amount}</span>
-                                    </div>
-                                    <div>
-                                        <span>Total Price :</span>
-                                        <span>${order.total}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
 
 
-                </div>
+                    </div>}
             </div>
             <div className="side right-side">
+                <div className="order-details-item">
+                    <div className="title-ct">
+                        <h2>Order Detail - CGG82oQZc48i8</h2>
+                        <div>
+                            <i className="far fa-face-frown"></i><span>Ask for a refund</span>
+                        </div>
+                        <div className="active">
+                            <i className="far fa-eye"></i><span>Detail</span>
+                        </div>
+                    </div>
+                    <div className="addresses-ct">
+                        <div className="content-ct">
+                            <div className="address">
+                                <h2>Address</h2>
+                                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                            </div>
+                        </div>
+                        <div className="amount-ct">
+                            <div>
+                                <span>Sub Total</span>
+                                <span>$150.00</span>
+                            </div>
+                            <div>
+                                <span>Discount</span>
+                                <span>$0.00</span>
+                            </div>
+                            <div>
+                                <span>Delevery Fee</span>
+                                <span>$0.00</span>
+                            </div>
+                            <div>
+                                <span>Tax</span>
+                                <span>$3.00</span>
+                            </div>
+                            <div>
+                                <span>Total</span>
+                                <span>$153</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
