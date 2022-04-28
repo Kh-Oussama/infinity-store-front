@@ -24,6 +24,23 @@ const UserOrder = () => {
         },
     ];
 
+    const ordersDetails = [
+        {
+            slug: "CGG82oQZc48i8",
+            address: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+            amounts: {
+                subTotal: 150,
+                discount: 0,
+                delevery: 0,
+                tax: 0,
+                total: 153,
+            },
+            statusList: [],
+            currentStatus: 3,
+            orderItems: [],
+        }
+    ]
+
     return (
         <div className="user-order">
             <div className="side left-side">
@@ -110,6 +127,52 @@ const UserOrder = () => {
                                 <span>$153</span>
                             </div>
                         </div>
+                    </div>
+                    <div className="progress-section">
+                        <div className="progress-ct">
+                            <div className="black-scroller x-scroll">
+                                <div className="progress-item active">
+                                    <span>1</span>
+                                    <p>Order Recieved</p>
+                                </div>
+
+                                <div className="progress-item active">
+                                    <span>2</span>
+                                    <p>Order Proccessing</p>
+                                </div>
+
+                                <div className="progress-item">
+                                    <span>3</span>
+                                    <p>Ready to Disptach</p>
+                                </div>
+
+                                <div className="progress-item">
+                                    <span>4</span>
+                                    <p>Order Dispatched</p>
+                                </div>
+
+                                <div className="progress-item">
+                                    <span>5</span>
+                                    <p>Order Dispatched</p>
+                                </div>
+
+                                <div className="progress-item">
+                                    <span>6</span>
+                                    <p>Ready to Disptach</p>
+                                </div>
+
+                                <div className="progress-item">
+                                    <span>7</span>
+                                    <p>Order Dispatched</p>
+                                </div>
+
+                                <div className="progress-item">
+                                    <span>8</span>
+                                    <p>Order Dispatched</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

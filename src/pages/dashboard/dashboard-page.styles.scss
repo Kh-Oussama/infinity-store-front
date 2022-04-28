@@ -5,6 +5,7 @@
     width: 100%;
     min-height: 100vh;
     padding: 3.5rem 2.5rem;
+    overflow-x: hidden;
 
     & > .dashboard-ct{
         width: 100%;
@@ -119,7 +120,7 @@
         }
 
         & > .main{
-            flex: auto;
+            width: calc(100% - 320px);
         }
     }
 }
