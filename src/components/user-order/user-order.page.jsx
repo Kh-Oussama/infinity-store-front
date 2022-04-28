@@ -7,25 +7,6 @@ const UserOrder = () => {
         {
             date: 'January, 22 2022',
             delivery: 'Express Delivery',
-            amount: 150,
-            total: 180,
-        },
-        {
-            date: 'January, 22 2022',
-            delivery: 'Express Delivery',
-            amount: 150,
-            total: 180,
-        },
-        {
-            date: 'January, 22 2022',
-            delivery: 'Express Delivery',
-            amount: 150,
-            total: 180,
-        },
-    ];
-
-    const ordersDetails = [
-        {
             slug: "CGG82oQZc48i8",
             address: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
             amounts: {
@@ -35,11 +16,70 @@ const UserOrder = () => {
                 tax: 0,
                 total: 153,
             },
-            statusList: [],
+            statusList: [
+                'Order Recieved',
+                'Order Proccessing',
+                'Ready to Disptach',
+                'Order Dispatched',
+                'Order Dispatched',
+                'Order Dispatched',
+                'Order Dispatched',
+                'Order Dispatched'
+            ],
+            currentStatus: 1,
+            orderItems: [],
+        },
+        {
+            date: 'January, 22 2022',
+            delivery: 'Express Delivery',
+            slug: "CGG82oQZc48i8",
+            address: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+            amounts: {
+                subTotal: 150,
+                discount: 0,
+                delevery: 0,
+                tax: 0,
+                total: 153,
+            },
+            statusList: [
+                'Order Recieved',
+                'Order Proccessing',
+                'Ready to Disptach',
+                'Order Dispatched',
+                'Order Dispatched',
+                'Order Dispatched',
+                'Order Dispatched',
+                'Order Dispatched'
+            ],
             currentStatus: 3,
             orderItems: [],
-        }
-    ]
+        },
+        {
+            date: 'January, 22 2022',
+            delivery: 'Express Delivery',
+            slug: "CGG82oQZc48i8",
+            address: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+            amounts: {
+                subTotal: 150,
+                discount: 0,
+                delevery: 0,
+                tax: 0,
+                total: 153,
+            },
+            statusList: [
+                'Order Recieved',
+                'Order Proccessing',
+                'Ready to Disptach',
+                'Order Dispatched',
+                'Order Dispatched',
+                'Order Dispatched',
+                'Order Dispatched',
+                'Order Dispatched'
+            ],
+            currentStatus: 3,
+            orderItems: [],
+        },
+    ];
 
     return (
         <div className="user-order">
@@ -73,108 +113,78 @@ const UserOrder = () => {
                                         </div>
                                         <div>
                                             <span>Amount :</span>
-                                            <span>${order.amount}</span>
+                                            <span>${order.amounts.subTotal}</span>
                                         </div>
                                         <div>
                                             <span>Total Price :</span>
-                                            <span>${order.total}</span>
+                                            <span>${order.amounts.total}</span>
                                         </div>
                                     </div>
                                 </div>
                             );
                         })}
-
-
                     </div>}
             </div>
             <div className="side right-side">
-                <div className="order-details-item">
-                    <div className="title-ct">
-                        <h2>Order Detail - CGG82oQZc48i8</h2>
-                        <div>
-                            <i className="far fa-face-frown"></i><span>Ask for a refund</span>
-                        </div>
-                        <div className="active">
-                            <i className="far fa-eye"></i><span>Detail</span>
-                        </div>
-                    </div>
-                    <div className="addresses-ct">
-                        <div className="content-ct">
-                            <div className="address">
-                                <h2>Address</h2>
-                                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                {orders.length !== 0 ?
+                    <div className="order-details-item">
+                        <div className="title-ct">
+                            <h2>Order Detail - {orders[selectedIndex].slug}</h2>
+                            <div>
+                                <i className="far fa-face-frown"></i><span>Ask for a refund</span>
+                            </div>
+                            <div className="active">
+                                <i className="far fa-eye"></i><span>Detail</span>
                             </div>
                         </div>
-                        <div className="amount-ct">
-                            <div>
-                                <span>Sub Total</span>
-                                <span>$150.00</span>
+                        <div className="addresses-ct">
+                            <div className="content-ct">
+                                <div className="address">
+                                    <h2>Address</h2>
+                                    <p>{orders[selectedIndex].address}</p>
+                                </div>
                             </div>
-                            <div>
-                                <span>Discount</span>
-                                <span>$0.00</span>
-                            </div>
-                            <div>
-                                <span>Delevery Fee</span>
-                                <span>$0.00</span>
-                            </div>
-                            <div>
-                                <span>Tax</span>
-                                <span>$3.00</span>
-                            </div>
-                            <div>
-                                <span>Total</span>
-                                <span>$153</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="progress-section">
-                        <div className="progress-ct">
-                            <div className="black-scroller x-scroll">
-                                <div className="progress-item active">
-                                    <span>1</span>
-                                    <p>Order Recieved</p>
+                            <div className="amount-ct">
+                                <div>
+                                    <span>Sub Total</span>
+                                    <span>${orders[selectedIndex].amounts.subTotal}</span>
                                 </div>
-
-                                <div className="progress-item active">
-                                    <span>2</span>
-                                    <p>Order Proccessing</p>
+                                <div>
+                                    <span>Discount</span>
+                                    <span>${orders[selectedIndex].amounts.discount}</span>
                                 </div>
-
-                                <div className="progress-item">
-                                    <span>3</span>
-                                    <p>Ready to Disptach</p>
+                                <div>
+                                    <span>Delevery Fee</span>
+                                    <span>${orders[selectedIndex].amounts.delevery}</span>
                                 </div>
-
-                                <div className="progress-item">
-                                    <span>4</span>
-                                    <p>Order Dispatched</p>
+                                <div>
+                                    <span>Tax</span>
+                                    <span>${orders[selectedIndex].amounts.tax}</span>
                                 </div>
-
-                                <div className="progress-item">
-                                    <span>5</span>
-                                    <p>Order Dispatched</p>
-                                </div>
-
-                                <div className="progress-item">
-                                    <span>6</span>
-                                    <p>Ready to Disptach</p>
-                                </div>
-
-                                <div className="progress-item">
-                                    <span>7</span>
-                                    <p>Order Dispatched</p>
-                                </div>
-
-                                <div className="progress-item">
-                                    <span>8</span>
-                                    <p>Order Dispatched</p>
+                                <div>
+                                    <span>Total</span>
+                                    <span>${orders[selectedIndex].amounts.total}</span>
                                 </div>
                             </div>
                         </div>
+                        <div className="progress-section">
+                            <div className="progress-ct">
+                                <div className="black-scroller x-scroll">
+                                    {orders[selectedIndex].statusList.map((s, index) => {
+                                        return (
+                                            <div className={`progress-item ${index <= orders[selectedIndex].currentStatus?'active':''}`}>
+                                                <span>{index + 1}</span>
+                                                <p>{s}</p>
+                                            </div>
+                                        );
+                                    })}
 
-                    </div>
-                </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div> :
+                    null}
             </div>
         </div>
     );
