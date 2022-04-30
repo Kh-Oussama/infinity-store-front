@@ -1,6 +1,6 @@
 .user-order {
     width: 100%;
-    height: 600px;
+    height: 700px;
     display: flex;
     justify-content: space-between;
 
@@ -144,6 +144,18 @@
         width: 67%;
         height: 100%;
         padding: 0;
+
+        & .img-ct{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & img{
+                width: 80%;
+            }
+        }
 
         & .order-details-item {
             width: 100%;
@@ -289,7 +301,7 @@
                             justify-content: flex-start;
                             align-items: center;
                             flex-direction: column;
-
+                            
                             & span {
                                 width: 4rem;
                                 height: 4rem;
@@ -312,7 +324,7 @@
                                     position: absolute;
                                     top: 50%;
                                     left: 100%;
-                                    width: 10.5rem;
+                                    width: calc(8.5rem + 1px);
                                     height: .3rem;
                                     background-color: var(--color-grey-3);
                                 }
@@ -368,6 +380,116 @@
                         }
                     }
                 }
+            }
+
+            & .products-ct{
+                width: 100%;
+                height: 200px;
+                overflow: hidden;
+
+                & .row-header{
+                    width: 100%;
+                    height: 48px;
+                    background-color: var(--color-grey-2);
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    border-bottom: 1px var(--color-grey-3) solid;
+                    padding: 0 1rem 0 0 !important;
+
+                    & span{
+                        font-size: 1.4rem;
+                        text-align: center;
+                        font-weight: bold;
+                        color: var(--color-grey-dark-1);
+
+                        &:first-child{
+                            flex: 1;
+                        }
+
+                        &:nth-child(2){
+                            width: 16rem;
+                            margin: 0 0 0 auto;
+                        }
+
+                        &:last-child{
+                            width: 16rem;
+                        }
+                    }
+                }
+
+                & .products-list{
+                    width: 100%;
+                    height: 150px;
+                    position: relative;
+                    overflow-y: scroll;
+
+                    &::-webkit-scrollbar {
+                        width: 6px;
+                    }
+            
+
+                    & .row-item{
+                        width: 100%;
+                        height: 90px;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        border-bottom: 1px var(--color-grey-3) solid;
+
+                        & .product{
+                            flex: 1;
+                            height: 100%;
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: flex-start;
+                            padding: .5rem .6rem;
+
+                            & .img-ct{
+                                width: 8rem;
+                                height: 100%;
+                                
+                                & img{
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                    border-radius: 4px;
+                                }
+                            }
+
+                            & .content{
+                                margin: 1.5rem 0 0 1rem;
+
+                                & p{
+                                    font-size: 1.4rem;
+                                    color: var(--color-grey-dark-2);
+                                    font-weight: 600;
+                                }
+
+                                & span{
+                                    color: var(--color-primary);
+                                    font-weight: bold;
+                                    font-size: 1.4rem;
+                                }
+                            }
+                        }
+
+                        & span{
+                            width: 16rem;
+                            text-align: center;
+                            font-size: 1.4rem;
+                            font-weight: 600;
+                            color: var(--color-grey-dark-1);
+                            
+                            &:first-child{
+                                margin: 0 0 0 auto;
+                            }
+                        }
+
+                    }
+                }
+
+
             }
         }
     }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NoResult from "./../../images/no-result.svg";
 
 const UserOrder = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -26,7 +27,7 @@ const UserOrder = () => {
                 'Order Dispatched',
                 'Order Dispatched'
             ],
-            currentStatus: 1,
+            currentStatus: 0,
             orderItems: [],
         },
         {
@@ -172,10 +173,10 @@ const UserOrder = () => {
                                 <div className="black-scroller x-scroll">
                                     {orders[selectedIndex].statusList.map((s, index) => {
                                         return (
-                                            <div className={`progress-item ${index <= orders[selectedIndex].currentStatus?'active':''}`}>
-                                                {index > orders[selectedIndex].currentStatus?
-                                                <span>{index + 1}</span>:
-                                                <span><i className="fa-solid fa-check"></i></span>}
+                                            <div className={`progress-item ${index <= orders[selectedIndex].currentStatus ? 'active' : ''}`}>
+                                                {index > orders[selectedIndex].currentStatus ?
+                                                    <span>{index + 1}</span> :
+                                                    <span><i className="fa-solid fa-check"></i></span>}
                                                 <p>{s}</p>
                                             </div>
                                         );
@@ -185,8 +186,73 @@ const UserOrder = () => {
                             </div>
 
                         </div>
+
+                        <div className="products-ct">
+                            <div className="row-header">
+                                <span>Item</span>
+                                <span>Quantity</span>
+                                <span>Price</span>
+                            </div>
+
+                            <div className="products-list black-scroller y-scroll">
+                                <div className="row-item">
+                                    <div className="product">
+                                        <div className="img-ct">
+                                            <img src="./../images/products/Apples.jpg" alt="Image" />
+                                        </div>
+                                        <div className="content">
+                                            <p>Product Name</p>
+                                            <span>$150.00</span>
+                                        </div>
+                                    </div>
+                                    <span>4</span>
+                                    <span>$400</span>
+                                </div>
+                                <div className="row-item">
+                                    <div className="product">
+                                        <div className="img-ct">
+                                            <img src="./../images/products/Apples.jpg" alt="Image" />
+                                        </div>
+                                        <div className="content">
+                                            <p>Product Name</p>
+                                            <span>$150.00</span>
+                                        </div>
+                                    </div>
+                                    <span>4</span>
+                                    <span>$400</span>
+                                </div>
+                                <div className="row-item">
+                                    <div className="product">
+                                        <div className="img-ct">
+                                            <img src="./../images/products/Apples.jpg" alt="Image" />
+                                        </div>
+                                        <div className="content">
+                                            <p>Product Name</p>
+                                            <span>$150.00</span>
+                                        </div>
+                                    </div>
+                                    <span>4</span>
+                                    <span>$400</span>
+                                </div>
+                                <div className="row-item">
+                                    <div className="product">
+                                        <div className="img-ct">
+                                            <img src="./../images/products/Apples.jpg" alt="Image" />
+                                        </div>
+                                        <div className="content">
+                                            <p>Product Name</p>
+                                            <span>$150.00</span>
+                                        </div>
+                                    </div>
+                                    <span>4</span>
+                                    <span>$400</span>
+                                </div>
+                            </div>
+                        </div>
                     </div> :
-                    null}
+                    <div className="img-ct">
+                        <img src={NoResult} alt="No result" />
+                    </div>}
             </div>
         </div>
     );
