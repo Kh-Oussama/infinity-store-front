@@ -1,6 +1,6 @@
 .user-order {
     width: 100%;
-    height: 700px;
+    height: 716px;
     display: flex;
     justify-content: space-between;
 
@@ -260,8 +260,8 @@
 
             & .progress-section {
                 width: 100%;
-                height: 220px;
-                padding: 2rem;
+                height: 200px;
+                padding: 2.5rem 2rem 1rem;
                 user-select: none;
 
                 &>div.progress-ct {
@@ -384,7 +384,6 @@
 
             & .products-ct{
                 width: 100%;
-                height: 200px;
                 overflow: hidden;
 
                 & .row-header{
@@ -395,9 +394,12 @@
                     justify-content: flex-start;
                     align-items: center;
                     border-bottom: 1px var(--color-grey-3) solid;
+                    
                     padding: 0 1rem 0 0 !important;
 
                     & span{
+                        height: 100%;
+                        line-height: 48px;
                         font-size: 1.4rem;
                         text-align: center;
                         font-weight: bold;
@@ -414,13 +416,14 @@
 
                         &:last-child{
                             width: 16rem;
+                            border-right: 1px var(--color-grey-3) solid;
                         }
                     }
                 }
 
                 & .products-list{
                     width: 100%;
-                    height: 150px;
+                    height: 180px;
                     position: relative;
                     overflow-y: scroll;
 
@@ -443,7 +446,7 @@
                             display: flex;
                             justify-content: flex-start;
                             align-items: flex-start;
-                            padding: .5rem .6rem;
+                            padding: 1rem ;
 
                             & .img-ct{
                                 width: 8rem;
@@ -458,7 +461,7 @@
                             }
 
                             & .content{
-                                margin: 1.5rem 0 0 1rem;
+                                margin: .8rem 0 0 1rem;
 
                                 & p{
                                     font-size: 1.4rem;

@@ -211,7 +211,7 @@ const UserOrder = () => {
                                 <div className="row-item">
                                     <div className="product">
                                         <div className="img-ct">
-                                            <img src="./../images/products/Apples.jpg" alt="Image" />
+                                            <img src="./../images/products/image-cover.jpg" alt="Image" />
                                         </div>
                                         <div className="content">
                                             <p>Product Name</p>
@@ -224,7 +224,7 @@ const UserOrder = () => {
                                 <div className="row-item">
                                     <div className="product">
                                         <div className="img-ct">
-                                            <img src="./../images/products/Apples.jpg" alt="Image" />
+                                            <img src="./../images/products/BabySpinach.jpg" alt="Image" />
                                         </div>
                                         <div className="content">
                                             <p>Product Name</p>
@@ -237,7 +237,7 @@ const UserOrder = () => {
                                 <div className="row-item">
                                     <div className="product">
                                         <div className="img-ct">
-                                            <img src="./../images/products/Apples.jpg" alt="Image" />
+                                            <img src="./../images/products/blueberries.jpg" alt="Image" />
                                         </div>
                                         <div className="content">
                                             <p>Product Name</p>
