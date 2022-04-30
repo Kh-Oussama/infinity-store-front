@@ -28,7 +28,36 @@ const UserOrder = () => {
                 'Order Dispatched'
             ],
             currentStatus: 0,
-            orderItems: [],
+            orderItems: [
+                {
+                    item: './../images/products/Apples.jpg',
+                    name: 'Product Name',
+                    price: 150,
+                    quantity: 4,
+                    totalPrice: 499,
+                },
+                {
+                    item: './../images/products/image-cover.jpg',
+                    name: 'Product Name',
+                    price: 150,
+                    quantity: 4,
+                    totalPrice: 499,
+                },
+                {
+                    item: './../images/products/blueberries.jpg',
+                    name: 'Product Name',
+                    price: 150,
+                    quantity: 4,
+                    totalPrice: 499,
+                },
+                {
+                    item: './../images/products/BabySpinach.jpg',
+                    name: 'Product Name',
+                    price: 150,
+                    quantity: 4,
+                    totalPrice: 499,
+                }
+            ],
         },
         {
             date: 'January, 22 2022',
@@ -53,7 +82,34 @@ const UserOrder = () => {
                 'Order Dispatched'
             ],
             currentStatus: 3,
-            orderItems: [],
+            orderItems: [{
+                item: './../images/products/Apples.jpg',
+                name: 'Product Name',
+                price: 150,
+                quantity: 4,
+                totalPrice: 499,
+            },
+            {
+                item: './../images/products/image-cover.jpg',
+                name: 'Product Name',
+                price: 150,
+                quantity: 4,
+                totalPrice: 499,
+            },
+            {
+                item: './../images/products/blueberries.jpg',
+                name: 'Product Name',
+                price: 150,
+                quantity: 4,
+                totalPrice: 499,
+            },
+            {
+                item: './../images/products/BabySpinach.jpg',
+                name: 'Product Name',
+                price: 150,
+                quantity: 4,
+                totalPrice: 499,
+            }],
         },
         {
             date: 'January, 22 2022',
@@ -78,7 +134,13 @@ const UserOrder = () => {
                 'Order Dispatched'
             ],
             currentStatus: 7,
-            orderItems: [],
+            orderItems: [{
+                item: './../images/products/Apples.jpg',
+                name: 'Product Name',
+                price: 150,
+                quantity: 4,
+                totalPrice: 499,
+            }],
         },
     ];
 
@@ -195,58 +257,23 @@ const UserOrder = () => {
                             </div>
 
                             <div className="products-list black-scroller y-scroll">
-                                <div className="row-item">
-                                    <div className="product">
-                                        <div className="img-ct">
-                                            <img src="./../images/products/Apples.jpg" alt="Image" />
+                                {orders[selectedIndex].orderItems.map(p => {
+                                    return (
+                                        <div className="row-item">
+                                            <div className="product">
+                                                <div className="img-ct">
+                                                    <img src={p.item} alt="Image" />
+                                                </div>
+                                                <div className="content">
+                                                    <p>{p.name}</p>
+                                                    <span>${p.price}</span>
+                                                </div>
+                                            </div>
+                                            <span>{p.quantity}</span>
+                                            <span>${p.totalPrice}</span>
                                         </div>
-                                        <div className="content">
-                                            <p>Product Name</p>
-                                            <span>$150.00</span>
-                                        </div>
-                                    </div>
-                                    <span>4</span>
-                                    <span>$400</span>
-                                </div>
-                                <div className="row-item">
-                                    <div className="product">
-                                        <div className="img-ct">
-                                            <img src="./../images/products/image-cover.jpg" alt="Image" />
-                                        </div>
-                                        <div className="content">
-                                            <p>Product Name</p>
-                                            <span>$150.00</span>
-                                        </div>
-                                    </div>
-                                    <span>4</span>
-                                    <span>$400</span>
-                                </div>
-                                <div className="row-item">
-                                    <div className="product">
-                                        <div className="img-ct">
-                                            <img src="./../images/products/BabySpinach.jpg" alt="Image" />
-                                        </div>
-                                        <div className="content">
-                                            <p>Product Name</p>
-                                            <span>$150.00</span>
-                                        </div>
-                                    </div>
-                                    <span>4</span>
-                                    <span>$400</span>
-                                </div>
-                                <div className="row-item">
-                                    <div className="product">
-                                        <div className="img-ct">
-                                            <img src="./../images/products/blueberries.jpg" alt="Image" />
-                                        </div>
-                                        <div className="content">
-                                            <p>Product Name</p>
-                                            <span>$150.00</span>
-                                        </div>
-                                    </div>
-                                    <span>4</span>
-                                    <span>$400</span>
-                                </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div> :
