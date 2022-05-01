@@ -46,24 +46,34 @@
   flex-direction: column;
 
 
+
+
   .address {
     margin: 2rem;
     padding: 1.5rem;
     width: 35rem;
-    border: 1px solid var(--color-primary);
+    min-height: 10rem;
+    background-color: rgba(var(--color-gray-200),1);
     border-radius: .5rem;
 
     p {
       color: rgba(var(--text-sub-heading),var(--tw-text-opacity));
       font-size: 1.2rem;
     }
+
+
+  }
+
+  .address-active {
+    border: 1px solid var(--color-primary);
+    background-color:white;
   }
 
   .deliver-agency {
     margin: 2rem;
     padding: 2rem 1rem;
     width: 20rem;
-    height: 11rem;
+    height: fit-content;
     border-radius: 1rem;
     background-color: rgba(var(--color-gray-200),1);
     display: flex;
@@ -72,16 +82,43 @@
     cursor: pointer;
 
 
-    h3 {
+
+    .ui.button, .ui.buttons .button, .ui.buttons .or {
+      font-size: 1.4rem;
+    }
+
+    .ui.labeled.button:not([class*="left labeled"])>.button {
+      background: rgba(var(--color-gray-200),1);
+    }
+
+    i {
+      color: var(--color-primary);
+    }
+
+
+
+
+      h3 {
       text-transform: uppercase;
       color: rgba(var(--text-heading),1);
       font-size: 1.4rem;
       margin-bottom: 1rem;
 
+
+    }
+    & .price {
+
+      font-size: 1.8rem;
+      font-family: sans-serif;
+      //background-color: rgba(var(--color-gray-200),1);
+      padding: .5rem;
+      border-radius: 1rem;
+      margin-top: 1rem;
+      color:rgba(var(--color-gray-500),1) ;
     }
     img {
       height: 4.5rem;
-
+    margin-bottom: 1rem;
 
     }
   }
@@ -115,7 +152,6 @@
 
         & span {
           margin-right: 1rem;
-
         }
 
 
@@ -127,9 +163,12 @@
       & .total {
         color: rgba(var(--text-heading),1);
         font-weight: 700;
+        font-family: sans-serif;
+
       }
       & .qnt {
         color: rgba(var(--text-heading),1);
+        font-family: sans-serif;
       }
     }
 
@@ -195,7 +234,14 @@
 .shipping-section {
   display: flex;
   flex-direction: row;
+  min-height: 20rem;
+  align-items: center;
+  justify-content: center;
 
+  .delivery-section {
+    display: flex;
+    width: 100%;
+  }
 
 }
 .addresses {
