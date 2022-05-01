@@ -44,6 +44,8 @@
 
   display: flex;
   flex-direction: column;
+
+
   .address {
     margin: 2rem;
     padding: 1.5rem;
@@ -63,7 +65,7 @@
     width: 20rem;
     height: 11rem;
     border-radius: 1rem;
-    background-color: rgba(var(--color-gray-100),1);
+    background-color: rgba(var(--color-gray-200),1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,10 +85,15 @@
 
     }
   }
+
+
   .active {
     background-color: white;
     border: 1px solid var(--color-primary);
   }
+
+
+
   .order-details {
     align-self: center;
     margin: 2rem;
@@ -139,14 +146,63 @@
 
 
 }
+.deliveryType {
+  align-items: center;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
 
+  .ui.slider.checkbox .box, .ui.slider.checkbox label {
+    font-size: 2rem;
+  }
+  .checkBox {
+    margin: 2rem 3rem;
+
+    .ui.slider.checkbox input:checked~.box:before, .ui.slider.checkbox input:checked~label:before {
+      background-color: var(--color-primary) !important;
+    }
+    .ui.slider.checkbox input:checked~.box, .ui.slider.checkbox input:checked~label {
+      color: var(--color-primary) !important;
+    }
+
+    label {
+      color: rgba(0,0,0,.4) !important;
+
+    }
+
+    .ui.slider.checkbox input:checked~.box:after, .ui.slider.checkbox input:checked~label:after {
+      left: 2rem;
+    }
+    .ui.checkbox input:checked~.box:after, .ui.checkbox input:checked~label:after {
+      content: '\e800';
+    }
+    .ui.checkbox input:checked~.box:after, .ui.checkbox input:checked~label:after {
+      opacity: 1;
+      color: rgba(0,0,0,.95);
+    }
+    .ui.slider.checkbox .box:after, .ui.slider.checkbox label:after {
+      top: .25rem !important;
+    }
+    .ui.slider.checkbox .box:before, .ui.slider.checkbox label:before {
+      top: .9rem !important;
+    }
+  }
+
+
+
+
+}
 .shipping-section {
   display: flex;
   flex-direction: row;
 
 
 }
+.addresses {
+  flex-direction: row;
+  flex-wrap: wrap;
 
+}
 .divider {
   border: 1px solid rgba(var(--color-border-200),var(--tw-border-opacity));
   margin: 2rem 0;

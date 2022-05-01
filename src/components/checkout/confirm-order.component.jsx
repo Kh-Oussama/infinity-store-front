@@ -1,12 +1,48 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link, withRouter} from "react-router-dom";
 import {createStructuredSelector} from "reselect";
 import {connect} from "react-redux";
 import './confirm-order.styles.scss';
 import algeria from "../../images/algeria.png";
+import Axios from "axios";
+import {selectCurrentUser} from "../../redux/auth/auth.selectors";
+import { Checkbox } from 'semantic-ui-react';
+import "semantic-ui-css/components/checkbox.min.css";
+import i from "styled-components/dist/styled-components-macro.esm";
 
-const ConfirmOrder = ({history}) => {
+const ConfirmOrder = ({ history, currentUser}) => {
+    const [deliveryType,  setDeliveryType] = useState(true);
 
+    const handleChange = (e) =>  {
+
+        setDeliveryType(!deliveryType)
+        console.log(deliveryType)
+    }
+    // fetch('https://api.yalidine.app/v1/deliveryfees/', {
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'X-API-ID': '91304391425917268014',
+    //         'X-API-TOKEN': '89ACOUFPfodU7EocWgegpViivahbP1RtKN6HusBJftlrhXGOlwzucLIxVzva1MKE',
+    //
+    //     },
+    //     mode: 'no-cors',
+    //
+    // })
+    //     .then(response => response.json())
+    //     .then(json => console.log(json));
+
+    // Axios.get("/v1/deliveryfees/",{
+    //     headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json',
+    //                 'X-API-ID': '91304391425917268014',
+    //                 'X-API-TOKEN': '89ACOUFPfodU7EocWgegpViivahbP1RtKN6HusBJftlrhXGOlwzucLIxVzva1MKE',
+    //     },
+    // }).then(rep => {
+    //     console.log(rep)
+    // }).catch(rep => {
+    //     console.log(rep)
+    // });
 
     return (
         <div className="checkout">
@@ -39,7 +75,7 @@ const ConfirmOrder = ({history}) => {
                                 <div>
                                     <img src={algeria} alt=""/>
                                 </div>
-                                <input type="text" value={"55555555"} disabled/>
+                                <input type="text" value={currentUser.phone_number} disabled/>
 
                             </div>
                         </div>
@@ -62,13 +98,19 @@ const ConfirmOrder = ({history}) => {
                         <i className="fa-solid fa-plus"/> update
                     </div>
                 </div>
-                <div className="cart-content">
-                    <div className="address">
-                        <h3>Address</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis dolorem error
-                            esse fugit laborum nemo officiis omnis quisquam sit. Doloribus fuga molestias omnis!
-                            Corporis fugit inventore nam quis sed?</p>
-                    </div>
+                <div className="cart-content addresses">
+                    {
+                        currentUser.addresses.map(address => (
+                            <div key={address} className="address">
+                                <h3>Address</h3>
+                                <p>{
+                                    address.wilaya+" "+address.commune+" "+address.zip +" "+
+                                    address.rue +" - Algerie"
+                                }</p>
+                            </div>
+                        ))
+                    }
+
                 </div>
             </div>
             <div className="card checkout-cart">
@@ -86,15 +128,21 @@ const ConfirmOrder = ({history}) => {
 
                     </div>
                 </div>
-                <div className="cart-content shipping-section ">
-                    <div className="deliver-agency active">
-                        <h3>Yalidine express</h3>
-                        <img src="/yalidine-logo.png" alt="logo"/>
+                <div className="deliveryType">
+                    <div className="checkBox">
+                        <div className="ui slider checkbox">
+                            <input type="checkbox" checked={deliveryType}  onChange={event => setDeliveryType(!deliveryType) }  />
+                            <label><i className="fa-solid fa-house-chimney"/> A Domicile</label>
+                        </div>
+
                     </div>
-                    <div className="deliver-agency">
-                        <h3>DHL express</h3>
-                        <img src="/dhl-3.png" alt="logo"/>
+                    <div className="checkBox">
+                        <div className="ui slider checkbox">
+                            <input type="checkbox" onChange={event => setDeliveryType(!deliveryType) } checked={!deliveryType}/>
+                            <label> <i className="fa-solid fa-building"></i> stop desc</label>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <div className="card checkout-cart">
@@ -102,6 +150,34 @@ const ConfirmOrder = ({history}) => {
                     <div className="title">
                         <div className="nbr">
                             4
+                        </div>
+                        <div className="text">
+                            Delivery Schedule
+                        </div>
+
+                    </div>
+                    <div className="button">
+
+                    </div>
+                </div>
+                <div className="cart-content shipping-section ">
+                    <div className="deliver-agency active">
+                        <h3>Yalidine express</h3>
+                        <img src="/yalidine-logo.png" alt="logo"/>
+
+                    </div>
+                    <div className="deliver-agency">
+                        <h3>DHL express</h3>
+                        <img src="/dhl-3.png" alt="logo"/>
+                    </div>
+                </div>
+            </div>
+
+            <div className="card checkout-cart">
+                <div className="cart-header">
+                    <div className="title">
+                        <div className="nbr">
+                            5
                         </div>
                         <div className="text">
                             Order Details
@@ -188,7 +264,9 @@ const ConfirmOrder = ({history}) => {
 }
 
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+});
 
 
 const mapDispatchToProps = dispatch => ({})
