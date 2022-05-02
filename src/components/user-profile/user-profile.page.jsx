@@ -4,10 +4,11 @@ import InputGroup from "../input-group/input-group.component";
 import TextAreaGroup from "../input-group/text-area-group.component";
 import algeria from "./../../images/algeria.png";
 import { createStructuredSelector } from "reselect";
-import {selectCurrentUser, selectProfileInformationErrors} from "../../redux/auth/auth.selectors";
+import { selectCurrentUser, selectProfileInformationErrors } from "../../redux/auth/auth.selectors";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateProfileInformationStart } from "../../redux/auth/auth.actions";
+import NoResult from "../no-result/no-result.component";
 
 const UserProfile = ({ updateUser, currentUser, errors }) => {
 
@@ -144,7 +145,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                 email: currentUser.email,
                 phoneNumber: currentUser.phone_number,
             });
-            setAddresses([...addresses, currentUser.address])
+            //setAddresses([...addresses, currentUser.address])
         }
     }, [currentUser]);
 
@@ -175,6 +176,17 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
         <div className="user-profile">
             <div className="profile-update">
                 <form>
+                    {
+                        image
+                            ? <div className="profile-img">
+                                <img src={image} alt="User Photo" />
+                            </div>
+                            : currentUser.photo_path
+                                ? <div className="profile-img">
+                                    <img src={`http://localhost:8000/${currentUser.photo_path}`} alt="User Photo" />
+                                </div>
+                                : null
+                    }
                     <div className="upload-img-ct">
                         <div className="upload-img" onClick={() => showInput()}>
                             <input
@@ -183,17 +195,6 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                 name="image"
                                 onChange={handlePhotoChange}
                             />
-                            {
-                                image
-                                    ? <div className="profile-img">
-                                        <img src={image} alt="User Photo" />
-                                    </div>
-                                    : currentUser.photo_path
-                                        ? <div className="profile-img">
-                                            <img src={`http://localhost:8000/${currentUser.photo_path}`} alt="User Photo" />
-                                        </div>
-                                        : null
-                            }
                             <span><i className="fa-solid fa-cloud-arrow-up" /></span>
                             <p><span>Upload an image</span> or drag and drop PNG, JPG</p>
                         </div>
@@ -204,30 +205,30 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                         firstNameError
                         &&
                         <span className={"input-validation-errors"}>
-                               <i className="fa-solid fa-triangle-exclamation"/>
+                            <i className="fa-solid fa-triangle-exclamation" />
                             {firstNameError}
 
-                                </span>
+                        </span>
                     }
                     <InputGroup label="Last name" name="lastName" type="text" value={lastName} onChange={handleCrendentialsChange} />
                     {
                         lastNameError
                         &&
                         <span className={"input-validation-errors"}>
-                               <i className="fa-solid fa-triangle-exclamation"/>
+                            <i className="fa-solid fa-triangle-exclamation" />
                             {lastNameError}
 
-                                </span>
+                        </span>
                     }
                     <InputGroup label="Email" name="email" type="text" value={email} onChange={handleCrendentialsChange} />
                     {
                         emailError
                         &&
                         <span className={"input-validation-errors"}>
-                               <i className="fa-solid fa-triangle-exclamation"/>
+                            <i className="fa-solid fa-triangle-exclamation" />
                             {emailError}
 
-                                </span>
+                        </span>
                     }
 
                 </form>
@@ -252,10 +253,10 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                             phoneError
                             &&
                             <span className={"input-validation-errors"}>
-                               <i className="fa-solid fa-triangle-exclamation"/>
+                                <i className="fa-solid fa-triangle-exclamation" />
                                 {phoneError}
 
-                                </span>
+                            </span>
                         }
                     </div>
 
@@ -280,28 +281,29 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
 
                     <div className="content">
                         <p>Addresses</p>
-                        <button onClick={showAddressPopup}><i className="fa-solid fa-plus"/> Add</button>
+                        <button onClick={showAddressPopup}><i className="fa-solid fa-plus" /> Add</button>
                     </div>
 
-                    <div className="address-ct">
-                        {addresses.map((address, index) => {
-                            return (
-                                <div className={`address-item ${selectedAddress === index?'active':''}`} onClick={() => setSelectedAddress(index)}>
-                                    <h3>Address</h3>
-                                    <p>{address}</p>
-                                </div>
-                            );
-                        })}
-                        {
-                            addressError
-                            &&
-                            <span className={"input-validation-errors"}>
-                               <i className="fa-solid fa-triangle-exclamation"/>
-                                {addressError}
+                    {addresses.length !== 0 ?
+                        <div className="address-ct">
+                            {addresses.map((address, index) => {
+                                return (
+                                    <div className={`address-item ${selectedAddress === index ? 'active' : ''}`} onClick={() => setSelectedAddress(index)}>
+                                        <h3>Address</h3>
+                                        <p>{address}</p>
+                                    </div>
+                                );
+                            })}
+                            {
+                                addressError
+                                &&
+                                <span className={"input-validation-errors"}>
+                                    <i className="fa-solid fa-triangle-exclamation" />
+                                    {addressError}
 
                                 </span>
-                        }
-                    </div>
+                            }
+                        </div> : <NoResult />}
 
                     <div className="popup">
                         <div className="content">
@@ -324,7 +326,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                 <input type="button" value="Update address" onClick={_ => {
                                     closeAddressPopup();
                                     setAddresses([...addresses, `${title} ${country} ${city} ${state} ${zip} ${streetAddress}`]);
-                                    setAddressInfo({title: '', country: '', city: '', state: '', zip: '', streetAddress: ''})
+                                    setAddressInfo({ title: '', country: '', city: '', state: '', zip: '', streetAddress: '' })
                                 }} />
                             </div>
                         </div>

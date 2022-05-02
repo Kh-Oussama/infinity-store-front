@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import {addItem, clearItemFromCart, removeItem} from "../../redux/cart/cart.actions";
 import CheckoutTable from "./checkout-table.component";
 import {Message} from "semantic-ui-react";
-import NoResult from "../icons/no-result";
+import NoResult from "../no-result/no-result.component";
 
 const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem, clearItem, addItem, currentUser, history}) => {
 

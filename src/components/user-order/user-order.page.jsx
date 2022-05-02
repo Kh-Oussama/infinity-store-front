@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NoResult from "./../../images/no-result.svg";
+import NoResult from "../no-result/no-result.component";
 
 const UserOrder = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -142,8 +142,8 @@ const UserOrder = () => {
                 totalPrice: 499,
             }],
         },
-    ];
-
+    ]; 
+    //const orders = [];
     return (
         <div className="user-order">
             <div className="side left-side">
@@ -276,10 +276,7 @@ const UserOrder = () => {
                                 })}
                             </div>
                         </div>
-                    </div> :
-                    <div className="img-ct">
-                        <img src={NoResult} alt="No result" />
-                    </div>}
+                    </div> : <NoResult />}
             </div>
         </div>
     );

@@ -68,7 +68,7 @@
                         margin: 4px 0 0;
                         font-size: 1.5rem;
                         font-weight: 500;
-                        max-width: 25%;
+                        max-width: 190px;
                         text-align: center;
                         color: var(--color-grey-dark-3);
 
@@ -85,11 +85,24 @@
     }
 
     & .profile-img{
+        margin: 0 0 2rem;
+        text-align: center;
         img {
-            height: 10rem;
+            width: 40%;
+            border-radius: 4px;
         }
     }
+
     .address {
+        & .no-result{
+            & img{
+                width: 24rem;
+
+                @media only screen and (max-width: $bp-small){
+                    width: 18rem;
+                }
+            }
+        }
 
         & .address-ct {
             width: 100%;
