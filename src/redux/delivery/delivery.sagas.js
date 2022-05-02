@@ -6,8 +6,9 @@ import {retrieveWilayaDetailsFailure, retrieveWilayaDetailsSuccess} from "./deli
 
 //Get wilaya
 export function* retrieveWilayaDetailsAsync({payload: {id}}) {
+    console.log(id);
     try {
-        const response = yield Axios.get(`/v1/deliveryfees/${id}`, {
+        const response = yield Axios.get(`/v1/deliveryfees/${parseInt(id)}`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

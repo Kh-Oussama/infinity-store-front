@@ -25,7 +25,7 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
 
 
     useEffect(() => {
-        retrieveWilayaDetails({id: selectedWilaya.wilaya});
+        retrieveWilayaDetails({id: selectedWilaya.wilaya_id});
     }, [retrieveWilayaDetails,selectedWilaya]);
 
 
@@ -90,7 +90,7 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                             <div  key={address.id} className={`address ${selectedWilaya.id === address.id ? "address-active" : null} `} onClick={() => setSelectedWilaya(address)}>
                                 <h3>Address</h3>
                                 <p>{
-                                    address.wilaya + " " + address.commune + " " + address.zip + " " +
+                                    address.wilaya_id + " " + address.wilaya_name + " " + address.commune + " " + address.zip + " " +
                                     address.rue + " - Algerie"
                                 }</p>
                             </div>
