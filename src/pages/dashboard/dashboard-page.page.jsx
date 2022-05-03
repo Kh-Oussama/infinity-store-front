@@ -14,6 +14,7 @@ import ConfirmPasswordComponent
 
 import Checkout from "../../components/checkout/checkout.component";
 import ConfirmOrder from "../../components/checkout/confirm-order.component";
+import OrderView from "../../components/checkout/order-view.comonent";
 
 
 const Dashboard = ({ currentUser }) => {
@@ -138,10 +139,11 @@ const Dashboard = ({ currentUser }) => {
                                     <Route exact path="/dashboard/verify-email" component={EmailVerification} />
                                     <Redirect to="/dashboard/verify-email" />
                                 </Switch>
-                                : <Switch>
-                                    <Route exact path="/dashboard" component={UserProfile} />
-                                    <Route exact path="/dashboard/update-password" component={UpdatePassword} />
-                                    <Route exact path="/dashboard/orders" component={UserOrder} />
+
+                                :  <Switch>
+                                    <Route exact path="/dashboard" component={UserProfile}/>
+                                    <Route exact path="/dashboard/update-password" component={UpdatePassword}/>
+                                    <Route exact path="/dashboard/orders" component={OrderView}/>
                                     <Route exact path="/dashboard/checkout" component={Checkout} />
                                     <Route exact path="/dashboard/place-order" component={ConfirmOrder} />
                                     <Route exact path="/dashboard/two-factors-auth" component={TwoFactorAuthSettings} />

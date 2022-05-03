@@ -1,11 +1,33 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link, withRouter} from "react-router-dom";
 import {createStructuredSelector} from "reselect";
 import {connect} from "react-redux";
 import './confirm-order.styles.scss';
 import algeria from "../../images/algeria.png";
+import {selectCurrentUser} from "../../redux/auth/auth.selectors";
+import "semantic-ui-css/components/checkbox.min.css";
+import i from "styled-components/dist/styled-components-macro.esm";
+import {
+    selectRetrieveWilayaError,
+    selectRetrieveWilayaLoading,
+    selectWilayaVar
+} from "../../redux/delivery/delivery.selectors";
+import { Button } from 'semantic-ui-react'
+import 'semantic-ui-css/components/button.min.css'
 
-const ConfirmOrder = ({history}) => {
+import {retrieveWilayaDetailsStart} from "../../redux/delivery/delivery.actions";
+import Spinner from "../spinner/spinner.components";
+import {selectCartItems, selectCartTotal} from "../../redux/cart/cart.selectors";
+
+const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWilayaLoading, retrieveWilayaErrors, wilayaDetails, cartItems, total}) => {
+    const [deliveryType, setDeliveryType] = useState(true);
+    const [selectedWilaya, setSelectedWilaya] = useState(currentUser.addresses[0]);
+
+
+    useEffect(() => {
+        retrieveWilayaDetails({id: selectedWilaya.wilaya_id});
+    }, [retrieveWilayaDetails,selectedWilaya]);
+
 
 
     return (
@@ -39,7 +61,7 @@ const ConfirmOrder = ({history}) => {
                                 <div>
                                     <img src={algeria} alt=""/>
                                 </div>
-                                <input type="text" value={"55555555"} disabled/>
+                                <input type="text" value={currentUser.phone_number} disabled/>
 
                             </div>
                         </div>
@@ -62,13 +84,19 @@ const ConfirmOrder = ({history}) => {
                         <i className="fa-solid fa-plus"/> update
                     </div>
                 </div>
-                <div className="cart-content">
-                    <div className="address">
-                        <h3>Address</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis dolorem error
-                            esse fugit laborum nemo officiis omnis quisquam sit. Doloribus fuga molestias omnis!
-                            Corporis fugit inventore nam quis sed?</p>
-                    </div>
+                <div className="cart-content addresses">
+                    {
+                        currentUser.addresses.map(address => (
+                            <div  key={address.id} className={`address ${selectedWilaya.id === address.id ? "address-active" : null} `} onClick={() => setSelectedWilaya(address)}>
+                                <h3>Address</h3>
+                                <p>{
+                                    address.wilaya_id + " " + address.wilaya_name + " " + address.commune + " " + address.zip + " " +
+                                    address.rue + " - Algerie"
+                                }</p>
+                            </div>
+                        ))
+                    }
+
                 </div>
             </div>
             <div className="card checkout-cart">
@@ -86,15 +114,23 @@ const ConfirmOrder = ({history}) => {
 
                     </div>
                 </div>
-                <div className="cart-content shipping-section ">
-                    <div className="deliver-agency active">
-                        <h3>Yalidine express</h3>
-                        <img src="/yalidine-logo.png" alt="logo"/>
+                <div className="deliveryType">
+                    <div className="checkBox">
+                        <div className="ui slider checkbox">
+                            <input type="checkbox" checked={deliveryType}
+                                   onChange={event => setDeliveryType(!deliveryType)}/>
+                            <label><i className="fa-solid fa-house-chimney"/> A Domicile</label>
+                        </div>
+
                     </div>
-                    <div className="deliver-agency">
-                        <h3>DHL express</h3>
-                        <img src="/dhl-3.png" alt="logo"/>
+                    <div className="checkBox">
+                        <div className="ui slider checkbox">
+                            <input type="checkbox" onChange={event => setDeliveryType(!deliveryType)}
+                                   checked={!deliveryType}/>
+                            <label> <i className="fa-solid fa-building"/> stop desc</label>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <div className="card checkout-cart">
@@ -102,6 +138,51 @@ const ConfirmOrder = ({history}) => {
                     <div className="title">
                         <div className="nbr">
                             4
+                        </div>
+                        <div className="text">
+                            Delivery Schedule
+                        </div>
+
+                    </div>
+                    <div className="button">
+
+                    </div>
+                </div>
+                <div className="cart-content shipping-section ">
+                    {
+                        retrieveWilayaLoading
+                            ? <Spinner/>
+                            : <>
+                                <div className="delivery-section">
+                                <div className="deliver-agency active">
+                                    <h3>Yalidine express</h3>
+                                    <img src="/yalidine-logo.png" alt="logo"/>
+
+
+                                    <Button
+                                        content=''
+                                        icon='shipping fast'
+                                        label={{ as: 'a', basic: true, content: `${ deliveryType ? wilayaDetails?.home_fee : wilayaDetails?.desk_fee} DA` }}
+                                        labelPosition='right'
+                                    />
+
+                                </div>
+                                <div className="deliver-agency">
+                                    <h3>DHL express</h3>
+                                    <img src="/dhl-3.png" alt="logo"/>
+                                </div>
+                            </div>
+
+                            </>
+                    }
+
+                </div>
+            </div>
+            <div className="card checkout-cart">
+                <div className="cart-header">
+                    <div className="title">
+                        <div className="nbr">
+                            5
                         </div>
                         <div className="text">
                             Order Details
@@ -112,63 +193,56 @@ const ConfirmOrder = ({history}) => {
 
                     </div>
                 </div>
-                <div className="cart-content">
-                    <div className="order-details">
-                        <h3>your Order</h3>
-                        <div className="order-info">
-                            <div className="attribute">
-                                <span className={"qnt"}>1</span>
-                                <span>x</span>
-                                <span>Apples </span>
-                            </div>
-                            <div className="content qnt ">350 $</div>
-                        </div>
-                        <div className="order-info">
-                                <div className="attribute">
-                                    <span className={"qnt"}>100</span>
-                                    <span>x</span>
-                                    <span>Baby Spinach</span>
+                <div className="cart-content shipping-section">
+                    {
+                       retrieveWilayaLoading
+                            ? <Spinner/>
+                            : <div className="order-details">
+                                <h3>your Order</h3>
+                                {
+                                    cartItems.map(item => (
+                                        <div className="order-info">
+                                            <div className="attribute">
+                                                <span className={"qnt"}>{item.quantity}</span>
+                                                <span>x</span>
+                                                <span>{item.name}</span>
+                                            </div>
+                                            <div className="content qnt">{item.quantity * item.price} DA</div>
+                                        </div>
+                                    ))
+                                }
+
+
+                                <div className="divider"/>
+                                <div className="order-info">
+                                    <div className="attribute">
+                                        Sub Total
+                                    </div>
+                                    <div className="content qnt">{total} DA</div>
                                 </div>
-                            <div className="content qnt">150 $</div>
-                        </div>
-                        <div className="order-info">
-                            <div className="attribute">
-                                <span className={"qnt"}>100</span>
-                                <span>x</span>
-                                <span>Baby Spinach</span>
+                                <div className="order-info">
+                                    <div className="attribute">
+                                        Estimated Shipping
+                                    </div>
+                                    <div
+                                        className="content qnt">{deliveryType ? wilayaDetails?.home_fee : wilayaDetails?.desk_fee} DA
+                                    </div>
+                                </div>
+                                <div className="divider"/>
+                                <div className="order-info">
+                                    <div className="attribute total">
+                                        Total
+                                    </div>
+                                    <div
+                                        className="content total">{deliveryType ? wilayaDetails?.home_fee + total : wilayaDetails?.desk_fee + total} DA
+                                    </div>
+                                </div>
                             </div>
-                            <div className="content qnt">150 $</div>
-                        </div>
-                        <div className="divider"/>
-                        <div className="order-info">
-                            <div className="attribute">
-                                Sub Total
-                            </div>
-                            <div className="content qnt">$20.20</div>
-                        </div>
-                        <div className="order-info">
-                            <div className="attribute">
-                                Tax
-                            </div>
-                            <div className="content qnt">$5.20</div>
-                        </div>
-                        <div className="order-info">
-                            <div className="attribute">
-                                Estimated Shipping
-                            </div>
-                            <div className="content qnt">$5.20</div>
-                        </div>
-                        <div className="divider"/>
-                        <div className="order-info">
-                            <div className="attribute total">
-                                Total
-                            </div>
-                            <div className="content total">$20.20</div>
-                        </div>
-                    </div>
+                    }
+
                 </div>
                 <div className="actions">
-                    <Link className="action"  to="/dashboard/checkout">
+                    <Link className="action" to="/dashboard/checkout">
                         <i className="fa-solid fa-left-long"/>
                         Go back
                     </Link>
@@ -178,7 +252,6 @@ const ConfirmOrder = ({history}) => {
                                    <i className="fa-solid fa-check-double"/>
                                     Confirm Order
                             </span>
-
                     </div>
 
                 </div>
@@ -188,8 +261,19 @@ const ConfirmOrder = ({history}) => {
 }
 
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+
+    wilayaDetails: selectWilayaVar,
+    retrieveWilayaLoading: selectRetrieveWilayaLoading,
+    retrieveWilayaErrors: selectRetrieveWilayaError,
+
+    cartItems: selectCartItems,
+    total: selectCartTotal,
+});
 
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+    retrieveWilayaDetails : wilaya => dispatch(retrieveWilayaDetailsStart(wilaya)),
+})
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConfirmOrder));

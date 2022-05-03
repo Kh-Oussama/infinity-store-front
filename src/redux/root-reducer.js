@@ -10,6 +10,7 @@ import subCategoriesReducer from "./sub-categories/subCategories.reducer";
 import authReducer from "./auth/auth.reducer";
 import storesReducer from "./stores/stores.reducer";
 import cartReducer from "./cart/cart.reducer";
+import deliveryReducer from "./delivery/delivery.reducer";
 
 
 const persistConfig = {
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
     store: storesReducer,
     cart : cartReducer,
+    delivery : deliveryReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

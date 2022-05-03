@@ -102,35 +102,7 @@
     width: 5rem;
 }
 
-.ui.label {
-    background:   #fe7c96 !important;
-    cursor: pointer !important;
-    .remove-button {
-        color: white;
-        width: 10rem;
-        font-weight: 500;
-        display: flex;
-        justify-content: center;
-        align-items: center;
 
-        & i {
-            margin-right: .7rem;
-        }
-    }
-
-    &:hover {
-        background-color: #fe5678 !important;
-        border-color: #fe496d;
-
-    }
-
-    &:hover .remove-btn{
-        background-color: #fe5678 !important;
-        border-color: #fe496d;
-    }
-
-
-}
 
 .p-name {
     padding-bottom: .2rem;
@@ -173,3 +145,7 @@
 //.image-cell {
 //    width: fit-content !important;
 //}
+
+.ui.button {
+    min-height: auto !important;
+}

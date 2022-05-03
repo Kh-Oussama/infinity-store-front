@@ -6,6 +6,7 @@ import { subcategoriesSagas } from './sub-categories/subCategories.sagas';
 import {storesSagas} from "./stores/stores.sagas";
 import {authSagas} from "./auth/auth.sagas";
 import {cartSagas} from "./cart/cart.sagas";
+import {deliverySagas} from "./delivery/delivery.sagas";
 
 
 export default function* rootSaga() {
@@ -17,5 +18,6 @@ export default function* rootSaga() {
         call(storesSagas),
         call(authSagas),
         call(cartSagas),
+        call(deliverySagas),
     ])
 };
