@@ -1,8 +1,9 @@
 .user-order {
     width: 100%;
     height: 716px;
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
+
 
     @media only screen and (max-width: $bp-large) {
         flex-direction: column;
@@ -18,13 +19,14 @@
     }
 
     & .left-side {
-        width: 30%;
+        width: 28rem;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
         user-select: none;
+        margin: 0 2rem 0 0;
 
         @media only screen and (max-width: $bp-large) {
             width: 100%;
@@ -78,8 +80,6 @@
                     }
                 }
             }
-
-
 
 
             & .order-item {
@@ -178,13 +178,13 @@
     }
 
     & .right-side {
-        width: 67%;
+        width: calc(100% - 30rem);
         height: 100%;
         padding: 0;
 
         @media only screen and (max-width: $bp-large) {
             width: 100%;
-            height: 716px;
+            min-height: 716px;
             margin: 2rem 0 0;
         }
 
@@ -204,6 +204,15 @@
                 & h2 {
                     color: var(--color-grey-dark-1);
                     font-size: 1.8rem;
+
+                    @media only screen and (max-width: $bp-small) {
+                        font-size: 1.5rem;
+                    }
+
+                    @media only screen and (max-width: $bp-smallest) {
+                        max-width: 45%;
+                        text-align: left;
+                    }
                 }
 
                 &>div {
@@ -212,12 +221,24 @@
                     color: var(--color-grey-dark-3);
                     cursor: pointer;
 
+                    @media only screen and (max-width: $bp-small) {
+                        width: 80px;
+                        white-space: nowrap !important;
+                        text-overflow: ellipsis !important;
+                        overflow: hidden;
+                        font-size: 1.2rem;
+                    }
+
                     &.active {
                         color: var(--color-primary);
                     }
 
                     &:nth-child(2) {
                         margin: 0 1.5rem 0 auto;
+
+                        @media only screen and (max-width: $bp-small) {
+                            margin: 0 1rem 0 auto;
+                        }
                     }
 
                     & i {
@@ -229,20 +250,29 @@
 
             & .addresses-ct {
                 width: 100%;
-                height: 200px;
+                min-height: 200px;
                 border-bottom: 1px var(--color-grey-3) solid;
                 display: flex;
                 justify-content: flex-start;
-                align-items: flex-start;
+                align-items: stretch;
+
+                @media only screen and (max-width: $bp-small-1) {
+                    flex-direction: column;
+                }
 
                 & div.content-ct {
                     flex: 1;
-                    height: 100%;
-                    border-right: 1px var(--color-grey-3) solid;
                     padding: 1.5rem 2rem;
+                    border-right: 1px var(--color-grey-3) solid;
+
+                    @media only screen and (max-width: $bp-small-1) {
+                        border-right: none;
+                        border-bottom: 1px var(--color-grey-3) solid;
+                    }
 
                     & .address {
                         width: 100%;
+                        height: 100%;
 
                         & h2 {
                             font-size: 1.5rem;
@@ -261,17 +291,24 @@
 
                 & div.amount-ct {
                     width: 24rem;
-                    height: 100%;
                     padding: 1.5rem 2rem;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: flex-start;
 
+                    @media only screen and (max-width: $bp-small-1) {
+                        width: 100%;
+                    }
+
                     & div {
                         width: 100%;
                         display: flex;
                         justify-content: space-between;
+
+                        @media only screen and (max-width: $bp-small-1) {
+                            margin: .5rem 0;
+                        }
 
                         & span {
                             font-size: 1.2rem;
@@ -420,6 +457,30 @@
                 width: 100%;
                 overflow: hidden;
 
+                @media only screen and (max-width: $bp-small) {
+                    position: relative;
+                    overflow-x: auto;
+
+                    &.x-scroll {
+                        padding: 0 0 1rem 0 !important;
+                        margin: 0 0 1rem !important;
+
+                        &::-webkit-scrollbar {
+                            width: 100%;
+                            height: 3px;
+                        }
+
+                        &::-webkit-scrollbar-track {
+                            background-color: var(--color-grey-3);
+                        }
+
+                        &::-webkit-scrollbar-thumb {
+                            background: #333;
+                            border-radius: 50px;
+                        }
+                    }
+                }
+
                 & .row-header {
                     width: 100%;
                     height: 48px;
@@ -428,8 +489,11 @@
                     justify-content: flex-start;
                     align-items: center;
                     border-bottom: 1px var(--color-grey-3) solid;
-
                     padding: 0 1rem 0 0 !important;
+
+                    @media only screen and (max-width: $bp-small) {
+                        width: 554px;
+                    }
 
                     & span {
                         height: 100%;
@@ -461,6 +525,14 @@
                     position: relative;
                     overflow-y: scroll;
 
+                    @media only screen and (max-width: $bp-large) {
+                        margin: 0 0 1.5rem;
+                    }
+
+                    @media only screen and (max-width: $bp-small) {
+                        width: 554px;
+                    }
+
                     &::-webkit-scrollbar {
                         width: 6px;
                     }
@@ -468,7 +540,7 @@
 
                     & .row-item {
                         width: 100%;
-                        height: 90px;
+                        min-height: 90px;
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
@@ -484,7 +556,7 @@
 
                             & .img-ct {
                                 width: 8rem;
-                                height: 100%;
+                                height: 8rem;
 
                                 & img {
                                     width: 100%;

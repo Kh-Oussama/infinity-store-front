@@ -249,7 +249,7 @@ const UserOrder = () => {
 
                         </div>
 
-                        <div className="products-ct">
+                        <div className="products-ct x-scroll">
                             <div className="row-header">
                                 <span>Item</span>
                                 <span>Quantity</span>
