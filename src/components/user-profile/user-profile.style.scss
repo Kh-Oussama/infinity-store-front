@@ -10,6 +10,10 @@
         padding: 3rem;
         margin: 0 0 32px;
 
+        @media only screen and (max-width: $bp-small){
+            padding: 3rem 2rem;
+        }
+
         &>.content {
             width: 100%;
             display: flex;
@@ -68,9 +72,17 @@
                         margin: 4px 0 0;
                         font-size: 1.5rem;
                         font-weight: 500;
-                        max-width: 25%;
+                        max-width: 190px;
                         text-align: center;
                         color: var(--color-grey-dark-3);
+
+                        @media only screen and (max-width: $bp-small) {
+                            font-size: 1.2rem;
+                        }
+
+                        @media only screen and (max-width: $bp-smallest){
+                            max-width: 160px;
+                        }
 
                         &>span {
                             font-weight: 600;
@@ -85,11 +97,28 @@
     }
 
     & .profile-img{
+        margin: 0 0 2rem;
+        text-align: center;
         img {
-            height: 10rem;
+            width: 18rem;
+            border-radius: 50%;
+
+            @media only screen and (max-width: $bp-smallest){
+                width: 11rem;
+            }
         }
     }
+
     .address {
+        & .no-result{
+            & img{
+                width: 24rem;
+
+                @media only screen and (max-width: $bp-small){
+                    width: 18rem;
+                }
+            }
+        }
 
         & .address-ct {
             width: 100%;
@@ -193,6 +222,10 @@
             font-size: 18px;
             color: var(--color-grey-dark-1);
             font-weight: 500;
+
+            @media only screen and (max-width: $bp-small){
+                font-size: 16px;
+            }
         }
 
         & button {
