@@ -218,6 +218,10 @@
                                 & > div{
                                     width: 100%;
 
+                                    &.css-1s2u09g-control{
+                                        height: 42px !important;
+                                    }
+
                                     & .select-option{
                                         display: flex;
                                         justify-content: flex-start;
