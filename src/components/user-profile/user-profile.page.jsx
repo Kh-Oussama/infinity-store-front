@@ -315,7 +315,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                             }
                         </div> : <NoResult />}
 
-                    <div className="popup active">
+                    <div className="popup">
                         <div className="content">
                             <p>Add new address</p>
                             <div>
@@ -334,7 +334,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                             options={wilayaOptions}
                                             components={{ Option: WilayaOption }}
                                             name="wilaya"
-                                            onChange={value => setWilaya(value.value)}
+                                            onChange={value => {setWilaya(value.value);console.log(value.value)}}
                                             theme={(theme) => ({
                                                 ...theme,
                                                 colors: {
