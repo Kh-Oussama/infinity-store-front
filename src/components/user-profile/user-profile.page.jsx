@@ -9,6 +9,8 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateProfileInformationStart } from "../../redux/auth/auth.actions";
 import NoResult from "../no-result/no-result.component";
+import Select from "react-select";
+import WilayaOption from "./wilaya-option.component";
 
 const UserProfile = ({ updateUser, currentUser, errors }) => {
 
@@ -36,10 +38,18 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
     const [addressError, setAddressError] = useState(null);
     const [emailError, setEmailError] = useState(null);
     const [photoError, setPhotoError] = useState(null);
+    const [wilaya, setWilaya] = useState(null);
 
 
     const [image_path, setImage_path] = useState("");
     const [image, setImage] = useState("");
+
+    const wilayaOptions = [
+        { label: 'Alger', id: '16', value: '16' },
+        { label: 'Constantine', id: '25', value: '25' },
+        { label: 'Oum El Bouaghi', id: '04', value: '04' },
+        { label: 'Oran', id: '28', value: '28' },
+    ];
 
     //Function to show image input
     const showInput = () => {
@@ -305,7 +315,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                             }
                         </div> : <NoResult />}
 
-                    <div className="popup">
+                    <div className="popup active">
                         <div className="content">
                             <p>Add new address</p>
                             <div>
@@ -317,7 +327,17 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                 </div>
 
                                 <div className="row">
-                                    <InputGroup label="State" type="text" name="state" value={state} onChange={handleAddressInformationChange} />
+                                    {/* <InputGroup label="State" type="text" name="state" value={state} onChange={handleAddressInformationChange} /> */}
+                                    <div className="wilaya-select">
+                                        <span>Wilaya</span>
+                                        <Select
+                                            className="react-select-container"
+                                            options={wilayaOptions}
+                                            components={{ Option: WilayaOption }}
+                                            name="wilaya"
+                                            onChange={value => setWilaya(value.value)}
+                                        />
+                                    </div>
                                     <InputGroup label="Zip" type="text" name="zip" value={zip} onChange={handleAddressInformationChange} />
                                 </div>
 
