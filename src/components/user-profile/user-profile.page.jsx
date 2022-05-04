@@ -327,7 +327,6 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                 </div>
 
                                 <div className="row">
-                                    {/* <InputGroup label="State" type="text" name="state" value={state} onChange={handleAddressInformationChange} /> */}
                                     <div className="wilaya-select">
                                         <span>Wilaya</span>
                                         <Select
@@ -336,6 +335,13 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                             components={{ Option: WilayaOption }}
                                             name="wilaya"
                                             onChange={value => setWilaya(value.value)}
+                                            theme={(theme) => ({
+                                                ...theme,
+                                                colors: {
+                                                    ...theme.colors,
+                                                    primary: '#009f7f',
+                                                },
+                                            })}
                                         />
                                     </div>
                                     <InputGroup label="Zip" type="text" name="zip" value={zip} onChange={handleAddressInformationChange} />
