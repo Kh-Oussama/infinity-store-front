@@ -182,14 +182,34 @@ const styles = StyleSheet.create({
 
     },
 
+    thCnt:{
+        width: '7%',
+        borderRight : "1px solid rgb(229,231,235)",
+        alignItems : "center",
+        padding: "5px 0",
+    },
+    thCnti:{
+        width: '7%',
+        borderRight : "none",
+        alignItems : "center",
+        padding: "5px 0",
+    },
     thDesc:{
-        width: '70%',
+        width: '63%',
         borderRight : "1px solid rgb(229,231,235)",
         alignItems : "center",
         padding: "5px 0",
     },
     trDesc:{
-        width: '70%',
+        width: '63%',
+        borderRight : "1px solid rgb(229,231,235)",
+
+        alignItems : "center",
+        padding: "5px 10px",
+        textAlign: 'left',
+    },
+        trCnt:{
+        width: '7%',
         borderRight : "1px solid rgb(229,231,235)",
 
         alignItems : "center",
@@ -284,6 +304,9 @@ const MyDocument = () => (
                 
                 <View style={styles.table}>
                     <View style={styles.tableHeader}>
+                        <Text style={styles.thCnt}>
+                            #
+                        </Text>
                         <Text style={styles.thDesc}>
                             Description
                         </Text>
@@ -295,6 +318,9 @@ const MyDocument = () => (
                         </Text>
                     </View>
                     <View style={styles.tableContent}>
+                        <Text style={styles.trCnt}>
+                            01
+                        </Text>
                         <Text style={styles.trDesc}>
                             Furniture Shop
                         </Text>
@@ -306,6 +332,9 @@ const MyDocument = () => (
                         </Text>
                     </View>
                     <View style={styles.tableContent}>
+                        <Text style={styles.trCnt}>
+                            02
+                        </Text>
                         <Text style={styles.trDesc}>
                             Furniture Shop
                         </Text>
@@ -317,17 +346,23 @@ const MyDocument = () => (
                         </Text>
                     </View>
                     <View style={styles.tableContent}>
-                        <Text style={styles.trDesc}>
-                            Furniture Shop
-                        </Text>
-                        <Text style={styles.trQnt}>
-                            1
-                        </Text>
-                        <Text style={styles.trTotal}>
-                            8000 DA
-                        </Text>
-                    </View>
+                    <Text style={styles.trCnt}>
+                        03
+                    </Text>
+                    <Text style={styles.trDesc}>
+                        Furniture Shop
+                    </Text>
+                    <Text style={styles.trQnt}>
+                        1
+                    </Text>
+                    <Text style={styles.trTotal}>
+                        8000 DA
+                    </Text>
+                </View>
                     <View style={styles.tableContent}>
+                        <Text style={styles.trCnt}>
+                            04
+                        </Text>
                         <Text style={styles.trDesc}>
                             Furniture Shop
                         </Text>
@@ -339,6 +374,9 @@ const MyDocument = () => (
                         </Text>
                     </View>
                     <View style={styles.tableHeader}>
+                        <Text style={styles.thCnti}>
+
+                        </Text>
                         <Text style={styles.thDesc}>
 
                         </Text>
