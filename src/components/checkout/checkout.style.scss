@@ -149,3 +149,29 @@
 .ui.button {
     min-height: auto !important;
 }
+
+.order-invoice {
+    width: 100%;
+    text-align: center;
+
+    i {
+        background: var(--color-primary);
+        font-size: 10rem;
+        line-height: 15rem;
+        width: 15rem;
+        height: 15rem;
+        border-radius: 100%;
+        color: white;
+    }
+}
+
+.order-details {
+    margin: 2rem;
+    text-align: center;
+
+
+    h3 {
+        color: rgb(55,65,81);
+        font-family: sans-serif;
+    }
+}

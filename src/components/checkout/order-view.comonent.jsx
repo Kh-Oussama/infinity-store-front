@@ -420,9 +420,28 @@ const OrderView = ({history, currentUser}) => {
     return (
         <div className="checkout">
             <div className="card checkout-cart">
-                <PDFViewer width={"841.89"}  height={"645.28px"} showToolbar={true}  >
-                    <MyDocument />
-                </PDFViewer>
+                <div className="title">
+                    <h1>Order Created</h1>
+                    <p>Currently you have item(s) in your cart.</p>
+                </div>
+                <div className="order-invoice">
+                    <i className="fa-solid fa-check-double"/>
+                </div>
+               <div className="order-details">
+                   <h3>Date : 05/04/2022</h3>
+                   <h3>Order Number : #5236952</h3>
+               </div>
+            </div>
+            <div className="card checkout-cart">
+                <div className="title">
+                    <h1>Order Invoice</h1>
+                    <p>Currently you have item(s) in your cart.</p>
+                </div>
+                <div className="order-invoice">
+                    <PDFViewer width={"841.89"}  height={"1200px"} showToolbar={true}  >
+                        <MyDocument />
+                    </PDFViewer>
+                </div>
             </div>
 
         </div>
