@@ -140,6 +140,7 @@
     background-color: rgba(var(--color-gray-100),1);
     border-radius: 1rem;
 
+
     .order-info {
       display: flex;
       justify-content: space-between;
@@ -149,7 +150,7 @@
 
       & .attribute {
         flex: 50%;
-
+        text-align: left;
         & span {
           margin-right: 1rem;
         }

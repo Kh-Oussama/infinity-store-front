@@ -11,6 +11,7 @@ import authReducer from "./auth/auth.reducer";
 import storesReducer from "./stores/stores.reducer";
 import cartReducer from "./cart/cart.reducer";
 import deliveryReducer from "./delivery/delivery.reducer";
+import ordersReducer from "./orders/orders.reducer";
 
 
 const persistConfig = {
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
     store: storesReducer,
     cart : cartReducer,
     delivery : deliveryReducer,
+    order : ordersReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

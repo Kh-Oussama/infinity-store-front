@@ -56,7 +56,7 @@ const CheckoutTable = ({data, removeItem, clearItem, addItem, total}) => (
                                 <Table.Cell>
                                     {item.price} DA
                                 </Table.Cell>
-                                <Table.Cell>
+                                <Table.Cell  className="remove-button-check">
                                     <Label ribbon={"right"} onClick={() => clearItem(item)}>
                                         <div className="remove-button">
                                             <i className="fa-solid fa-trash-can"/>
