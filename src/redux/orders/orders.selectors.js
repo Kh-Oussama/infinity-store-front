@@ -5,7 +5,7 @@ const selectOrder = state => state.order;
 //fetch orders
 export const selectFetchOrdersLoading = createSelector(
     [selectOrder],
-    order => order.fetchAllordersLoading,
+    order => order.fetchAllOrdersLoading,
 );
 export const selectOrders = createSelector(
     [selectOrder],
@@ -13,13 +13,18 @@ export const selectOrders = createSelector(
 );
 export const selectFetchOrdersError = createSelector(
     [selectOrder],
-    order => order.fetchAllordersError,
+    order => order.fetchAllOrdersError,
+);
+
+export const selectTheCreatedOrder = createSelector(
+    [selectOrder],
+    order => order.createdOrder,
 );
 
 //get order
 export const selectGetOrderLoading = createSelector(
     [selectOrder],
-    order => order.getorderLoading,
+    order => order.getOrderLoading,
 );
 export const selectOrderVar = createSelector(
     [selectOrder],
@@ -27,27 +32,31 @@ export const selectOrderVar = createSelector(
 );
 export const selectGetOrderError = createSelector(
     [selectOrder],
-    order => order.getorderError,
+    order => order.getOrderError,
 );
 
 //add order
 export const selectAddOrderLoading = createSelector(
     [selectOrder],
-    order => order.addorderLoading,
+    order => order.addOrderLoading,
+);
+export const selectOrderStats = createSelector(
+    [selectOrder],
+    order => order.orderStates,
 );
 export const selectAddOrderStatus = createSelector(
     [selectOrder],
-    order => order.addorderStatus,
+    order => order.addOrderStatus,
 );
 export const selectAddOrderError = createSelector(
     [selectOrder],
-    order => order.addorderError,
+    order => order.addOrderError,
 );
 
 //update order
 export const selectUpdateOrderLoading = createSelector(
     [selectOrder],
-    order => order.updateorderLoading,
+    order => order.updateOrderLoading,
 );
 export const selectUpdateOrderStatus = createSelector(
     [selectOrder],

@@ -20,8 +20,10 @@ const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem, clearIt
 
     const handleConfirmOrder = () => {
         setConfirmOrder(true);
-        if (currentUser.address ) history.push("/dashboard/place-order");
+        if (currentUser.addresses.length > 0 ) history.push("/dashboard/place-order");
     };
+
+    console.log(currentUser.addresses.length <= 0);
 
     return (
         <div className="checkout">
@@ -54,13 +56,13 @@ const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem, clearIt
 
                                 <div className={"confirm-buttons"}>
                                     {
-                                        !currentUser.address && confirmOrder &&
+                                        currentUser.addresses.length <= 0 && confirmOrder &&
                                         <span className="action red" onClick={() => history.push("/dashboard")}>
                                     <i className="fa-solid fa-map-location-dot"/>
                                     Add your Address
                                      </span>
                                     }
-                                    <span className={`action ${ !currentUser.address && confirmOrder ? 'button-disabled' : null} `} onClick={() => handleConfirmOrder()}>
+                                    <span className={`action ${ currentUser.addresses.length <= 0 && confirmOrder ? 'button-disabled' : null} `} onClick={() => handleConfirmOrder()}>
                                     <i className="fa-solid fa-clipboard-check"/>
                                      Place Order
                                     </span>

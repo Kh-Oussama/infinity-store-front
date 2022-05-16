@@ -115,7 +115,7 @@ const Dashboard = ({ currentUser }) => {
                                     <Link to={`/dashboard/orders`} className={location.pathname === "/dashboard/orders" ? 'active' : null}  >My Orders</Link>
                                 </li>
                                 <li>
-                                    <Link to={`/dashboard/checkout`} className={location.pathname === "/dashboard/checkout" || location.pathname === "/dashboard/place-order" ? 'active' : null} >Checkout</Link>
+                                    <Link to={`/dashboard/checkout`} className={location.pathname === "/dashboard/checkout" || location.pathname === "/dashboard/place-order"  ? 'active' : null} >Checkout</Link>
                                 </li>
                                 <li>
                                     <Link to="/help" className={location.pathname === "/dashboard/help" ? 'active' : null} >Need Help</Link>
@@ -143,7 +143,8 @@ const Dashboard = ({ currentUser }) => {
                                 :  <Switch>
                                     <Route exact path="/dashboard" component={UserProfile}/>
                                     <Route exact path="/dashboard/update-password" component={UpdatePassword}/>
-                                    <Route exact path="/dashboard/orders" component={OrderView}/>
+                                    <Route exact path="/dashboard/orders" component={UserOrder}/>
+                                    <Route exact path="/dashboard/orders/:id" component={OrderView}/>
                                     <Route exact path="/dashboard/checkout" component={Checkout} />
                                     <Route exact path="/dashboard/place-order" component={ConfirmOrder} />
                                     <Route exact path="/dashboard/two-factors-auth" component={TwoFactorAuthSettings} />

@@ -11,11 +11,13 @@ const INITIAL_STATE = {
     getOrderLoading: false,
     getOrderError: null,
     order: null,
+    orderStates: [],
 
     //add order
     addOrderLoading: false,
     addOrderError: null,
     addOrderStatus: false,
+    createdOrder: null,
 
    //update order
     updateOrderLoading: false,
@@ -48,7 +50,8 @@ const ordersReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 fetchAllOrdersLoading: false,
                 fetchAllOrdersError: null,
-                orders: action.payload,
+                orders: action.payload.orders,
+                orderStates: action.payload.states
             }
         case OrdersActionTypes.FETCH_ALL_ORDERS_FAILURE:
             return {
@@ -65,6 +68,7 @@ const ordersReducer = (state = INITIAL_STATE, action) => {
                 getOrderLoading: true,
                 getOrderError: null,
                 order: null,
+                addOrderStatus: false,
 
                 fetchAllOrdersLoading: true,
             }
@@ -73,7 +77,8 @@ const ordersReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 getOrderLoading: false,
                 getOrderError: null,
-                order: action.payload[0],
+                order: action.payload.order,
+                orderStates : action.payload.states,
             }
         case OrdersActionTypes.GET_ORDER_FAILURE:
             return {
@@ -91,6 +96,7 @@ const ordersReducer = (state = INITIAL_STATE, action) => {
                 addOrderError: null,
                 addOrderStatus: false,
 
+
                 fetchAllOrdersLoading: true,
             }
         case OrdersActionTypes.ADD_ORDER_SUCCESS:
@@ -99,6 +105,7 @@ const ordersReducer = (state = INITIAL_STATE, action) => {
                 addOrderLoading: false,
                 addOrderError: null,
                 addOrderStatus: true,
+                createdOrder: action.payload,
             }
         case OrdersActionTypes.ADD_ORDER_FAILURE:
             return {

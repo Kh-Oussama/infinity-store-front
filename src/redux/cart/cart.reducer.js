@@ -1,5 +1,6 @@
 import CartActionTypes from "./cart.types";
 import {addItemToCart, clearItemFromCart, removeItemFromCart} from "./cart.utiles";
+import OrdersActionTypes from "../orders/orders.types";
 
 const INITIAL_STATE = {
   hidden : true,
@@ -33,6 +34,12 @@ const cartReducer = (state = INITIAL_STATE, action) => {
               ...state,
               cartItems: [],
           };
+
+      case OrdersActionTypes.ADD_ORDER_SUCCESS:
+          return {
+              ...state,
+              cartItems: [],
+          }
       default:
           return state;
   }

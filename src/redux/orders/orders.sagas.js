@@ -1,49 +1,56 @@
 import OrderActionTypes from "./orders.types";
-import {takeLatest, put, all, call} from 'redux-saga/effects';
+import {all, call, put, takeLatest} from 'redux-saga/effects';
 import Axios from "axios";
 import {
     addOrderFailure,
-    addOrderStart, addOrderSuccess, deleteOrderFailure, deleteOrderSuccess,
+    addOrderSuccess,
+    deleteOrderFailure,
+    deleteOrderSuccess,
     fetchOrdersFailure,
-    fetchOrdersSuccess, getOrderFailure,
-    getOrderSuccess, updateOrderFailure, updateOrderSuccess
+    fetchOrdersSuccess,
+    getOrderFailure,
+    getOrderSuccess,
+    updateOrderFailure,
+    updateOrderSuccess
 } from "./orders.actions";
 
 
 //FETCH Orders
-export function* fetchOrdersAsync() {
+export function* fetchOrdersAsync({payload: {id}}) {
     try {
-        const response = yield Axios.get("http://localhost:8000/api/auth/orders");
-        const orders = response.data.orders;
-        yield put(fetchOrdersSuccess(orders));
+        const response = yield Axios.get(`http://localhost:8000/api/auth/orders/${id}/edit`);
+        const data = response.data;
+        yield put(fetchOrdersSuccess(data));
     } catch (error) {
         yield put(fetchOrdersFailure(error.message));
     }
 }
 
-//add ordeer
+//add order
 export function* addOrderAsync({payload: {formData}}) {
     try {
-        yield Axios.post("http://localhost:8000/api/auth/orders", formData);
-        yield put(addOrderSuccess());
+        const response = yield Axios.post("http://localhost:8000/api/auth/orders", formData);
+        const order = response.data.order;
+        yield put(addOrderSuccess(order));
     } catch (error) {
         yield put(addOrderFailure(error.response.data));
     }
 }
 
-//get ordeer
-export function* getOrderAsync({payload: {name}}) {
+//get order
+export function* getOrderAsync({payload: {id}}) {
+
     try {
-        const response = yield Axios.get(`http://localhost:8000/api/auth/orders/${name}`);
-        const order = response.data.order;
-        yield put(getOrderSuccess(order));
+        const response = yield Axios.get(`http://localhost:8000/api/auth/orders/${id}`);
+        const data = response.data;
+        yield put(getOrderSuccess(data));
     } catch (error) {
         yield put(getOrderFailure(error.message));
     }
 }
 
 
-//delete ordeer
+//delete order
 export function* deleteOrderAsync({payload: {id}}) {
     try {
         yield Axios.delete(`http://localhost:8000/api/auth/orders/${id}`);
@@ -57,10 +64,10 @@ export function* deleteOrderAsync({payload: {id}}) {
 }
 
 //update order
-export function* updateOrderAsync({payload: {id,formData}}) {
+export function* updateOrderAsync({payload: {id, formData}}) {
     try {
         yield Axios.post(`http://localhost:8000/api/auth/orders/${id}`, formData,
-            { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+            {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
         );
         yield put(updateOrderSuccess());
     } catch (error) {

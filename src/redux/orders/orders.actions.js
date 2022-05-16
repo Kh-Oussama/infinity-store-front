@@ -2,13 +2,14 @@ import OrdersActionTypes from "./orders.types";
 
 
 //fetch orders
-export const fetchOrdersStart = () => ({
+export const fetchOrdersStart = user => ({
     type : OrdersActionTypes.FETCH_ALL_ORDERS_START,
+    payload : user,
 });
 
-export const fetchOrdersSuccess = order => ({
+export const fetchOrdersSuccess = data => ({
     type : OrdersActionTypes.FETCH_ALL_ORDERS_SUCCESS,
-    payload : order,
+    payload : data,
 });
 
 export const fetchOrdersFailure = errorMessage => ({
@@ -22,8 +23,9 @@ export const addOrderStart = orderInformation =>  ({
     payload : orderInformation,
 });
 
-export const addOrderSuccess = () =>  ({
+export const addOrderSuccess = order =>  ({
     type : OrdersActionTypes.ADD_ORDER_SUCCESS,
+    payload : order,
 });
 
 export const addOrderFailure = errorMessage => ({
@@ -53,9 +55,9 @@ export const getOrderStart = order =>  ({
     payload : order,
 });
 
-export const getOrderSuccess = order =>  ({
+export const getOrderSuccess = data =>  ({
     type : OrdersActionTypes.GET_ORDER_SUCCESS,
-    payload : order,
+    payload : data,
 });
 
 export const getOrderFailure = errorMessage => ({

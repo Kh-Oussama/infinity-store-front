@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {withRouter} from "react-router-dom";
 import {createStructuredSelector} from "reselect";
 import {connect} from "react-redux";
@@ -10,6 +10,15 @@ import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/render
 import {retrieveWilayaDetailsStart} from "../../redux/delivery/delivery.actions";
 import {selectCartItems, selectCartTotal} from "../../redux/cart/cart.selectors";
 import { PDFViewer } from '@react-pdf/renderer';
+import {
+    selectGetOrderError,
+    selectGetOrderLoading,
+    selectOrderStats,
+    selectOrderVar
+} from "../../redux/orders/orders.selectors";
+import {getOrderStart} from "../../redux/orders/orders.actions";
+import Spinner from "../spinner/spinner.components";
+
 
 
 // Create styles
@@ -120,6 +129,7 @@ const styles = StyleSheet.create({
         marginLeft: "20px",
         color: "rgb(55,65,81)",
         fontSize: "12px",
+        width: 150,
     },
     detailsInfoAddresslast :{
         marginLeft: "20px",
@@ -256,7 +266,7 @@ const styles = StyleSheet.create({
 
 });
 
-const MyDocument = () => (
+const MyDocument = ({order}) => (
     <Document>
         <Page size="A4" style={styles.page} >
             <View style={styles.logoSection}>
@@ -272,8 +282,8 @@ const MyDocument = () => (
                 </View>
                 <View style={styles.headerRight}>
                     <View style={styles.date}>
-                        <Text style={styles.address} >Date : 05/04/2022 </Text>
-                        <Text style={styles.address} >Invoice : #5236952 </Text>
+                        <Text style={styles.address} >Date : {order.created_at} </Text>
+                        <Text style={styles.address} >Invoice : #{order.id} </Text>
                        </View>
                 </View>
             </View>
@@ -283,19 +293,19 @@ const MyDocument = () => (
                     Pour :
                     </Text>
                     <Text style={styles.detailsInfo} >KHIRAT oussama.</Text>
-                    <Text style={styles.detailsInfoAddress} >Num 506 Terre Familliale </Text>
-                    <Text style={styles.detailsInfoAddress} >Ouest Bordj El Baheri </Text>
-                    <Text style={styles.detailsInfoAddresslast} >Alger. </Text>
-                    <Text style={styles.detailsInfo} >Phone : <Text style={styles.res}> +213 540637874.</Text> </Text>
-                    <Text style={styles.detailsInfo} >Website :<Text style={styles.res}> oussamakhirat@gmail.com.</Text> </Text>
+                    <Text style={styles.detailsInfoAddress} >{order.address.wilaya_id} . {order.address.wilaya_name}  {order.address.commune} {order.address.zip} Algérie.</Text>
+                    {/*<Text style={styles.detailsInfoAddress} >Ouest Bordj El Baheri </Text>*/}
+                    {/*<Text style={styles.detailsInfoAddresslast} >Alger. </Text>*/}
+                    <Text style={styles.detailsInfo} >Phone : <Text style={styles.res}> {order.client.phone_number}.</Text> </Text>
+                    <Text style={styles.detailsInfo} >Website :<Text style={styles.res}> {order.client.email}.</Text> </Text>
                </View>
                 <View style={styles.detailsRight}>
                        <View style={styles.wilaya} >
-                           <Text style={styles.nbr} > 16 </Text>
-                           <Text style={styles.name} > Alger </Text>
+                           <Text style={styles.nbr} > {order.address.wilaya_id} </Text>
+                           <Text style={styles.name} > {order.address.wilaya_name} </Text>
                        </View>
                     <Text style={styles.del} >
-                        Stop desc
+                        {order.delivery_type}
                     </Text>
                 </View>
             </View>
@@ -317,62 +327,26 @@ const MyDocument = () => (
                             Total
                         </Text>
                     </View>
-                    <View style={styles.tableContent}>
-                        <Text style={styles.trCnt}>
-                            01
-                        </Text>
-                        <Text style={styles.trDesc}>
-                            Furniture Shop
-                        </Text>
-                        <Text style={styles.trQnt}>
-                            1
-                        </Text>
-                        <Text style={styles.trTotal}>
-                            8000 DA
-                        </Text>
-                    </View>
-                    <View style={styles.tableContent}>
-                        <Text style={styles.trCnt}>
-                            02
-                        </Text>
-                        <Text style={styles.trDesc}>
-                            Furniture Shop
-                        </Text>
-                        <Text style={styles.trQnt}>
-                            1
-                        </Text>
-                        <Text style={styles.trTotal}>
-                            8000 DA
-                        </Text>
-                    </View>
-                    <View style={styles.tableContent}>
-                    <Text style={styles.trCnt}>
-                        03
-                    </Text>
-                    <Text style={styles.trDesc}>
-                        Furniture Shop
-                    </Text>
-                    <Text style={styles.trQnt}>
-                        1
-                    </Text>
-                    <Text style={styles.trTotal}>
-                        8000 DA
-                    </Text>
-                </View>
-                    <View style={styles.tableContent}>
-                        <Text style={styles.trCnt}>
-                            04
-                        </Text>
-                        <Text style={styles.trDesc}>
-                            Furniture Shop
-                        </Text>
-                        <Text style={styles.trQnt}>
-                            1
-                        </Text>
-                        <Text style={styles.trTotal}>
-                            8000 DA
-                        </Text>
-                    </View>
+
+                    {
+                        order.items.map((item,id) => (
+                            <View style={styles.tableContent}>
+                                <Text style={styles.trCnt}>
+                                    01
+                                </Text>
+                                <Text style={styles.trDesc}>
+                                    {item.product.name} ({item.color} / {item.size})
+                                </Text>
+                                <Text style={styles.trQnt}>
+                                    {item.quantity}
+                                </Text>
+                                <Text style={styles.trTotal}>
+                                    {item.quantity * item.product.price} DA
+                                </Text>
+                            </View>
+                        ))
+                    }
+
                     <View style={styles.tableHeader}>
                         <Text style={styles.thCnti}>
 
@@ -384,7 +358,7 @@ const MyDocument = () => (
                             TOTAL
                         </Text>
                         <Text style={styles.thTotal}>
-                            20000 DA
+                            {order.sub_total} DA
                         </Text>
                     </View>
                 </View>
@@ -396,17 +370,17 @@ const MyDocument = () => (
                 <View style={styles.totalDetailsRight}>
                     <View style={styles.totalInfo} >
                         <Text style={styles.totalDetailsInfo} >Sub Total</Text>
-                        <Text style={styles.totalDetailsInfo} >8000 DA</Text>
+                        <Text style={styles.totalDetailsInfo} >{order.sub_total} DA</Text>
                     </View>
                     <View style={styles.totalInfo} >
                         <Text style={styles.totalDetailsInfo} >Delivery fee</Text>
-                        <Text style={styles.totalDetailsInfo} >1000 DA</Text>
+                        <Text style={styles.totalDetailsInfo} > {order.delivery_fee} DA</Text>
                     </View>
                     <Text style={styles.totalTitle}>
                     </Text>
                     <View style={styles.totalInfo} >
                         <Text style={styles.totalLDetailsInfo} >TOTAL</Text>
-                        <Text style={styles.totalLDetailsInfo} >9000 DA</Text>
+                        <Text style={styles.totalLDetailsInfo} >{order.total} DA</Text>
                     </View>
                 </View>
             </View>
@@ -414,35 +388,75 @@ const MyDocument = () => (
     </Document>
 );
 
-const OrderView = ({history, currentUser}) => {
+const OrderView = ({history, currentUser, match, getOrder, getLoading, getErrors, order, states}) => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
+    //get current product
+    useEffect(() => {
+        getOrder({id: match.params.id});
+    }, [getOrder, match.params.id]);
 
     return (
         <div className="checkout">
-            <div className="card checkout-cart">
-                <div className="title">
-                    <h1>Order Created</h1>
-                    <p>Currently you have item(s) in your cart.</p>
-                </div>
-                <div className="order-invoice">
-                    <i className="fa-solid fa-check-double"/>
-                </div>
-               <div className="order-details">
-                   <h3>Date : 05/04/2022</h3>
-                   <h3>Order Number : #5236952</h3>
-               </div>
-            </div>
-            <div className="card checkout-cart">
-                <div className="title">
-                    <h1>Order Invoice</h1>
-                    <p>Currently you have item(s) in your cart.</p>
-                </div>
-                <div className="order-invoice">
-                    <PDFViewer width={"841.89"}  height={"1200px"} showToolbar={true}  >
-                        <MyDocument />
-                    </PDFViewer>
-                </div>
-            </div>
+            {
+                getLoading
+                ? <div className="card checkout-cart view-order">
+                    <Spinner/>
+                    </div>
+                    : <>
+                        <div className="card checkout-cart">
+                            <div className="title">
+                                <h1>Order Created</h1>
+                                <p>Currently you have item(s) in your cart.</p>
+                            </div>
+                            <div className="progress-section">
+                                <div className="progress-ct">
+                                    <div className="black-scroller x-scroll">
+                                        {states.map(item => {
+                                            return (
+                                                <div className={`progress-item ${order.state.id === item.id ? 'active' : ''}`}>
+                                                    {
+                                                        item.id < order.state.id
+                                                        ? <>
+                                                                <span><i className="fa-solid fa-check"/></span>
+                                                                <p>{item.name}</p>
+                                                            </>
+                                                            : <>
+                                                                <span>{item.id}</span>
+                                                                <p>{item.name}</p>
+                                                            </>
+                                                    }
+                                    
+                                                </div>
+                                            );
+                                        })}
+                                    
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </>
+            }
+
+            {
+                order
+               &&
+                    <div className="card checkout-cart">
+                        <div className="title">
+                            <h1>Order Invoice</h1>
+                            <p>Currently you have item(s) in your cart.</p>
+                        </div>
+                        <div className="order-invoice">
+                            <PDFViewer width={"841.89"}  height={"1200px"} showToolbar={true}  >
+                                <MyDocument order={order}/>
+                            </PDFViewer>
+                        </div>
+                    </div>
+            }
+
 
         </div>
     );
@@ -454,10 +468,16 @@ const mapStateToProps = createStructuredSelector({
 
     cartItems: selectCartItems,
     total: selectCartTotal,
+
+    getLoading: selectGetOrderLoading,
+    getErrors: selectGetOrderError,
+    order : selectOrderVar,
+    states : selectOrderStats,
 });
 
 
 const mapDispatchToProps = dispatch => ({
     retrieveWilayaDetails: wilaya => dispatch(retrieveWilayaDetailsStart(wilaya)),
+    getOrder: order => dispatch(getOrderStart(order)),
 })
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OrderView));

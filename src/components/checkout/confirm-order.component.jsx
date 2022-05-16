@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link, withRouter} from "react-router-dom";
+import {Link, Redirect, withRouter} from "react-router-dom";
 import {createStructuredSelector} from "reselect";
 import {connect} from "react-redux";
 import './confirm-order.styles.scss';
@@ -18,18 +18,54 @@ import 'semantic-ui-css/components/button.min.css'
 import {retrieveWilayaDetailsStart} from "../../redux/delivery/delivery.actions";
 import Spinner from "../spinner/spinner.components";
 import {selectCartItems, selectCartTotal} from "../../redux/cart/cart.selectors";
+import {addOrderStart} from "../../redux/orders/orders.actions";
+import {
+    selectAddOrderError,
+    selectAddOrderLoading,
+    selectAddOrderStatus,
+    selectTheCreatedOrder
+} from "../../redux/orders/orders.selectors";
 
-const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWilayaLoading, retrieveWilayaErrors, wilayaDetails, cartItems, total}) => {
+const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWilayaLoading, retrieveWilayaErrors, wilayaDetails, cartItems, total, addOrder,  loading, errors, status, order}) => {
+
+
+
     const [deliveryType, setDeliveryType] = useState(true);
+
+
     const [selectedWilaya, setSelectedWilaya] = useState(currentUser.addresses[0]);
 
 
-    useEffect(() => {
+    useEffect    (() => {
         retrieveWilayaDetails({id: selectedWilaya.wilaya_id});
-    }, [retrieveWilayaDetails,selectedWilaya]);
+    }    , [retrieveWilayaDetails,selectedWilaya]);
+
+    const  handleSubmit = event => { 
+            event.preventDefault();
+
+        const formData = new FormData();
+        formData.append('address_id', selectedWilaya.id);
+        formData.append('phone_number', currentUser.phone_number);
+        formData.append('delivery_company_name', "yalidine");
+        formData.append('delivery_fee', deliveryType ? wilayaDetails?.home_fee : wilayaDetails?.desk_fee);
+        formData.append('delivery_type', deliveryType);
+        formData.append('sub_total', total);
+        formData.append('client_id', currentUser.id);
+        formData.append('total', total + (deliveryType ? wilayaDetails?.home_fee : wilayaDetails?.desk_fee) );
+
+        let items = [];
+        cartItems.forEach(item => {
+            items.push({product_id: item.id, color: item.color?.name , size: item.size?.name, quantity: item.quantity});
+        } );
+
+        formData.append('order_items[]', JSON.stringify(items));
+
+        addOrder({formData});
+    };
 
 
-
+    if (status && order) return <Redirect to={`/dashboard/orders/${order.id}`}/>;
+    if (cartItems.length <= 0) return <Redirect to={`/dashboard/checkout`}/>;
     return (
         <div className="checkout">
             <div className="card checkout-cart">
@@ -91,7 +127,7 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                                 <h3>Address</h3>
                                 <p>{
                                     address.wilaya_id + " " + address.wilaya_name + " " + address.commune + " " + address.zip + " " +
-                                    address.rue + " - Algerie"
+                                    address.street + " - Algerie"
                                 }</p>
                             </div>
                         ))
@@ -195,7 +231,7 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                 </div>
                 <div className="cart-content shipping-section">
                     {
-                       retrieveWilayaLoading
+                       retrieveWilayaLoading || loading
                             ? <Spinner/>
                             : <div className="order-details">
                                 <h3>your Order</h3>
@@ -247,7 +283,7 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                         Go back
                     </Link>
 
-                    <div className={"confirm-buttons"}>
+                    <div className={"confirm-buttons"} onClick={handleSubmit}>
                             <span className="action">
                                    <i className="fa-solid fa-check-double"/>
                                     Confirm Order
@@ -264,16 +300,22 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
 
+    loading: selectAddOrderLoading,
+    errors: selectAddOrderError,
+    status: selectAddOrderStatus,
+
     wilayaDetails: selectWilayaVar,
     retrieveWilayaLoading: selectRetrieveWilayaLoading,
     retrieveWilayaErrors: selectRetrieveWilayaError,
 
     cartItems: selectCartItems,
     total: selectCartTotal,
+    order : selectTheCreatedOrder,
 });
 
 
 const mapDispatchToProps = dispatch => ({
     retrieveWilayaDetails : wilaya => dispatch(retrieveWilayaDetailsStart(wilaya)),
+    addOrder: order => dispatch(addOrderStart(order)),
 })
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConfirmOrder));
