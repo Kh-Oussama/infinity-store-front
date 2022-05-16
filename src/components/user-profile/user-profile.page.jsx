@@ -354,7 +354,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                 <input type="button" value="Add address" onClick={_ => {
                                     closeAddressPopup();
                                     setAddresses([...addresses, {wilaya_id: wilaya.value, wilaya_name: wilaya.label, commune: commune, zip: zip, street: streetAddress,}]);
-                                    setAddressInfo({ title: '', country: '', city: '', state: '', zip: '', streetAddress: '' })
+                                    setAddressInfo({ commune: '', city: '', state: '', zip: '', streetAddress: '' })
                                 }} />
                             </div>
                         </div>
