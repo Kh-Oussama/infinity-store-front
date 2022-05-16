@@ -25,12 +25,12 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
 
     // Address information
     const [addressInfo, setAddressInfo] = useState({
-        title: '', country: '', city: '', state: '', zip: '', streetAddress: ''
+        commune: '', zip: '', streetAddress: ''
     });
-    const { title, country, city, state, zip, streetAddress } = addressInfo;
+    const {  commune,  zip, streetAddress } = addressInfo;
 
     const [addresses, setAddresses] = useState([]);
-    const [selectedAddress, setSelectedAddress] = useState(0);
+
 
     const [firstNameError, setFirstNameError] = useState(null);
     const [lastNameError, setLastNameError] = useState(null);
@@ -155,13 +155,14 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                 email: currentUser.email,
                 phoneNumber: currentUser.phone_number,
             });
-            //setAddresses([...addresses, currentUser.address])
+            setAddresses(currentUser.addresses)
         }
     }, [currentUser]);
 
     //Function to submit credentials information
     const handleCredentialsSubmit = event => {
         event.preventDefault();
+
         setFirstNameError(null);
         setLastNameError(null);
         setEmailError(null);
@@ -173,13 +174,12 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
         formData.append('firstName', name);
         formData.append('lastName', lastName);
         formData.append('email', email);
-        formData.append('address', addresses[selectedAddress]);
+        formData.append('addresses[]', JSON.stringify(addresses));
         formData.append('phone_number', phoneNumber);
         formData.append('photo', image_path);
         formData.append('_method', 'PATCH');
 
         updateUser({ id: currentUser.id, formData });
-
     }
 
     return (
@@ -298,9 +298,12 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                         <div className="address-ct">
                             {addresses.map((address, index) => {
                                 return (
-                                    <div className={`address-item ${selectedAddress === index ? 'active' : ''}`} onClick={() => setSelectedAddress(index)}>
+                                    <div className={"address-item"}>
                                         <h3>Address</h3>
-                                        <p>{address}</p>
+                                        <p> {
+                                            address.wilaya_id + " " + address.wilaya_name + " " + address.commune + " " + address.zip + " " +
+                                            address.street + " - Algerie"
+                                        }</p>
                                     </div>
                                 );
                             })}
@@ -319,13 +322,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                         <div className="content">
                             <p>Add new address</p>
                             <div>
-                                <InputGroup label="Title" type="text" name="title" value={title} onChange={handleAddressInformationChange} />
-
-                                <div className="row">
-                                    <InputGroup label="Country" type="text" name="country" value={country} onChange={handleAddressInformationChange} />
-                                    <InputGroup label="City" type="text" name="city" value={city} onChange={handleAddressInformationChange} />
-                                </div>
-
+                                <InputGroup label="Country" type="text" name="title" value={"Algérie"} onChange={handleAddressInformationChange} disabled={true} />
                                 <div className="row">
                                     <div className="wilaya-select">
                                         <span>Wilaya</span>
@@ -334,7 +331,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                             options={wilayaOptions}
                                             components={{ Option: WilayaOption }}
                                             name="wilaya"
-                                            onChange={value => {setWilaya(value.value);console.log(value.value)}}
+                                            onChange={value => {setWilaya(value)}}
                                             theme={(theme) => ({
                                                 ...theme,
                                                 colors: {
@@ -344,14 +341,19 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                             })}
                                         />
                                     </div>
+                                    <InputGroup label="Commune" type="text" name="commune" value={commune} onChange={handleAddressInformationChange} />
+                                </div>
+                                <div className="row">
                                     <InputGroup label="Zip" type="text" name="zip" value={zip} onChange={handleAddressInformationChange} />
                                 </div>
 
+
+
                                 <TextAreaGroup label="Street Address" name="streetAddress" value={streetAddress} onChange={handleAddressInformationChange} />
 
-                                <input type="button" value="Update address" onClick={_ => {
+                                <input type="button" value="Add address" onClick={_ => {
                                     closeAddressPopup();
-                                    setAddresses([...addresses, `${title} ${country} ${city} ${state} ${zip} ${streetAddress}`]);
+                                    setAddresses([...addresses, {wilaya_id: wilaya.value, wilaya_name: wilaya.label, commune: commune, zip: zip, street: streetAddress,}]);
                                     setAddressInfo({ title: '', country: '', city: '', state: '', zip: '', streetAddress: '' })
                                 }} />
                             </div>
