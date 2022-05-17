@@ -2,8 +2,9 @@ import React from 'react'
 import {Icon, Label, Menu, Table} from 'semantic-ui-react'
 import QuantityButton from "../utils/quantity-button/quantity-button.component";
 import 'semantic-ui-css/components/menu.min.css'
+import {withRouter} from "react-router-dom";
 
-const CheckoutTable = ({data, removeItem, clearItem, addItem, total}) => (
+const CheckoutTable = ({data, removeItem, clearItem, addItem, total, history}) => (
     <>
         {
             data.length > 0 && <Table celled>
@@ -27,7 +28,7 @@ const CheckoutTable = ({data, removeItem, clearItem, addItem, total}) => (
                                          alt={item.description}/>
                                 </Table.Cell>
                                 <Table.Cell>
-                                    <div className="p-name">
+                                    <div className="p-name" onClick={() => history.push(`/products/${item.slug}`)}>
                                         {item.name} <i className="fa-solid fa-right-long"/>
                                     </div>
 
@@ -105,4 +106,4 @@ const CheckoutTable = ({data, removeItem, clearItem, addItem, total}) => (
     </>
 )
 
-export default CheckoutTable;
+export default withRouter(CheckoutTable);

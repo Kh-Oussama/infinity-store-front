@@ -13,7 +13,7 @@ const Header = ({group}) => {
             <header className="header"
             >
                 <div className={"cover-block"} style={{
-                    backgroundImage: "url(" + "/images/cover-2.webp" + ")",
+                    backgroundImage: "url(" + "/images/cover-1.webp" + ")",
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'
