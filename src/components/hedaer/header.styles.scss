@@ -3,6 +3,20 @@
   display: flex;
   //align-items: center;
   justify-content: center;
+  //background-size: cover;
+  //background-position: center;
+  //background: yellow;
+  //background-image: url( "../../images/cover-1.webp");
+  position: relative;
+
+  .cover-block {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    z-index: 0;
+  }
 
   @media only screen and (max-width:$bp-large){
     width: 0;
@@ -20,6 +34,7 @@
   & .content {
     text-align: center;
     //width: 80rem;
+    z-index: 99;
 
 
 
@@ -125,6 +140,5 @@
 
 
 }
-
 
 
