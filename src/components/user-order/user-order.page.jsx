@@ -124,7 +124,7 @@ const UserOrder = ({ orders,  loading, errors, fetchOrders, currentUser, states 
                                                 {states.map(item => {
                                                     return (
                                                         <div
-                                                            className={`progress-item ${orders[selectedIndex].state.id === item.id ? 'active' : ''}`}>
+                                                            className={`progress-item ${orders[selectedIndex].state.id >= item.id ? 'active' : ''}`}>
                                                             {
                                                                 item.id < orders[selectedIndex].state.id
                                                                     ? <>
