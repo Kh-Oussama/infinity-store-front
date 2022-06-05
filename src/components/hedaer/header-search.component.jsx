@@ -2,9 +2,13 @@ import React from 'react';
 import IcomoonReact from "icomoon-react";
 import iconSet from "../../selection.json";
 import ContentLoader from "react-content-loader";
+import { withTranslation } from "react-i18next";
+import cookies from "js-cookie";
 
 //search component
-const HeaderSearch = ( { loading }) => {
+const HeaderSearch = ( { loading, t }) => {
+    const lang = cookies.get('i18next') || "en";
+
     return(
         <div className="search-form">
 
@@ -21,10 +25,10 @@ const HeaderSearch = ( { loading }) => {
                         <rect x="0" y="0%" rx="3" ry="3" width="100%" height="50" />
                     </ContentLoader>
                     : <form action="#" className="form">
-                        <input type="text" className="form__input" placeholder="Search your products from here"/>
+                        <input type="text" className="form__input" placeholder={t('Search your products from here')} lang={lang} />
                         <button className="form__button">
                             <IcomoonReact iconSet={iconSet} size={25} icon="magnifying-glass"/>
-                            Search
+                            {t('Search')}
                         </button>
                     </form>
             }
@@ -33,4 +37,4 @@ const HeaderSearch = ( { loading }) => {
     )
 }
 
-export default HeaderSearch;
+export default withTranslation()(HeaderSearch);

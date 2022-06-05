@@ -27,6 +27,7 @@
       font-size: 5rem;
       color: rgb(31,41,55);
       margin: 10rem 0 2rem 0;
+      text-align: center;
 
       @media only screen and (max-width:$bp-largest){
         font-size: 3.9rem;
@@ -71,8 +72,8 @@
 
           &::-webkit-input-placeholder {
             font-weight: 100;
-            color: var(--color-grey-light-4);
-          }
+            color: var(--color-grey-light-4) !important;
+          } 
         }
 
         &__button {
