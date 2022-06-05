@@ -3,10 +3,11 @@ import React from 'react';
 //components
 import ShopCard from "../shop-card/shop-card.component";
 import HeaderSearch from "./header-search.component";
+import { withTranslation } from "react-i18next";
 import ContentLoader from "react-content-loader";
 
 //this the header component for the homepage
-const Header = ({group}) => {
+const Header = ({group, t}) => {
 
     return (
         <>
@@ -14,12 +15,12 @@ const Header = ({group}) => {
                 <div className="content" style={{width: '80rem'}}>
                     <h1 className="title">
                         {
-                            group?.banner_title
+                            t(group?.banner_title)
                         }
                     </h1>
                     <h3 className="subtitle">
                         {
-                            group?.banner_description
+                            t(group?.banner_description)
                         }
 
                     </h3>
@@ -34,4 +35,4 @@ const Header = ({group}) => {
     )
 }
 
-export default Header
+export default withTranslation()(Header);

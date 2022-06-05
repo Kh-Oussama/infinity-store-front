@@ -19,6 +19,7 @@ import {selectGroups} from "../../redux/group/groups.selectors";
 import {selectCurrentUser} from "../../redux/auth/auth.selectors";
 import ProfileDropdown from "./profile-dropdown.component";
 import NavSearchBar from "./navigation-bar-search.component";
+import LanguageDropdown from '../utils/language-dropdown/language-dropdown.component';
 
 //this is component for the navigation bar
 const NavigationBar = ({
@@ -76,6 +77,8 @@ const NavigationBar = ({
                                 <NavLink path={"/"} text={"Offers"}/>
                                 <NavLink path={"/help"} text={"FAQ"}/>
                                 <NavLink path={"/contact"} text={"Contact"}/>
+
+                                <LanguageDropdown />
 
                                 {/*join button*/}
                                 <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
