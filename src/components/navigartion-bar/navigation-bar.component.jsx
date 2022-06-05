@@ -6,7 +6,7 @@ import {createStructuredSelector} from "reselect";
 //components
 import DropdownButton from "../utils/dropdown-button/dropdown-button.component";
 import AuthPopup from "../auth-popup/auth-popup-component";
-import {NavLink} from "./navLink.component";
+import NavLink from "./navLink.component";
 
 //redux utils
 import {switchAuthComponent, toggleAuthComponent} from "../../redux/design-utilites/design-utilities.actions";
@@ -20,6 +20,8 @@ import {selectCurrentUser} from "../../redux/auth/auth.selectors";
 import ProfileDropdown from "./profile-dropdown.component";
 import NavSearchBar from "./navigation-bar-search.component";
 import LanguageDropdown from '../utils/language-dropdown/language-dropdown.component';
+import { compose } from 'redux';
+import { withTranslation } from "react-i18next";
 
 //this is component for the navigation bar
 const NavigationBar = ({
@@ -28,7 +30,8 @@ const NavigationBar = ({
                            currentComponent,
                            authComponentHidden,
                            switchAuthComponent,
-                           currentUser
+                           currentUser,
+                           t
                        }) => {
 
     const [showProfileDropdown, setShowProfileDropdown] = useState(false);
@@ -73,7 +76,7 @@ const NavigationBar = ({
                                 </div>
 
                                 {/*the right nav links*/}
-                                <NavLink path={"/shops"} text={"Shops"}/>
+                                <NavLink path={"/shops"} text={"Shops"} />
                                 <NavLink path={"/"} text={"Offers"}/>
                                 <NavLink path={"/help"} text={"FAQ"}/>
                                 <NavLink path={"/contact"} text={"Contact"}/>
@@ -139,4 +142,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
+export default compose(withTranslation(), connect(mapStateToProps, mapDispatchToProps))(NavigationBar);

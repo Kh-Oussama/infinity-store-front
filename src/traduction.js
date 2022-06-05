@@ -9,6 +9,10 @@ const resources = {
             "Get your healthy foods & snacks delivered at your doorsteps all day everyday": "Get your healthy foods & snacks delivered at your doorsteps all day everyday",
             "Search": "Search",
             "Search your products from here": "Search your products from here",
+            "Shops": "Shops",
+            "Offers":"Offers",
+            "FAQ":"FAQ",
+            "Contact":"Contact",
         }
     },
     ar: {
@@ -17,6 +21,10 @@ const resources = {
             "Get your healthy foods & snacks delivered at your doorsteps all day everyday": "احصل على الأطعمة الصحية والوجبات الخفيفة الخاصة بك على عتبة داركم طوال اليوم كل يوم",
             "Search": "بحث",
             "Search your products from here": "ابحث في منتجاتك من هنا",
+            "Shops": "محلات",
+            "Offers":"عروض",
+            "FAQ":"الأسئلة",
+            "Contact":"اتصل",
         }
     },
     fr: {
@@ -25,6 +33,10 @@ const resources = {
             "Get your healthy foods & snacks delivered at your doorsteps all day everyday": "Faites-vous livrer vos aliments et collations sains à votre porte toute la journée tous les jours",
             "Search": "Chercher",
             "Search your products from here": "Recherchez vos produits à partir d'ici",
+            "Shops": "Magasins",
+            "Offers":"Offres",
+            "FAQ":"Offers",
+            "Contact":"Contactez",
         }
     }
 }
