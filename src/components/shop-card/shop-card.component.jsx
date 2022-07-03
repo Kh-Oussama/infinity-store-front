@@ -9,10 +9,12 @@ import { selectShopCard } from "./../../redux/design-utilites/design-utilities.s
 import { toggleShopCard } from "./../../redux/design-utilites/design-utilities.actions";
 import { connect } from 'react-redux';
 import { selectCartItems, selectCartTotal } from "../../redux/cart/cart.selectors";
+import { compose } from 'redux';
+import { withTranslation } from 'react-i18next';
 
 
 //the left shopping card component
-const ShopCard = ({ loading, shopCardDisplayed, toggleShopCard, cartItems, history, total }) => {
+const ShopCard = ({ loading, shopCardDisplayed, toggleShopCard, cartItems, history, total, t }) => {
 
     const toggleModal = () => {
         toggleShopCard(!shopCardDisplayed);
@@ -29,10 +31,10 @@ const ShopCard = ({ loading, shopCardDisplayed, toggleShopCard, cartItems, histo
                     <ShoppingBagIcon />
 
                     <div className="count-number">{cartItems.length}</div>
-                    <div className={"items"}>Item</div>
+                    <div className={"items"}>{t('Item')}</div>
                 </div>
                 <div className="total">
-                    {total} DA
+                    {total} {t('DA')}
                 </div>
             </div>
         </>
@@ -50,4 +52,4 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
     toggleShopCard: current_state => dispatch(toggleShopCard(current_state)),
 })
-export default connect(mapStateToProps, mapDispatchToProps)(ShopCard);
+export default compose(withTranslation(), connect(mapStateToProps, mapDispatchToProps))(ShopCard);

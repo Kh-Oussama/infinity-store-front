@@ -5,10 +5,12 @@ import ProductsGrid from "../../components/products-grid/products-grid-group.com
 import axios from "axios";
 import {withRouter} from "react-router-dom";
 import BottomNavigationBar from "./../../components/bottom-navigation/bottom-navigation.component";
+import { withTranslation } from 'react-i18next';
+import cookies from "js-cookie";
 
 
-const ContactPage = () => {
-
+const ContactPage = ({t}) => {
+    const lang = cookies.get('i18next') || "en";
 
     return (
             <div className="view-shop-page">
@@ -49,27 +51,27 @@ const ContactPage = () => {
                         </div>
                     </div>
                     <div className="right-block form-container right-block--contact">
-                        <div className="form">
-                            <h1>Questions, Comments, Or Concerns?</h1>
-                           <div className="two-inputs">
+                        <div className="form" lang={lang}>
+                            <h1 lang={lang}>{t('Questions, Comments, Or Concerns?')}</h1>
+                           <div className="two-inputs" >
                                <div className="input-block">
-                                   <label htmlFor="">Name</label>
-                                   <input type={"text"} />
+                                   <label htmlFor="">{t('Name')}</label>
+                                   <input type={"text"}  />
                                </div>
                                <div className="input-block">
-                                   <label htmlFor="">Email</label>
-                                   <input type={"email"} />
+                                   <label htmlFor="">{t('Email')}</label>
+                                   <input type={"email"}/>
                                </div>
                            </div>
                             <div className="input-block">
-                                <label htmlFor="">Subject</label>
+                                <label htmlFor="">{t('Subject')}</label>
                                 <input type={"text"} />
                             </div>
                             <div className="input-block">
-                                <label htmlFor="">Description</label>
+                                <label htmlFor="">{t('Description')}</label>
                                 <textarea rows={5}/>
                             </div>
-                            <button className={"submit-btn"}>Submit</button>
+                            <button className={"submit-btn"}>{t('Submit')}</button>
                         </div>
                     </div>
                 </div>
@@ -78,4 +80,4 @@ const ContactPage = () => {
     )
 }
 
-export default ContactPage;
+export default withTranslation()(ContactPage);

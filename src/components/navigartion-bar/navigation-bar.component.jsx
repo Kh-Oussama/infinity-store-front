@@ -81,12 +81,13 @@ const NavigationBar = ({
                                 <NavLink path={"/help"} text={"FAQ"}/>
                                 <NavLink path={"/contact"} text={"Contact"}/>
 
+                                {/* Language DropDown */}
                                 <LanguageDropdown />
 
                                 {/*join button*/}
                                 <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
                                     <Link to={"#"}>
-                                        Become a seller
+                                        {t('Become a seller')}
                                     </Link>
                                 </div>
                                 {
@@ -99,7 +100,7 @@ const NavigationBar = ({
                                         </div>
                                         : <div className="nav-link join-btn" onClick={() => toggleAuthComponent("sign-in")}>
                                             <Link to={"#"}>
-                                                join
+                                                {t('join')}
                                             </Link>
 
                                         </div>

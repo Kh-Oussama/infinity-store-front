@@ -45,6 +45,20 @@
       .form {
         padding: 4rem 3rem;
 
+        &[lang="ar"]{
+          & .two-inputs{
+            flex-direction: row-reverse;
+          }
+
+          & .input-block{
+            align-items: flex-end;
+
+            & *{
+              text-align: right;
+            }
+          }
+        }
+      
         h1 {
           font-size: 2.7rem;
           color: var(--title-text-color);
@@ -75,6 +89,7 @@
           justify-content: center;
           flex: 0 0 48%;
           margin-bottom: 1.5rem;
+
 
           @media only screen and (max-width: $bp-small) {
             flex: none !important;
