@@ -131,5 +131,34 @@
     "After you turn on 2-Step Verification, you'll need to complete a second step to verify it's you when you sign in.": "After you turn on 2-Step Verification, you'll need to complete a second step to verify it's you when you sign in.",
     "Scan the qr code below with an authenticator application, such as Google Authenticator on your phone.": "Scan the qr code below with an authenticator application, such as Google Authenticator on your phone.",
     "Two factors authentication": "Two factors authentication",
-    "Disable two Factor Authentication": "Disable two Factor Authentication"
+    "Disable two Factor Authentication": "Disable two Factor Authentication",
+
+
+    "Login with your email & password": "Login with your email & password",
+    "Password": "Password",
+    "Don't have any account?": "Don't have any account?",
+    "Forgot password?": "Forgot password?",
+    "Register": "Register",
+    "Login": "Login",
+    "Already have an account?": "Vous avez déjà un compte?",
+    "By signing up, you agree to ourterms & policy": "En vous inscrivant, vous acceptez nos conditions et notre politique",
+
+
+
+    "Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.": "Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.",
+    "Enter your email address below and we'll send": "Enter your email address below and we'll send",
+    "you a link to reset your password.": "you a link to reset your password.",
+    "Reset Password": "Reset Password",
+    "Provide the confirmation code below.": "Provide the confirmation code below.",
+    "Code": "Code",
+    "Or": "Or",
+
+    "Colors": "Colors",
+    "Add to Shopping cart": "Add to Shopping cart",
+    "pieces available": "pieces available",
+    "Categories": "Categories",
+    "Sellers": "Sellers",
+
+
+    "No products found": "No products found"
 }

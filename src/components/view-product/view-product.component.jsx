@@ -13,10 +13,11 @@ import { createStructuredSelector } from "reselect";
 import { addItem, removeItem } from "../../redux/cart/cart.actions";
 import { connect } from "react-redux";
 import { selectCartItems } from '../../redux/cart/cart.selectors';
+import { withTranslation } from 'react-i18next';
 
 SwiperCore.use([Navigation, Pagination, Thumbs]);
 
-const ViewProduct = ({ product, addItem, removeItem, cartItems }) => {
+const ViewProduct = ({ product, addItem, removeItem, cartItems, t }) => {
     let history = useHistory();
     const [isPhone, setIsPhone] = useState(window.innerWidth > 600);
     const [selectedSize, setSelectedSize] = useState(0);
@@ -157,10 +158,10 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems }) => {
                         </div>
                         <div className="detail-price">
                             <div className="newPrice">
-                                {`${product.price}DA`}
+                                {`${product.price}`}{t('DA')}
                             </div>
                             <div className="oldPrice">
-                                {`${product.old_price}DA`}
+                                {`${product.old_price}`}{t('DA')}
                             </div>
                         </div>
 
@@ -168,7 +169,7 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems }) => {
                         {
                             product.colors?.length > 0 &&
                             <div className="detail-sizes-block" >
-                                <h4 className="detail-sizes-block-attribute" >Colors</h4>
+                                <h4 className="detail-sizes-block-attribute" >{t("Colors")}</h4>
                                 <div className="detail-sizes-block-items" >
                                     {
                                         product.colors.map(item => (
@@ -240,11 +241,11 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems }) => {
                             </div> :
 
                             <div className="action addButton" onClick={() => addItemToShoppingCard(product)}>
-                                Add to Shopping cart
+                                {t("Add to Shopping cart")}
                             </div>}
 
                             <div className="qnt">
-                                <span>{product.quantity}</span> pieces available
+                                <span>{product.quantity}</span> {t("pieces available")}
                             </div>
                         </div>
 
@@ -252,7 +253,7 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems }) => {
                         <div className="divider" />
                         <div className="detail-categories">
                             <div className="category">
-                                Categories
+                                {t("Categories")}
                             </div>
                             <div className="category-item">{product?.category?.name}</div>
                             <div className="category-item">{product?.subcategory?.name}</div>
@@ -260,7 +261,7 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems }) => {
                         </div>
                         <div className="detail-categories sellers">
                             <div className="category">
-                                Sellers
+                                {t("Sellers")}
                             </div>
                             <div className="seller">
                                 <Link to={`/shops/${product?.store?.name}`}>
@@ -276,7 +277,7 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems }) => {
             <div className="divider" />
             <div className="moreDetails">
                 <div className="title">
-                    Details
+                    {t("Details")}
                 </div>
                 <p>
                     {
@@ -298,4 +299,4 @@ const mapDispatchToProps = dispatch => ({
     removeItem: item => dispatch(removeItem(item)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ViewProduct));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(ViewProduct)));

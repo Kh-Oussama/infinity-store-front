@@ -132,6 +132,36 @@
     "After you turn on 2-Step Verification, you'll need to complete a second step to verify it's you when you sign in.": "Après avoir activé la vérification en deux étapes, vous devrez effectuer une deuxième étape pour vérifier qu'il s'agit bien de vous lorsque vous vous connectez.",
     "Scan the qr code below with an authenticator application, such as Google Authenticator on your phone.": "Scannez le code qr ci-dessous avec une application d'authentification, telle que Google Authenticator sur votre téléphone.",
     "Two factors authentication": "Authentification à deux facteurs",
-    "Disable two Factor Authentication": "Désactiver l'authentification à deux facteurs"
+    "Disable two Factor Authentication": "Désactiver l'authentification à deux facteurs",
+
+
+    "Login with your email & password": "Connectez-vous avec votre email et votre mot de passe",
+    "Password": "Mot de passe",
+    "Don't have any account?": "Vous n'avez pas de compte ?",
+    "Forgot password?": "mot de passe oublié?",
+    "Register": "S'inscrire",
+    "Login": "Connexion",
+
+
+    "Already have an account?": "Vous avez déjà un compte?",
+    "By signing up, you agree to ourterms & policy": "En vous inscrivant, vous acceptez nos conditions et notre politique",
+
+
+    "Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.": "Vérifiez votre boîte de réception pour les prochaines étapes. Si vous ne recevez pas d'e-mail et qu'il ne se trouve pas dans votre dossier spam, cela peut signifier que vous vous êtes inscrit avec une adresse différente.",
+    "Enter your email address below and we'll send": "Entrez votre adresse e-mail ci-dessous et nous vous enverrons",
+    "you a link to reset your password.": "un lien pour réinitialiser votre mot de passe.",
+    "Reset Password": "réinitialiser le mot de passe",
+    "Provide the confirmation code below.": "Fournissez le code de confirmation ci-dessous.",
+    "Code": "Code",
+    "Or": "Ou",
+
+
+    "Colors": "Couleurs",
+    "Add to Shopping cart": "Ajouter au panier",
+    "pieces available": "pièces disponibles",
+    "Categories": "Categories",
+    "Sellers": "Les vendeurs",
+
+    "No products found": "Aucun produit trouvé"
 
 }

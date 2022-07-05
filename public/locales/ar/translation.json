@@ -133,6 +133,37 @@
     "After you turn on 2-Step Verification, you'll need to complete a second step to verify it's you when you sign in.": ". بعد تشغيل المصادقة الثنائية، ستحتاج إلى إكمال الخطوة الثانية للتحقق من هويتك عند تسجيل الدخول",
     "Scan the qr code below with an authenticator application, such as Google Authenticator on your phone.": "امسح رمز qr أدناه باستخدام تطبيق المصادقة ، مثل Google Authenticator على هاتفك.",
     "Two factors authentication": "المصادقة الثنائية",
-    "Disable two Factor Authentication": "تعطيل المصادقة الثنائية"
+    "Disable two Factor Authentication": "تعطيل المصادقة الثنائية",
+
+
+    "Login with your email & password": "تسجيل الدخول باستخدام بريدك الإلكتروني وكلمة المرور",
+    "Password": "كلمة المرور",
+    "Don't have any account?": "ليس لديك حساب؟",
+    "Forgot password?": "هل نسيت كلمة السر؟",
+    "Register": "تسجيل",
+    "Login": "تسجيل الدخول",
+
+
+    "Already have an account?": "هل لديك حساب؟",
+    "By signing up, you agree to ourterms & policy": "بالتسجيل ، فإنك توافق على شروطنا وسياستنا",
+
+
+    "Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.": ". تحقق من بريدك الوارد لمعرفة الخطوات التالية. إذا لم تستلم بريدًا إلكترونيًا ، ولم يكن موجودًا في مجلد البريد العشوائي ، فقد يعني ذلك أنك قمت بالتسجيل باستخدام عنوان مختلف",
+    "Enter your email address below and we'll send": "أدخل عنوان بريدك الإلكتروني أدناه وسنرسل لك",
+    "you a link to reset your password.": ". رابط لإعادة تعيين كلمة المرور الخاصة بك",
+    "Reset Password": "إعادة تعيين كلمة المرور",
+    "Provide the confirmation code below.": ". أدخل رمز التأكيد أدناه",
+    "Code": "شفرة",
+    "Or": "أو",
+
+
+    "Colors": "الألوان",
+    "Add to Shopping cart": "أضف الى قائمة المشتريات",
+    "pieces available": "قطعة متاحة",
+    "Categories": "الفئات",
+    "Sellers": "الباعة",
+
+
+    "No products found": "لا توجد منتجات"
 
 }

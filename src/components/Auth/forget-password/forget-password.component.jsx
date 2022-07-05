@@ -11,11 +11,12 @@ import {
 } from "../../../redux/auth/auth.selectors";
 import {sendForgetPasswordEmailStart} from "../../../redux/auth/auth.actions";
 import {Message} from "semantic-ui-react";
-
+import { withTranslation } from 'react-i18next';
+import cookies from "js-cookie";
 
 //this is component for the sign-in form
-const ForgetPassword = ({sendForgetPasswordEmail, loading, errors, status}) => {
-
+const ForgetPassword = ({sendForgetPasswordEmail, loading, errors, status, t}) => {
+    const lang = cookies.get('i18next') || "en";
     const [userCredentials, setCredentials] = useState({email: ''});
     const {email} = userCredentials;
 
@@ -53,18 +54,16 @@ const ForgetPassword = ({sendForgetPasswordEmail, loading, errors, status}) => {
                     status
                         ?
                         <Message positive attached='bottom' className={"description description-info forget-password-message"}>
-                            <i className="fa-solid fa-check-double"/> Check your inbox for the next steps. If you
-                            don't receive an email, and it's not in your spam folder this could mean you signed up
-                            with a different address.
+                            <i className="fa-solid fa-check-double"/> {t("Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.")}
                         </Message>
                         : <>
-                            <div className="title">
-                                Enter your email address below and we'll send <br/> you a link to reset your password.
+                            <div className="title" lang={lang}>
+                                {t("Enter your email address below and we'll send")} <br/> {t("you a link to reset your password.")}
                             </div>
                             <div className="form">
-                                <form onSubmit={handleSubmit}>
-                                    <div className="input-block">
-                                        <label htmlFor="">Email</label>
+                                <form onSubmit={handleSubmit} lang={lang}>
+                                    <div className="input-block" lang={lang}>
+                                        <label htmlFor="">{t("Email")}</label>
                                         <input
                                             type="email"
                                             size="lg"
@@ -85,7 +84,7 @@ const ForgetPassword = ({sendForgetPasswordEmail, loading, errors, status}) => {
                                              </span>
                                         }
                                     </div>
-                                    <button className={"submit-btn"}>Reset Password</button>
+                                    <button className={"submit-btn"}>{t("Reset Password")}</button>
                                 </form>
                             </div>
                         </>
@@ -108,5 +107,5 @@ const mapDispatchToProps = dispatch => ({
     sendForgetPasswordEmail: (email) => dispatch(sendForgetPasswordEmailStart({email})),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ForgetPassword));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(ForgetPassword)));
 
