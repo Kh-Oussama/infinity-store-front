@@ -1,28 +1,138 @@
 {
     "Groceries Delivered in 90 Minute": "توصيل البقالة في 90 دقيقة",
     "Get your healthy foods & snacks delivered at your doorsteps all day everyday": "احصل على الأطعمة الصحية والوجبات الخفيفة الخاصة بك على عتبة داركم طوال اليوم كل يوم",
+    
+    
     "Search": "بحث",
     "Search your products from here": "ابحث في منتجاتك من هنا",
+
+
     "Shops": "محلات",
     "Offers":"عروض",
     "FAQ":"الأسئلة",
     "Contact":"اتصل",
     "Become a seller": "كن بائعا",
     "join": "انضم",
+
+
     "Item": "عنصر",
     "DA": "دج",
+
+
     "All Shops": "جميع المحلات",
+
+
     "How to contact with Customer Service?": "كيف تتواصل مع خدمة العملاء؟",
     "Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.": "Epcot هو منتزه ترفيهي في Walt Disney World Resort يضم معالم جذب مثيرة وأجنحة دولية وألعاب نارية حائزة على جوائز ومناسبات خاصة موسمية. يتوفر فريق تجربة العملاء لدينا 7 أيام في الأسبوع ونقدم طريقتين للتواصل: البريد الإلكتروني والدردشة. نحاول الرد بسرعة ، لذلك لا داعي للانتظار طويلاً للرد !.",
+    
+    
     "Questions, Comments, Or Concerns?": "أسئلة أو تعليقات أو مخاوف؟",
     "Email": "البريد الإلكتروني",
     "Name": "الاسم",
     "Subject": "الموضوع",
     "Description": "الوصف",
     "Submit": "إرسال",
+
+
     "Points": "نقاط",
     "Profile": "الملف الشخصي",
     "My orders": "طلباتي",
     "Checkout": "الدفع",
-    "Logout": "تسجيل خروج"
+    "Logout": "تسجيل خروج",
+
+    
+    "Wallet Points": "نقاط المحفظة",
+    "Total": "المجموع",
+    "Used": "تستخدم",
+    "Available": "متوفرة",
+    "Total Points": "مجمل النقاط",
+    "Points Used": "النقاط المستخدمة",
+    "Avalaible Points": "النقاط المتاحة",
+    "Verify Email": "Verify Email",
+    "Change Password": "غير كلمة السر",
+    "My Orders": "طلباتي",
+    "Need Help": "تحتاج مساعدة",
+    "Two Factors Authentication": "مصادقة عاملين",
+
+
+    "Upload an image": "تحميل صورة",
+    "or drag and drop PNG, JPG": "أو اسحب وافلت PNG, JPG",
+    "First name": "الاسم",
+    "Last name": "اللقب",
+    "Contact Number": "رقم الاتصال",
+    "Update": "تحديث",
+    "Update Contact Number": "تحديث رقم الاتصال",
+    "update contact": "تحديث الاتصال",
+    "Add": "اضافة",
+    "Addresses": "العناوين",
+    "Address": "العنوان",
+    "Add new address": "أضف عنوان جديد",
+    "Country": "دولة",
+    "Wilaya": "ولاية",
+    "Commune": "البلدية",
+    "Zip": "الرمز البريدي",
+    "Street Address": "عنوان الشارع",
+    "Add address": "اضف عنوان",
+    "Save": "احفظ",
+
+
+    "Old password": "كلمة المرور القديمة",
+    "New password": "كلمة السر الجديدة",
+    "Confirm password": "تأكيد كلمة المرور",
+
+
+    "You didn't order anything yet": "أنت لم تطلب أي شيء بعد",
+    "Order": "الطلب",
+    "Order Date :": ": تاريخ الطلب",
+    "Delivery Type :": ": نوع التوصيل",
+    "Delivery Type": "نوع التوصيل",
+    "Amount :": ": مقدار",
+    "Total Price :": ": السعر الكلي",
+    "Total Price": "السعر الكلي",
+    "Order Detail": "تفاصيل الطلب",
+    "Ask for a refund": "اطلب استرداد",
+    "Detail": "التفاصيل",
+    "Sub Total": "المجموع الفرعي",
+    "Discount": "تخفيض",
+    "Delivery Fee": "رسوم التوصيل",
+    "Quantity": "كمية",
+    "Price": "سعر",
+
+
+    "Checkout Cart": "سلة الدفع",
+    "Currently you have": "حاليا لديك",
+    "item(s) in your cart.": ". عنصرالموجودة فى سلة التسوق الخاصة بك",
+    "Image": "صورة",
+    "Details": "تفاصيل",
+    "Action": "عمل",
+    "Remove": "إزالة",
+    "Continue shopping": "مواصلة التسوق",
+    "Place Order": "مرر الطلب",
+    "Add your Address": "أضف عنوانك",
+
+
+    "Currently you have item(s) in your cart.": ". حاليا لديك عنصر (عناصر) في عربة التسوق الخاصة بك",
+    "update": "تحديث",
+    "Billing Address": "عنوان وصول الفواتير",
+    "Delivery Schedule": "جدول التسليم",
+    "Order Details": "تفاصيل الطلب",
+    "Your Order": "طلبك",
+    "Estimated Shipping": "الشحن المقدر",
+    "Go back": "رجوع",
+    "Confirm Order": "أكد الطلب",
+
+    "Confirm Password": "تأكيد كلمة المرور",
+    "Confirm": "أكد",
+    "Password...": "...كلمة المرور",
+
+
+    "Hi": "أهلاً",
+    "Infinity Store Team": "Infinity Store فريق ",
+    "Two-factor authentication is an extra layer of security for your Apple ID designed to ensure that you're the only person who can access your account, even if someone knows your password.": "المصادقة ذات العاملين هي طبقة إضافية من الأمان للمعرف إنه مصمم للتأكد من أنك الشخص الوحيد الذي يمكنه الوصول إلى حسابك ، حتى لو كان شخص ما يعرف كلمة مرورك",
+    "Enable two Factor Authentication": "تفعيل المصادقة الثنائية",
+    "After you turn on 2-Step Verification, you'll need to complete a second step to verify it's you when you sign in.": ". بعد تشغيل المصادقة الثنائية، ستحتاج إلى إكمال الخطوة الثانية للتحقق من هويتك عند تسجيل الدخول",
+    "Scan the qr code below with an authenticator application, such as Google Authenticator on your phone.": "امسح رمز qr أدناه باستخدام تطبيق المصادقة ، مثل Google Authenticator على هاتفك.",
+    "Two factors authentication": "المصادقة الثنائية",
+    "Disable two Factor Authentication": "تعطيل المصادقة الثنائية"
+
 }

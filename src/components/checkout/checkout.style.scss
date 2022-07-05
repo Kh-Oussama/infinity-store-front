@@ -65,6 +65,14 @@
             display: flex;
             justify-content: space-between;
 
+            &[lang="ar"]{
+                flex-direction: row-reverse;
+
+                & .confirm-buttons{
+                    text-align: center;
+                }
+            }
+
             & .confirm-buttons {
                 display: flex;
                 flex-direction: column;
@@ -172,6 +180,10 @@
     font-size: 1.65rem;
     color: var(--title-text-color-dark);
     font-weight: 500;
+
+    &[lang="ar"]{
+        flex-direction: row-reverse;
+    }
 }
 
 .button-disabled{

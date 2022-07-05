@@ -13,8 +13,11 @@ import './confirm-password.styles.scss';
 import {Input} from "semantic-ui-react";
 import 'semantic-ui-css/components/input.min.css';
 import 'semantic-ui-css/components/icon.min.css';
+import { withTranslation } from 'react-i18next';
+import cookies from "js-cookie";
 
-const ConfirmPasswordComponent = ({confirmPassword, loading, status, errors, match}) => {
+const ConfirmPasswordComponent = ({confirmPassword, loading, status, errors, match, t}) => {
+    const lang = cookies.get('i18next') || "en";
     const [userCredentials, setCredentials] = useState({password: ''});
     const {password} = userCredentials;
 
@@ -46,13 +49,13 @@ const ConfirmPasswordComponent = ({confirmPassword, loading, status, errors, mat
                 loading
                 ? <Spinner />
                     : <div className="content">
-                        <h1 className="title" >Confirm Password</h1>
+                        <h1 className="title" lang={lang}>{t('Confirm Password')}</h1>
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <Input
                                     icon='lock'
                                     iconPosition='left'
-                                    placeholder='Password...'
+                                    placeholder={t('Password...')}
                                     type="password"
                                     name={"password"}
                                     value={password}
@@ -69,7 +72,7 @@ const ConfirmPasswordComponent = ({confirmPassword, loading, status, errors, mat
                                 </span>
                                 }
                             </div>
-                            <button className={"submit-btn"}>Confirm</button>
+                            <button className={"submit-btn"}>{t('Confirm')}</button>
                         </form>
                     </div>
             }
@@ -89,5 +92,5 @@ const mapDispatchToProps = dispatch => ({
     confirmPassword: (password) => dispatch(confirmPasswordStart({password})),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConfirmPasswordComponent));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(ConfirmPasswordComponent)));
 

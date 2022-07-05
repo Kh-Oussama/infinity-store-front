@@ -1,28 +1,137 @@
 {
     "Groceries Delivered in 90 Minute": "Épicerie livrée en 90 minutes",
     "Get your healthy foods & snacks delivered at your doorsteps all day everyday": "Faites-vous livrer vos aliments et collations sains à votre porte toute la journée tous les jours",
+    
+    
     "Search": "Chercher",
     "Search your products from here": "Recherchez vos produits à partir d'ici",
+    
+
     "Shops": "Magasins",
     "Offers":"Offres",
     "FAQ":"Offers",
     "Contact":"Contactez",
     "Become a seller": "Devenir vendeur",
     "join": "rejoindre",
+
+    
     "Item": "Objet",
     "DA": "DA",
+
+
     "All Shops": "Tous les magasins",
+
+
     "How to contact with Customer Service?": "Comment contacter le service client ?",
     "Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.": "Epcot est un parc à thème du Walt Disney World Resort proposant des attractions passionnantes, des pavillons internationaux, des feux d'artifice primés et des événements spéciaux saisonniers.Notre équipe d'expérience client est disponible 7 jours sur 7 et nous proposons 2 façons d'entrer en contact. Nous essayons de répondre rapidement, vous n'avez donc pas besoin d'attendre trop longtemps pour une réponse !.",
+    
+    
     "Questions, Comments, Or Concerns?": "Questions, commentaires ou préoccupations ?",
     "Email": "Email",
     "Name": "Nom",
     "Subject": "Objet",
     "Description": "Description",
     "Submit": "Soumettre",
+
+    
     "Points": "Points",
     "Profile": "Profil",
     "My orders": "Mes commandes",
     "Checkout": "Vérifier",
-    "Logout": "Se déconnecter"
+    "Logout": "Se déconnecter",
+
+
+    "Wallet Points": "Points de portefeuille",
+    "Total": "Totale",
+    "Used": "Utilisée",
+    "Available": "Disponible",
+    "Total Points": "Points totaux",
+    "Points Used": "Points utilisés",
+    "Avalaible Points": "Points disponibles",
+    "Verify Email": "Vérifier les courriels",
+    "Change Password": "Changer le mot de passe",
+    "My Orders": "Mes commandes",
+    "Need Help": "Besoin d'aide",
+    "Two Factors Authentication": "Authentification à deux facteurs",
+
+
+    "Upload an image": "Télécharger une image",
+    "or drag and drop PNG, JPG": "ou glisser-déposer PNG, JPG",
+    "First name": "Prénom",
+    "Last name": "Nom de famille",
+    "Contact Number": "Numéro de contact",
+    "Update": "Mise à jour",
+    "Update Contact Number": "Mettre à jour le numéro de contact",
+    "update contact": "mettre à jour les contacts",
+    "Add": "Ajouter",
+    "Addresses": "Adresses",
+    "Address": "Adresse",
+    "Add new address": "Ajouter une nouvelle adresse",
+    "Country": "Pays",
+    "Wilaya": "Wilaya",
+    "Commune": "Commune",
+    "Zip": "Zip",
+    "Street Address": "Adresse de rue",
+    "Add address": "Ajoutez l'adresse",
+    "Save": "Sauvegarder",
+
+
+    "Old password": "Ancien mot de passe",
+    "New password": "Nouveau mot de passe",
+    "Confirm password": "Confirmez le mot de passe",
+
+
+    "You didn't order anything yet": "Vous n'avez encore rien commandé",
+    "Order": "Order",
+    "Order Date :": "Date de commande",
+    "Delivery Type :": "Type de livraison",
+    "Amount :": "Montante",
+    "Total Price :": "Prix ​​total",
+    "Total Price": "Prix ​​total",
+    "Order Detail": "Détails de la commande",
+    "Ask for a refund": "Demander un remboursement",
+    "Detail": "Détail",
+    "Sub Total": "Sous-total",
+    "Discount": "Remise",
+    "Delivery Fee": "Delivery Fee",
+    "Quantity": "Quantité",
+    "Price": "Prix",
+
+
+    "Checkout Cart": "Panier de paiement",
+    "Currently you have": "Actuellement vous avez",
+    "item(s) in your cart.": "objet(s) dans votre panier.",
+    "Image": "Image",
+    "Details": "Détails",
+    "Action": "Action",
+    "Remove": "Retirer",
+    "Continue shopping": "Continuer votre achats",
+    "Place Order": "Passer la commande",
+    "Add your Address": "Ajoutez votre adresse",
+
+
+    "Currently you have item(s) in your cart.": "Vous avez actuellement des articles dans votre panier.",
+    "update": "mettre à jour",
+    "Billing Address": "Adresse de facturation",
+    "Delivery Schedule": "Calendrier de livraison",
+    "Order Details": "détails de la commande",
+    "Your Order": "Votre commande",
+    "Estimated Shipping": "Frais de livraison estimés",
+    "Go back": "Retourner",
+    "Confirm Order": "Confirmer la commande",
+
+    "Confirm Password": "Confirmez le mot de passe",
+    "Confirm": "Confirmer",
+    "Password...": "Mot de passe...",
+
+
+    "Hi": "Salut",
+    "Infinity Store Team": "Équipe  de Infinity Store",
+    "Two-factor authentication is an extra layer of security for your Apple ID designed to ensure that you're the only person who can access your account, even if someone knows your password.": "L'authentification à deux facteurs est une couche de sécurité supplémentaire pour votre identifiant Apple conçue pour garantir que vous êtes la seule personne à pouvoir accéder à votre compte, même si quelqu'un connaît votre mot de passe.",
+    "Enable two Factor Authentication": "Activer l'authentification à deux facteurs",
+    "After you turn on 2-Step Verification, you'll need to complete a second step to verify it's you when you sign in.": "Après avoir activé la vérification en deux étapes, vous devrez effectuer une deuxième étape pour vérifier qu'il s'agit bien de vous lorsque vous vous connectez.",
+    "Scan the qr code below with an authenticator application, such as Google Authenticator on your phone.": "Scannez le code qr ci-dessous avec une application d'authentification, telle que Google Authenticator sur votre téléphone.",
+    "Two factors authentication": "Authentification à deux facteurs",
+    "Disable two Factor Authentication": "Désactiver l'authentification à deux facteurs"
+
 }

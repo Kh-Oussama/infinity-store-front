@@ -18,7 +18,8 @@ i18n.use(LanguageDetector)
             caches: ['cookie', 'localStorage'],
         },
         backend: {
-            loadPath: './locales/{{lng}}/translation.json',
+            loadPath: '/locales/{{lng}}/translation.json',
+            allowMultiLoading: true,
         },
     });
 

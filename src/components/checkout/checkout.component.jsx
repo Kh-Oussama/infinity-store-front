@@ -9,9 +9,11 @@ import {addItem, clearItemFromCart, removeItem} from "../../redux/cart/cart.acti
 import CheckoutTable from "./checkout-table.component";
 import {Message} from "semantic-ui-react";
 import NoResult from "../no-result/no-result.component";
+import { withTranslation } from "react-i18next";
+import cookies from "js-cookie";
 
-const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem, clearItem, addItem, currentUser, history}) => {
-
+const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem, clearItem, addItem, currentUser, history, t}) => {
+    const lang = cookies.get('i18next') || "en";
     const [confirmOrder, setConfirmOrder] = useState(false);
 
     useEffect(() => {
@@ -28,9 +30,9 @@ const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem, clearIt
     return (
         <div className="checkout">
             <div className="card checkout-cart">
-                <div className="title">
-                    <h1>Checkout Cart</h1>
-                    <p>Currently you have {cartItems.length} item(s) in your cart.</p>
+                <div className="title" lang={lang}>
+                    <h1>{t('Checkout Cart')}</h1>
+                    <p>{t('Currently you have')} {cartItems.length} {t('item(s) in your cart.')}</p>
                 </div>
 
                 {
@@ -48,10 +50,10 @@ const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem, clearIt
                                 </Message>
 
                             }
-                            <div className="actions">
+                            <div className="actions" lang={lang}>
                                 <Link className="action"  to="/">
                                     <i className="fa-solid fa-cart-plus"/>
-                                    Continue shopping
+                                    {t('Continue shopping')}
                                 </Link>
 
                                 <div className={"confirm-buttons"}>
@@ -59,12 +61,12 @@ const Checkout = ({redirectToCheckoutPage, total, cartItems, removeItem, clearIt
                                         currentUser.addresses.length <= 0 && confirmOrder &&
                                         <span className="action red" onClick={() => history.push("/dashboard")}>
                                     <i className="fa-solid fa-map-location-dot"/>
-                                    Add your Address
+                                    {t('Add your Address')}
                                      </span>
                                     }
                                     <span className={`action ${ currentUser.addresses.length <= 0 && confirmOrder ? 'button-disabled' : null} `} onClick={() => handleConfirmOrder()}>
                                     <i className="fa-solid fa-clipboard-check"/>
-                                     Place Order
+                                     {t('Place Order')}
                                     </span>
                                 </div>
 
@@ -93,4 +95,4 @@ const mapDispatchToProps = dispatch => ({
     clearItem: item => dispatch(clearItemFromCart(item)),
     addItem: item => dispatch(addItem(item)),
 })
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Checkout));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(Checkout)));

@@ -25,9 +25,11 @@ import {
     selectAddOrderStatus,
     selectTheCreatedOrder
 } from "../../redux/orders/orders.selectors";
+import { withTranslation } from "react-i18next";
+import cookies from "js-cookie";
 
-const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWilayaLoading, retrieveWilayaErrors, wilayaDetails, cartItems, total, addOrder,  loading, errors, status, order}) => {
-
+const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWilayaLoading, retrieveWilayaErrors, wilayaDetails, cartItems, total, addOrder,  loading, errors, status, order, t}) => {
+    const lang = cookies.get('i18next') || "en";
 
 
     const [deliveryType, setDeliveryType] = useState(true);
@@ -69,24 +71,24 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
     return (
         <div className="checkout">
             <div className="card checkout-cart">
-                <div className="title">
-                    <h1>Place Order</h1>
-                    <p>Currently you have item(s) in your cart.</p>
+                <div className="title" lang={lang}>
+                    <h1>{t('Place Order')}</h1>
+                    <p>{t('Currently you have item(s) in your cart.')}</p>
                 </div>
             </div>
             <div className="card checkout-cart">
-                <div className="cart-header">
+                <div className="cart-header" lang={lang}>
                     <div className="title">
                         <div className="nbr">
                             1
                         </div>
                         <div className="text">
-                            Contact Number
+                            {t('Contact Number')}
                         </div>
 
                     </div>
                     <div className="button">
-                        <i className="fa-solid fa-plus"/> update
+                        <i className="fa-solid fa-plus"/> {t('update')}
                     </div>
                 </div>
                 <div className="cart-content">
@@ -106,25 +108,25 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                 </div>
             </div>
             <div className="card checkout-cart">
-                <div className="cart-header">
+                <div className="cart-header" lang={lang}>
                     <div className="title">
                         <div className="nbr">
                             2
                         </div>
                         <div className="text">
-                            Billing Address
+                            {t('Billing Address')}
                         </div>
 
                     </div>
                     <div className="button">
-                        <i className="fa-solid fa-plus"/> update
+                        <i className="fa-solid fa-plus"/> {t('update')}
                     </div>
                 </div>
-                <div className="cart-content addresses">
+                <div className="cart-content addresses" lang={lang}>
                     {
                         currentUser.addresses.map(address => (
                             <div  key={address.id} className={`address ${selectedWilaya.id === address.id ? "address-active" : null} `} onClick={() => setSelectedWilaya(address)}>
-                                <h3>Address</h3>
+                                <h3>{t('Address')}</h3>
                                 <p>{
                                     address.wilaya_id + " " + address.wilaya_name + " " + address.commune + " " + address.zip + " " +
                                     address.street + " - Algerie"
@@ -136,13 +138,13 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                 </div>
             </div>
             <div className="card checkout-cart">
-                <div className="cart-header">
+                <div className="cart-header" lang={lang}>
                     <div className="title">
                         <div className="nbr">
                             3
                         </div>
                         <div className="text">
-                            Delivery Schedule
+                            {t('Delivery Schedule')}
                         </div>
 
                     </div>
@@ -170,13 +172,13 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                 </div>
             </div>
             <div className="card checkout-cart">
-                <div className="cart-header">
+                <div className="cart-header" lang={lang}>
                     <div className="title">
                         <div className="nbr">
                             4
                         </div>
                         <div className="text">
-                            Delivery Schedule
+                            {t('Delivery Schedule')}
                         </div>
 
                     </div>
@@ -215,13 +217,13 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                 </div>
             </div>
             <div className="card checkout-cart">
-                <div className="cart-header">
+                <div className="cart-header" lang={lang}>
                     <div className="title">
                         <div className="nbr">
                             5
                         </div>
                         <div className="text">
-                            Order Details
+                            {t('Order Details')}
                         </div>
 
                     </div>
@@ -234,7 +236,7 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                        retrieveWilayaLoading || loading
                             ? <Spinner/>
                             : <div className="order-details">
-                                <h3>your Order</h3>
+                                <h3>{t('Your Order')}</h3>
                                 {
                                     cartItems.map(item => (
                                         <div className="order-info">
@@ -243,7 +245,7 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                                                 <span>x</span>
                                                 <span>{item.name}</span>
                                             </div>
-                                            <div className="content qnt">{item.quantity * item.price} DA</div>
+                                            <div className="content qnt">{item.quantity * item.price} {t('DA')}</div>
                                         </div>
                                     ))
                                 }
@@ -252,25 +254,25 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                                 <div className="divider"/>
                                 <div className="order-info">
                                     <div className="attribute">
-                                        Sub Total
+                                        {t('Sub Total')}
                                     </div>
-                                    <div className="content qnt">{total} DA</div>
+                                    <div className="content qnt">{total} {t('DA')}</div>
                                 </div>
                                 <div className="order-info">
                                     <div className="attribute">
-                                        Estimated Shipping
+                                        {t('Estimated Shipping')}
                                     </div>
                                     <div
-                                        className="content qnt">{deliveryType ? wilayaDetails?.home_fee : wilayaDetails?.desk_fee} DA
+                                        className="content qnt">{deliveryType ? wilayaDetails?.home_fee : wilayaDetails?.desk_fee} {t('DA')}
                                     </div>
                                 </div>
                                 <div className="divider"/>
                                 <div className="order-info">
                                     <div className="attribute total">
-                                        Total
+                                        {t('Total')}
                                     </div>
                                     <div
-                                        className="content total">{deliveryType ? wilayaDetails?.home_fee + total : wilayaDetails?.desk_fee + total} DA
+                                        className="content total">{deliveryType ? wilayaDetails?.home_fee + total : wilayaDetails?.desk_fee + total} {t('DA')}
                                     </div>
                                 </div>
                             </div>
@@ -280,13 +282,13 @@ const ConfirmOrder = ({history, currentUser, retrieveWilayaDetails, retrieveWila
                 <div className="actions">
                     <Link className="action" to="/dashboard/checkout">
                         <i className="fa-solid fa-left-long"/>
-                        Go back
+                        {t('Go back')}
                     </Link>
 
                     <div className={"confirm-buttons"} onClick={handleSubmit}>
                             <span className="action">
                                    <i className="fa-solid fa-check-double"/>
-                                    Confirm Order
+                                    {t('Confirm Order')}
                             </span>
                     </div>
 
@@ -318,4 +320,4 @@ const mapDispatchToProps = dispatch => ({
     retrieveWilayaDetails : wilaya => dispatch(retrieveWilayaDetailsStart(wilaya)),
     addOrder: order => dispatch(addOrderStart(order)),
 })
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConfirmOrder));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(ConfirmOrder)));

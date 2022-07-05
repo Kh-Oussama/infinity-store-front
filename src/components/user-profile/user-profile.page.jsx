@@ -11,8 +11,11 @@ import { updateProfileInformationStart } from "../../redux/auth/auth.actions";
 import NoResult from "../no-result/no-result.component";
 import Select from "react-select";
 import WilayaOption from "./wilaya-option.component";
+import { withTranslation } from "react-i18next";
+import cookies from "js-cookie";
 
-const UserProfile = ({ updateUser, currentUser, errors }) => {
+const UserProfile = ({ updateUser, currentUser, errors, t }) => {
+    const lang = cookies.get('i18next') || "en";
 
     //Credentials of user
     const [credentials, setCredentials] = useState({
@@ -27,7 +30,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
     const [addressInfo, setAddressInfo] = useState({
         commune: '', zip: '', streetAddress: ''
     });
-    const {  commune,  zip, streetAddress } = addressInfo;
+    const { commune, zip, streetAddress } = addressInfo;
 
     const [addresses, setAddresses] = useState([]);
 
@@ -206,11 +209,11 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                 onChange={handlePhotoChange}
                             />
                             <span><i className="fa-solid fa-cloud-arrow-up" /></span>
-                            <p><span>Upload an image</span> or drag and drop PNG, JPG</p>
+                            <p><span>{t('Upload an image')}</span> {t('or drag and drop PNG, JPG')}</p>
                         </div>
                     </div>
 
-                    <InputGroup label="First name" name="name" type="text" value={name} onChange={handleCrendentialsChange} />
+                    <InputGroup label={t("First name")} name="name" type="text" value={name} onChange={handleCrendentialsChange} />
                     {
                         firstNameError
                         &&
@@ -220,7 +223,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
 
                         </span>
                     }
-                    <InputGroup label="Last name" name="lastName" type="text" value={lastName} onChange={handleCrendentialsChange} />
+                    <InputGroup label={t("Last name")} name="lastName" type="text" value={lastName} onChange={handleCrendentialsChange} />
                     {
                         lastNameError
                         &&
@@ -230,7 +233,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
 
                         </span>
                     }
-                    <InputGroup label="Email" name="email" type="text" value={email} onChange={handleCrendentialsChange} />
+                    <InputGroup label={t("Email")} name="email" type="text" value={email} onChange={handleCrendentialsChange} />
                     {
                         emailError
                         &&
@@ -243,11 +246,11 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
 
                 </form>
                 <div className="update-number">
-                    <div className="content">
-                        <p>Contact Number</p>
+                    <div className="content" lang={lang}>
+                        <p>{t('Contact Number')}</p>
                         <button onClick={showUpdatePopup}>
                             <i className="fa-solid fa-plus" />
-                            Update
+                            {t('Update')}
                         </button>
                     </div>
 
@@ -272,7 +275,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
 
                     <div className="popup">
                         <div className="content">
-                            <p>Update Contact Number</p>
+                            <p>{t('Update Contact Number')}</p>
 
                             <div>
                                 <div>
@@ -281,7 +284,7 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                     </div>
                                     <input type="text" value={phoneNumber} name="phoneNumber" onChange={handleCrendentialsChange} />
                                 </div>
-                                <input type="button" value="update contact" onClick={closeUpdatePopup} />
+                                <input type="button" value={t("update contact")} onClick={closeUpdatePopup} />
                             </div>
                         </div>
                     </div>
@@ -289,17 +292,17 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
 
                 <div className="address">
 
-                    <div className="content">
-                        <p>Addresses</p>
-                        <button onClick={showAddressPopup}><i className="fa-solid fa-plus" /> Add</button>
+                    <div className="content" lang={lang}>
+                        <p>{t('Addresses')}</p>
+                        <button onClick={showAddressPopup}><i className="fa-solid fa-plus" /> {t('Add')}</button>
                     </div>
 
                     {addresses.length !== 0 ?
-                        <div className="address-ct">
+                        <div className="address-ct" lang={lang}>
                             {addresses.map((address, index) => {
                                 return (
                                     <div className={"address-item"}>
-                                        <h3>Address</h3>
+                                        <h3>{t('Address')}</h3>
                                         <p> {
                                             address.wilaya_id + " " + address.wilaya_name + " " + address.commune + " " + address.zip + " " +
                                             address.street + " - Algerie"
@@ -320,18 +323,18 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
 
                     <div className="popup">
                         <div className="content">
-                            <p>Add new address</p>
+                            <p>{t('Add new address')}</p>
                             <div>
-                                <InputGroup label="Country" type="text" name="title" value={"Algérie"} onChange={handleAddressInformationChange} disabled={true} />
+                                <InputGroup label={t("Country")} type="text" name="title" value={"Algérie"} onChange={handleAddressInformationChange} disabled={true} />
                                 <div className="row">
                                     <div className="wilaya-select">
-                                        <span>Wilaya</span>
+                                        <span lang={lang}>{t('Wilaya')}</span>
                                         <Select
                                             className="react-select-container"
                                             options={wilayaOptions}
                                             components={{ Option: WilayaOption }}
                                             name="wilaya"
-                                            onChange={value => {setWilaya(value)}}
+                                            onChange={value => { setWilaya(value) }}
                                             theme={(theme) => ({
                                                 ...theme,
                                                 colors: {
@@ -341,19 +344,16 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                                             })}
                                         />
                                     </div>
-                                    <InputGroup label="Commune" type="text" name="commune" value={commune} onChange={handleAddressInformationChange} />
-                                </div>
-                                <div className="row">
-                                    <InputGroup label="Zip" type="text" name="zip" value={zip} onChange={handleAddressInformationChange} />
+                                    <InputGroup label={t("Commune")} type="text" name="commune" value={commune} onChange={handleAddressInformationChange} />
                                 </div>
 
+                                <InputGroup label={t("Zip")} type="text" name="zip" value={zip} onChange={handleAddressInformationChange} />
 
+                                <TextAreaGroup label={t("Street Address")} name="streetAddress" value={streetAddress} onChange={handleAddressInformationChange} />
 
-                                <TextAreaGroup label="Street Address" name="streetAddress" value={streetAddress} onChange={handleAddressInformationChange} />
-
-                                <input type="button" value="Add address" onClick={_ => {
+                                <input type="button" value={t("Add address")} onClick={_ => {
                                     closeAddressPopup();
-                                    setAddresses([...addresses, {wilaya_id: wilaya.value, wilaya_name: wilaya.label, commune: commune, zip: zip, street: streetAddress,}]);
+                                    setAddresses([...addresses, { wilaya_id: wilaya.value, wilaya_name: wilaya.label, commune: commune, zip: zip, street: streetAddress, }]);
                                     setAddressInfo({ commune: '', city: '', state: '', zip: '', streetAddress: '' })
                                 }} />
                             </div>
@@ -361,8 +361,8 @@ const UserProfile = ({ updateUser, currentUser, errors }) => {
                     </div>
                 </div>
 
-                <div className="submit-ct">
-                    <input type="submit" value="Save" onClick={handleCredentialsSubmit} />
+                <div className="submit-ct" lang={lang}>
+                    <input type="submit" value={t("Save")} onClick={handleCredentialsSubmit} />
                 </div>
             </div>
         </div>
@@ -380,5 +380,5 @@ const mapDispatchToProps = dispatch => ({
     updateUser: user => dispatch(updateProfileInformationStart(user)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserProfile));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(UserProfile)));
 

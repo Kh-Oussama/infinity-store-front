@@ -31,8 +31,8 @@
             width: 100%;
             height: auto;
 
-            
-            & .orders-spiner{
+
+            & .orders-spiner {
                 height: 255px;
             }
         }
@@ -111,6 +111,10 @@
                     padding: 1.3rem 1rem 1.5rem;
                     border-bottom: 2px var(--color-grey-3) solid;
 
+                    &[lang="ar"] {
+                        flex-direction: row-reverse;
+                    }
+
                     & p {
                         font-weight: bold;
                         font-size: 1.7rem;
@@ -142,6 +146,12 @@
                 & .order-content-ct {
                     padding: 0 1.2rem .1rem;
 
+                    &[lang="ar"] {
+                        &>div {
+                            flex-direction: row-reverse;
+                        }
+                    }
+
                     &>div {
                         width: 100%;
                         display: flex;
@@ -161,9 +171,12 @@
 
                             &:last-child {
                                 margin: 0 0 0 auto;
+                                text-align: center;
+                                /*
                                 white-space: nowrap !important;
                                 text-overflow: ellipsis !important;
                                 overflow: hidden;
+                                */
                             }
                         }
 
@@ -191,7 +204,7 @@
             min-height: 716px;
             margin: 2rem 0 0;
 
-            & .orders-spiner{
+            & .orders-spiner {
                 height: 711px;
             }
         }
@@ -208,6 +221,16 @@
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
+
+                &[lang="ar"]{
+                    flex-direction: row-reverse;
+
+                    &>div{
+                        &:nth-child(2) {
+                            margin: 0 auto 0 1.5rem;
+                        }
+                    }
+                }
 
                 & h2 {
                     color: var(--color-grey-dark-1);
@@ -304,6 +327,12 @@
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: flex-start;
+
+                    &[lang="ar"]{
+                        & > div{
+                            flex-direction: row-reverse;
+                        }
+                    }
 
                     @media only screen and (max-width: $bp-small-1) {
                         width: 100%;
