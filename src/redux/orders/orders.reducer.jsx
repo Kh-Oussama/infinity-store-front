@@ -51,7 +51,7 @@ const ordersReducer = (state = INITIAL_STATE, action) => {
                 fetchAllOrdersLoading: false,
                 fetchAllOrdersError: null,
                 orders: action.payload.orders,
-                orderStates: action.payload.states
+                orderStates : action.payload.states,
             }
         case OrdersActionTypes.FETCH_ALL_ORDERS_FAILURE:
             return {
