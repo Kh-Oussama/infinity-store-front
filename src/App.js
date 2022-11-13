@@ -8,7 +8,12 @@ import ViewShopPage from "./pages/view-shop/view-shop.page";
 import ContactPage from "./pages/contact-page/contact-page.page";
 import FaqPage from "./pages/faq-page/faq-page.page";
 import {fetchGroupsStart} from "./redux/group/groups.actions";
-import {selectFetchGroupsLoading, selectGroups} from "./redux/group/groups.selectors";
+import {
+    selectFetchGroupsLoading, selectGetGroupError,
+    selectGetGroupLoading,
+    selectGroups,
+    selectGroupVar
+} from "./redux/group/groups.selectors";
 import EyeLoader from "./components/EyeLoader/EyeLoader";
 import Dashboard from "./pages/dashboard/dashboard-page.page";
 import {selectCheckUserSessionLoading, selectCurrentUser, selectSignOutLoading} from "./redux/auth/auth.selectors";
@@ -16,6 +21,8 @@ import {checkUserSession} from "./redux/auth/auth.actions";
 import ForgetPasswordPage from "./pages/Auth/forget-password/forget-password.page";
 import ResetPasswordPage from "./pages/Auth/reset-password/reset-password.page";
 import AuthPage from "./pages/Auth/auth-page/auth-page.component";
+import {getProductStart} from "./redux/product/products.actions";
+import {selectGetProductError, selectGetProductLoading, selectProductVar} from "./redux/product/products.selectors";
 
 const ViewProductPage = lazy(() => import("./components/view-product-page/view-product-page.component"));
 const Homepage = lazy(() => import("./pages/home-page/home-page.page"));
@@ -32,11 +39,14 @@ const App = ({
                  checkUserSession,
                  logOutLoading,
 
+
              }) => {
 
     useEffect(() => {
         fetchGroups();
     }, [fetchGroups]);
+
+
 
     useEffect(() => {
         checkUserSession()
@@ -94,6 +104,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
     fetchGroups: () => dispatch(fetchGroupsStart()),
     checkUserSession: () => dispatch(checkUserSession()),
+
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

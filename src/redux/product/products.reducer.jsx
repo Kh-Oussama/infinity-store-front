@@ -9,7 +9,7 @@ const INITIAL_STATE = {
     products: [],
 
     //fetch product
-    getProductLoading: false,
+    getProductLoading: true,
     getProductError: null,
     product: null,
 }
@@ -108,30 +108,30 @@ const productsReducer = (state = INITIAL_STATE, action) => {
                 products: [],
             }
 
-        // //get product
-        // case ProductsActionTypes.GET_PRODUCT_START:
-        //     return {
-        //         ...state,
-        //         getProductLoading: true,
-        //         getProductError: null,
-        //         product: null,
-        //
-        //         fetchAllProductsLoading: true,
-        //     }
-        // case ProductsActionTypes.GET_PRODUCT_SUCCESS:
-        //     return {
-        //         ...state,
-        //         getProductLoading: false,
-        //         getProductError: null,
-        //         product: action.payload[0],
-        //     }
-        // case ProductsActionTypes.GET_PRODUCT_FAILURE:
-        //     return {
-        //         ...state,
-        //         getProductLoading: false,
-        //         getProductError: action.payload,
-        //         product: null,
-        //     }
+        //get product
+        case ProductsActionTypes.GET_PRODUCT_START:
+            return {
+                ...state,
+                getProductLoading: true,
+                getProductError: null,
+                product: null,
+
+            }
+        case ProductsActionTypes.GET_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                getProductLoading: false,
+                getProductError: null,
+                product: action.payload[0],
+
+            }
+        case ProductsActionTypes.GET_PRODUCT_FAILURE:
+            return {
+                ...state,
+                getProductLoading: false,
+                getProductError: action.payload,
+                product: null,
+            }
 
         default:
             return state;

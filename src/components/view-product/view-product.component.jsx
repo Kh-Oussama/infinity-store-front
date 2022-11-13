@@ -232,6 +232,7 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems, t }) => {
 
                         {/*<div className="divider"/>*/}
                         <div className="detail-action">
+
                             {/* Update quantity after click on add to cart button */}
                             {currentItem ? 
                             <div className='action update-qty'>
@@ -243,6 +244,12 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems, t }) => {
                             <div className="action addButton" onClick={() => addItemToShoppingCard(product)}>
                                 {t("Add to Shopping cart")}
                             </div>}
+{/*
+            <div className="action addButton" onClick={() => addItemToShoppingCard(product)}>
+                                Add to Shopping cart
+                            </div>
+*/}
+
 
                             <div className="qnt">
                                 <span>{product.quantity}</span> {t("pieces available")}

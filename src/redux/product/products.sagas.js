@@ -1,7 +1,7 @@
 import {all, call, put, takeLatest} from "redux-saga/effects";
 import Axios from "axios";
 import ProductsActionTypes from "./products.types";
-import {fetchProductsFailure, fetchProductsSuccess} from "./products.actions";
+import {fetchProductsFailure, fetchProductsSuccess, getProductFailure, getProductSuccess} from "./products.actions";
 
 
 //FETCH Products
@@ -38,6 +38,18 @@ export function* fetchProductsByStoreAsync({payload: {name}}) {
     }
 }
 
+//get sub admin
+export function* getProductAsync({payload: {slug}}) {
+    try {
+        const response = yield Axios.get(`http://localhost:8000/api/get-product/${slug}`);
+        const product = response.data.product;
+        // const colors = response.data.colors;
+        yield put(getProductSuccess(product));
+    } catch (error) {
+        yield put(getProductFailure(error.message));
+    }
+}
+
 //FETCH Products by category
 export function* fetchProductsBySubCategoryAsync({payload: {slug}}) {
     try {
@@ -66,10 +78,9 @@ export function* onFetchProductsBySubCategory() {
     yield takeLatest(ProductsActionTypes.FETCH_PRODUCTS_BY_SUB_CATEGORY_START, fetchProductsBySubCategoryAsync)
 }
 
-
-// export function* onGetGroupStart() {
-//     yield takeLatest(ProductsActionTypes.GET_GROUP_START, getGroupAsync)
-// }
+export function* onGetProductStart() {
+    yield takeLatest(ProductsActionTypes.GET_PRODUCT_START, getProductAsync)
+}
 
 
 export function* productsSagas() {
@@ -78,6 +89,7 @@ export function* productsSagas() {
         call(onFetchProductsByCategory),
         call(onFetchProductsByStore),
         call(onFetchProductsBySubCategory),
+        call(onGetProductStart),
     ]);
 }
 

@@ -33,6 +33,7 @@ const CheckoutTable = ({data, removeItem, clearItem, addItem, total, t}) => {
                                     <Table.Cell>
                                         <div className="p-name">
                                             {item.name} <i className="fa-solid fa-right-long"/>
+
                                         </div>
     
                                     </Table.Cell>
@@ -111,3 +112,5 @@ const CheckoutTable = ({data, removeItem, clearItem, addItem, total, t}) => {
 }
 
 export default withTranslation()(CheckoutTable);
+
+

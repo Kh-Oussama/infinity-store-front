@@ -13,7 +13,17 @@ const Header = ({group, t}) => {
     
     return (
         <>
-            <header className="header">
+            <header className="header"
+            >
+                <div className={"cover-block"} style={{
+                    backgroundImage: "url(" + "/images/cover-1.webp" + ")",
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                }}>
+                    {/*<img src="/images/cover-1.webp" alt="cover"/>*/}
+                </div>
+
                 <div className="content" style={{width: '80rem'}}>
                     <h1 className="title" lang={lang}>
                         {
