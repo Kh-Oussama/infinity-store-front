@@ -7,9 +7,11 @@ import {connect} from "react-redux";
 import {fetchStoresStart} from "../../redux/stores/stores.actions";
 import {selectFetchStoresLoading, selectStores} from "../../redux/stores/stores.selectors";
 import Spinner from "../spinner/spinner.components";
+import { compose } from 'redux';
+import { withTranslation } from 'react-i18next';
 
 
-const ShopsCollection = ({loading, errors, stores, fetchStores, history}) => {
+const ShopsCollection = ({loading, errors, stores, fetchStores, history, t}) => {
     useEffect(() => {
         fetchStores();
     }, [fetchStores]);
@@ -20,7 +22,7 @@ const ShopsCollection = ({loading, errors, stores, fetchStores, history}) => {
         <>
             <div className="shops-container">
                 <div className="shops-container__title">
-                    All Shops
+                    {t('All Shops')}
                 </div>
                 <div className="shops">
                     {
@@ -60,4 +62,4 @@ const mapDispatchToProps = dispatch => ({
     fetchStores: () => dispatch(fetchStoresStart()),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ShopsCollection));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(ShopsCollection)));

@@ -11,10 +11,12 @@ import {
     selectTwoFactorsChallengeError, selectTwoFactorsChallengeLoading
 } from "../../../redux/auth/auth.selectors";
 import {cancelTwoFactorChallenge, signInStart, twoFactorChallengeStart} from "../../../redux/auth/auth.actions";
-
+import { withTranslation } from 'react-i18next';
+import cookies from "js-cookie";
 
 //this is component for the sign-in form
-const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, errors, cancelTwoFactorChallenge }) => {
+const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, errors, cancelTwoFactorChallenge, t }) => {
+    const lang = cookies.get('i18next') || "en";
     const [userCredentials, setCredentials] = useState({code: ''});
     const {code} = userCredentials;
 
@@ -52,12 +54,12 @@ const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, error
                     <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo"/>
                 </div>
                 <div className="title">
-                    Provide the confirmation code below.
+                    {t("Provide the confirmation code below.")}
                 </div>
                 <div className="form">
                     <form onSubmit={handleSubmit}>
                     <div className="input-block">
-                        <label htmlFor="">Code</label>
+                        <label htmlFor="">{t("Code")}</label>
                         <input
                             type="text"
                             name={"code"}
@@ -65,7 +67,7 @@ const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, error
                             onChange={handleChange}
                         />
                     </div>
-                    <button className={"submit-btn"}>Confirm</button>
+                    <button className={"submit-btn"}>{t("Confirm")}</button>
                     </form>
                 </div>
                 <div className="divider"/>
@@ -73,9 +75,9 @@ const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, error
                       <span onClick={() => {
                           cancelTwoFactorChallenge();
                           switchComponent("sign-in")
-                      }}>login</span>
-                    <span style={{color:'black'}}>Or</span>
-                    <span onClick={() => switchComponent("sign-up")}>Register</span>
+                      }}>{t("Login")}</span>
+                    <span style={{color:'black'}}>{t("Or")}</span>
+                    <span onClick={() => switchComponent("sign-up")}>{t("Register")}</span>
                 </div>
             </div>
         </>
@@ -92,5 +94,5 @@ const mapDispatchToProps = dispatch => ({
     cancelTwoFactorChallenge: () => dispatch(cancelTwoFactorChallenge()),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TwoFactorChallenge));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(TwoFactorChallenge)));
 

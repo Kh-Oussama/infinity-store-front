@@ -11,6 +11,8 @@ import {
     selectTwoFactorsChallengeError
 } from "../../../redux/auth/auth.selectors";
 import {cancelTwoFactorChallenge, signInStart} from "../../../redux/auth/auth.actions";
+import { withTranslation } from 'react-i18next';
+import cookies from "js-cookie";
 
 
 //this is component for the sign-in form
@@ -21,7 +23,8 @@ const SignIn = ({
                     loading,
                     signInErrors,
                     redirectToTwoFactorChallenge,
-                    cancelTwoFactorChallenge
+                    cancelTwoFactorChallenge,
+                    t
                 }) => {
 
     useEffect(() => {
@@ -29,6 +32,7 @@ const SignIn = ({
             switchComponent("two-factors-challenge")
     }, [redirectToTwoFactorChallenge]);
 
+    const lang = cookies.get('i18next') || "en";
     const [userCredentials, setCredentials] = useState({email: '', password: ''});
     const {email, password} = userCredentials;
 
@@ -77,7 +81,7 @@ const SignIn = ({
                     <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo"/>
                 </div>
                 <div className="title">
-                    Login with your email & password
+                    {t("Login with your email & password")}
                 </div>
                 {
                     badCredentialsError
@@ -95,9 +99,9 @@ const SignIn = ({
                     {codeError}
                                                      </span>}
                 <div className="form">
-                    <form onSubmit={handleSubmit}>
-                        <div className="input-block">
-                            <label htmlFor="">Email</label>
+                    <form onSubmit={handleSubmit} lang={lang}>
+                        <div className="input-block" lang={lang}>
+                            <label htmlFor="">{t("Email")}</label>
                             <input
                                 type="email"
                                 name={"email"}
@@ -113,8 +117,8 @@ const SignIn = ({
                                 </span>
                             }
                         </div>
-                        <div className="input-block">
-                            <label htmlFor="">password</label>
+                        <div className="input-block" lang={lang}>
+                            <label htmlFor="">{t("Password")}</label>
                             <input
                                 type="password"
                                 name={"password"}
@@ -122,7 +126,7 @@ const SignIn = ({
                                 onChange={handleChange}
                             />
                             <Link to={"/forget-password"} className="auth-link ">
-                                Forgot password?
+                                {t("Forgot password?")}
                             </Link>
                             {
                                 passwordError
@@ -134,12 +138,12 @@ const SignIn = ({
                                 </span>
                             }
                         </div>
-                        <button className={"submit-btn"}>Login</button>
+                        <button className={"submit-btn"}>{t("Login")}</button>
                     </form>
                 </div>
                 <div className="divider"/>
                 <div className="sign-in-footer">
-                    Don't have any account? <span onClick={() => switchComponent("sign-up")}>Register</span>
+                    {t("Don't have any account?")} <span onClick={() => switchComponent("sign-up")}>{t("Register")}</span>
                 </div>
             </div>
         </>
@@ -158,5 +162,5 @@ const mapDispatchToProps = dispatch => ({
     cancelTwoFactorChallenge: () => dispatch(cancelTwoFactorChallenge()),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn)));
 

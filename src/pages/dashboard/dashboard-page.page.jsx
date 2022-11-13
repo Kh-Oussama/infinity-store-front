@@ -15,11 +15,15 @@ import ConfirmPasswordComponent
 import Checkout from "../../components/checkout/checkout.component";
 import ConfirmOrder from "../../components/checkout/confirm-order.component";
 import OrderView from "../../components/checkout/order-view.comonent";
+import cookies from "js-cookie";
+import { withTranslation } from "react-i18next";
 
 
-const Dashboard = ({ currentUser }) => {
+const Dashboard = ({ currentUser, t }) => {
     const location = useLocation();
     const [showLeftSide, setLeftSide] = useState(false);
+
+    const lang = cookies.get('i18next') || "en";
 
     //Function to toggle navigation serach
     const toggleNavSearch = () => {
@@ -59,19 +63,19 @@ const Dashboard = ({ currentUser }) => {
                 <div className="dashboard-ct">
                     <div className="sidebar">
                         <div className="wallet-ct">
-                            <h3>Wallet Points</h3>
+                            <h3 lang={lang}>{t('Wallet Points')}</h3>
                             <div>
                                 <div>
                                     <span>0</span>
-                                    <span>Total</span>
+                                    <span>{t('Total')}</span>
                                 </div>
                                 <div>
                                     <span>0</span>
-                                    <span>Used</span>
+                                    <span>{t('Used')}</span>
                                 </div>
                                 <div>
                                     <span>0</span>
-                                    <span>Available</span>
+                                    <span>{t('Available')}</span>
                                 </div>
                             </div>
                         </div>
@@ -84,15 +88,15 @@ const Dashboard = ({ currentUser }) => {
 
                             <div className="side-bar-wallet">
                                 <div>
-                                    <span>Total Points</span>
+                                    <span>{t('Total Points')}</span>
                                     <span>0</span>
                                 </div>
                                 <div>
-                                    <span>Points Used</span>
+                                    <span>{t('Points Used')}</span>
                                     <span>0</span>
                                 </div>
                                 <div>
-                                    <span>Avalaible Points</span>
+                                    <span>{t('Avalaible Points')}</span>
                                     <span>0</span>
                                 </div>
                             </div>
@@ -100,33 +104,33 @@ const Dashboard = ({ currentUser }) => {
                             <ul>
                                 {
                                     !currentUser.email_verified_at && <li>
-                                        <Link className="active" to={`/dashboard/verify-email`} >Verify
-                                            Email</Link>
+                                        <Link className="active" to={`/dashboard/verify-email`} lang={lang}>
+                                            {t('Verify Email')}</Link>
                                     </li>
                                 }
                                 <li>
-                                    <Link className={location.pathname === "/dashboard" ? 'active' : null} to={`/dashboard`} >Profile</Link>
+                                    <Link lang={lang} className={location.pathname === "/dashboard" ? 'active' : null} to={`/dashboard`} >{t('Profile')}</Link>
                                 </li>
                                 <li>
-                                    <Link to={`/dashboard/update-password`} className={location.pathname === "/dashboard/update-password" ? 'active' : null} >Change
-                                        Password</Link>
+                                    <Link lang={lang} to={`/dashboard/update-password`} className={location.pathname === "/dashboard/update-password" ? 'active' : null} >
+                                        {t('Change Password')}</Link>
                                 </li>
                                 <li>
-                                    <Link to={`/dashboard/orders`} className={location.pathname === "/dashboard/orders" ? 'active' : null}  >My Orders</Link>
+                                    <Link lang={lang} to={`/dashboard/orders`} className={location.pathname === "/dashboard/orders" ? 'active' : null}  >{t('My Orders')}</Link>
                                 </li>
                                 <li>
-                                    <Link to={`/dashboard/checkout`} className={location.pathname === "/dashboard/checkout" || location.pathname === "/dashboard/place-order"  ? 'active' : null} >Checkout</Link>
+                                    <Link lang={lang} to={`/dashboard/checkout`} className={location.pathname === "/dashboard/checkout" || location.pathname === "/dashboard/place-order"  ? 'active' : null} >{t('Checkout')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/help" className={location.pathname === "/dashboard/help" ? 'active' : null} >Need Help</Link>
+                                    <Link lang={lang} to="/help" className={location.pathname === "/dashboard/help" ? 'active' : null} >{t('Need Help')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/dashboard/two-factors-auth" className={location.pathname === "/dashboard/two-factors-auth" ? 'active' : null} >Two Factors Authentication</Link>
+                                    <Link lang={lang} to="/dashboard/two-factors-auth" className={location.pathname === "/dashboard/two-factors-auth" ? 'active' : null} >{t('Two Factors Authentication')}</Link>
                                 </li>
                             </ul>
                             <ul>
                                 <li>
-                                    <Link to="/">Logout</Link>
+                                    <Link lang={lang} to="/">{t('Logout')}</Link>
                                 </li>
                             </ul>
                         </div>
@@ -174,6 +178,6 @@ const mapStateToProps = createStructuredSelector({
 });
 const mapDispatchToProps = dispatch => ({});
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(Dashboard)));
 
 

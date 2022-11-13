@@ -10,9 +10,13 @@ import {
 import {cancelTwoFactorChallenge, signInStart, signUpStart} from "../../../redux/auth/auth.actions";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
+import cookies from "js-cookie";
+import { withTranslation } from 'react-i18next';
 
 //this is component for the sign-up form
-const SignUp = ({switchComponent, signUpStart, loading, signUpErrors}) => {
+const SignUp = ({switchComponent, signUpStart, loading, signUpErrors, t}) => {
+    const lang = cookies.get('i18next') || "en";
+
     // local state
     const [userCredentials, setCredentials] = useState({email: '', password: '', password_confirmation: '', name: ''});
     const {email, password, password_confirmation, name} = userCredentials;
@@ -57,13 +61,13 @@ const SignUp = ({switchComponent, signUpStart, loading, signUpErrors}) => {
                     <img className={"nav-logo"} src="/images/nav-logo.png" alt="Logo"/>
                 </div>
                 <div className="title">
-                    By signing up, you agree to ourterms & policy
+                    {t('By signing up, you agree to ourterms & policy')}
 
                 </div>
                 <div className="form">
-                    <form onSubmit={handleSubmit}>
-                        <div className="input-block">
-                            <label htmlFor="">Name</label>
+                    <form onSubmit={handleSubmit} lang={lang}>
+                        <div className="input-block" lang={lang}>
+                            <label htmlFor="">{t('Name')}</label>
                             <input
                                 type="text"
                                 id="exampleInputUsername1"
@@ -79,8 +83,8 @@ const SignUp = ({switchComponent, signUpStart, loading, signUpErrors}) => {
                                                      </span>
                             }
                         </div>
-                        <div className="input-block">
-                            <label htmlFor="">Email</label>
+                        <div className="input-block" lang={lang}>
+                            <label htmlFor="">{t('Email')}</label>
                             <input
                                 type="email"
                                 id="exampleInputEmail1"
@@ -96,8 +100,8 @@ const SignUp = ({switchComponent, signUpStart, loading, signUpErrors}) => {
                                                      </span>
                             }
                         </div>
-                        <div className="input-block">
-                            <label htmlFor="">password</label>
+                        <div className="input-block" lang={lang}>
+                            <label htmlFor="">{t('Password')}</label>
                             <input
                                 type="password"
                                 id="exampleInputPassword1"
@@ -113,8 +117,8 @@ const SignUp = ({switchComponent, signUpStart, loading, signUpErrors}) => {
                                                      </span>
                             }
                         </div>
-                        <div className="input-block">
-                            <label htmlFor="">password</label>
+                        <div className="input-block" lang={lang}>
+                            <label htmlFor="">{t('Password')}</label>
                             <input
                                 type="password"
                                 id="exampleInputPassword1"
@@ -130,12 +134,12 @@ const SignUp = ({switchComponent, signUpStart, loading, signUpErrors}) => {
                                                      </span>
                             }
                         </div>
-                        <button className={"submit-btn"}>Register</button>
+                        <button className={"submit-btn"}>{t('Register')}</button>
                     </form>
                 </div>
                 <div className="divider"/>
                 <div className="sign-in-footer">
-                    Already have an account? <span onClick={() => switchComponent("sign-in")}>Login</span>
+                    {t('Already have an account?')} <span onClick={() => switchComponent("sign-in")}>{t('Login')}</span>
                 </div>
             </div>
         </>
@@ -157,5 +161,5 @@ const mapDispatchToProps = dispatch => ({
     })),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp)));
 

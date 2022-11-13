@@ -39,6 +39,17 @@
       flex: 0 0 48%;
       margin-bottom: 1.5rem;
 
+      
+    &[lang="ar"]{
+      & label{
+        align-self: flex-end;
+      }
+
+      & .auth-link{
+        align-self: flex-start;
+      }
+    }
+
       & .auth-link {
           font-size: 1.4rem;
           align-self: flex-end;
@@ -135,7 +146,7 @@
 
 
 //forget password
-.forget-password-page {;
+.forget-password-page {
   display: flex;
   align-self: center;
   justify-content: center;

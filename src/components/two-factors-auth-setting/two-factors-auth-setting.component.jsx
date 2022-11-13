@@ -32,7 +32,7 @@ const TwoFactorAuthSettings = ({
                                    disableTwoFactorAuthentication,
                                    loadingDisableTwoFactorAuth,
                                    loadingRecoveryCodes,
-                                   getRecoveryCodes
+                                   getRecoveryCodes,
                                }) => {
 
     useEffect(() => {

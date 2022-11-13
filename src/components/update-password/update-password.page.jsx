@@ -10,8 +10,12 @@ import {updateUserPasswordStart} from "../../redux/auth/auth.actions";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import Spinner from "../spinner/spinner.components";
+import cookies from "js-cookie";
+import { withTranslation } from "react-i18next";
 
-const UpdatePassword = ({updatePassword, updateLoading, passwordErrors, updateStatus}) => {
+const UpdatePassword = ({updatePassword, updateLoading, passwordErrors, updateStatus, t}) => {
+    const lang = cookies.get('i18next') || "en";
+
     const [credentials, setCredentials] = useState({
         oldPassword: '',
         newPassword: '',
@@ -75,8 +79,8 @@ const UpdatePassword = ({updatePassword, updateLoading, passwordErrors, updateSt
                     ? <Spinner/>
                     :
                     <div className="form-ct">
-                        <form onSubmit={handleSecuritySubmit}>
-                            <p>Change Password</p>
+                        <form onSubmit={handleSecuritySubmit}  lang={lang}>
+                            <p>{t('Change Password')}</p>
                             {
                                 updateStatus && updateSuccess &&
                                 <span className={"input-validation-errors info-success"}>
@@ -86,7 +90,7 @@ const UpdatePassword = ({updatePassword, updateLoading, passwordErrors, updateSt
                                 </span>
                             }
 
-                            <PasswordGroup label="Old password" name="oldPassword" value={oldPassword}
+                            <PasswordGroup label={t("Old password")} name="oldPassword" value={oldPassword}
                                            onChange={handelChange}/>
                             {
                                 oldPasswordError
@@ -98,7 +102,7 @@ const UpdatePassword = ({updatePassword, updateLoading, passwordErrors, updateSt
                                 </span>
                             }
 
-                            <PasswordGroup label="New password" name="newPassword" value={newPassword}
+                            <PasswordGroup label={t("New password")} name="newPassword" value={newPassword}
                                            onChange={handelChange}/>
                             {
                                 newPasswordError
@@ -109,7 +113,7 @@ const UpdatePassword = ({updatePassword, updateLoading, passwordErrors, updateSt
 
                                 </span>
                             }
-                            <PasswordGroup label="Confirm password" name="confirmPassword" value={confirmPassword}
+                            <PasswordGroup label={t("Confirm password")} name="confirmPassword" value={confirmPassword}
                                            onChange={handelChange}/>
                             {
                                 passwordConfirmationError
@@ -121,7 +125,7 @@ const UpdatePassword = ({updatePassword, updateLoading, passwordErrors, updateSt
                                 </span>
                             }
                             <div className="submit-ct">
-                                <input type="submit" value="Submit"/>
+                                <input type="submit" value={t("Submit")} />
                             </div>
                         </form>
                     </div>
@@ -140,5 +144,5 @@ const mapDispatchToProps = dispatch => ({
     updatePassword: user => dispatch(updateUserPasswordStart(user)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UpdatePassword));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(UpdatePassword)));
 

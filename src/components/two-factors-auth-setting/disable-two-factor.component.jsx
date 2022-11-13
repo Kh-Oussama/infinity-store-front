@@ -4,19 +4,19 @@ import {selectRecoveryCodes, selectRecoveryCodesError} from "../../redux/auth/au
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import { Table } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
+import cookies from "js-cookie";
 
-const DisableTwoFactorComponent = ({qrCode, recoveryCodes, disableTwoFactorAuthentication}) => {
-
+const DisableTwoFactorComponent = ({qrCode, recoveryCodes, disableTwoFactorAuthentication, t}) => {
+    const lang = cookies.get('i18next') || "en";
     console.log(qrCode)
     return (
         <div className="dashboard-content-card">
-            <div className="content">
-                <h1 className="title" >Two factors authentication</h1>
+            <div className="content" lang={lang}>
+                <h1 className="title" lang={lang}>{t('Two factors authentication')}</h1>
                 {qrCode &&
-                    <p className="description">
-                        Scan the qr code below with an authenticator application, such as Google Authenticator on your
-                        phone.
-
+                    <p className="description" >
+                        {t("Scan the qr code below with an authenticator application, such as Google Authenticator on your phone.")}
                     </p>
                 }
                 {qrCode &&
@@ -27,16 +27,15 @@ const DisableTwoFactorComponent = ({qrCode, recoveryCodes, disableTwoFactorAuthe
                     </div>
                 }
                 <p className={"description"}>
-                    Hi Ousssama,<br/>
-                    Two-factor authentication is an extra layer of security for your Apple ID designed to ensure that
-                    you're the only person who can access your account, even if someone knows your password.
+                    {t('Hi')} Ousssama,<br/>
+                    {t("Two-factor authentication is an extra layer of security for your Apple ID designed to ensure that you're the only person who can access your account, even if someone knows your password.")}
                 </p>
 
                 <div className="details">
                     <Table celled selectable>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>Recovery Codes</Table.HeaderCell>
+                                <Table.HeaderCell>{t("Recovery Codes")}</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
@@ -64,7 +63,7 @@ const DisableTwoFactorComponent = ({qrCode, recoveryCodes, disableTwoFactorAuthe
                     </Table>
                     <div className="button-block">
                         <button className={"dn-button"} onClick={disableTwoFactorAuthentication}>
-                            <i className="fa-solid fa-lock-open"/> Disable two Factor Authentication
+                            <i className="fa-solid fa-lock-open"/> {t("Disable two Factor Authentication")}
                         </button>
                     </div>
 
@@ -100,4 +99,4 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({});
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DisableTwoFactorComponent));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(DisableTwoFactorComponent)));

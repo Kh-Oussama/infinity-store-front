@@ -14,9 +14,11 @@ import {connect} from "react-redux";
 import EmptyCardIcon from "../icons/SadFaceIcon";
 import {withRouter} from "react-router-dom";
 import {selectCurrentUser} from "../../redux/auth/auth.selectors";
+import { withTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 
-const ShoppingCardDetails = ({ showModal, toggleModal,cartItems, history, total, currentUser, toggleAuthComponent, redirectToCheckoutPage}) => {
+const ShoppingCardDetails = ({ showModal, toggleModal,cartItems, history, total, currentUser, toggleAuthComponent, redirectToCheckoutPage, t}) => {
 
     return (
         <>
@@ -27,7 +29,7 @@ const ShoppingCardDetails = ({ showModal, toggleModal,cartItems, history, total,
                         <span className="count-number">
                             {cartItems.length}
                         </span>
-                        <span>Item</span>
+                        <span>{t('Item')}</span>
                     </div>
                     <div className="rightBlock" onClick={() => toggleModal()}>
                         <CloseIcon/>
@@ -47,7 +49,7 @@ const ShoppingCardDetails = ({ showModal, toggleModal,cartItems, history, total,
                                 </div>
                             : <>
                                 <EmptyCardIcon/>
-                                <h1>No products found</h1>
+                                <h1>{t('No products found')}</h1>
                             </>
                     }
 
@@ -62,8 +64,8 @@ const ShoppingCardDetails = ({ showModal, toggleModal,cartItems, history, total,
                             redirectToCheckoutPage(true);
                         }
                     }}>
-                        <div className="text">Checkout</div>
-                        <div className="totalPrice">{total} DA</div>
+                        <div className="text">{t("Checkout")}</div>
+                        <div className="totalPrice">{total} {t("DA")}</div>
                     </div>
                 </div>
             </div>
@@ -82,4 +84,4 @@ const mapDispatchToProps = dispatch => ({
     toggleAuthComponent: current_component => dispatch(toggleAuthComponent(current_component)),
     redirectToCheckoutPage: current_state => dispatch(redirectToCheckout(current_state)),
 })
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ShoppingCardDetails));
+export default withTranslation()(withRouter(connect(mapStateToProps, mapDispatchToProps)(ShoppingCardDetails)));
