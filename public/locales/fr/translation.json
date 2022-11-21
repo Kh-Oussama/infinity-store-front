@@ -123,6 +123,7 @@
     "Confirm Password": "Confirmez le mot de passe",
     "Confirm": "Confirmer",
     "Password...": "Mot de passe...",
+    "Resend Email Verification": "Renvoyer la vérification par e-mail",
 
 
     "Hi": "Salut",
@@ -162,6 +163,9 @@
     "Categories": "Categories",
     "Sellers": "Les vendeurs",
 
-    "No products found": "Aucun produit trouvé"
+    "No products found": "Aucun produit trouvé",
+
+    "we're happy signed up for Infinity store, To start exploring our App and neighborhood, please check your inbox and confirm your email address.": 
+    "nous sommes heureux de vous être inscrits à la boutique Infinity. Pour commencer à explorer notre application et notre quartier, veuillez vérifier votre boîte de réception et confirmer votre adresse e-mail."
 
 }

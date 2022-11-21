@@ -10,9 +10,11 @@ import {resendEmailVerificationStart} from "../../redux/auth/auth.actions";
 import Spinner from "../spinner/spinner.components";
 import {Message} from "semantic-ui-react";
 import 'semantic-ui-css/components/message.min.css';
+import { withTranslation } from 'react-i18next';
+import cookies from "js-cookie";
 
-const EmailVerification = ({resendEmailVerification, loading, status, errors}) => {
-
+const EmailVerification = ({resendEmailVerification, loading, status, errors, t}) => {
+    const lang = cookies.get('i18next') || "en";
     return (
         <div className="update-password email-verification-block">
             <div className="form-ct email-verification-block">
@@ -20,15 +22,14 @@ const EmailVerification = ({resendEmailVerification, loading, status, errors}) =
                     loading
                         ? <Spinner/>
                         : <>
-                            <h1 className={"title"}>Infinity Store Team</h1>
-                            <p className={"description"}>
-                                Hi Ousssama,<br/>
-                                we're happy signed up for Infinity store, To start exploring our App and neighborhood,
-                                please check your inbox and confirm your email address.
+                            <h1 lang={lang} className={"title"}>{t('Infinity Store Team')}</h1>
+                            <p lang={lang} className={"description"}>
+                                {t('Hi')} Ousssama,<br/>
+                                {t("we're happy signed up for Infinity store, To start exploring our App and neighborhood, please check your inbox and confirm your email address.")}
                             </p>
                             <div className="button-block">
                                 <button onClick={resendEmailVerification}>
-                                    <i className="fa-solid fa-repeat"/> Resend Email Verification
+                                    <i className="fa-solid fa-repeat"/> {t('Resend Email Verification')}
                                 </button>
                             </div>
                             {
@@ -58,4 +59,4 @@ const mapDispatchToProps = dispatch => ({
     resendEmailVerification: () => dispatch(resendEmailVerificationStart()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmailVerification);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(EmailVerification));

@@ -85,8 +85,6 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems, t }) => {
                                 }
 
                             }}
-                        // onSwiper={(swiper) => console.log(swiper)}
-
                         >
                             {
                                 product.images.map(img => (
@@ -244,12 +242,6 @@ const ViewProduct = ({ product, addItem, removeItem, cartItems, t }) => {
                             <div className="action addButton" onClick={() => addItemToShoppingCard(product)}>
                                 {t("Add to Shopping cart")}
                             </div>}
-{/*
-            <div className="action addButton" onClick={() => addItemToShoppingCard(product)}>
-                                Add to Shopping cart
-                            </div>
-*/}
-
 
                             <div className="qnt">
                                 <span>{product.quantity}</span> {t("pieces available")}

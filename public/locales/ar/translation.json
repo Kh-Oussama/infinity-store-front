@@ -48,7 +48,7 @@
     "Total Points": "مجمل النقاط",
     "Points Used": "النقاط المستخدمة",
     "Avalaible Points": "النقاط المتاحة",
-    "Verify Email": "Verify Email",
+    "Verify Email": "تأكيد البريد",
     "Change Password": "غير كلمة السر",
     "My Orders": "طلباتي",
     "Need Help": "تحتاج مساعدة",
@@ -124,6 +124,7 @@
     "Confirm Password": "تأكيد كلمة المرور",
     "Confirm": "أكد",
     "Password...": "...كلمة المرور",
+    "Resend Email Verification": "إعادة إرسال",
 
 
     "Hi": "أهلاً",
@@ -164,6 +165,8 @@
     "Sellers": "الباعة",
 
 
-    "No products found": "لا توجد منتجات"
+    "No products found": "لا توجد منتجات",
 
+    "we're happy signed up for Infinity store, To start exploring our App and neighborhood, please check your inbox and confirm your email address.": 
+    ".يسعدنا تسجيلك في متجرنا ,لبدء استكشاف التطبيق والحي الخاص بنا ، يرجى التحقق من صندوق الوارد الخاص بك وتأكيد عنوان بريدك الإلكتروني"
 }

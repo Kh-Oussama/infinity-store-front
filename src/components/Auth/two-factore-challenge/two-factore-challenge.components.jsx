@@ -58,7 +58,7 @@ const TwoFactorChallenge = ({ switchComponent,twoFactorChallenge, loading, error
                 </div>
                 <div className="form">
                     <form onSubmit={handleSubmit}>
-                    <div className="input-block">
+                    <div lang={lang} className="input-block">
                         <label htmlFor="">{t("Code")}</label>
                         <input
                             type="text"
